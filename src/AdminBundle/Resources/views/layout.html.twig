@@ -1,0 +1,131 @@
+<html>
+    <head>
+        {% block javascripts %}
+            <script src="{{ asset('bundles/admin/js/jquery-1.11.1.min.js') }}"></script>
+            <script src="{{ asset('bundles/admin/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('bundles/admin/ckeditor/ckeditor.js') }}"></script>
+
+        {% endblock %}
+
+        {% block stylesheets %}
+            <link href="{{ asset('bundles/admin/css/bootstrap.css') }}" rel="stylesheet">
+            <link href="{{ asset('bundles/admin/css/bootstrap-theme.css') }}" rel="stylesheet">
+            {#<link href="{{ asset('bundles/admin/ckeditor/contents.css') }}" rel="stylesheet">#}
+            <style>
+                .setting{
+                    text-align: right;
+                }
+            </style>
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-inverse" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">ПАНЕЛЬ <span class="text-danger">[ АДМИНИСТРАТОР ]</span></a>
+                    </div>
+                    <div class="navbar-right">
+                        <div class="collapse navbar-collapse">
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <ul class="nav navbar-nav">
+                                    <li><a href="{{ path('main') }}" target="_blank">На сайт</a></li>
+                                    <li><a href="{{ path('_security_logout') }}">Выйти</a></li>
+                                </ul>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="container">
+            {% block alert %}{% endblock %}
+            {#<div class="alert alert-success" role="alert"></div>#}
+            {#<div class="alert alert-info" role="alert"></div>#}
+            {#<div class="alert alert-warning" role="alert"></div>#}
+            {#<div class="alert alert-danger" role="alert"></div>#}
+            
+            <div class="row">
+                <div class="col-md-3">
+                    {% block menu %}
+                        {% include 'AdminBundle::menu.html.twig' %}
+                    {% endblock %}
+                </div>
+                <div class="col-md-9">
+                    {% block breadcrumb %}
+                        <ul class="breadcrumb well">
+                                <li><a href="#">Домой</a> <span class="divider"></span></li>
+                                <li><a href="#">Страницы</a> <span class="divider"></span></li>
+                                <li class="active">Список</li>
+                        </ul>
+                    {% endblock %}
+                    {% block content %}
+                    <div class="well">
+                        <div class="panel-heading">
+                            Фильтр:
+                            <div class="btn-group">
+                                {#<button type="button" class="btn btn-default active">Все</button>#}
+                                <button type="button" class="btn btn-default active">Активные</button>
+                                <button type="button" class="btn btn-default">Неактивные</button>
+                            </div>
+                        </div>
+                        <table class="table">
+                            <tr>
+                                <th>#</th>
+                                <th>ID</th>
+                                <th>Заголовок</th>
+                                <th></th>
+                                <th class="text-right">Инструменты</th>
+                            </tr>
+                            <tr>
+                                <th><input type="checkbox"></th>
+                                <td>1</td>
+                                <td>Название</td>
+                                <td><span class="glyphicon glyphicon-star" style="color: green"></span></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th><input type="checkbox"></th>
+                                <td>1</td>
+                                <td>Название</td>
+                                <td><span class="glyphicon glyphicon-star" style="color: green"></span></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th><input type="checkbox"></th>
+                                <td>1</td>
+                                <td>Название</td>
+                                <td><span class="glyphicon glyphicon-star" style="color: red"></span></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th><input type="checkbox"></th>
+                                <td>1</td>
+                                <td>Название</td>
+                                <td><span class="glyphicon glyphicon-star" style="color: green"></span></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                        <div style="text-align: right">
+                            <ul class="pagination">
+                                <li><a href="#">&laquo;</a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#">&raquo;</a></li>
+                            </ul>
+                        </div>
+                        {#{% block content %}{% endblock %}#}
+                    </div>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+
+
+
+        {% block body %}{% endblock %}
+    </body>
+</html>
