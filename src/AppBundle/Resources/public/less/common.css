@@ -1,0 +1,80 @@
+body {
+  text-align: center;
+}
+.body {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: left;
+}
+.slider img {
+  width: 100%;
+}
+.btn {
+  border-radius: 0;
+  padding: 6px 40px;
+}
+.form-control {
+  border-radius: 0;
+}
+.header > div {
+  height: 100%;
+}
+#logo {
+  width: 100px;
+}
+#search {
+  width: 400px;
+}
+.navbar-form {
+  padding-top: 6px;
+}
+nav .navbar-nav {
+  width: 100%;
+  display: table;
+  border-bottom: 1px solid #EEEEEE;
+}
+nav .navbar-nav li:last-child {
+  border-right: 1px solid #DDD;
+}
+nav .navbar-nav li {
+  border-left: 1px solid #DDD;
+  text-align: center;
+  float: none;
+  display: table-cell;
+  text-transform: uppercase;
+}
+nav .navbar-nav li a:hover {
+  color: #FFFFFF;
+  background: #0066ff;
+  text-transform: uppercase;
+}
+nav .navbar-nav li.active {
+  background: #0066ff;
+  color: #FFFFFF;
+}
+nav .navbar-nav li.active a {
+  color: #FFFFFF;
+  text-transform: uppercase;
+}
+.collapse.navbar-collapse {
+  padding: 0;
+}
+@media screen and (min-width: 768px) {
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+.title {
+  color: #0066ff;
+  font-weight: bold;
+  font-size: 18px;
+}

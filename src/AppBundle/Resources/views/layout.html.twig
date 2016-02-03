@@ -5,23 +5,48 @@
     {% block javascript %}
         <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script>
         <script src="{{ asset('assets/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('bundles/app/js/main.js') }}"></script>
     {% endblock %}
     {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('assets/vendor/reset-css/reset.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.css') }}">
+        {% stylesheets "@AppBundle/Resources/public/less/common.css" %}
+            <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
+        {% endstylesheets %}
     {% endblock %}
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="row">
-
+    <div class="body">
+        <div class="container-fluid">
+            <header>
+                <div class="row">
+                    <div class="col-xs-3">
+                        <img src="{{ asset('bundles/app/images/logo.png') }}" id="logo">
+                    </div>
+                    <div class="col-xs-offset-1 col-xs-6 text-right">
+                        <form class="navbar-form navbar-right" role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="search" placeholder="Введите запрос поиска">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Найти</button>
+                        </form>
+                    </div>
+                    <div class="col-xs-2">
+                        <div class="navbar-form navbar-right">
+                            <button class="btn btn-primary" id="login">Вход</button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="slider">
+                <img src="{{ asset('bundles/app/images/slider/1.png') }}">
             </div>
-        </header>
-        <div class="slider"></div>
-        <nav></nav>
-        <div class="content">
-            {% block content %}{% endblock %}
+            {% include "@App/menu.html.twig" %}
+            <div class="content row">
+                {% block content %}{% endblock %}
+            </div>
         </div>
     </div>
+    {% include "@App/Modal/login.html.twig" %}
 </body>
 </html>
