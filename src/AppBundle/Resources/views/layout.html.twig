@@ -10,7 +10,7 @@
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('assets/vendor/reset-css/reset.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.css') }}">
-        {% stylesheets "@AppBundle/Resources/public/less/common.css" %}
+        {% stylesheets "@AppBundle/Resources/public/less/*" %}
             <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
         {% endstylesheets %}
     {% endblock %}
