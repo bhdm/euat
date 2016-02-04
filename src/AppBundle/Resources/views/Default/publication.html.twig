@@ -3,6 +3,6 @@
 {% block content %}
     <h1>{{ publication.title }}</h1>
     <div>
-        {{ publication.body }}
+        {{ publication.body | raw }}
     </div>
 {% endblock %}
