@@ -90,6 +90,14 @@ class Event
     }
 
     /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->title;
+    }
+
+    /**
      * Get id
      *
      * @return int
