@@ -10,9 +10,6 @@
 
 {% block content %}
     <div class="well">
-        <iframe src="{{ path('admin_file_list') }}" class="frame"></iframe>
-    </div>
-    <div class="well">
         <form method="POST">
             {{ form_widget(form) }}
         </form>

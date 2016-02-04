@@ -67,7 +67,8 @@ class PublicationController extends Controller{
     public function editAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
         $item = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findOneById($id);
-        $form = $this->createForm(new PublicationType($em), $item);
+        $form = $this->createForm(PublicationType::class, $item);
+        $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
         $formData = $form->handleRequest($request);
 
         if ($request->getMethod() == 'POST'){
