@@ -23,7 +23,7 @@ class PageController extends Controller{
      * @Template()
      */
     public function listAction(){
-        $items = $this->getDoctrine()->getRepository('WzcMainBundle:'.self::ENTITY_NAME)->findAll();
+        $items = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findAll();
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -65,7 +65,7 @@ class PageController extends Controller{
      */
     public function editAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
-        $item = $this->getDoctrine()->getRepository('WzcMainBundle:'.self::ENTITY_NAME)->findOneById($id);
+        $item = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findOneById($id);
         $form = $this->createForm(new PageType($em), $item);
         $formData = $form->handleRequest($request);
 
@@ -86,7 +86,7 @@ class PageController extends Controller{
      */
     public function removeAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
-        $item = $em->getRepository('WzcMainBundle:'.self::ENTITY_NAME)->findOneById($id);
+        $item = $em->getRepository('AppBundle:'.self::ENTITY_NAME)->findOneById($id);
         if ($item){
             $em->remove($item);
             $em->flush();

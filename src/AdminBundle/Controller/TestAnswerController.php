@@ -23,8 +23,8 @@ class TestAnswerController extends Controller{
      * @Template()
      */
     public function listAction($questionId){
-        $question = $this->getDoctrine()->getRepository('WzcMainBundle:TestQuestion')->findOneById($questionId);
-        $items = $this->getDoctrine()->getRepository('WzcMainBundle:'.self::ENTITY_NAME)->findByQuestion($question);
+        $question = $this->getDoctrine()->getRepository('AppBundle:TestQuestion')->findOneById($questionId);
+        $items = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findByQuestion($question);
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -43,7 +43,7 @@ class TestAnswerController extends Controller{
      */
     public function addAction(Request $request,$questionId){
         $em = $this->getDoctrine()->getManager();
-        $question = $this->getDoctrine()->getRepository('WzcMainBundle:TestQuestion')->findOneById($questionId);
+        $question = $this->getDoctrine()->getRepository('AppBundle:TestQuestion')->findOneById($questionId);
         $item = new TestAnswer();
         $form = $this->createForm(new TestAnswerType($em), $item);
         $formData = $form->handleRequest($request);
@@ -71,7 +71,7 @@ class TestAnswerController extends Controller{
      */
     public function editAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
-        $item = $this->getDoctrine()->getRepository('WzcMainBundle:'.self::ENTITY_NAME)->findOneById($id);
+        $item = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findOneById($id);
         $question = $item->getQuestion();
         $form = $this->createForm(new TestAnswerType($em), $item);
         $formData = $form->handleRequest($request);
@@ -93,7 +93,7 @@ class TestAnswerController extends Controller{
      */
     public function removeAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
-        $item = $em->getRepository('WzcMainBundle:'.self::ENTITY_NAME)->findOneById($id);
+        $item = $em->getRepository('AppBundle:'.self::ENTITY_NAME)->findOneById($id);
         if ($item){
             $em->remove($item);
             $em->flush();

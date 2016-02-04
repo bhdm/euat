@@ -25,12 +25,12 @@ class FileController extends Controller
     //defaults={"folderId"="null"}
     public function listAction($folderId = null){
 //        if ( $folderId ){
-//            $parent = $this->getDoctrine()->getRepository('WzcMainBundle:File')->findOneById($folderId);
+//            $parent = $this->getDoctrine()->getRepository('AppBundle:File')->findOneById($folderId);
 //        }else{
 //            $parent = null;
 //        }
-//        $files = $this->getDoctrine()->getRepository('WzcMainBundle:File')->findByParent($parent);
-        $files = $this->getDoctrine()->getRepository('WzcMainBundle:File')->findAll();
+//        $files = $this->getDoctrine()->getRepository('AppBundle:File')->findByParent($parent);
+        $files = $this->getDoctrine()->getRepository('AppBundle:File')->findAll();
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $files,
@@ -78,7 +78,7 @@ class FileController extends Controller
      */
     public function removeFileAction(Request $request, $fileId){
         $em = $this->getDoctrine()->getManager();
-        $file = $em->getRepository('WzcMainBundle:File')->findOneById($fileId);
+        $file = $em->getRepository('AppBundle:File')->findOneById($fileId);
         if ($file){
             $em->remove($file);
             $em->flush();

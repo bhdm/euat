@@ -23,7 +23,7 @@ class TestStatisticController extends Controller{
      * @Template()
      */
     public function listAction(){
-        $items = $this->getDoctrine()->getRepository('WzcMainBundle:'.self::ENTITY_NAME)->findAll();
+        $items = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findAll();
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $items,
@@ -50,13 +50,13 @@ class TestStatisticController extends Controller{
      */
     public function statsAction(){
         #Скачивания
-        $doc = $this->getDoctrine()->getRepository('WzcMainBundle:Stats')->stats('doc');
+        $doc = $this->getDoctrine()->getRepository('AppBundle:Stats')->stats('doc');
         #Просмотры карты
-        $map = $this->getDoctrine()->getRepository('WzcMainBundle:Stats')->stats('map');
+        $map = $this->getDoctrine()->getRepository('AppBundle:Stats')->stats('map');
         #Прохождение теста
-        $test = $this->getDoctrine()->getRepository('WzcMainBundle:Stats')->stats('test');
+        $test = $this->getDoctrine()->getRepository('AppBundle:Stats')->stats('test');
         #Прохождение нового теста
-        $test2 = $this->getDoctrine()->getRepository('WzcMainBundle:Stats')->stats('test_new');
+        $test2 = $this->getDoctrine()->getRepository('AppBundle:Stats')->stats('test_new');
         return array(
             'test' => $test,
             'test2' => $test2,
@@ -72,7 +72,7 @@ class TestStatisticController extends Controller{
      */
     public function removeAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
-        $item = $em->getRepository('WzcMainBundle:'.self::ENTITY_NAME)->findOneById($id);
+        $item = $em->getRepository('AppBundle:'.self::ENTITY_NAME)->findOneById($id);
         if ($item){
             $em->remove($item);
             $em->flush();

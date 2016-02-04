@@ -58,7 +58,6 @@ class Publication
 
     /**
      * @var Category
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="publications")
      */
     private $category;

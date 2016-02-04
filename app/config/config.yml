@@ -84,3 +84,11 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: AppBundle\Entity\User
+
+knp_paginator:
+    page_range: 20                      # default page range used in pagination control
+    default_options:
+        page_name: page                # page query parameter name
+    template:
+        pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig     # sliding pagination controls template
+        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
