@@ -15,7 +15,8 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        return [];
+        $publications = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['category' => null]);
+        return ['publications' => $publications];
     }
 
     /**
@@ -34,7 +35,7 @@ class DefaultController extends Controller
     public function sendMailAction(){
         $html = $this->renderView("@App/mail.html.twig");
         $message = \Swift_Message::newInstance()
-            ->setSubject('Hello Email')
+            ->setSubject('Сумамед-Академия')
             ->setFrom('send@example.com')
             ->setTo('shpirt.b@evrika.ru')
             ->setBody(

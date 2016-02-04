@@ -1,13 +1,28 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block content %}
-    <div class="col-xs-3">
-        {% include "@App/Widget/calendar.html.twig" %}
+    <div class="row">
+        <div class="col-xs-3">
+            {% include "@App/Widget/calendar.html.twig" %}
+        </div>
+        <div class="col-xs-6">
+            <div class="title">ВИДЕО</div>
+        </div>
+        <div class="col-xs-3 text-right">
+            {% include "@App/Widget/banner.html.twig" %}
+        </div>
     </div>
-    <div class="col-xs-6">
-        <div class="title">ВИДЕО</div>
-    </div>
-    <div class="col-xs-3 text-right">
-        {% include "@App/Widget/banner.html.twig" %}
+    <div class="row">
+        <div class="col-xs-9">
+            <div class="title">НОВОСТИ</div>
+            {% for p in publications %}
+                <div class="new-item">
+                    <a href="{{ path('publications', {'url' : p.id }) }}"><div class="new-item-title">{{ p.title }}</div></a>
+                    <div class="new-item-anons">
+                        {{ p.anons | raw }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

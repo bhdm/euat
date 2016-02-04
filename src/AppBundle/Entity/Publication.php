@@ -200,5 +200,37 @@ class Publication
     }
 
 
+    public function getAnons()
+    {
+        $string = $this->body;
+        $length = 200;
+        $count = 0;
+
+        //$state = 0 - normal text
+        //$state = 1 - in HTML tag
+        //$state = 2 - in HTML entity
+
+        $state = 0;
+        for ($i = 0; $i < strlen($string); $i++) {
+            $char = $string[$i];
+            if ($char == '<') {
+                $state = 1;
+            } else if ($char == '&') {
+                $state = 2;
+                $count++;
+            } else if ($char == ';') {
+                $state = 0;
+            } else if ($char == '>') {
+                $state = 0;
+            } else if ($state === 0) {
+                $count++;
+            }
+
+            if ($count === $length) {
+                return substr($string, 0, $i + 1);
+            }
+        }
+        return $string;
+    }
 }
 
