@@ -1,11 +1,11 @@
 <?php
 namespace AdminBundle\Controller;
 
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Publication;
 use AppBundle\Form\PublicationType;
@@ -22,13 +22,13 @@ class PublicationController extends Controller{
      * @Route("/", name="admin_publication_list")
      * @Template()
      */
-    public function listAction(){
+    public function listAction(Request $request){
         $items = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findAll();
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $items,
-            $this->get('request')->query->get('publication', 1),
+            $request->query->get('publication', 1),
             20
         );
 
@@ -43,7 +43,8 @@ class PublicationController extends Controller{
     public function addAction(Request $request){
         $em = $this->getDoctrine()->getManager();
         $item = new Publication();
-        $form = $this->createForm(new PublicationType($em), $item);
+        $form = $this->createForm(PublicationType::class, $item);
+        $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
         $formData = $form->handleRequest($request);
 
         if ($request->getMethod() == 'POST'){

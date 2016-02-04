@@ -1,14 +1,14 @@
 <?php
 namespace AdminBundle\Controller;
 
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Component\Security\Core\SecurityContext;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Entity\Page;
-use AppBundle\Form\PageType;
+use AppBundle\Entity\Publication;
+use AppBundle\Form\PublicationType;
 
 /**
  * Class PageController
@@ -16,7 +16,7 @@ use AppBundle\Form\PageType;
  * @Route("/admin/page")
  */
 class PageController extends Controller{
-        const ENTITY_NAME = 'Page';
+        const ENTITY_NAME = 'Publication';
     /**
      * @Security("has_role('ROLE_ADMIN')")
      * @Route("/", name="admin_page_list")
@@ -42,8 +42,8 @@ class PageController extends Controller{
      */
     public function addAction(Request $request){
         $em = $this->getDoctrine()->getManager();
-        $item = new Page();
-        $form = $this->createForm(new PageType($em), $item);
+        $item = new Publication();
+        $form = $this->createForm(new PublicationType($em), $item);
         $formData = $form->handleRequest($request);
 
         if ($request->getMethod() == 'POST'){
@@ -66,7 +66,7 @@ class PageController extends Controller{
     public function editAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
         $item = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findOneById($id);
-        $form = $this->createForm(new PageType($em), $item);
+        $form = $this->createForm(new PublicationType($em), $item);
         $formData = $form->handleRequest($request);
 
         if ($request->getMethod() == 'POST'){

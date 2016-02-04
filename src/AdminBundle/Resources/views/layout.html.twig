@@ -29,8 +29,8 @@
                         <div class="collapse navbar-collapse">
                             {% if is_granted('ROLE_ADMIN') %}
                                 <ul class="nav navbar-nav">
-                                    <li><a href="{{ path('main') }}" target="_blank">На сайт</a></li>
-                                    <li><a href="{{ path('_security_logout') }}">Выйти</a></li>
+                                    <li><a href="{{ path('homepage') }}" target="_blank">На сайт</a></li>
+                                    <li><a href="{{ path('fos_user_security_logout') }}">Выйти</a></li>
                                 </ul>
                             {% endif %}
                         </div>

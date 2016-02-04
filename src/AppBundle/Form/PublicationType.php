@@ -2,12 +2,13 @@
 
 namespace AppBundle\Form;
 
-use Doctrine\DBAL\Types\TextType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 
 class PublicationType extends AbstractType
 {
@@ -19,7 +20,7 @@ class PublicationType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [ 'label' => 'Название'])
-            ->add('category', EntityType::class, [ 'label' => 'Категория'])
+            ->add('category', null, [ 'label' => 'Категория'])
             ->add('slug', TextType::class, [ 'label' => 'URI'])
             ->add('body', TextareaType::class, [ 'label' => 'Контент', 'attr' => ['class' => 'ckeditor']])
         ;
