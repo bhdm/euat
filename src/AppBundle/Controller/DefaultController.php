@@ -28,4 +28,23 @@ class DefaultController extends Controller
         return ['menu' => $menu];
     }
 
+    /**
+     * @Route("/send-mail")
+     */
+    public function sendMailAction(){
+        $html = $this->renderView("@App/mail.html.twig");
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Hello Email')
+            ->setFrom('send@example.com')
+            ->setTo('shpirt.b@evrika.ru')
+            ->setBody(
+                $this->renderView(
+                // app/Resources/views/Emails/registration.html.twig
+                    '@App/mail.html.twig'
+                ),
+                'text/html'
+            );
+        $this->get('mailer')->send($message);
+    }
+
 }
