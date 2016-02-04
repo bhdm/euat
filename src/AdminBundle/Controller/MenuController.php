@@ -5,6 +5,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Menu;
@@ -22,13 +23,13 @@ class MenuController extends Controller{
      * @Route("/", name="admin_menu_list")
      * @Template()
      */
-    public function listAction(){
+    public function listAction(Request $request){
         $items = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findAll();
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $items,
-            $this->get('request')->query->get('page', 1),
+            $request->query->get('page', 1),
             20
         );
 
@@ -43,7 +44,8 @@ class MenuController extends Controller{
     public function addAction(Request $request){
         $em = $this->getDoctrine()->getManager();
         $item = new Menu();
-        $form = $this->createForm(new MenuType($em), $item);
+        $form = $this->createForm(MenuType::class, $item);
+        $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
         $formData = $form->handleRequest($request);
 
         if ($request->getMethod() == 'POST'){
@@ -66,7 +68,8 @@ class MenuController extends Controller{
     public function editAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
         $item = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findOneById($id);
-        $form = $this->createForm(new MenuType($em), $item);
+        $form = $this->createForm(MenuType::class, $item);
+        $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
         $formData = $form->handleRequest($request);
 
         if ($request->getMethod() == 'POST'){
