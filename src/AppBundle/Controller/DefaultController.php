@@ -18,4 +18,14 @@ class DefaultController extends Controller
         return [];
     }
 
+    /**
+     * @Route("/generate-menu", name="generate_menu")
+     * @Template("AppBundle::menu.html.twig")
+     */
+    public function generateMenuAction(){
+        $menu = $this->getDoctrine()->getRepository('AppBundle:Menu')->findAll();
+
+        return ['menu' => $menu];
+    }
+
 }
