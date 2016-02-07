@@ -43,15 +43,6 @@ class Country
 	 */
 	protected $shortTitle;
 
-    /**
-     * @ORM\ManyToMany(targetEntity = "BannerRotate", mappedBy = "countries")
-     */
-    protected $bannersRotate;
-
-	/**
-	 * @ORM\ManyToMany(targetEntity = "Banner", mappedBy = "countries")
-	 */
-	protected $banners;
 
 	public function __construct()
 	{

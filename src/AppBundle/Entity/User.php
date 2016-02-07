@@ -2,12 +2,14 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="user")
+ * @ORM\HasLifecycleCallbacks()
  */
 class User extends BaseUser
 {
@@ -416,6 +418,12 @@ class User extends BaseUser
         $this->specialty = $specialty;
     }
 
-
+    /**
+     * @ORM\PrePersist
+     */
+    public function setUsernameValue()
+    {
+        $this->username = $this->email;
+    }
 
 }

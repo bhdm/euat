@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class AuthController extends Controller
 {
     /**
-     * @Route("/register", name="register")
+     * @Route("/register", name="regisster")
      */
     public function registerAction()
     {
