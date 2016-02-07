@@ -83,3 +83,42 @@ nav .navbar-nav li.active a {
   padding-top: 10px;
   border-bottom: 1px solid #0066ff;
 }
+.table-condensed {
+  width: 100%;
+}
+.day {
+  cursor: pointer;
+}
+.day,
+.dow,
+.picker-switch {
+  text-align: center;
+}
+.day:hover,
+.dow:hover,
+.picker-switch:hover {
+  background: #DDD;
+}
+.today {
+  background: #BBBBBB;
+  color: #FFFFFF;
+}
+.claendar-tabs {
+  width: 100%;
+}
+.claendar-tabs .claendar-tab {
+  display: inline-block;
+  width: 50%;
+  background: #DEECF5;
+  text-align: center;
+  padding: 5px 0;
+  float: left;
+  cursor: pointer;
+  border: 1px solid #BDDAEB;
+}
+.claendar-tabs .active {
+  background: #88BADD;
+}
+#calendar-widget {
+  border: 1px solid #BDDAEB;
+}

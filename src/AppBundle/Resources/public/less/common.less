@@ -95,3 +95,42 @@ nav{
     padding-top: 10px;
     border-bottom: 1px solid @color-blue;
 }
+
+//Календарь
+.table-condensed{
+    width: 100%;
+}
+.day{
+    cursor: pointer;
+}
+.day, .dow, .picker-switch{
+    text-align: center;
+    &:hover{
+        background: #DDD;
+    }
+}
+.today{
+    background: #BBBBBB;
+    color: @color-white;
+}
+// /////////////////
+
+.claendar-tabs{
+    width: 100%;
+    .claendar-tab{
+        display: inline-block;
+        width: 50%;
+        background: #DEECF5;
+        text-align: center;
+        padding: 5px 0;
+        float: left;
+        cursor: pointer;
+        border: 1px solid #BDDAEB;
+    }
+    .active{
+        background: #88BADD;
+    }
+}
+#calendar-widget{
+    border: 1px solid #BDDAEB;
+}

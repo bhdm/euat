@@ -1,11 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1dd4668b9c8e93afa591220e9662f5d6",
-    "content-hash": "a8da6882e230aa1a04c47f0832b39c11",
+    "hash": "642501c7c1ed8030e1977d7215f0863e",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -771,6 +770,49 @@
                 "orm"
             ],
             "time": "2015-12-25 15:50:05"
+        },
+        {
+            "name": "donatj/simplecalendar",
+            "version": "v0.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/donatj/SimpleCalendar.git",
+                "reference": "238e934807ecd67b47d85ff6f4a06ae2905cf231"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/donatj/SimpleCalendar/zipball/238e934807ecd67b47d85ff6f4a06ae2905cf231",
+                "reference": "238e934807ecd67b47d85ff6f4a06ae2905cf231",
+                "shasum": ""
+            },
+            "require": {
+                "ext-calendar": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "donatj": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jesse Donat",
+                    "email": "donatj@gmail.com",
+                    "homepage": "http://donatstudios.com",
+                    "role": "Lead"
+                }
+            ],
+            "description": "A light, easy to use calendar rendering library",
+            "homepage": "http://donatstudios.com/SimpleCalendar",
+            "keywords": [
+                "calendar"
+            ],
+            "time": "2014-04-16 19:42:21"
         },
         {
             "name": "friendsofsymfony/user-bundle",

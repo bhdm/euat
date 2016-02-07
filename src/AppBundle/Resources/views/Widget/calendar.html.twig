@@ -1,1 +1,19 @@
-<img src="{{ asset('bundles/app/images/calendar.png') }}" style="width: 100%">
+<div style="overflow:hidden;">
+    <div class="form-group">
+        <div class="claendar-tabs">
+            <div class="claendar-tab">ЕАТ</div>
+            <div class="claendar-tab active">Партнеры</div>
+        </div>
+        <div id="calendar-widget"></div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#calendar-widget').datetimepicker({
+                inline: true,
+                sideBySide: true,
+                format: "MM/dd/YYYY"
+            });
+        });
+    </script>
+</div>
+{#<img src="{{ asset('bundles/app/images/calendar.png') }}" style="width: 100%">#}
