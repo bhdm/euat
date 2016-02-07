@@ -19,8 +19,7 @@ class SpecialtyType extends AbstractType
             ->add('title',null, ['label' => 'Название специальности'])
             ->add('lang', ChoiceType::class, [
                 'label' => 'Название специальности',
-                'choices' => array('RU' => 'ru', 'en' => 'en'),
-                'choices_as_values' => 'ru',
+                'choices' => array('RU' => 'ru', 'EN' => 'en'),
             ])
         ;
     }

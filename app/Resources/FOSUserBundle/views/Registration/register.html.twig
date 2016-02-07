@@ -1,0 +1,113 @@
+{% extends 'FOSUserBundle::layout.html.twig' %}
+
+
+{% block fos_user_content %}
+<div class="container main-registration">
+    {{ form_start(form, {'action': path('fos_user_registration_register'), 'attr': {'id': 'registration_form'}}) }}
+    <div class="row registration-applicants-employer-buttons">
+        <div class="col-sm-3 col-sm-offset-3  registration-employee-button">
+            <a  class="button">Я соискатель</a>
+        </div>
+        <div class="col-sm-3  registration-employer-button">
+            <a   class="button">Я работадатель</a>
+        </div>
+    </div>
+    <div class="row social-buttons">
+        <div class="col-sm-4 col-sm-offset-4">
+            <span>ЗАРЕГИСТРИРОВАТЬСЯ С ПОМОЩЬЮ</span>
+            <a href="#"><img src="{{ asset("bundles/main/images/vk.png") }}"></a>
+            <a href="#"><img src="{{ asset("bundles/main/images/facebook.png") }}"></a>
+            <a href="#"><img src="{{ asset("bundles/main/images/twitter.png") }}"></a>
+            <a href="#"><img src="{{ asset("bundles/main/images/ok.png") }}"></a>
+
+            {#{{ include('UloginAuthBundle::widget.html.twig', { "uLoginID": "123456", "label": "Войти с помощью:" }) }}#}
+
+            {#<div id="uLoginba48b1bd" data-ulogin="display=buttons;fields=first_name,last_name,nickname,sex,bdate,email,photo,photo_big;optional=phone,city,country;providers=vkontakte,odnoklassniki,mailru,facebook;hidden=twitter,google,yandex,livejournal,openid,lastfm,linkedin,liveid,soundcloud,steam,flickr,uid,youtube,webmoney,foursquare,tumblr,googleplus,dudu,vimeo,instagram,wargaming;redirect_uri=;callback=registerSocialUser">#}
+                {#<div class="alt-reg">#}
+                    {#<a data-uloginbutton="vkontakte" href="#">#}
+                        {#<img src="{{ asset("bundles/main/images/vk.png") }}">#}
+                    {#</a>#}
+                    {#<a data-uloginbutton="twitter" href="#">#}
+                        {#<img src="{{ asset("bundles/main/images/vk.png") }}">#}
+                    {#</a>#}
+                    {#<a data-uloginbutton="instagram" href="#">#}
+                        {#<img src="{{ asset("bundles/main/images/vk.png") }}">#}
+                    {#</a>#}
+                    {#<a data-uloginbutton="odnoklassniki" href="#">#}
+                        {#<img src="{{ asset("bundles/main/images/vk.png") }}">#}
+                    {#</a>#}
+                    {#<a data-uloginbutton="facebook" href="#">#}
+                        {#<img src="{{ asset("bundles/main/images/vk.png") }}">#}
+                    {#</a>#}
+                {#</div>#}
+            {#</div>#}
+
+            {#<script>uLogin.customInit('{{ "ba48b1bd" ~ '_' ~ random() }}');</script>#}
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 registration-nameOfCompany">
+            <span class="registration-label">Название компании</span><br>
+            {{ form_widget(form.title_company, {'attr': {'class': 'form-control', 'placeholder':'Название компании' , 'disabled':'true'}}) }}
+            {{ form_errors(form.title_company) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 registration-name">
+            <span class="registration-label">Имя</span><br>
+            {{ form_widget(form.first_name, {'attr': {'class': 'form-control', 'placeholder':'Имя'}}) }}
+            {{ form_errors(form.first_name) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 registration-lastname">
+            <span class="registration-label">Фамилия</span><br>
+            {{ form_widget(form.last_name, {'attr': {'class': 'form-control', 'placeholder':'Фамилия'}}) }}
+            {{ form_errors(form.last_name) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 registration-email">
+            <span class="registration-label">Email</span><br>
+            {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder':'Email'}}) }}
+            {{ form_errors(form.email) }}
+        </div>
+    </div>
+    <div class="row">
+        <span class="registration-label">Придумайте пароль</span><br>
+        <div class="col-sm-3 col-sm-offset-3 registration-password">
+            {{ form_widget(form.plainPassword.first, {"attr": {"class": 'form-control registration-password-input', "placeholder":  'Введите пароль'  }}) }}
+            {{ form_errors(form.plainPassword.first) }}
+        </div>
+        <div class="col-sm-3 registration-password">
+            {{ form_widget(form.plainPassword.second, {"attr": {"class": 'form-control registration-password-input', "placeholder":  'Повторите пароль'  }}) }}
+            {{ form_errors(form.plainPassword.second) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="registration-show-password-div"><img class="registration-show-password" src="{{ asset("bundles/main/images/eye.png") }}"></div>
+        <span class="registration-show-password">Показать пароль</span>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 registration-checkbox">
+            <input type="checkbox" name="rules" id="registration-rules"><span>Я согласен <strong>с правилами использования</strong> сервиса</span><br/>
+            {{ form_widget(form.get_news_by_email) }}<span>Присылать мне новости обновления проекта</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 registration-submit-button">
+            <button type="submit" class="button">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+        </div>
+    </div>
+
+    {#{% set type = 'employee'  %}#}
+    {{ form_widget(form.type) }}
+    {{ form_widget(form.social_id, {'attr': {'value': app.session.get('social_id')}}) }}
+    {#{{ form_rest(form) }}#}
+    {{ form_end(form) }}
+
+</div>
+{% endblock %}

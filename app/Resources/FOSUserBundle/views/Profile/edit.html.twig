@@ -1,0 +1,107 @@
+
+<div class="panel-tab-body">
+  <div class="account-main" id="sel">
+
+    {% if app.user.type == 'employee' %}
+      <nav class="account-nav worker-nav">
+    {% else %}
+      <nav class="account-nav employer-nav">
+    {% endif %}
+      
+    {% include '_menu_mobile.html.twig' %}
+
+      <div class="account-drop-menu collapse" id="navcollaps">
+        
+        {% include 'employee_profile_menu.html.twig' %}
+
+      </div>
+    </nav>
+    <div class="account-heading">
+      <div class="account-title"> <span class="xs-show"><i class="icon-16 icon-list-white"></i></span>
+        <h3>{{ 'user.menu.profile'|trans }}</h3>
+      </div>
+    </div>
+  </div>
+  <div class="account-content">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6"> 
+        
+        <form class="profile_edit_form">
+          <div class="border-right-form border-right-offset-y">
+            <div class="form-group form-group-invert form-group-rightpad">
+
+              <label class="text-bold text-uppercase">{{ 'form.profile.email'|trans }}</label>
+			  			<div class="row">
+                <div class="col-xs-12">
+                  <div class="field-ctrl"> <a href="#" class="field-edit"><i class="icon-16 icon-pencil-white"></i></a> <a href="#" class="field-edit-accept {{ app.user.type == 'employee' ? 'orange' : 'green' }}"><i class="icon-16 icon-accept-white"></i></a> </div>
+                  {{ form_widget(form.email, {"attr": {"class": 'form-control', "placeholder": 'Введите E-mail' }}) }}
+                </div>
+              </div>
+            </div>
+            <div class="form-group form-group-invert form-group-rightpad">
+              <label class="text-bold text-uppercase">{{ 'form.profile.password'|trans }}</label>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="field-ctrl"> <a href="#" class="field-edit"><i class="icon-16 icon-pencil-white"></i></a> <a href="#" class="field-edit-accept {{ app.user.type == 'employee' ? 'orange' : 'green' }}"><i class="icon-16 icon-accept-white"></i></a> </div>
+                  {{ form_widget(form.current_password, {"attr": {"class": "form-control", "placeholder": "menu.enter_password"|trans}}) }}
+                </div>
+              </div>
+            </div>
+            <div class="from-sep"></div>
+            <div class="form-group form-group-invert form-group-rightpad">
+              <label class="text-bold text-uppercase">{{ 'form.profile.first_name'|trans }}</label>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="field-ctrl"> <a href="#" class="field-edit"><i class="icon-16 icon-pencil-white"></i></a> <a href="#" class="field-edit-accept {{ app.user.type == 'employee' ? 'orange' : 'green' }}"><i class="icon-16 icon-accept-white"></i></a> </div>
+                  {{ form_widget(form.first_name, {"attr": {"class": "form-control", "placeholder": "Введите ваше имя"}}) }}
+                </div>
+              </div>
+            </div>
+            <div class="form-group form-group-invert form-group-rightpad">
+              <label class="text-bold text-uppercase">{{ 'form.profile.last_name'|trans }}</label>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="field-ctrl"> <a href="#" class="field-edit"><i class="icon-16 icon-pencil-white"></i></a> <a href="#" class="field-edit-accept {{ app.user.type == 'employee' ? 'orange' : 'green' }}"><i class="icon-16 icon-accept-white"></i></a> </div>
+                  {{ form_widget(form.last_name, {"attr": {"class": "form-control", "placeholder": "from.profile.enter_sirname"|trans}}) }}
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-group form-group-invert">
+            	<label class="text-bold text-uppercase">{{ 'form.profile.birthday'|trans }}</label>
+							<div class="row">
+								<div class="inputBox">
+									<div class="col-xs-3">
+	                  {{ form_widget(form.birthdate.day, {'attr': {'class': 'form-control'}}) }}
+	                </div>
+	                <div class="col-xs-5">
+	                  {{ form_widget(form.birthdate.month, {'attr': {'class': 'form-control'}}) }}
+	                </div>
+	                <div class="col-xs-4">
+	                  {{ form_widget(form.birthdate.year, {'attr': {'class': 'form-control'}}) }}
+	                </div>
+								</div>
+							</div>
+            </div>
+            <div class="from-sep"></div>
+          </div>
+        </form>
+
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <div class="text-center top-lg bottom-md">
+          <div class="round round-border"> <i class="icon-32 icon-wallet"></i> </div>
+          <div class="text-uppercase text-bold">{{ 'user.profile.balance'|trans }}</div>
+          <div class=" bottom-md">
+            {% if app.user.type == 'employer' %}
+              <b class="text-success h1-lg">{{ app.user.balance }} {{ 'rub'|trans }}</b>
+            {% else %}
+              <b class="text-warning h1-lg">{{ app.user.balance }} {{ 'rub'|trans }}</b>
+            {% endif %}
+          </div>
+          <a href="{{ app.user.type == 'employer' ? path('fe_employer_managment_index') : path('fe_employee_managment_index') }}" class="button button-invert">{{ 'user.profile.pay'|trans }}</a> </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,20 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class AuthController extends Controller
 {
-    /**
-     * @Route("/register", name="regisster")
-     */
-    public function registerAction()
-    {
-
-    }
-
-    /**
-     * @Route("/login", name="login")
-     */
-    public function loginAction()
-    {
-
+    public function csrfTokenAction(){
+        $csrfToken = $this->get('security.csrf.token_manager')->getToken('authenticate');
+        return $this->render('AppBundle:Auth:csrfToken.html.twig', ['csrf_token' => $csrfToken]);
     }
 
 

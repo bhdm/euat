@@ -131,6 +131,13 @@ class User extends BaseUser
     }
 
     /**
+     * @ORM\PrePersist
+     */
+    public function prePersist(){
+        $this->email = $this->username;
+    }
+
+    /**
      * @return mixed
      */
     public function getId()
