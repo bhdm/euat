@@ -6,17 +6,34 @@
     <script src="{{ asset('assets/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
 {% endblock %}
 {% block content %}
-    <div class="row">
-        <div class="col-xs-3">
+        <div class="col-xs-4">
             {{ render(controller("AppBundle:Widget:calendar" )) }}
         </div>
-        <div class="col-xs-6">
-            <div class="title">ВИДЕО</div>
+        <div class="col-xs-8">
+            {% if videos | length > 0 %}
+                <div class="title">ВИДЕО</div>
+                {% for v in videos %}
+                    <div class="new-item">
+                        <a href="{{ path('publications', {'url' : v.id }) }}"><div class="new-item-title">{{ v.title }}</div></a>
+                        <div class="new-item-anons">
+                            {{ v.body | anons | raw }}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            {% if educations | length > 0 %}
+                <br />
+                <div class="title">ОБРАЗОВАНИЕ</div>
+                {% for e in educations %}
+                    <div class="new-item">
+                        <a href="{{ path('publications', {'url' : e.id }) }}"><div class="new-item-title">{{ e.title }}</div></a>
+                        <div class="new-item-anons">
+                            {{ e.body | anons | raw }}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
         </div>
-        <div class="col-xs-3 text-right">
-            {% include "@App/Widget/banner.html.twig" %}
-        </div>
-    </div>
     <div class="row">
         <div class="col-xs-9">
             <div class="title">НОВОСТИ</div>
@@ -24,7 +41,7 @@
                 <div class="new-item">
                     <a href="{{ path('publications', {'url' : p.id }) }}"><div class="new-item-title">{{ p.title }}</div></a>
                     <div class="new-item-anons">
-                        {{ p.anons | raw }}
+                        {{ p.body | anons | raw }}
                     </div>
                 </div>
             {% endfor %}

@@ -45,7 +45,16 @@
         </div>
         {{ render(controller("AppBundle:Default:generateMenu" )) }}
         <div class="content">
-            {% block content %}{% endblock %}
+            {% block fullContent %}
+                <div class="row">
+                    <div class="col-xs-9">
+                        {% block content %}{% endblock %}
+                    </div>
+                    <div class="col-xs-3 text-right">
+                        {% include "@App/Widget/banner.html.twig" %}
+                    </div>
+                </div>
+            {% endblock %}
         </div>
     </div>
     <footer>

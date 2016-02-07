@@ -15,8 +15,18 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $categoryVideo = $this->getDoctrine()->getRepository('AppBundle:Category')->findOneBy(['slug' => 'video']);
+        $categoryEducation = $this->getDoctrine()->getRepository('AppBundle:Category')->findOneBy(['slug' => 'Education']);
+
         $publications = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['category' => null]);
-        return ['publications' => $publications];
+        $videos = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['category' => $categoryVideo]);
+        $educations = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['category' => $categoryEducation]);
+        return [
+            'publications' => $publications,
+            'videos' => $videos,
+            'educations' => $educations
+        ];
+
     }
 
     /**

@@ -1,0 +1,8 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block content %}
+    <h1>{{ event.title }}</h1>
+    <div>
+        {{ event.body | raw }}
+    </div>
+{% endblock %}
