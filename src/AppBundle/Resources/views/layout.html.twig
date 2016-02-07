@@ -34,9 +34,26 @@
                     </form>
                 </div>
                 <div class="col-xs-2">
-                    <div class="navbar-form navbar-right">
-                        <button class="btn btn-primary" id="login">Вход</button>
-                    </div>
+                    {% if app.user != null %}
+                        <div class="navbar-form navbar-right">
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    {{ app.user.lastName~' '~app.user.firstName }}
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-top" aria-labelledby="dropdownMenu1">
+                                    <li><a href="#">В профиль</a></li>
+                                    <li><a href="#">Зачетка</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="{{ path('fos_user_security_logout') }}">Выйти</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="navbar-form navbar-right">
+                            <button class="btn btn-primary" id="login">Вход</button>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </header>

@@ -10,15 +10,16 @@
                     <div class="form-group">
                         <label for="inputEmail" class="col-sm-2 control-label">Email</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputEmail" placeholder="Email" required name="email">
+                            <input type="text" class="form-control" id="inputEmail" placeholder="Email" required name="_username">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputPassword" class="col-sm-2 control-label">Пароль</label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control" id="inputPassword" placeholder="******" required name="password">
+                            <input type="password" class="form-control" id="inputPassword" placeholder="******" required name="_password">
                         </div>
                     </div>
+                    {{ render(controller('AppBundle:Auth:csrfToken')) }}
                     <div class="modal-footer">
                         <a href="#" style="padding-right: 30px">Зарегистрироваться</a>
                         <button class="btn btn-primary" onclick="login();" type="submit">Войти</button>
