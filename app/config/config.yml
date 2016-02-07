@@ -38,7 +38,7 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-    form_themes: ['bootstrap_3_horizontal_layout.html.twig']
+    form_themes: ['AppBundle:Form:bootstrap_custom_layout.html.twig']
 
 assetic:
     debug:          '%kernel.debug%'

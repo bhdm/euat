@@ -130,12 +130,6 @@ class User extends BaseUser
         // your own logic
     }
 
-    /**
-     * @ORM\PrePersist
-     */
-    public function prePersist(){
-        $this->email = $this->username;
-    }
 
     /**
      * @return mixed
