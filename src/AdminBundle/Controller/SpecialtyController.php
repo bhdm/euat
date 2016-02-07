@@ -1,33 +1,34 @@
 <?php
 namespace AdminBundle\Controller;
 
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Entity\Postcard;
-use AppBundle\Form\PostcardType;
+use AppBundle\Entity\Specialty;
+use AppBundle\Form\SpecialtyType;
 
 /**
- * Class PostcardController
+ * Class SpecialtyController
  * @package AdminBundle\Controller
- * @Route("/admin/postcard")
+ * @Route("/admin/specialty")
  */
-class PostcardController extends Controller{
-        const ENTITY_NAME = 'Postcard';
+class SpecialtyController extends Controller{
+        const ENTITY_NAME = 'Specialty';
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/", name="admin_postcard_list")
+     * @Route("/", name="admin_specialty_list")
      * @Template()
      */
-    public function listAction(){
+    public function listAction(Request $request){
         $items = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findAll();
+
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $items,
-            $this->get('request')->query->get('page', 1),
+            $request->query->get('specialty', 1),
             20
         );
 
@@ -36,13 +37,14 @@ class PostcardController extends Controller{
 
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/add", name="admin_postcard_add")
+     * @Route("/add", name="admin_specialty_add")
      * @Template()
      */
     public function addAction(Request $request){
         $em = $this->getDoctrine()->getManager();
-        $item = new Postcard();
-        $form = $this->createForm(new PostcardType($em), $item);
+        $item = new Specialty();
+        $form = $this->createForm(SpecialtyType::class, $item);
+        $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
         $formData = $form->handleRequest($request);
 
         if ($request->getMethod() == 'POST'){
@@ -51,7 +53,7 @@ class PostcardController extends Controller{
                 $em->persist($item);
                 $em->flush();
                 $em->refresh($item);
-                return $this->redirect($this->generateUrl('admin_postcard_list'));
+                return $this->redirect($this->generateUrl('admin_specialty_list'));
             }
         }
         return array('form' => $form->createView());
@@ -59,21 +61,22 @@ class PostcardController extends Controller{
 
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/edit/{id}", name="admin_postcard_edit")
+     * @Route("/edit/{id}", name="admin_specialty_edit")
      * @Template()
      */
     public function editAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
         $item = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findOneById($id);
-        $form = $this->createForm(new PostcardType($em), $item);
+        $form = $this->createForm(SpecialtyType::class, $item);
+        $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
         $formData = $form->handleRequest($request);
 
-        if ($request->getMethod() == 'POST'){
+        if ($request->getMethod() === 'POST'){
             if ($formData->isValid()){
                 $item = $formData->getData();
                 $em->flush($item);
                 $em->refresh($item);
-                return $this->redirect($this->generateUrl('admin_postcard_list'));
+                return $this->redirect($this->generateUrl('admin_specialty_list'));
             }
         }
         return array('form' => $form->createView());
@@ -81,7 +84,7 @@ class PostcardController extends Controller{
 
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/remove/{id}", name="admin_postcard_remove")
+     * @Route("/remove/{id}", name="admin_specialty_remove")
      */
     public function removeAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();

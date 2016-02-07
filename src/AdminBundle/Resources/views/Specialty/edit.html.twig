@@ -3,15 +3,15 @@
 {% block breadcrumb %}
     <ul class="breadcrumb well">
         <li><a href="{{ path('admin_main') }}">Домой</a> <span class="divider"></span></li>
-        <li><a href="{{ path('admin_metro_list') }}">Метро</a> <span class="divider"></span></li>
+        <li><a href="{{ path('admin_specialty_list') }}">Специальности</a> <span class="divider"></span></li>
         <li class="active">Изменение<span class="divider"></span></li>
     </ul>
 {% endblock %}
 
 {% block content %}
     <div class="well">
-        <form method="POST">
-            {{ form_widget(form) }}
-        </form>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
     </div>
 {% endblock %}
