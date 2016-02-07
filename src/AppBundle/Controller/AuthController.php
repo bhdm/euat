@@ -15,4 +15,13 @@ class AuthController extends Controller
 
     }
 
+    /**
+     * @Route("/login", name="login")
+     */
+    public function loginAction()
+    {
+
+    }
+
+
 }
