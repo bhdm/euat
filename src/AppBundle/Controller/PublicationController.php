@@ -25,7 +25,7 @@ class PublicationController extends Controller
      */
     public function pageAction(Request $request, $url)
     {
-        $page = $this->getDoctrine()->getRepository('AppBundle:Page')->findOneByUrl($url);
+        $page = $this->getDoctrine()->getRepository('AppBundle:Page')->findOneBySlug($url);
         return ['page' => $page];
     }
 
@@ -45,7 +45,7 @@ class PublicationController extends Controller
      * @Template("AppBundle:Publication:category.html.twig")
      */
     public function categotyAction($categoryUrl){
-        $category = $this->getDoctrine()->getRepository('AppBundle:Category')->findOneByUrl($categoryUrl);
+        $category = $this->getDoctrine()->getRepository('AppBundle:Category')->findOneBySlug($categoryUrl);
 
         return ['category' => $category];
     }
