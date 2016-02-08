@@ -8,9 +8,11 @@
                 <a href="{{ path('event', {'url' : p.id }) }}"><div class="new-item-title">{{ p.title }}</div></a>
                 <div class="new-item-anons">
                     {{ p.body | anons | raw }}
-                    <div style="color: #555">
-                        {{ p.category.title }}
-                    </div>
+                    {% if p.category != null %}
+                        <div style="color: #555">
+                            {{ p.category.title }}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}
