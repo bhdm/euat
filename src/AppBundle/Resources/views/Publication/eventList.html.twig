@@ -1,0 +1,18 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block content %}
+    <h1>События</h1>
+    <div>
+        {% for p in events %}
+            <div class="new-item">
+                <a href="{{ path('event', {'url' : p.id }) }}"><div class="new-item-title">{{ p.title }}</div></a>
+                <div class="new-item-anons">
+                    {{ p.body | anons | raw }}
+                    <div style="color: #555">
+                        {{ p.category.title }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -39,6 +39,16 @@ class PublicationController extends Controller
         return ['event' => $event];
     }
 
+    /**
+     * @Route("event/{url}", name="event")
+     * @Template("AppBundle:Publication:eventList.html.twig")
+     */
+    public function eventListAction(Request $request, $url)
+    {
+        $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findBy(['enabled' => true],['start' => 'DESC']);
+        return ['events' => $events];
+    }
+
 
     /**
      * @Route("category/{categoryUrl}", name="category")
