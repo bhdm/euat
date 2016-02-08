@@ -9,11 +9,10 @@
                 <div class="registration container-fluid">
                     {#<div class="socBnts top">#}
                     {% if error %}
-                        {{ dump(error) }}
-                    <div class="alert alert-danger alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    Вы ввели не правильный email или  пароль.
-                    </div>
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        Вы ввели не правильный email или  пароль.
+                        </div>
                     {% endif %}
 
                     {#</div>#}
