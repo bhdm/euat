@@ -38,6 +38,7 @@ nav .navbar-nav li:last-child {
   border-right: 1px solid #DDD;
 }
 nav .navbar-nav li {
+  position: relative;
   border-left: 1px solid #DDD;
   text-align: center;
   float: none;
@@ -56,6 +57,29 @@ nav .navbar-nav li.active {
 nav .navbar-nav li.active a {
   color: #FFFFFF;
   text-transform: uppercase;
+}
+nav .navbar-nav li .submunu {
+  display: none;
+  position: absolute;
+  z-index: 50;
+  width: 100%;
+  background: #FFF;
+}
+nav .navbar-nav li .submunu ul li {
+  padding: 5px;
+  width: 100%;
+  display: block;
+  border-bottom: 1px solid #DDD;
+  border-top: 1px solid #DDD;
+  margin-top: -1px;
+}
+nav .navbar-nav li .submunu ul li a:hover {
+  text-decoration: none;
+  background: #FFF;
+  color: #2a62bc;
+}
+nav .navbar-nav li ~ :hover .submunu {
+  display: block;
 }
 .collapse.navbar-collapse {
   padding: 0;
