@@ -111,6 +111,10 @@ class User extends BaseUser
      */
     protected $academicDegree;
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\University", inversedBy="users")
+     */
     protected $university;
 
     protected $country;
@@ -426,5 +430,7 @@ class User extends BaseUser
     {
         $this->username = $this->email;
     }
+
+
 
 }

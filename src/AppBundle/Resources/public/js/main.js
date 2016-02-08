@@ -19,5 +19,7 @@ $(document).ready(function(){
                 items:1
             }
         }
-    })
+    });
+
+    $(".university").chosen({disable_search_threshold: 10});
 });

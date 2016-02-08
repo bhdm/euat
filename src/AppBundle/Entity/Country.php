@@ -8,7 +8,7 @@ use
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name = "getCountry")
+ * @ORM\Table(name = "geoCountry")
  */
 class Country
 {
@@ -38,7 +38,7 @@ class Country
 	protected $title;
 
 	/**
-	 * @ORM\Column(type = "string", length = 4, nullable = true)
+	 * @ORM\Column(name="shortTitle", type = "string", length = 4, nullable = true)
 	 * @Assert\Length(max = 4, maxMessage = "Сокращенное название страны должно быть не длиннее 4 знаков.")
 	 */
 	protected $shortTitle;

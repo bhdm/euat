@@ -7,7 +7,7 @@ use
 	Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity(repositoryClass= "UniversityRepository")
+ * @ORM\Entity(repositoryClass= "AppBundle\Repository\UniversityRepository")
  * @ORM\Table(name = "university")
  */
 class University 
@@ -31,10 +31,16 @@ class University
 	 * @Assert\NotBlank(message = "Пожалуйста, укажите название ВУЗа.")
 	 */
 	protected $title;
+
+	/**
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\User", mappedBy="university")
+	 */
+	protected $users;
+
 	
 	public function __contsruct()
 	{
-		$this->doctors = new ArrayCollection();
+		$this->users = new ArrayCollection();
 	}
 
 	/**
@@ -73,16 +79,23 @@ class University
 		
 		return $this->country;
 	}
-	
-	public function getDoctors()
+
+
+	/**
+	 * @return mixed
+	 */
+	public function getUsers()
 	{
-		return $this->doctors;
+		return $this->users;
 	}
-	
-	public function setDoctors(ArrayCollection $doctors)
+
+	/**
+	 * @param mixed $users
+	 */
+	public function setUsers($users)
 	{
-		$this->doctors = $doctors;
-		
-		return $this;
+		$this->users = $users;
 	}
+
+
 }

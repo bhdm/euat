@@ -209,3 +209,13 @@ footer {
   box-shadow: 0 0 4px #F0EFE7;
   right: 10px;
 }
+.chosen-container {
+  font-size: 14px;
+}
+.chosen-container-single .chosen-single {
+  height: 34px;
+  border-radius: 0;
+}
+.chosen-container-single .chosen-single span {
+  padding-top: 4px;
+}
