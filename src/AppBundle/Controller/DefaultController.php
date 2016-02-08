@@ -34,7 +34,7 @@ class DefaultController extends Controller
      * @Template("AppBundle::menu.html.twig")
      */
     public function generateMenuAction(){
-        $menu = $this->getDoctrine()->getRepository('AppBundle:Menu')->findByRoot(null);
+        $menu = $this->getDoctrine()->getRepository('AppBundle:Menu')->findByParent(null);
 
         return ['menu' => $menu];
     }
