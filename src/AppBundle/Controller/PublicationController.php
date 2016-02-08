@@ -40,7 +40,7 @@ class PublicationController extends Controller
     }
 
     /**
-     * @Route("event/{url}", name="event")
+     * @Route("events", name="events")
      * @Template("AppBundle:Publication:eventList.html.twig")
      */
     public function eventListAction(Request $request, $url)
