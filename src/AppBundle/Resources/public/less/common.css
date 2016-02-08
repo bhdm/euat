@@ -63,14 +63,17 @@ nav .navbar-nav li .submunu {
   position: absolute;
   z-index: 50;
   width: 100%;
-  background: #FFF;
+  background: #FEFEFE;
+  border-left: 1px solid #DDD;
+  border-right: 1px solid #DDD;
+}
+nav .navbar-nav li .submunu ul li:nth-child(1) {
+  border-top: 1px solid #DDD;
 }
 nav .navbar-nav li .submunu ul li {
   width: 100%;
   display: block;
   border-bottom: 1px solid #DDD;
-  border-top: 1px solid #DDD;
-  margin-top: -1px;
   text-align: left;
   padding: 5px 5px 5px 30px;
 }
