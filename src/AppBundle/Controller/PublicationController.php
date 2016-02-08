@@ -41,7 +41,7 @@ class PublicationController extends Controller
 
 
     /**
-     * @Route("category/{url}", name="category")
+     * @Route("category/{categoryUrl}", name="category")
      * @Template("AppBundle:Publication:category.html.twig")
      */
     public function categotyAction($categoryUrl){
