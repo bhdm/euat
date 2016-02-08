@@ -43,7 +43,7 @@ class PublicationController extends Controller
      * @Route("events", name="events")
      * @Template("AppBundle:Publication:eventList.html.twig")
      */
-    public function eventListAction(Request $request, $url)
+    public function eventListAction(Request $request)
     {
         $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findBy(['enabled' => true],['start' => 'DESC']);
         return ['events' => $events];
