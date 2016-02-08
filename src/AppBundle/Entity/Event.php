@@ -57,6 +57,13 @@ class Event
     private $end;
 
     /**
+     * @var City
+     *
+     * @ORM\ManyToOne(targetEntity="")
+     */
+    private $city;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="adrs", type="string", length=255, nullable=true)
