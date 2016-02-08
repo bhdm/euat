@@ -39,4 +39,15 @@ class PublicationController extends Controller
         return ['event' => $event];
     }
 
+
+    /**
+     * @Route("category/{url}", name="category")
+     * @Template("AppBundle:Publication:category.html.twig")
+     */
+    public function categotyAction($categoryUrl){
+        $category = $this->getDoctrine()->getRepository('AppBundle:Category')->findOneByUrl($categoryUrl);
+
+        return ['category' => $category];
+    }
+
 }
