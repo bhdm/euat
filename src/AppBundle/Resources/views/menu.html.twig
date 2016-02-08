@@ -14,7 +14,18 @@
         <ul class="nav navbar-nav">
             {% for m in menu %}
             {#<li class="active"><a href="">Главная</a></li>#}
-            <li><a href="{{ m.url }}">{{ m.title }}</a></li>
+            <li>
+                <a href="{{ m.url }}">{{ m.title }}</a>
+                {% if m.children | length > 0 %}
+                    <div class="submunu">
+                        <ul>
+                            {% for sm in m.children %}
+                                <li><a href="{{ sm.url }}">{{ sm.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            </li>
             {% endfor %}
         </ul>
     </div><!-- /.navbar-collapse -->

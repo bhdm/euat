@@ -46,6 +46,7 @@ nav{
             border-right: 1px solid #DDD;
         }
         li{
+            position: relative;
             border-left: 1px solid #DDD;
             text-align: center;
             float: none;
@@ -63,6 +64,29 @@ nav{
                     color: @color-white;
                     text-transform: @uppercase;
                 }
+            }
+            .submunu{
+                display: none;
+                position: absolute;
+                z-index: 50;
+                width: 100%;
+                background: #FFF;
+                ul li{
+                    padding: 5px;
+                    width: 100%;
+                    display: block;
+                    border-bottom: 1px solid #DDD;
+                    border-top: 1px solid #DDD;
+                    margin-top: -1px;
+                    a:hover{
+                        text-decoration: none;
+                        background: #FFF;
+                        color: #2a62bc;
+                    }
+                }
+            }
+            ~:hover .submunu{
+                display: block;
             }
         }
     }
