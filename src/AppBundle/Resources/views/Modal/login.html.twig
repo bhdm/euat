@@ -21,7 +21,7 @@
                     </div>
                     {{ render(controller('AppBundle:Auth:csrfToken')) }}
                     <div class="modal-footer">
-                        <a href="#" style="padding-right: 30px">Зарегистрироваться</a>
+                        <a href="{{ path('fos_user_registration_register') }}" style="padding-right: 30px">Зарегистрироваться</a>
                         <button class="btn btn-primary" onclick="login();" type="submit">Войти</button>
                         <button type="cancel" class="btn btn-danger" data-dismiss="modal">Отмена</button>
                     </div>
