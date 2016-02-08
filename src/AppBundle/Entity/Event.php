@@ -29,6 +29,13 @@ class Event
     private $title;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="type", type="string", length=255)
+     */
+    private $type;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="slug", type="string", length=255, nullable=true)
@@ -359,6 +366,23 @@ class Event
     {
         $this->specialty = $specialty;
     }
+
+    /**
+     * @return boolean
+     */
+    public function isType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param boolean $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
 
 
 }
