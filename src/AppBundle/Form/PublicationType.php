@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -23,6 +24,15 @@ class PublicationType extends AbstractType
             ->add('category', null, [ 'label' => 'Категория'])
             ->add('slug', TextType::class, [ 'label' => 'URI'])
             ->add('body', TextareaType::class, [ 'label' => 'Контент', 'attr' => ['class' => 'ckeditor']])
+            ->add('created', null, [ 'label' => 'Дата создания'])
+            ->add('enabled', ChoiceType::class, array(
+                'choices' => array(
+                    'Активная' => true,
+                    'Неактивна' => false
+                ),
+                'required'    => true,
+                'label' => 'Состояние'
+            ));
         ;
     }
     

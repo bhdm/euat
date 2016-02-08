@@ -59,7 +59,7 @@ class Event
     /**
      * @var City
      *
-     * @ORM\ManyToOne(targetEntity="")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\City", inversedBy="events")
      */
     private $city;
 
@@ -89,6 +89,12 @@ class Event
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="events")
      */
     private $category;
+
+    /**
+     * @var Specialty
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Specialty", inversedBy="events")
+     */
+    private $specialty;
 
     public function __construct()
     {
@@ -320,6 +326,38 @@ class Event
     public function setCategory($category)
     {
         $this->category = $category;
+    }
+
+    /**
+     * @return City
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param City $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * @return Specialty
+     */
+    public function getSpecialty()
+    {
+        return $this->specialty;
+    }
+
+    /**
+     * @param Specialty $specialty
+     */
+    public function setSpecialty($specialty)
+    {
+        $this->specialty = $specialty;
     }
 
 

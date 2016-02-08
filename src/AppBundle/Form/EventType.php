@@ -22,6 +22,8 @@ class EventType extends AbstractType
         $builder
             ->add('title', null, [ 'label' => 'Название'])
             ->add('category', null, [ 'label' => 'Категория'])
+            ->add('specialty', null, [ 'label' => 'Специальность'])
+            ->add('city', null, [ 'label' => 'Город'])
             ->add('adrs', null, [ 'label' => 'Адрес'])
             ->add('start', DateType::class, [ 'label' => 'Дата начала'])
             ->add('end',  DateType::class, [ 'label' => 'Дата окончания'])
