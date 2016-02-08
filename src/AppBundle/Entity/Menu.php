@@ -45,6 +45,14 @@ class Menu
 
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="sort", type="integer", nullable=true)
+     */
+    private $sort;
+
+
+    /**
      * @var Menu
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Menu", inversedBy="children")
      */
@@ -182,6 +190,23 @@ class Menu
     {
         $this->children = $children;
     }
+
+    /**
+     * @return int
+     */
+    public function getSort()
+    {
+        return $this->sort;
+    }
+
+    /**
+     * @param int $sort
+     */
+    public function setSort($sort)
+    {
+        $this->sort = $sort;
+    }
+
 
 
 }
