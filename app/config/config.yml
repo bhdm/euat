@@ -90,6 +90,10 @@ fos_user:
             enabled:    true
         form:
             type: AppBundle\Form\Type\RegistrationFormType
+    profile:
+        form:
+            type: AppBundle\Form\Type\ProfileFormType
+
 
 knp_paginator:
     page_range: 20                      # default page range used in pagination control
