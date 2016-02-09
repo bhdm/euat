@@ -21,7 +21,9 @@ class Country
 	 */
 	protected $id;
 
-	/** @ORM\OneToMany(targetEntity = "City", mappedBy = "country") */
+	/**
+	 * @ORM\OneToMany(targetEntity = "City", mappedBy = "country")
+	 */
 	protected $cities;
 
 	/** @ORM\OneToMany(targetEntity = "University", mappedBy = "country") */
@@ -31,6 +33,7 @@ class Country
 	protected $publications;
 
 	/**
+	 * @var string
 	 * @ORM\Column(type = "string", length = 63)
 	 * @Assert\NotBlank(message = "Укажите название страны.")
 	 * @Assert\Length(max = 63, maxMessage = "Название страны должно быть не длиннее 63 знаков.")
@@ -43,13 +46,22 @@ class Country
 	 */
 	protected $shortTitle;
 
+	/**
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\User", mappedBy="country")
+	 */
+	protected $users;
+
 
 	public function __construct()
 	{
 		$this->universities = new ArrayCollection();
 		$this->cities       = new ArrayCollection();
+		$this->users       = new ArrayCollection();
 	}
 
+	/**
+	 * @return string
+	 */
 	public function __toString()
 	{
 		return $this->title;
@@ -155,6 +167,23 @@ class Country
     {
         return $this->publications;
     }
+
+	/**
+	 * @return mixed
+	 */
+	public function getUsers()
+	{
+		return $this->users;
+	}
+
+	/**
+	 * @param mixed $users
+	 */
+	public function setUsers($users)
+	{
+		$this->users = $users;
+	}
+
 
 
 }

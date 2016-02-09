@@ -2,6 +2,7 @@
 namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -17,7 +18,7 @@ class RegistrationFormType extends AbstractType
         $builder->add('lastName', null, ['label' => 'Фамилия']);
         $builder->add('firstName', null, ['label' => 'Имя']);
         $builder->add('surName', null, ['label' => 'Отчество']);
-        $builder->add('birthDate', null, ['label' => 'Дата рождения']);
+        $builder->add('birthDate', null, ['label' => 'Дата рождения','years' => range(2000,1910)]);
         $builder->add('sex', ChoiceType::class, array(
             'choices' => array(
                 'Мужской' => 'M',

@@ -40,9 +40,15 @@ class City
 	 */
 	private $events;
 
+	/**
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\User", mappedBy="city")
+	 */
+	private $users;
+
 	public function __construct()
 	{
 		$this->events = new ArrayCollection();
+		$this->users = new ArrayCollection();
 	}
 
 	/**
@@ -105,6 +111,23 @@ class City
 	{
 		$this->events = $events;
 	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getUsers()
+	{
+		return $this->users;
+	}
+
+	/**
+	 * @param mixed $users
+	 */
+	public function setUsers($users)
+	{
+		$this->users = $users;
+	}
+
 
 
 

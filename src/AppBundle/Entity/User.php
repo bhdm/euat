@@ -65,7 +65,7 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="workPlace", type="string")
+     * @ORM\Column(name="workPlace", type="string", nullable=true)
      */
     protected $workPlace;
 
@@ -79,14 +79,14 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="workPost", type="string")
+     * @ORM\Column(name="workPost", type="string", nullable=true)
      */
     protected $workPost;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="workTypeOrganization", type="string")
+     * @ORM\Column(name="workTypeOrganization", type="string", nullable=true)
      */
     protected $workTypeOrganization;
 
@@ -100,14 +100,14 @@ class User extends BaseUser
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="certificateDate", type="date")
+     * @ORM\Column(name="certificateDate", type="date", nullable=true)
      */
     protected $certificateDate;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="academicDegree", type="string")
+     * @ORM\Column(name="academicDegree", type="string", nullable=true)
      */
     protected $academicDegree;
 
@@ -117,8 +117,14 @@ class User extends BaseUser
      */
     protected $university;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Country", inversedBy="users")
+     */
     protected $country;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\City", inversedBy="users")
+     */
     protected $city;
 
     /**
@@ -130,10 +136,10 @@ class User extends BaseUser
 
     public function __construct()
     {
+        $this->certificate = array();
         parent::__construct();
         // your own logic
     }
-
 
     /**
      * @return mixed
