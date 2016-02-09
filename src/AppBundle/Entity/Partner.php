@@ -52,7 +52,7 @@ class Partner
     /**
      * @var string
      *
-     * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     * @ORM\Column(name="image", type="array")
      */
     private $image;
 
@@ -63,6 +63,10 @@ class Partner
      */
     private $sort;
 
+    public function __construct()
+    {
+        $this->image = array();
+    }
 
     /**
      * Get id
@@ -177,7 +181,7 @@ class Partner
      *
      * @return Partner
      */
-    public function setImage($image)
+    public function setImage($image = array())
     {
         $this->image = $image;
 
