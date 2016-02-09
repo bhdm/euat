@@ -8,7 +8,11 @@
             <script src="{{ asset('assets/vendor/bootstrap-multiselect/dist/js/bootstrap-multiselect.js') }}"></script>
             <script>
                     $(document).ready(function() {
-                        $('.multiselect').multiselect();
+                        $('.multiselect').multiselect({
+                            maxHeight: 300,
+                            numberDisplayed: 5,
+                            includeSelectAllOption: true
+                        });
                     });
             </script>
 
