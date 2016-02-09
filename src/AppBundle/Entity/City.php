@@ -33,8 +33,16 @@ class City
 	 */
 	protected $title;
 
+	/**
+	 * @var ArrayCollection
+	 *
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\Event", mappedBy="city")
+	 */
+	private $events;
+
 	public function __construct()
 	{
+		$this->events = new ArrayCollection();
 	}
 
 	/**
@@ -81,6 +89,23 @@ class City
 	{
 		$this->title = $title;
 	}
+
+	/**
+	 * @return ArrayCollection
+	 */
+	public function getEvents()
+	{
+		return $this->events;
+	}
+
+	/**
+	 * @param ArrayCollection $events
+	 */
+	public function setEvents($events)
+	{
+		$this->events = $events;
+	}
+
 
 
 }

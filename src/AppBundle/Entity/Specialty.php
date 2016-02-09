@@ -43,11 +43,18 @@ class Specialty
     private $users;
 
     /**
+     * @var Specialty
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Event", mappedBy="specialty")
+     */
+    private $events;
+
+    /**
      * Specialty constructor.
      */
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->events = new ArrayCollection();
     }
 
     /**
@@ -131,6 +138,38 @@ class Specialty
     public function setUser($user)
     {
         $this->user = $user;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * @param User $users
+     */
+    public function setUsers($users)
+    {
+        $this->users = $users;
+    }
+
+    /**
+     * @return Specialty
+     */
+    public function getEvents()
+    {
+        return $this->events;
+    }
+
+    /**
+     * @param Specialty $events
+     */
+    public function setEvents($events)
+    {
+        $this->events = $events;
     }
 
 

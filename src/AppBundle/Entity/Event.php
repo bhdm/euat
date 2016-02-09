@@ -29,6 +29,13 @@ class Event
     private $title;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="type", type="string", length=255)
+     */
+    private $type;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="slug", type="string", length=255, nullable=true)
@@ -57,6 +64,13 @@ class Event
     private $end;
 
     /**
+     * @var City
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\City", inversedBy="events")
+     */
+    private $city;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="adrs", type="string", length=255, nullable=true)
@@ -82,6 +96,12 @@ class Event
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="events")
      */
     private $category;
+
+    /**
+     * @var Specialty
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Specialty", inversedBy="events")
+     */
+    private $specialty;
 
     public function __construct()
     {
@@ -314,6 +334,55 @@ class Event
     {
         $this->category = $category;
     }
+
+    /**
+     * @return City
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param City $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * @return Specialty
+     */
+    public function getSpecialty()
+    {
+        return $this->specialty;
+    }
+
+    /**
+     * @param Specialty $specialty
+     */
+    public function setSpecialty($specialty)
+    {
+        $this->specialty = $specialty;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param boolean $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
 
 
 }
