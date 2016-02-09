@@ -50,6 +50,13 @@ class PublicationController extends Controller{
         if ($request->getMethod() == 'POST'){
             if ($formData->isValid()){
                 $item = $formData->getData();
+                $file = $item->getPreview();
+                $filename = time(). '.'.$file->guessExtension();
+                $file->move(
+                    __DIR__.'/../../../web/upload/publication/',
+                    $filename
+                );
+                $item->setPreview(['path' => '/upload/publication/'.$filename ]);
                 $em->persist($item);
                 $em->flush();
                 $em->refresh($item);
@@ -71,15 +78,30 @@ class PublicationController extends Controller{
         $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
         $formData = $form->handleRequest($request);
 
+        $olfFile = $item->getPreview();
+
+
         if ($request->getMethod() == 'POST'){
             if ($formData->isValid()){
                 $item = $formData->getData();
+                $file = $item->getPreview();
+                if ($file == null){
+                    $item->setPreview($olfFile);
+                }else{
+                    $filename = time(). '.'.$file->guessExtension();
+                    $file->move(
+                        __DIR__.'/../../../web/upload/publication/',
+                        $filename
+                    );
+                    $item->setPreview(['path' => '/upload/publication/'.$filename ]);
+                }
+
                 $em->flush($item);
                 $em->refresh($item);
                 return $this->redirect($this->generateUrl('admin_publication_list'));
             }
         }
-        return array('form' => $form->createView());
+        return array('form' => $form->createView(), 'item' => $item);
     }
 
     /**

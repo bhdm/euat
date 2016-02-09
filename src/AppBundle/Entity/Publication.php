@@ -43,6 +43,13 @@ class Publication
     private $body;
 
     /**
+     * @var array
+     *
+     * @ORM\Column(name="preview", type="array")
+     */
+    private $preview;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="enabled", type="boolean", nullable=true)
@@ -67,6 +74,8 @@ class Publication
     {
         $this->enabled = true;
         $this->created = new \DateTime();
+        $this->preview = array();
+
     }
 
     /**
@@ -199,38 +208,22 @@ class Publication
         $this->category = $category;
     }
 
-
-    public function getAnons()
+    /**
+     * @return array
+     */
+    public function getPreview()
     {
-        $string = $this->body;
-        $length = 200;
-        $count = 0;
-
-        //$state = 0 - normal text
-        //$state = 1 - in HTML tag
-        //$state = 2 - in HTML entity
-
-        $state = 0;
-        for ($i = 0; $i < strlen($string); $i++) {
-            $char = $string[$i];
-            if ($char == '<') {
-                $state = 1;
-            } else if ($char == '&') {
-                $state = 2;
-                $count++;
-            } else if ($char == ';') {
-                $state = 0;
-            } else if ($char == '>') {
-                $state = 0;
-            } else if ($state === 0) {
-                $count++;
-            }
-
-            if ($count === $length) {
-                return substr($string, 0, $i + 1);
-            }
-        }
-        return $string;
+        return $this->preview;
     }
+
+    /**
+     * @param array $preview
+     */
+    public function setPreview($preview)
+    {
+        $this->preview = $preview;
+    }
+
+
 }
 
