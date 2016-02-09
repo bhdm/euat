@@ -27,7 +27,7 @@ class RegistrationFormType extends AbstractType
             'required'    => true,
             'label' => 'Пол'
         ));
-        $builder->add('phone', null, ['label' => 'Телефон']);
+        $builder->add('phone', null, ['label' => 'Телефон', 'attr' => ['class' => 'phone']]);
         $builder->add('plainPassword', RepeatedType::class, array(
             'type' => PasswordType::class,
             'invalid_message' => 'Пароли должны совпадать',
