@@ -5,12 +5,20 @@
             <script src="{{ asset('bundles/admin/js/bootstrap.min.js') }}"></script>
             <script src="{{ asset('bundles/admin/ckeditor/ckeditor.js') }}"></script>
             <script src="{{ asset('bundles/admin/translit/jquery.synctranslit.min.js') }}"></script>
+            <script src="{{ asset('assets/vendor/bootstrap-multiselect/dist/js/bootstrap-multiselect.js') }}"></script>
+            <script>
+                    $(document).ready(function() {
+                        $('.multiselect').multiselect();
+                    });
+            </script>
+
         {% endblock %}
 
         {% block stylesheets %}
             <link href="{{ asset('bundles/admin/css/bootstrap.css') }}" rel="stylesheet">
             <link href="{{ asset('bundles/admin/css/bootstrap-theme.css') }}" rel="stylesheet">
-            {#<link href="{{ asset('bundles/admin/ckeditor/contents.css') }}" rel="stylesheet">#}
+            <link href="{{ asset('assets/vendor/bootstrap-multiselect/dist/css/bootstrap-multiselect.css') }}" rel="stylesheet">
+
             <style>
                 .setting{
                     text-align: right;

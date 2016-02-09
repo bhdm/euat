@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -69,12 +70,19 @@ class Publication
      */
     private $category;
 
+    /**
+     * @var Specialty
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Specialty", inversedBy="publications")
+     */
+    private $specialties;
+
 
     public function __construct()
     {
         $this->enabled = true;
         $this->created = new \DateTime();
         $this->preview = array();
+        $this->specialties = new ArrayCollection();
 
     }
 
@@ -223,6 +231,23 @@ class Publication
     {
         $this->preview = $preview;
     }
+
+    /**
+     * @return Specialty
+     */
+    public function getSpecialties()
+    {
+        return $this->specialties;
+    }
+
+    /**
+     * @param Specialty $specialties
+     */
+    public function setSpecialties($specialties)
+    {
+        $this->specialties = $specialties;
+    }
+
 
 
 }

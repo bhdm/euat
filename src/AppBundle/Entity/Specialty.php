@@ -49,12 +49,19 @@ class Specialty
     private $events;
 
     /**
+     * @var Publication
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Publication", mappedBy="specialties")
+     */
+    private $publications;
+
+    /**
      * Specialty constructor.
      */
     public function __construct()
     {
         $this->users = new ArrayCollection();
         $this->events = new ArrayCollection();
+        $this->publications = new ArrayCollection();
     }
 
     /**

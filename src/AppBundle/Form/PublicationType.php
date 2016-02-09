@@ -24,6 +24,8 @@ class PublicationType extends AbstractType
             ->add('title', TextType::class, [ 'label' => 'Название'])
             ->add('preview', FileType::class, [ 'label' => 'Картинка', 'data_class' => null, 'required' => false])
             ->add('category', null, [ 'label' => 'Категория'])
+            ->add('specialties', null, [ 'label' => 'Специальности', 'attr' => ['class' => 'multiselect']])
+
             ->add('slug', TextType::class, [ 'label' => 'URI'])
             ->add('body', TextareaType::class, [ 'label' => 'Контент', 'attr' => ['class' => 'ckeditor']])
             ->add('created', null, [ 'label' => 'Дата создания'])
