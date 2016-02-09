@@ -18,7 +18,7 @@ class ProfileFormType extends AbstractType
         $builder->add('lastName', null, ['label' => 'Фамилия']);
         $builder->add('firstName', null, ['label' => 'Имя']);
         $builder->add('surName', null, ['label' => 'Отчество']);
-        $builder->add('birthDate', null, ['label' => 'Дата рождения','years' => range(2000,1910)]);
+        $builder->add('birthDate', null, ['label' => 'Дата рождения','years' => range(2000,1920)]);
         $builder->add('sex', ChoiceType::class, array(
             'choices' => array(
                 'Мужской' => 'M',
@@ -34,7 +34,7 @@ class ProfileFormType extends AbstractType
 //            'options' => array('attr' => array('class' => 'password-field')),
 //            'required' => true,
 //            'first_options'  => array('label' => 'Пароль'),
-//            'second_options' => array('label' => 'Повторите пароль'),
+//            'second_option' => array('label' => 'Повторите пароль'),
 //        ));
         $builder->add('university', null, ['label' => 'Университет', 'attr' => ['class' => 'university', 'data-placeholder' => 'Выберите университет']]);
     }

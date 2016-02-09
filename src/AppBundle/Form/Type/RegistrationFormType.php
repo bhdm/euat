@@ -18,7 +18,7 @@ class RegistrationFormType extends AbstractType
         $builder->add('lastName', null, ['label' => 'Фамилия']);
         $builder->add('firstName', null, ['label' => 'Имя']);
         $builder->add('surName', null, ['label' => 'Отчество']);
-        $builder->add('birthDate', null, ['label' => 'Дата рождения','years' => range(2000,1910)]);
+        $builder->add('birthDate', null, ['label' => 'Дата рождения','years' => range(2000,1920)]);
         $builder->add('sex', ChoiceType::class, array(
             'choices' => array(
                 'Мужской' => 'M',
