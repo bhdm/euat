@@ -4,14 +4,44 @@
             <div class="claendar-tab">ЕАТ</div>
             <div class="claendar-tab active">Партнеры</div>
         </div>
-        <div id="calendar-widget"></div>
+        <div id="calendar">
+            <div id="calendar-widget"></div>
+            <div id="calendar-list" class="thumbnail">
+                <ul class="events-list">
+                    {% for e in events %}
+                        <li><a href="{{ path('event',{'url' : e.id}) }}">{{ e.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
     </div>
     <script type="text/javascript">
-        $(function () {
+        $(document).ready(function () {
             $('#calendar-widget').datetimepicker({
                 inline: true,
                 sideBySide: true,
                 format: "MM/dd/YYYY"
+            });
+
+            $("#calendar-widget").on("dp.change", function (e) {
+                console.log(sd = e);
+                var selectDate = e.date.year()+'-'+(e.date.month()+1)+'-'+e.date.date();
+                $.ajax({
+                    url: Routing.generate('api_get_events'),
+                    method: 'POST',
+                    data: {'date': selectDate },
+                    success: function(json){
+                        var list = $('#calendar-list');
+                        list.html('');
+                        list.append('<ul class="events-list"></lu>');
+                        list = list.children('ul');
+                        for (var  i = 0; i<json.events.length; i++){
+                            var title = json.events[i].title;
+                            var href = Routing.generate('event',{'url' : json.events[i].id })
+                            list.append('<li><a href="'+href+'">'+title+'</a></li>');
+                        }
+                    }
+                });
             });
         });
     </script>

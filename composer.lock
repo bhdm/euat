@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "642501c7c1ed8030e1977d7215f0863e",
+    "hash": "41e616491d5d5f932b6e9b1a2daee16c",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -772,27 +772,38 @@
             "time": "2015-12-25 15:50:05"
         },
         {
-            "name": "donatj/simplecalendar",
-            "version": "v0.6.1",
+            "name": "friendsofsymfony/jsrouting-bundle",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/donatj/SimpleCalendar.git",
-                "reference": "238e934807ecd67b47d85ff6f4a06ae2905cf231"
+                "url": "https://github.com/FriendsOfSymfony/FOSJsRoutingBundle.git",
+                "reference": "2f52d924692647db02bbcb27c159fef03bf000c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/donatj/SimpleCalendar/zipball/238e934807ecd67b47d85ff6f4a06ae2905cf231",
-                "reference": "238e934807ecd67b47d85ff6f4a06ae2905cf231",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSJsRoutingBundle/zipball/2f52d924692647db02bbcb27c159fef03bf000c9",
+                "reference": "2f52d924692647db02bbcb27c159fef03bf000c9",
                 "shasum": ""
             },
             "require": {
-                "ext-calendar": "*",
-                "php": ">=5.3.0"
+                "php": ">=5.3.2",
+                "symfony/console": "~2.0|3.*",
+                "symfony/framework-bundle": "~2.0|3.*",
+                "symfony/serializer": "~2.0|3.*",
+                "willdurand/jsonp-callback-validator": "~1.0"
             },
-            "type": "library",
+            "require-dev": {
+                "symfony/expression-language": "~2.4|3.*"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.5-dev"
+                }
+            },
             "autoload": {
-                "psr-0": {
-                    "donatj": "lib/"
+                "psr-4": {
+                    "FOS\\JsRoutingBundle\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -801,18 +812,22 @@
             ],
             "authors": [
                 {
-                    "name": "Jesse Donat",
-                    "email": "donatj@gmail.com",
-                    "homepage": "http://donatstudios.com",
-                    "role": "Lead"
+                    "name": "FriendsOfSymfony Community",
+                    "homepage": "https://github.com/friendsofsymfony/FOSJsRoutingBundle/contributors"
+                },
+                {
+                    "name": "William Durand",
+                    "email": "william.durand1@gmail.com"
                 }
             ],
-            "description": "A light, easy to use calendar rendering library",
-            "homepage": "http://donatstudios.com/SimpleCalendar",
+            "description": "A pretty nice way to expose your Symfony2 routing to client applications.",
+            "homepage": "http://friendsofsymfony.github.com",
             "keywords": [
-                "calendar"
+                "Js Routing",
+                "javascript",
+                "routing"
             ],
-            "time": "2014-04-16 19:42:21"
+            "time": "2015-10-28 15:08:39"
         },
         {
             "name": "friendsofsymfony/user-bundle",
@@ -2213,9 +2228,92 @@
                 "templating"
             ],
             "time": "2015-11-05 12:49:06"
+        },
+        {
+            "name": "willdurand/jsonp-callback-validator",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/willdurand/JsonpCallbackValidator.git",
+                "reference": "1a7d388bb521959e612ef50c5c7b1691b097e909"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/willdurand/JsonpCallbackValidator/zipball/1a7d388bb521959e612ef50c5c7b1691b097e909",
+                "reference": "1a7d388bb521959e612ef50c5c7b1691b097e909",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~3.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "JsonpCallbackValidator": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "William Durand",
+                    "email": "william.durand1@gmail.com",
+                    "homepage": "http://www.willdurand.fr"
+                }
+            ],
+            "description": "JSONP callback validator.",
+            "time": "2014-01-20 22:35:06"
         }
     ],
     "packages-dev": [
+        {
+            "name": "donatj/simplecalendar",
+            "version": "v0.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/donatj/SimpleCalendar.git",
+                "reference": "238e934807ecd67b47d85ff6f4a06ae2905cf231"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/donatj/SimpleCalendar/zipball/238e934807ecd67b47d85ff6f4a06ae2905cf231",
+                "reference": "238e934807ecd67b47d85ff6f4a06ae2905cf231",
+                "shasum": ""
+            },
+            "require": {
+                "ext-calendar": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "donatj": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jesse Donat",
+                    "email": "donatj@gmail.com",
+                    "homepage": "http://donatstudios.com",
+                    "role": "Lead"
+                }
+            ],
+            "description": "A light, easy to use calendar rendering library",
+            "homepage": "http://donatstudios.com/SimpleCalendar",
+            "keywords": [
+                "calendar"
+            ],
+            "time": "2014-04-16 19:42:21"
+        },
         {
             "name": "sensio/generator-bundle",
             "version": "v3.0.3",
