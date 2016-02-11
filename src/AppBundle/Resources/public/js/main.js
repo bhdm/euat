@@ -23,5 +23,5 @@ $(document).ready(function(){
 
     $(".university").chosen({disable_search_threshold: 10});
 
-    $('.phone').mask('+7(000) 000-00-00');
+    $('.phone').mask('+(000) 000-00-00');
 });
