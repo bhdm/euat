@@ -1,0 +1,52 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block content %}
+    <h1>Курсы</h1>
+    <div>
+        {% for course in courses %}
+            <div class="row">
+                <div class="col-xs-offset-1 col-xs-3">
+                    {% if course.image.path is defined %}
+                        <img src="{{ course.image.path }}" class="thumbnail" style="max-width: 100%">
+                    {% endif %}
+                </div>
+                <div class="col-xs-8">
+                    <div class="course-title">
+                        <a href="{{ course.id }}">{{ course.title }}</a>
+                    </div>
+                    <p class="course-descripton">
+                        {{ course.description }}
+                    </p>
+                    {% if course.specialties | length > 0 %}
+                        <div class="course-params">
+                            <b>Специальность: </b>
+                            {% for specialty in course.specialties %}
+                                <a class="sublink" href="#">
+                                {{ specialty.title }}
+                                </a>{{ specialty != course.specialties | last ? ',' : '' }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    {% if course.author != null %}
+                        <div class="course-params">
+                            <b>Автор: </b>
+                            {{ course.author }}
+                        </div>
+                    {% endif %}
+                    {% if course.amountHour != 0 %}
+                        <div class="course-params">
+                            <b>Часов прохождения: </b>
+                            {{ course.amountHour }} ч.
+                        </div>
+                    {% endif %}
+                    {% if course.price != 0 %}
+                        <div class="course-params">
+                            <b>Стоимость курса: </b>
+                            {{ course.price }} руб.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

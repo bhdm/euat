@@ -13,6 +13,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class EducationController extends Controller
 {
     /**
+     * Страница списка курсов
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @Route("/courses/{specialty}", name="courses", defaults={"specialty" = null})
+     * @Template("")
+     */
+    public function coursesAction(){
+        $courses = $this->getDoctrine()->getRepository('AppBundle:Course')->findBy();
+        return ['courses' => $courses];
+    }
+
+    /**
      * Зачетная книжка
      * @return \Symfony\Component\HttpFoundation\Response
      *
