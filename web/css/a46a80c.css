@@ -21,7 +21,8 @@ body {
   height: 100%;
 }
 #logo {
-  width: 100px;
+  width: 130px;
+  margin: 5px;
 }
 #search {
   width: 400px;
@@ -246,6 +247,23 @@ footer {
 }
 .chosen-container-single .chosen-single span {
   padding-top: 4px;
+}
+.editor {
+  float: right;
+  padding-right: 10px;
+  display: none;
+}
+.editor span {
+  color: #444;
+}
+div:hover > .editor {
+  display: block;
+}
+.owl-item {
+  height: 430px;
+}
+.owl-item .item img {
+  height: 430px;
 }
 
 body {
@@ -271,7 +289,8 @@ body {
   height: 100%;
 }
 #logo {
-  width: 100px;
+  width: 130px;
+  margin: 5px;
 }
 #search {
   width: 400px;
@@ -496,4 +515,21 @@ footer {
 }
 .chosen-container-single .chosen-single span {
   padding-top: 4px;
+}
+.editor {
+  float: right;
+  padding-right: 10px;
+  display: none;
+}
+.editor span {
+  color: #444;
+}
+div:hover > .editor {
+  display: block;
+}
+.owl-item {
+  height: 430px;
+}
+.owl-item .item img {
+  height: 430px;
 }
