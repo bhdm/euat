@@ -1,6 +1,9 @@
 body {
   text-align: center;
 }
+a {
+  cursor: pointer !important;
+}
 .body {
   max-width: 1400px;
   width: 100%;
@@ -264,4 +267,10 @@ div:hover > .editor {
 }
 .owl-item .item img {
   height: 430px;
+}
+table.table-vertical-middle tr td {
+  vertical-align: middle;
+}
+table.table-th-bold tr th {
+  font-weight: bold;
 }
