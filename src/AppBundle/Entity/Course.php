@@ -99,6 +99,18 @@ class Course
     private $modules;
 
     /**
+     * @var Course
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Course", mappedBy="course")
+     */
+    private $users;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Specialty", inversedBy="courses")
+     */
+    private $specialties;
+
+    /**
      * Course constructor.
      */
     public function __construct()
@@ -107,7 +119,8 @@ class Course
         $this->price = 0;
         $this->created  = new \DateTime();
         $this->modules = new ArrayCollection();
-
+        $this->image = array();
+        $this->specialties = new ArrayCollection();
     }
 
     /**
@@ -367,5 +380,56 @@ class Course
     {
         return $this->start;
     }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getModules()
+    {
+        return $this->modules;
+    }
+
+    /**
+     * @param ArrayCollection $modules
+     */
+    public function setModules($modules)
+    {
+        $this->modules = $modules;
+    }
+
+    /**
+     * @return Course
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * @param Course $users
+     */
+    public function setUsers($users)
+    {
+        $this->users = $users;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getSpecialties()
+    {
+        return $this->specialties;
+    }
+
+    /**
+     * @param ArrayCollection $specialties
+     */
+    public function setSpecialties($specialties)
+    {
+        $this->specialties = $specialties;
+    }
+
+
+
 }
 

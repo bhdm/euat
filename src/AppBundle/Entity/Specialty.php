@@ -43,16 +43,22 @@ class Specialty
     private $users;
 
     /**
-     * @var Specialty
+     * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Event", mappedBy="specialty")
      */
     private $events;
 
     /**
-     * @var Publication
+     * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Publication", mappedBy="specialties")
      */
     private $publications;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Course", mappedBy="specialties")
+     */
+    private $courses;
 
     /**
      * Specialty constructor.
@@ -62,6 +68,7 @@ class Specialty
         $this->users = new ArrayCollection();
         $this->events = new ArrayCollection();
         $this->publications = new ArrayCollection();
+        $this->courses = new ArrayCollection();
     }
 
     /**
@@ -177,6 +184,38 @@ class Specialty
     public function setEvents($events)
     {
         $this->events = $events;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getPublications()
+    {
+        return $this->publications;
+    }
+
+    /**
+     * @param ArrayCollection $publications
+     */
+    public function setPublications($publications)
+    {
+        $this->publications = $publications;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getCourses()
+    {
+        return $this->courses;
+    }
+
+    /**
+     * @param ArrayCollection $courses
+     */
+    public function setCourses($courses)
+    {
+        $this->courses = $courses;
     }
 
 

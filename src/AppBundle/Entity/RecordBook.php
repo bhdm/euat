@@ -57,14 +57,16 @@ class RecordBook
     private $activeModule;
 
     /**
+     * @var User
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="courses")
      */
     private $user;
 
     /**
-     * @var
+     * @var Course
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Course", inversedBy="users")
      */
-    private $couse;
+    private $course;
 
     /**
      * Get id
@@ -195,5 +197,40 @@ class RecordBook
     {
         return $this->activeModule;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return Course
+     */
+    public function getCourse()
+    {
+        return $this->course;
+    }
+
+    /**
+     * @param Course $course
+     */
+    public function setCourse($course)
+    {
+        $this->course = $course;
+    }
+
+
+
 }
 

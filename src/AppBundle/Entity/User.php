@@ -133,12 +133,18 @@ class User extends BaseUser
      */
     protected $specialty;
 
+    /**
+     * @var RecordBook
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\User", mappedBy="user")
+     */
+    private $courses;
+
 
     public function __construct()
     {
         $this->certificate = array();
+        $this->courses = new ArrayCollection();
         parent::__construct();
-        // your own logic
     }
 
     /**
@@ -435,6 +441,22 @@ class User extends BaseUser
     public function setUsernameValue()
     {
         $this->username = $this->email;
+    }
+
+    /**
+     * @return RecordBook
+     */
+    public function getCourses()
+    {
+        return $this->courses;
+    }
+
+    /**
+     * @param RecordBook $courses
+     */
+    public function setCourses($courses)
+    {
+        $this->courses = $courses;
     }
 
 
