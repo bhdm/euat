@@ -25,6 +25,18 @@ class EducationController extends Controller
     }
 
     /**
+     * Информация о курсе
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @Route("/course/{id}/info", name="course_info")
+     * @Template("")
+     */
+    public function courseInfoAction($id){
+        $course = $this->getDoctrine()->getRepository('AppBundle:Course')->findOneBy(['id' => $id]);
+        return ['course' => $course];
+    }
+
+    /**
      * Зачетная книжка
      * @return \Symfony\Component\HttpFoundation\Response
      *
