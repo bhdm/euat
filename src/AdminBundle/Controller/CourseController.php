@@ -28,7 +28,7 @@ class CourseController extends Controller{
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $items,
-            $request->query->get('course', 1),
+            $request->query->get('page', 1),
             20
         );
 
