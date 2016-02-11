@@ -286,3 +286,12 @@ table.table-th-bold tr th {
 .course-params b {
   color: #555;
 }
+.course-info .course-params {
+  margin: 10px 5px;
+}
+.course-info .course-params b {
+  color: #333;
+}
+.course-info .course-params ~ .course-price {
+  font-size: 18px;
+}
