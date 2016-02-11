@@ -12,3 +12,7 @@ fos_user:
 
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+page:
+    path:      /{url}
+    defaults:  { _controller: AppBundle:Publication:page }

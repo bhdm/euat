@@ -20,12 +20,14 @@ class PublicationController extends Controller
     }
 
     /**
-     * @Route("page/{url}", name="page")
      * @Template("AppBundle:Publication:page.html.twig")
      */
     public function pageAction(Request $request, $url)
     {
         $page = $this->getDoctrine()->getRepository('AppBundle:Page')->findOneBySlug($url);
+        if ($page === null){
+            throw $this->createNotFoundException('Данной страницы не существует');
+        }
         return ['page' => $page];
     }
 
