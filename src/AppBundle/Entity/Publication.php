@@ -76,6 +76,12 @@ class Publication
      */
     private $specialties;
 
+    /**
+     * @var Comment
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="publication")
+     */
+    private $comments;
+
 
     public function __construct()
     {
@@ -83,6 +89,7 @@ class Publication
         $this->created = new \DateTime();
         $this->preview = array();
         $this->specialties = new ArrayCollection();
+        $this->comments = new ArrayCollection();
 
     }
 
@@ -246,6 +253,22 @@ class Publication
     public function setSpecialties($specialties)
     {
         $this->specialties = $specialties;
+    }
+
+    /**
+     * @return Comment
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @param Comment $comments
+     */
+    public function setComments($comments)
+    {
+        $this->comments = $comments;
     }
 
 

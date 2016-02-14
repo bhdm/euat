@@ -111,6 +111,12 @@ class Course
     private $specialties;
 
     /**
+     * @var Comment
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="course")
+     */
+    private $comments;
+
+    /**
      * Course constructor.
      */
     public function __construct()
@@ -119,6 +125,7 @@ class Course
         $this->price = 0;
         $this->created  = new \DateTime();
         $this->modules = new ArrayCollection();
+        $this->comments = new ArrayCollection();
         $this->image = array();
         $this->specialties = new ArrayCollection();
     }
@@ -428,6 +435,23 @@ class Course
     {
         $this->specialties = $specialties;
     }
+
+    /**
+     * @return Comment
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @param Comment $comments
+     */
+    public function setComments($comments)
+    {
+        $this->comments = $comments;
+    }
+
 
 
 

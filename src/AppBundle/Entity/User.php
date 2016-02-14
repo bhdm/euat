@@ -139,11 +139,18 @@ class User extends BaseUser
      */
     private $courses;
 
+    /**
+     * @var Comment
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="owner")
+     */
+    private $comments;
+
 
     public function __construct()
     {
         $this->certificate = array();
         $this->courses = new ArrayCollection();
+        $this->comments = new ArrayCollection();
         parent::__construct();
     }
 
