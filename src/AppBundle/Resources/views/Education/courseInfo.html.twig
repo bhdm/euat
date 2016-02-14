@@ -38,8 +38,15 @@
                     {% endif %}
                 </div>
                 <br />
-                <button class="btn btn-primary" style="width: 100%">Записаться</button>
-            {% endif %}</div>
+                {% if statusCourse == 'NEW' %}
+                    <a href="{{ path('enrolment',{'courseId' : course.id}) }}"><button class="btn btn-primary" style="width: 100%">Записаться</button></a>
+                {% elseif statusCourse == 'PROGRESS' %}
+                    <a href="{{ path('enrolment',{'courseId' : course.id}) }}"><button class="btn btn-primary" style="width: 100%">Перести</button></a>
+                {% elseif statusCourse == 'PASSED' %}
+
+                {% endif %}
+            {% endif %}
+        </div>
         <div class="col-xs-8">
             <h2>{{ course.title }}</h2>
             <div>{{ course.body | raw }}</div>

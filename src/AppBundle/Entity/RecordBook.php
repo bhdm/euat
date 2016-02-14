@@ -52,7 +52,7 @@ class RecordBook
     /**
      * @var CourseModule
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\CourseModule", inversedBy="isActive")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\CourseModule")
      */
     private $activeModule;
 
@@ -67,6 +67,12 @@ class RecordBook
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Course", inversedBy="users")
      */
     private $course;
+
+    public function __construct()
+    {
+        $this->created = new \DateTime();
+        $this->enabled = true;
+    }
 
     /**
      * Get id
