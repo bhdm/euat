@@ -10,4 +10,18 @@ namespace AppBundle\Repository;
  */
 class CourseModuleRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function nextModule($course, $activeModule){
+        $qb = $this->createQueryBuilder('m')
+            ->select('m')
+            ->from('AppBundle:CourseModule','m')
+            ->where('m.course = "course')
+            ->andWhere('m.id > :moduleId')
+            ->orderBy('m.sort','ASC')
+            ->addOrderBy('m.id','ASC')
+
+            ->setParameter('course', $course)
+            ->setParameter('moduleId', $activeModule->getId());
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
 }

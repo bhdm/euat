@@ -89,4 +89,38 @@ class EducationController extends Controller
         }
     }
 
+    /**
+     * Переключает на следующий модуль курса
+     * @Route("/passing/next/{recordBookId}", name="course_passing_next")
+     */
+    public function passingAction(Request $request, $recordBookId){
+        $em = $this->getDoctrine()->getManager();
+        $recordBook = $this->getDoctrine()->getRepository('AppBundle:RecordBook')->findOneBy(['id' => $recordBookId, 'user' => $this->getUser()]);
+        if ($recordBook === null){
+            throw $this->createNotFoundException('
+                        Произошла ошибка - Данная запись в вашей записной книжке не найдена.
+                        Если эта ошибка произошла при прохождении курса - обратить, пожалуйста, к администратору');
+        }
+
+        # Находим следующий модуль курса
+        $nextModule = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->nextModule($recordBook->getCourse(), $recordBook->getActiveModule());
+
+        #todo Доделать прохождение теста
+        # Если null - то курс пройден
+        if ($nextModule === null){
+            $recordBook->setPassed((new \DateTime()));
+            $recordBook->setPercent(100);
+            $em->flush($recordBook);
+            $em->refresh($recordBook);
+            return $this->render('AppBundle:Education:CoursePassed.html.twig', ['course' => $recordBook->getCourse()]);
+        # Иначе переключаем на новый модуль
+        }else{
+            $recordBook->setActiveModule($nextModule);
+            $em->flush($recordBook);
+            $em->refresh($recordBook);
+            return $this->render('AppBundle:Education:showModule.html.twig', ['course' => $recordBook->getCourse()]);
+        }
+
+    }
+
 }
