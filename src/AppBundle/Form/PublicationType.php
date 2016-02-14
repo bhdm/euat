@@ -26,6 +26,15 @@ class PublicationType extends AbstractType
             ->add('category', null, [ 'label' => 'Категория'])
             ->add('specialties', null, [ 'label' => 'Специальности', 'attr' => ['class' => 'multiselect']])
 
+            ->add('allowCommentary', ChoiceType::class, array(
+                'choices' => array(
+                    'Размершить' => true,
+                    'Запретить' => false
+                ),
+                'required'    => true,
+                'label' => 'Комментарии'
+            ))
+
             ->add('slug', TextType::class, [ 'label' => 'URI'])
             ->add('body', TextareaType::class, [ 'label' => 'Контент', 'attr' => ['class' => 'ckeditor']])
             ->add('created', null, [ 'label' => 'Дата создания'])
@@ -39,7 +48,7 @@ class PublicationType extends AbstractType
             ));
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */

@@ -2,8 +2,10 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Comment;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -62,4 +64,33 @@ class PublicationController extends Controller
         return ['category' => $category];
     }
 
+
+    /**
+     * @param Request $request
+     * @return array
+     * @Route("/comment-add/{id}/{type}", name="comment_add", requirements={"type" = "publication|event|course"})
+     * @Method("POST")
+     */
+    public function commentAddAction(Request $request, $id, $type){
+        $em = $this->getDoctrine()->getManager();
+        $comment = new Comment();
+        $comment->setOwner($this->getUser());
+        $comment->setBody($request->request->get('comment'));
+        if ($type === 'publication'){
+            $publication = $this->getDoctrine()->getRepository('AppBundle:Publication')->findOneBy(['id' => $id]);
+            $comment->setPublication($publication);
+        }elseif($type === 'course'){
+            $course = $this->getDoctrine()->getRepository('AppBundle:Course')->findOneBy(['id' => $id]);
+            $comment->setCourse($course);
+        }else{
+            throw $this->createNotFoundException('Вы пытаетесь прикрепить комментарий к странице, на который запрещены комментарии');
+        }
+        $em->persist($comment);
+        $em->flush($comment);
+
+        $session = $request->getSession();
+        $session->getFlashBag()->add('notice', 'Ваш комментарий оставлен');
+        $referer = $request->headers->get('referer');
+        return $this->redirect($referer);
+    }
 }

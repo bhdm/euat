@@ -1,8 +1,16 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets "@AppBundle/Resources/public/less/comments.less" %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
+    {% endstylesheets %}
+{% endblock %}
+
 {% block content %}
     <h1>{{ publication.title }}</h1>
     <div>
         {{ publication.body | raw }}
     </div>
+    {% include '@App/Publication/comments.html.twig'  with {'comments': publication.comments, 'id' : publication.id, 'type': 'publication' } %}
 {% endblock %}
