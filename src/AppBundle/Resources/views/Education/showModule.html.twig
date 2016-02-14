@@ -17,6 +17,18 @@
         </script>
     {% endif %}
 
+    {% if module.type == '' %}
+        <div class="player" id="videoplayer"></div>
+        <script src="{{ asset('bundles/app/js/uppod-0.5.40.js') }}"></script>
+        <script>
+            $(document).ready(function () {
+                var link = '{{ base_url~'/upload/video/'~module.video.path }}';
+                {#var poster = '{{ base_url~'/upload/video/'~module.image.path }}';#}
+                this.player = new Uppod({m:"video",uid:"videoplayer",file:link});
+            });
+        </script>
+    {% endif %}
+
 
 {% endblock %}
 
