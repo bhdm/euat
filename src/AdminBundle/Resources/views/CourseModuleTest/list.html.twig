@@ -1,0 +1,24 @@
+{% extends '@Admin/layout.html.twig' %}
+
+{% block frame %}
+    {% for q in module.questions %}
+        <div>
+            <div class="test-question">{{ q.body }}</div>
+            <div class="test-answers">
+                {% for a in q.answers %}
+                    <div class="test-answer">
+                        {{ a.body }}
+                    </div>
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <input type="checkbox" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control">
+                        </div>
+                    </form>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

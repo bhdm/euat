@@ -18,6 +18,9 @@
         {{ form_start(form) }}
         {{ form_widget(form) }}
         {{ form_end(form) }}
+
+
+        {{ render(controller('AdminBundle:CourseModuleTest:list',{'courseId' : item.course.id , 'moduleId' : item.Id })) }}
     </div>
 {% endblock %}
 
