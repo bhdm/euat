@@ -41,7 +41,7 @@
                 {% if statusCourse == 'NEW' %}
                     <a href="{{ path('enrolment',{'courseId' : course.id}) }}"><button class="btn btn-primary" style="width: 100%">Записаться</button></a>
                 {% elseif statusCourse == 'PROGRESS' %}
-                    <a href="{{ path('enrolment',{'courseId' : course.id}) }}"><button class="btn btn-primary" style="width: 100%">Перести</button></a>
+                    <a href="{{ path('course_passing',{'recordBookId' : recordBook.id}) }}"><button class="btn btn-primary" style="width: 100%">Перести</button></a>
                 {% elseif statusCourse == 'PASSED' %}
 
                 {% endif %}

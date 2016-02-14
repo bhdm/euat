@@ -39,6 +39,8 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     form_themes: ['AppBundle:Form:bootstrap_custom_layout.html.twig']
+    globals:
+        base_url: "%domain%"
 
 assetic:
     debug:          '%kernel.debug%'
