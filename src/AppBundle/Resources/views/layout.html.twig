@@ -67,9 +67,11 @@
                 </div>
             </div>
         </header>
-        <div class="slider ">
-            {% include "@App/Widget/carusel.html.twig" %}
-        </div>
+        {% if app.request.attributes.get('_route') == 'homepage' %}
+            <div class="slider ">
+                {% include "@App/Widget/carusel.html.twig" %}
+            </div>
+        {% endif %}
         {{ render(controller("AppBundle:Default:generateMenu" )) }}
         <div class="content">
             {% block fullContent %}
