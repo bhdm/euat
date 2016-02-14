@@ -45,7 +45,7 @@ class RecordBook
     /**
      * @var string
      *
-     * @ORM\Column(name="percent", type="decimal", precision=2, scale=2, nullable=true)
+     * @ORM\Column(name="percent", type="decimal", scale=2, nullable=true)
      */
     private $percent;
 

@@ -59,7 +59,8 @@ class EducationController extends Controller
      */
     public function recordBookAction()
     {
-        return [];
+        $recordbook = $this->getDoctrine()->getRepository('AppBundle:RecordBook')->findBy(['user' => $this->getUser()]);
+        return ['recordbook' => $recordbook];
     }
 
 
@@ -112,7 +113,7 @@ class EducationController extends Controller
                 $recordBook->setPercent(100);
                 $em->flush($recordBook);
                 $em->refresh($recordBook);
-                return $this->render('AppBundle:Education:CoursePassed.html.twig', ['course' => $recordBook->getCourse()]);
+                return $this->render('AppBundle:Education:coursePassed.html.twig', ['recordBook' => $recordBook]);
                 # Иначе переключаем на новый модуль
             }else{
                 $recordBook->setActiveModule($nextModule);

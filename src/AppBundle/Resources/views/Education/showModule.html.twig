@@ -24,7 +24,7 @@
         {% if module.file | length > 0 %}
             <div>
                 <div class="pdf" id="pdf1">
-                    <iframe src="{{ base_url~'/upload/pdf/'~module.file.path }}"></iframe>
+                    <iframe src="{{ base_url~module.file.path }}"></iframe>
                 </div>
             </div>
         {% endif %}
@@ -32,11 +32,14 @@
 
     {# Если модуль ВИДЕО #}
     {% if module.type == 'VIDEO' %}
-        <div class="player" id="videoplayer1"></div>
+        <div style="margin: 40px 20px">
+            <div class="player" id="videoplayer1"></div>
+        </div>
         <script src="{{ asset('bundles/app/js/uppod-0.5.40.js') }}"></script>
         <script>
             $(document).ready(function () {
-                var link = '{{ base_url~'/upload/video/'~module.file.path }}';
+                var link = '{{ base_url~module.file.path }}';
+                console.log(link);
                 {#var poster = '{{ base_url~'/upload/video/'~module.image.path }}';#}
                 this.player = new Uppod({m:"video",uid:"videoplayer1",file:link});
             });
@@ -48,7 +51,9 @@
             <button class="btn btn-primary"><span aria-hidden="true">&laquo;</span>&nbsp;&nbsp;Перейти к предыдущему материалу</button>
         </div>
         <div class="col-xs-6 text-right">
-            <button class="btn btn-primary"><span></span>Перейти к следующему материалу&nbsp;&nbsp;<span aria-hidden="true">&raquo;</span></button>
+            <form method="post">
+            <button type="submit" class="btn btn-primary"><span></span>Перейти к следующему материалу&nbsp;&nbsp;<span aria-hidden="true">&raquo;</span></button>
+            </form>
         </div>
     </div>
 

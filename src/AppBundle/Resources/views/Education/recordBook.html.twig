@@ -5,29 +5,20 @@
     <div>
         <table class="table table-vertical-middle table-th-bold">
             <tr>
-                <th style="width: 500px">Название</th>
-                <th class="text-center">Кол-во курсов</th>
+                <th style="width: 500px">Название курса</th>
+                <th class="text-center">Кол-во модулей</th>
                 <th class="text-center">Результат</th>
                 <th class="text-center">Дата завершения</th>
             </tr>
-            <tr>
-                <td><a>Гастроинтестинальное стентировние при злокачественной обструкции</a></td>
-                <td class="text-center">4 модуля (2 часа)</td>
-                <td class="text-center">53%</td>
-                <td class="text-center">23.05.2016</td>
-            </tr>
-            <tr>
-                <td><a>Опыт внутреннего дренирования псевдокист поджелудочной железы под контролем эндосонографии</a></td>
-                <td class="text-center">4 модуля (2 часа)</td>
-                <td class="text-center">53%</td>
-                <td class="text-center">23.05.2016</td>
-            </tr>
-            <tr>
-                <td><a>Сравнительная оценка локализации поражений тонкой кишки по данным новой видеокапсульной системы EC-10 и интраоперационной ревизии</a></td>
-                <td class="text-center">4 модуля (2 часа)</td>
-                <td class="text-center">53%</td>
-                <td class="text-center">23.05.2016</td>
-            </tr>
+            {% for r in recordbook %}
+                {% set course = r.course %}
+                <tr>
+                    <td style="width: 500px">{{ course.title }}</td>
+                    <td class="text-center">{{ course.modules | length }}</td>
+                    <td class="text-center">{{ r.percent  }}%</td>
+                    <td class="text-center">{{ r.passed | date ('d.m.Y') }}</td>
+                </tr>
+            {% endfor %}
         </table>
     </div>
 {% endblock %}
