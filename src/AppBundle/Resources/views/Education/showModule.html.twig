@@ -2,32 +2,55 @@
 
 {% block content %}
     {% set module = recordBook.activeModule %}
+    {% set course = recordBook.course %}
+
+    {# Хлебные крошки активного курса #}
+    <ol class="breadcrumb" xmlns="http://www.w3.org/1999/html">
+        {% for number,m in course.modules %}
+            <li class="{{ m == module ? 'active' : '' }}"><a href="#">{{ number+1 }}. {{ m.type | trans }}</a></li>
+        {% endfor %}
+    </ol>
+    {# конец крошек#}
 
     <h2>{{ module.title  }}</h2>
+
+    {# Если модуль ТЕКСТ #}
+    {% if module.type == 'TEXT' %}
+        {% if module.text != null %}
+            <div>
+                {{ module.text | raw }}
+            </div>
+        {% endif %}
+        {% if module.file | length > 0 %}
+            <div>
+                <div class="pdf" id="pdf1">
+                    <iframe src="{{ base_url~'/upload/pdf/'~module.file.path }}"></iframe>
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+
     {# Если модуль ВИДЕО #}
     {% if module.type == 'VIDEO' %}
-        <div class="player" id="videoplayer"></div>
+        <div class="player" id="videoplayer1"></div>
         <script src="{{ asset('bundles/app/js/uppod-0.5.40.js') }}"></script>
         <script>
             $(document).ready(function () {
-                var link = '{{ base_url~'/upload/video/'~module.video.path }}';
+                var link = '{{ base_url~'/upload/video/'~module.file.path }}';
                 {#var poster = '{{ base_url~'/upload/video/'~module.image.path }}';#}
-                this.player = new Uppod({m:"video",uid:"videoplayer",file:link});
+                this.player = new Uppod({m:"video",uid:"videoplayer1",file:link});
             });
         </script>
     {% endif %}
 
-    {% if module.type == '' %}
-        <div class="player" id="videoplayer"></div>
-        <script src="{{ asset('bundles/app/js/uppod-0.5.40.js') }}"></script>
-        <script>
-            $(document).ready(function () {
-                var link = '{{ base_url~'/upload/video/'~module.video.path }}';
-                {#var poster = '{{ base_url~'/upload/video/'~module.image.path }}';#}
-                this.player = new Uppod({m:"video",uid:"videoplayer",file:link});
-            });
-        </script>
-    {% endif %}
+    <div class="row">
+        <div class="col-xs-6 text-left">
+            <button class="btn btn-primary"><span aria-hidden="true">&laquo;</span>&nbsp;&nbsp;Перейти к предыдущему материалу</button>
+        </div>
+        <div class="col-xs-6 text-right">
+            <button class="btn btn-primary"><span></span>Перейти к следующему материалу&nbsp;&nbsp;<span aria-hidden="true">&raquo;</span></button>
+        </div>
+    </div>
 
 
 {% endblock %}
