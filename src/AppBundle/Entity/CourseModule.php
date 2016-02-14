@@ -2,7 +2,9 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Console\Question\Question;
 
 /**
  * CourseModule
@@ -82,6 +84,13 @@ class CourseModule
      */
     private $sort;
 
+    /**
+     * @var Question
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CourseModule", mappedBy="module")
+     */
+    private $questions;
+
 
     /**
      * CourseModule constructor.
@@ -91,7 +100,7 @@ class CourseModule
         $this->enabled = false;
         $this->created  = new \DateTime();
         $this->sort  = 0;
-
+        $this->questions = new ArrayCollection();
     }
 
     /**
@@ -295,6 +304,37 @@ class CourseModule
         $this->course = $course;
     }
 
+    /**
+     * @return int
+     */
+    public function getSort()
+    {
+        return $this->sort;
+    }
+
+    /**
+     * @param int $sort
+     */
+    public function setSort($sort)
+    {
+        $this->sort = $sort;
+    }
+
+    /**
+     * @return Question
+     */
+    public function getQuestions()
+    {
+        return $this->questions;
+    }
+
+    /**
+     * @param Question $questions
+     */
+    public function setQuestions($questions)
+    {
+        $this->questions = $questions;
+    }
 
 }
 
