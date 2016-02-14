@@ -316,3 +316,8 @@ table.table-th-bold tr th {
 .course-info .course-params ~ .course-price {
   font-size: 18px;
 }
+.edit-title {
+  color: #337AB7;
+  font-size: 16px;
+  padding: 10px;
+}

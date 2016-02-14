@@ -82,9 +82,16 @@ class Publication
      */
     private $comments;
 
+    /**
+     * @var boolean
+     * @ORM\Column(name="allowCommentary", type="boolean", nullable=true)
+     */
+    private $allowCommentary;
+
 
     public function __construct()
     {
+        $this->allowCommentary = true;
         $this->enabled = true;
         $this->created = new \DateTime();
         $this->preview = array();
@@ -269,6 +276,22 @@ class Publication
     public function setComments($comments)
     {
         $this->comments = $comments;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isAllowCommentary()
+    {
+        return $this->allowCommentary;
+    }
+
+    /**
+     * @param boolean $allowCommentary
+     */
+    public function setAllowCommentary($allowCommentary)
+    {
+        $this->allowCommentary = $allowCommentary;
     }
 
 

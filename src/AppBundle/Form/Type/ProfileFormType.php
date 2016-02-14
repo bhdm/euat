@@ -1,9 +1,11 @@
 <?php
 namespace AppBundle\Form\Type;
 
+use Doctrine\DBAL\Types\StringType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -37,6 +39,27 @@ class ProfileFormType extends AbstractType
 //            'second_option' => array('label' => 'Повторите пароль'),
 //        ));
         $builder->add('university', null, ['label' => 'Университет', 'attr' => ['class' => 'university', 'data-placeholder' => 'Выберите университет']]);
+        $builder->add('academicDegree', ChoiceType::class, [
+            'label' => 'Ученая степень',
+            'choices' => array(
+                'Нету' => 0,
+                'Кандитат медицинских наук' => 1,
+                'Доктор медицинских наук' => 2
+            ),
+            'required'    => true
+        ]);
+        $builder->add('certificate', FileType::class, ['label' => 'Скан сертификата', 'data_class' => null]);
+
+        $builder->add('workPlace', null, ['label' => 'Место работы']);
+        $builder->add('workTypeOrganization', ChoiceType::class, [
+            'label' => 'Тип организации',
+            'choices' => array(
+                    'Коммерческая' => 'Коммерческая',
+                    'Государтсвенная' => 'Государтсвенная'
+            )
+        ]);
+        $builder->add('workPlaceTitle', null, ['label' => 'Место работы']);
+        $builder->add('workPost', null, ['label' => 'Должность']);
     }
 
     public function getParent()
