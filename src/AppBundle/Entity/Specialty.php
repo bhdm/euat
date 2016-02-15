@@ -44,7 +44,7 @@ class Specialty
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Event", mappedBy="specialty")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Event", mappedBy="specialty")
      */
     private $events;
 

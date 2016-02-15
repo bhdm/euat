@@ -1,8 +1,45 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
+{% block javascript %}
+    {{ parent() }}
+    <script src="{{ asset('assets/vendor/moment/moment.js') }}"></script>
+    <script src="{{ asset('assets/vendor/moment/locale/ru.js') }}"></script>
+    <script src="{{ asset('assets/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+{% endblock %}
+
 {% block content %}
-    <h1>{{ event.title }}</h1>
-    <div>
-        {{ event.body | raw }}
+    <div class="col-xs-4" style="padding-left: 0">
+        {{ render(controller("AppBundle:Widget:calendar" )) }}
+    </div>
+    <div class="col-xs-8" style="padding-right: 0">
+        <h1 class="blue-text">{{ event.title }}</h1>
+        <ul class="event-params">
+            {% if event.specialties | length > 0 %}
+                <li><b>Специальности:</b>
+                    {% for s in event.specialties %}
+                        {{ s.title }}
+                        {% if s != event.specialties | last %}
+                            ,
+                        {% endif %}
+                    {% endfor %}
+                </li>
+            {% endif %}
+            {% if event.start %}
+                <li><b>Дата начала:</b>     {{ event.sart | date('d.m.Y H:i:s') }}</li>
+            {% endif %}
+            {% if event.end %}
+                <li><b>Дата окончания:</b>  {{ event.end  | date('d.m.Y H:i:s') }}</li>
+            {% endif %}
+            {% if event.city %}
+                <li><b>Город:</b>           {{ event.city  }}</li>
+            {% endif %}
+            {% if event.adrs %}
+                <li><b>Адрес:</b>           {{ event.adrs }}</li>
+            {% endif %}
+        </ul>
+        <hr />
+        <div class="body">
+            {{ event.body | raw }}
+        </div>
     </div>
 {% endblock %}

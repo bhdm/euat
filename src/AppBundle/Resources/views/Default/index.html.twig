@@ -6,62 +6,99 @@
     <script src="{{ asset('assets/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
 {% endblock %}
 {% block content %}
-        <div class="col-xs-4" style="padding-left: 0">
-            {{ render(controller("AppBundle:Widget:calendar" )) }}
-        </div>
-        <div class="col-xs-8" style="padding-right: 0">
-            {% if videos | length > 0 %}
-                <div class="title">ВИДЕО</div>
-                {% for v in videos %}
-                    <div class="new-item">
-                        <a href="{{ path('publications', {'url' : v.id }) }}"><div class="new-item-title">{{ v.title }}</div></a>
-                        <div class="new-item-anons">
-                            {% if is_granted('ROLE_ADMIN') %}
-                                <div class="editor">
-                                    <a href="{{ path('admin_publication_edit',{'id' : v.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>
-                                </div>
-                            {% endif %}
-                            {{ v.body | anons | raw }}
-                        </div>
-                    </div>
-                {% endfor %}
-            {% endif %}
-            {% if educations | length > 0 %}
-                <br />
-                <div class="title">ОБРАЗОВАНИЕ</div>
-                {% for e in educations %}
-                    <div class="new-item">
-                        <a href="{{ path('publications', {'url' : e.id }) }}"><div class="new-item-title">{{ e.title }}</div></a>
-                        <div class="new-item-anons">
-                            {% if is_granted('ROLE_ADMIN') %}
-                                <div class="editor">
-                                    <a href="{{ path('admin_publication_edit',{'id' : e.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>
-                                </div>
-                            {% endif %}
-                            {{ e.body | anons | raw }}
-                        </div>
-                    </div>
-                {% endfor %}
-            {% endif %}
-            <br />
-            <div class="title">НОВОСТИ</div>
-            {% for p in publications %}
+    <div class="col-xs-4" style="padding-left: 0">
+        {{ render(controller("AppBundle:Widget:calendar" )) }}
+    </div>
+    <div class="col-xs-8" style="padding-right: 0">
+        {% if videos | length > 0 %}
+            <div class="title">ВИДЕО</div>
+            {% for v in videos %}
                 <div class="new-item">
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <div class="editor">
-                            <a href="{{ path('admin_publication_edit',{'id' : p.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>
-                        </div>
-                    {% endif %}
-                    <a href="{{ path('publications', {'url' : p.id }) }}"><div class="new-item-title">{{ p.title }}</div></a>
+                    <a href="{{ path('publications', {'url' : v.id }) }}"><div class="new-item-title">{{ v.title }}</div></a>
                     <div class="new-item-anons">
-                        {{ p.body | anons | raw }}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <div class="editor">
+                                <a href="{{ path('admin_publication_edit',{'id' : v.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>
+                            </div>
+                        {% endif %}
+                        {{ v.body | anons | raw }}
                     </div>
                 </div>
             {% endfor %}
-        </div>
+        {% endif %}
+        {% if educations | length > 0 %}
+            <br />
+            <div class="title">ОБРАЗОВАНИЕ</div>
+            {% for e in educations %}
+                <div class="new-item">
+                    <a href="{{ path('publications', {'url' : e.id }) }}"><div class="new-item-title">{{ e.title }}</div></a>
+                    <div class="new-item-anons">
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <div class="editor">
+                                <a href="{{ path('admin_publication_edit',{'id' : e.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>
+                            </div>
+                        {% endif %}
+                        {{ e.body | anons | raw }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="col-xs-12">
+        <br />
+        <div class="title">НОВОСТИ</div>
+        {% for p in publications %}
+            <div class="new-item">
+                {% if is_granted('ROLE_ADMIN') %}
+                    {#<div class="editor">#}
+                    {#<a href="{{ path('admin_publication_edit',{'id' : p.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>#}
+                    {#</div>#}
+                {% endif %}
+                <div class="row">
+                    {% if p.preview.path is defined %}
+                        <div class="col-xs-3">
+                            <a href="{{ path('publications', {'url' : p.id }) }}">
+                                <img src="{{ p.preview.path }}" style="width: 100%" class="img-thumbnail">
+                            </a>
+                        </div>
+                        <div class="col-xs-9">
+                            <a href="{{ path('publications', {'url' : p.id }) }}"><div class="new-item-title">{{ p.title }}</div></a>
+                            <div class="new-item-anons">
+                                {{ p.body | anons | raw }}
+                            </div>
+                            <hr />
+                            <div class="col-xs-12 params">
+                                <b>Опубликована:</b> {{ p.created | date('d.m.Y') }}
+                                {% if p.specialties | length > 0 %}
+                                    <b>Специальности:</b>
+                                    {% for s in p.specialties | slice(0,3) %}
+                                        {{ s.title }}
+                                        {% if s != p.specialties | last %}
+                                            ,
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                                {% if p.specialties | length > 4 %}
+                                    <span title="{% for s in p.specialties | slice(4,50) %} {{ s.title }}{% if s != p.specialties | last %},{% endif %}{% endfor %}" style="cursor: pointer">...</span>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-xs-12">
+                            <a href="{{ path('publications', {'url' : p.id }) }}"><div class="new-item-title">{{ p.title }}</div></a>
+                            <div class="new-item-anons">
+                                {{ p.body | anons | raw }}
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
     {#<div class="row">#}
-        {#<div class="col-xs-9">#}
-            {##}
-        {#</div>#}
+    {#<div class="col-xs-9">#}
+    {##}
+    {#</div>#}
     {#</div>#}
 {% endblock %}

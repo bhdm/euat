@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -98,13 +99,14 @@ class Event
     private $category;
 
     /**
-     * @var Specialty
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Specialty", inversedBy="events")
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Specialty", inversedBy="events")
      */
-    private $specialty;
+    private $specialties;
 
     public function __construct()
     {
+        $this->specialties = new ArrayCollection();
         $this->enabled = true;
         $this->created = new \DateTime();
     }
@@ -351,21 +353,6 @@ class Event
         $this->city = $city;
     }
 
-    /**
-     * @return Specialty
-     */
-    public function getSpecialty()
-    {
-        return $this->specialty;
-    }
-
-    /**
-     * @param Specialty $specialty
-     */
-    public function setSpecialty($specialty)
-    {
-        $this->specialty = $specialty;
-    }
 
     /**
      * @return boolean
@@ -381,6 +368,22 @@ class Event
     public function setType($type)
     {
         $this->type = $type;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getSpecialties()
+    {
+        return $this->specialties;
+    }
+
+    /**
+     * @param ArrayCollection $specialties
+     */
+    public function setSpecialties($specialties)
+    {
+        $this->specialties = $specialties;
     }
 
 

@@ -4,6 +4,12 @@ body {
 a {
   cursor: pointer !important;
 }
+h1.blue-text {
+  font-size: 22px;
+}
+.blue-text {
+  color: #0e66a2;
+}
 .body {
   max-width: 1400px;
   width: 100%;
@@ -33,17 +39,28 @@ a {
 .navbar-form {
   padding-top: 6px;
 }
+.nomenu {
+  width: 150px;
+}
+.nomenu:hover {
+  background: none !important;
+}
+nav {
+  -webkit-box-shadow: 0px 7px 15px -3px rgba(50, 50, 50, 0.5);
+  -moz-box-shadow: 0px 7px 15px -3px rgba(50, 50, 50, 0.5);
+  box-shadow: 0px 7px 15px -3px rgba(50, 50, 50, 0.5);
+  border-radius: 0;
+}
 nav .navbar-nav {
+  border-radius: 0;
   width: 100%;
   display: table;
-  border-bottom: 1px solid #EEEEEE;
 }
-nav .navbar-nav li:last-child {
+nav .navbar-nav li:not(:last-child) {
   border-right: 1px solid #DDD;
 }
 nav .navbar-nav li {
   position: relative;
-  border-left: 1px solid #DDD;
   text-align: center;
   float: none;
   display: table-cell;
@@ -64,6 +81,12 @@ nav .navbar-nav li.active a {
   color: #FFFFFF;
   text-transform: uppercase;
 }
+nav .navbar-nav li.active a:focus {
+  background: none;
+}
+nav .navbar-nav li:focus {
+  background: none;
+}
 nav .navbar-nav li .submunu {
   transition: visibility 0s, opacity 0.5s ease;
   visibility: hidden;
@@ -71,7 +94,7 @@ nav .navbar-nav li .submunu {
   position: absolute;
   z-index: 50;
   width: 100%;
-  background: #FEFEFE;
+  background: none;
   border-left: 1px solid #337AB7;
   border-right: 1px solid #337AB7;
 }
@@ -81,10 +104,9 @@ nav .navbar-nav li .submunu ul li:nth-child(1) {
 nav .navbar-nav li .submunu ul li {
   width: 100%;
   display: block;
-  background: #337AB7;
+  background: rgba(51, 122, 183, 0.9);
   color: #FFF;
   border: 0;
-  border-bottom: 1px solid #FFF;
   border-top: 1px solid #FFF;
   text-align: left;
   padding: 10px 5px 10px 20px;
@@ -96,8 +118,9 @@ nav .navbar-nav li .submunu ul li a:hover {
   background: none;
 }
 nav .navbar-nav li .submunu ul li:hover {
-  background: rgba(51, 122, 183, 0.63);
+  background: #337ab7;
   color: #337AB7;
+  cursor: pointer;
 }
 nav .navbar-nav li ~ :hover .submunu {
   visibility: visible;
@@ -194,9 +217,6 @@ footer {
 }
 .contact-icon {
   width: 60px;
-}
-.blue-text {
-  color: #0f83ce;
 }
 .footer-other li {
   padding: 5px;
@@ -320,4 +340,12 @@ table.table-th-bold tr th {
   color: #337AB7;
   font-size: 16px;
   padding: 10px;
+}
+.event-params {
+  color: #444;
+}
+.params {
+  color: #444;
+  font-size: 12px;
+  font-style: italic;
 }
