@@ -7,6 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -29,6 +30,8 @@ class ProfileFormType extends AbstractType
             'required'    => true,
             'label' => 'Пол'
         ));
+        $builder->add('country', null, ['label' => 'Страна', 'attr' => ['class' => 'county']]);
+        $builder->add('city', TextType::class, ['label' => 'Город', 'attr' => ['class' => 'city']]);
         $builder->add('phone', null, ['label' => 'Телефон', 'attr' => ['class' => 'phone']]);
 //        $builder->add('plainPassword', RepeatedType::class, array(
 //            'type' => PasswordType::class,
