@@ -12,5 +12,7 @@
     <div>
         {{ publication.body | raw }}
     </div>
-    {% include '@App/Publication/comments.html.twig'  with {'comments': publication.comments, 'id' : publication.id, 'type': 'publication' } %}
+    {% if publication.isAllowCommentary == true %}
+        {% include '@App/Publication/comments.html.twig'  with {'comments': publication.comments, 'id' : publication.id, 'type': 'publication' } %}
+    {% endif %}
 {% endblock %}

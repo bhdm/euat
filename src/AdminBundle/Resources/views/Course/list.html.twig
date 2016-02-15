@@ -23,7 +23,8 @@
             {% for item in pagination %}
                 <tr>
                     <td>{{ item.id }}</td>
-                    <td><a href="{{ path('admin_course_module_list',{'courseId' : item.id}) }}" title="Войти в модули курса">{{ item.title }}</a></td>
+                    <td>{{ item.title }}</td>
+                    {#<td><a href="{{ path('admin_course_module_list',{'courseId' : item.id}) }}" title="Войти в модули курса">{{ item.title }}</a></td>#}
                     <td></td>
                     <td>{{ item.enabled }}</td>
                     <td class="setting">

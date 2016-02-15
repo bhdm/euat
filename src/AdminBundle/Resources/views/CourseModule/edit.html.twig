@@ -19,9 +19,10 @@
         {{ form_widget(form) }}
         {{ form_end(form) }}
 
-
-        {#{{ render(controller('AdminBundle:CourseModuleTest:list',{'courseId' : item.course.id , 'moduleId' : item.Id })) }}#}
     </div>
+    {% if item.type == 'TEST' %}
+        {{ render(controller('AdminBundle:CourseModuleTest:list',{'courseId' : item.course.id, 'moduleId' : item.id })) }}
+    {% endif %}
 {% endblock %}
 
 {% block javascripts %}
