@@ -28,7 +28,7 @@ class PublicationType extends AbstractType
 
             ->add('allowCommentary', ChoiceType::class, array(
                 'choices' => array(
-                    'Размершить' => true,
+                    'Разрешить' => true,
                     'Запретить' => false
                 ),
                 'required'    => true,
