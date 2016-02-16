@@ -60,7 +60,7 @@ class ProfileFormType extends AbstractType
         ]);
         $builder->add('certificate', FileType::class, ['label' => 'Скан сертификата', 'data_class' => null]);
 
-        $builder->add('workPlace', null, ['label' => 'Место работы']);
+
         $builder->add('workTypeOrganization', ChoiceType::class, [
             'label' => 'Тип организации',
             'choices' => array(
@@ -68,6 +68,17 @@ class ProfileFormType extends AbstractType
                     'Государтсвенная' => 'Государтсвенная'
             )
         ]);
+
+        $builder->add('workPlace', ChoiceType::class, [
+            'label' => 'Вид организации',
+            'choices' => array(
+                'Поликлинника' => 'Поликлинника',
+                'Больница' => 'Больница',
+                'НИИ' => 'НИИ',
+                'Другое' => 'Другое',
+            )
+        ]);
+
         $builder->add('workPlaceTitle', null, ['label' => 'Место работы']);
         $builder->add('workPost', null, ['label' => 'Должность']);
     }

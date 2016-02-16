@@ -36,7 +36,7 @@ class RegistrationFormType extends AbstractType
             'first_options'  => array('label' => 'Пароль'),
             'second_options' => array('label' => 'Повторите пароль'),
         ));
-        $builder->add('university', null, ['label' => 'Университет', 'attr' => ['class' => 'university', 'data-placeholder' => 'Выберите университет']]);
+//        $builder->add('university', null, ['label' => 'Университет', 'attr' => ['class' => 'university', 'data-placeholder' => 'Выберите университет']]);
     }
 
     public function getParent()
