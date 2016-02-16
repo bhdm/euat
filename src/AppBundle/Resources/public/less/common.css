@@ -349,3 +349,6 @@ table.table-th-bold tr th {
   font-size: 12px;
   font-style: italic;
 }
+.ui-menu-item {
+  text-align: left;
+}

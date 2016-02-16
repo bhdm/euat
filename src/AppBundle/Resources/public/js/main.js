@@ -21,21 +21,23 @@ $(document).ready(function(){
         }
     });
 
-    $(".university").chosen({disable_search_threshold: 10});
-    $(".county").chosen({disable_search_threshold: 10}).change(function(e){
-        console.log($(this).val());
-        $.ajax({
-            type: 'GET',
-            url: Routing.generate('get_city')+'?country='+$(this).val(),
-            dataType: 'json'
-        }, function (data) {
-                $.each(data, function (i, val) {
-                    $(".city").html();
-                    $(".city").append('<option value="'+val.value+'">'+val.text+'</option>');
-                });
-                $(".city").trigger("chosen:updated");
-        });
-    });
+    //$(".university").chosen({disable_search_threshold: 10});
+
+
+    //$(".county").chosen({disable_search_threshold: 10}).change(function(e){
+    //    console.log($(this).val());
+    //    $.ajax({
+    //        type: 'GET',
+    //        url: Routing.generate('get_city')+'?country='+$(this).val(),
+    //        dataType: 'json'
+    //    }, function (data) {
+    //            $.each(data, function (i, val) {
+    //                $(".city").html();
+    //                $(".city").append('<option value="'+val.value+'">'+val.text+'</option>');
+    //            });
+    //            $(".city").trigger("chosen:updated");
+    //    });
+    //});
 
 
     //$(".city").chosen({disable_search_threshold: 10});

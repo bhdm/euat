@@ -18,16 +18,26 @@ class AuthController extends Controller
      * @Route("/get-city", name="get_city", options={"expose" = true})
      */
     public function getCityAction(Request $request){
-        $title = $request->query->get('city');
-        $country = $this->getDoctrine()->getRepository('AppBundle:Country')->findBy(['id' => $request->query->get('county')],[],[10]);
-        $cities = $this->getDoctrine()->getRepository('AppBundle:City')->findBy(['country' => $country],[],[10]);
-        $json  = [];
-        foreach ( $cities as $c ){
-            $json[] = [
-                'value' => $c->getId(),
-                'text' => $c->getTitle(),
-            ];
+        $title = $request->query->get('title');
+        $cities = $this->getDoctrine()->getRepository('AppBundle:City')->findForAutocomplete($title);
+        $us = [];
+        foreach ($cities as $city) {
+            $us[] = $city['title'];
         }
-        return new JsonResponse($json);
+        return new JsonResponse($us);
     }
+
+    /**
+     * @Route("/get-university", name="get_university", options={"expose" = true})
+     */
+    public function getUniversityAction(Request $request){
+        $title = $request->query->get('title');
+        $universities = $this->getDoctrine()->getRepository('AppBundle:University')->findForAutocomplete($title);
+        $us = [];
+        foreach ($universities as $university) {
+         $us[] = $university['title'];
+        }
+        return new JsonResponse($us);
+    }
+
 }

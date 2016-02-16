@@ -31,4 +31,14 @@ class UniversityRepository extends EntityRepository
 
 		return array_merge($byCountry, $notCountry);
 	}
+
+	public function findForAutocomplete($title = null){
+		$qb = $this->createQueryBuilder('u')
+			->select('u.title');
+			if ($title){
+				$qb->where("u.title LIKE '%$title%'");
+			}
+
+		return $qb->getQuery()->getResult();
+	}
 }
