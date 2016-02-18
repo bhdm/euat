@@ -24,16 +24,16 @@
                     {% endfor %}
                 </li>
             {% endif %}
-            {% if event.start %}
-                <li><b>Дата начала:</b>     {{ event.sart | date('d.m.Y H:i:s') }}</li>
+            {% if event.start != null %}
+                <li><b>Дата начала:</b>     {{ event.start | date('d.m.Y') }}</li>
             {% endif %}
-            {% if event.end %}
-                <li><b>Дата окончания:</b>  {{ event.end  | date('d.m.Y H:i:s') }}</li>
+            {% if event.end != null %}
+                <li><b>Дата окончания:</b>  {{ event.end  | date('d.m.Y') }}</li>
             {% endif %}
-            {% if event.city %}
+            {% if event.city != null %}
                 <li><b>Город:</b>           {{ event.city  }}</li>
             {% endif %}
-            {% if event.adrs %}
+            {% if event.adrs != null %}
                 <li><b>Адрес:</b>           {{ event.adrs }}</li>
             {% endif %}
         </ul>

@@ -4,9 +4,6 @@
     <ul class="breadcrumb well">
         <li><a href="{{ path('admin_main') }}">Домой</a> <span class="divider"></span></li>
         <li class="active"><a href="{{ path('admin_user_list') }}">Пользователи</a> <span class="divider"></span></li>
-        <div style="float: right">
-            <a href="{{ path('admin_user_add') }}">Добавить</a> <span class="divider"></span>
-        </div>
     </ul>
 {% endblock %}
 
@@ -25,7 +22,7 @@
                     <td>{{ item.id }}</td>
                     <td>{{ item }}</td>
                     <td></td>
-                    <td>{{ item.enabledStr }}</td>
+                    <td>{{ item.enabled == 1 ? 'Активен' : '' }}</td>
                     <td class="setting">
                         {% spaceless %}
                         <a href="{{ path('admin_user_edit',{'id' : item.id}) }}">

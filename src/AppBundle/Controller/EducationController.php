@@ -24,8 +24,9 @@ class EducationController extends Controller
      * @Template("")
      */
     public function coursesAction(){
-        $courses = $this->getDoctrine()->getRepository('AppBundle:Course')->findBy();
-        return ['courses' => $courses];
+        $page = $this->getDoctrine()->getRepository('AppBundle:Page')->findBy(['slug' => 'courses']);
+        $courses = $this->getDoctrine()->getRepository('AppBundle:Course')->findBy(['enabled' => true]);
+        return ['page' => $page, 'courses' => $courses];
     }
 
     /**

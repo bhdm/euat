@@ -29,4 +29,6 @@ class WidgetController extends Controller
 
         return ['events' => $events];
     }
+
+
 }
