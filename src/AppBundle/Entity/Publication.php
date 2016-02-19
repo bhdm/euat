@@ -36,6 +36,23 @@ class Publication
      */
     private $slug;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="source", type="string", nullable=true)
+     */
+    private $source;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="anons", type="text", nullable=true)
+     */
+    private $anons;
+
+
     /**
      * @var string
      *
@@ -292,6 +309,38 @@ class Publication
     public function setAllowCommentary($allowCommentary)
     {
         $this->allowCommentary = $allowCommentary;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSource()
+    {
+        return $this->source;
+    }
+
+    /**
+     * @param string $source
+     */
+    public function setSource($source)
+    {
+        $this->source = $source;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAnons()
+    {
+        return $this->anons;
+    }
+
+    /**
+     * @param string $anons
+     */
+    public function setAnons($anons)
+    {
+        $this->anons = $anons;
     }
 
 

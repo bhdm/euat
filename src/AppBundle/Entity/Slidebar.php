@@ -29,7 +29,7 @@ class Slidebar
 
     /**
      * @var string
-     * @ORM\Column(name="title", type="string", nullable=true)
+     * @ORM\Column(name="url", type="string", nullable=true)
      */
     private $url;
 
