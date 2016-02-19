@@ -126,16 +126,16 @@
                 <div>
                     <ul class="footer-other">
                         <li>
-                            <img src="{{ asset('bundles/app/images/icons/ph.png') }}" class="other-icon"> Контакты
+                            <a href="{{ path('page',{'url' : 'contacts'}) }}"><img src="{{ asset('bundles/app/images/icons/ph.png') }}" class="other-icon"> Контакты</a>
                         </li>
                         <li>
-                            <img src="{{ asset('bundles/app/images/icons/ur.png') }}" class="other-icon"> Юридиеская информация
+                            <a href="{{ path('page',{'url' : 'eula'}) }}"><img src="{{ asset('bundles/app/images/icons/ur.png') }}" class="other-icon"> Юридиеская информация</a>
                         </li>
                         <li>
-                            <img src="{{ asset('bundles/app/images/icons/ur.png') }}" class="other-icon"> Информация для сми
+                            <a href="{{ path('page',{'url' : 'smi'}) }}"><img src="{{ asset('bundles/app/images/icons/ur.png') }}" class="other-icon"> Информация для сми</a>
                         </li>
                         <li>
-                            <img src="{{ asset('bundles/app/images/icons/ar.png') }}" class="other-icon"> Партнеры
+                            <a href="{{ path('partners') }}"><img src="{{ asset('bundles/app/images/icons/ar.png') }}" class="other-icon"> Партнеры</a>
                         </li>
                     </ul>
                 </div>
