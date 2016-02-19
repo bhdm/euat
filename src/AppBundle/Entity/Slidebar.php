@@ -27,6 +27,12 @@ class Slidebar
      */
     private $title;
 
+    /**
+     * @var string
+     * @ORM\Column(name="title", type="string", nullable=true)
+     */
+    private $url;
+
 
     /**
      * @var array
@@ -84,7 +90,21 @@ class Slidebar
         $this->title = $title;
     }
 
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
 
+    /**
+     * @param string $url
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
 
 }
 

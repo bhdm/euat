@@ -92,10 +92,10 @@ class BannerController extends Controller{
                 }else{
                     $filename = time(). '.'.$file->guessExtension();
                     $file->move(
-                        __DIR__.'/../../../web/upload/publication/',
+                        __DIR__.'/../../../web/upload/banner/',
                         $filename
                     );
-                    $item->setFile(['path' => '/upload/publication/'.$filename ]);
+                    $item->setFile(['path' => '/upload/banner/'.$filename ]);
                 }
 
                 $em->flush($item);

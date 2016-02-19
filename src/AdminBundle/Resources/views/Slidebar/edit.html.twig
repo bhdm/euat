@@ -10,10 +10,13 @@
 
 {% block content %}
     <div class="well">
-        {#<form method="POST" enctype="multipart/form-data">#}
+        {% if item.file.path is defined %}
+            <div style="position: absolute; left: 30px;">
+                <img src="{{ item.file.path }}" style="max-width: 120px; display: inline-block" class="thumbnail" />
+            </div>
+        {% endif %}
             {{ form_start(form) }}
             {{ form_widget(form) }}
             {{ form_end(form) }}
-        {#</form>#}
     </div>
 {% endblock %}

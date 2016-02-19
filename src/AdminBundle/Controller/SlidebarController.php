@@ -49,6 +49,15 @@ class SlidebarController extends Controller{
         if ($request->getMethod() == 'POST'){
             if ($formData->isValid()){
                 $item = $formData->getData();
+
+                $file = $item->getFile();
+                $filename = time(). '.'.$file->guessExtension();
+                $file->move(
+                    __DIR__.'/../../../web/upload/slider/',
+                    $filename
+                );
+                $item->setFile(['path' => '/upload/slider/'.$filename ]);
+
                 $em->persist($item);
                 $em->flush();
                 $em->refresh($item);
@@ -66,6 +75,7 @@ class SlidebarController extends Controller{
     public function editAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
         $item = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findOneById($id);
+        $olfFile = $item->getFile();
         $form = $this->createForm(SlidebarType::class, $item);
         $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
         $formData = $form->handleRequest($request);
@@ -73,6 +83,17 @@ class SlidebarController extends Controller{
         if ($request->getMethod() == 'POST'){
             if ($formData->isValid()){
                 $item = $formData->getData();
+                $file = $item->getFile();
+                if ($file == null){
+                    $item->setFile($olfFile);
+                }else{
+                    $filename = time(). '.'.$file->guessExtension();
+                    $file->move(
+                        __DIR__.'/../../../web/upload/slider/',
+                        $filename
+                    );
+                    $item->setFile(['path' => '/upload/slider/'.$filename ]);
+                }
                 $em->flush($item);
                 $em->refresh($item);
                 return $this->redirect($this->generateUrl('admin_slidebar_list'));

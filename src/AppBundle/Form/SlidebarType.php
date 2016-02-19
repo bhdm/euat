@@ -16,7 +16,8 @@ class SlidebarType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title',null, ['label' => 'Название специальности'])
+            ->add('title',null, ['label' => 'Название слайда'])
+            ->add('url',null, ['label' => 'Ссылка'])
             ->add('file',FileType::class, ['label' => 'файл'])
         ;
     }
