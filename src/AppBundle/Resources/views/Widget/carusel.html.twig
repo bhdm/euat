@@ -1,6 +1,11 @@
 <div class="owl-carousel owl-theme">
-    <div class="item"><img src="{{ asset('bundles/app/images/slider/1.png') }}"></div>
-    <div class="item"><img src="{{ asset('bundles/app/images/slider/4.png') }}"></div>
-    <div class="item"><img src="{{ asset('bundles/app/images/slider/2.png') }}"></div>
-    <div class="item"><img src="{{ asset('bundles/app/images/slider/3.png') }}"></div>
+    <div class="item">
+        {% for c in carusel %}
+            {% if c.url != null %}
+                <a href="{{ c.url }}" target="_blank"><img src="{{ c.file.path }}"></a>
+            {% else %}
+                <img src="{{ asset('bundles/app/images/slider/3.png') }}">
+            {% endif %}
+        {% endfor %}
+    </div>
 </div>

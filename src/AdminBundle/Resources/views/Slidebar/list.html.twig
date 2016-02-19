@@ -18,7 +18,6 @@
                 <th>Заголовок</th>
                 <th>Превью</th>
                 <th></th>
-                <th>Статус</th>
                 <th class="setting">Инструменты</th>
             </tr>
             {% for item in pagination %}
@@ -26,12 +25,11 @@
                     <td>{{ item.id }}</td>
                     <td>{{ item.title }}</td>
                     <td>
-                        {% if item.image is not empty %}
-                            <img src="{{ item.image.path }}" style="max-width: 50px; max-height: 50px">
+                        {% if item.file is not empty %}
+                            <img src="{{ item.file.path }}" style="max-height: 50px">
                         {% endif %}
                     </td>
                     <td></td>
-                    <td>{{ item.enabledStr }}</td>
                     <td class="setting">
                         {% spaceless %}
                         <a href="{{ path('admin_slidebar_edit',{'id' : item.id}) }}">

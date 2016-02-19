@@ -22,10 +22,13 @@ class DefaultController extends Controller
         $publications = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['category' => $categoryNews]);
         $videos = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['category' => $categoryVideo]);
         $educations = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['category' => $categoryEducation]);
+
+        $carusel = $this->getDoctrine()->getRepository('AppBundle:Slidebar')->findBy([],['id' => 'DESC']);
         return [
             'publications' => $publications,
             'videos' => $videos,
-            'educations' => $educations
+            'educations' => $educations,
+            'carusel' => $carusel
         ];
 
     }
@@ -67,4 +70,13 @@ class DefaultController extends Controller
         return ['partners' => $partners];
     }
 
+    /**
+     * @return array
+     *
+     * @Route("/map", name="map")
+     * @Template()
+     */
+    public function mapAction(){
+        return [];
+    }
 }
