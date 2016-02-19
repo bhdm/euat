@@ -413,3 +413,13 @@ th.picker-switch {
   color: #333;
   padding: 5px 20px;
 }
+.test-question {
+  font-size: 17px;
+  color: #337AB7;
+  font-weight: bold;
+}
+.test-answer {
+  font-size: 16px;
+  display: inline-block;
+  vertical-align: top;
+}

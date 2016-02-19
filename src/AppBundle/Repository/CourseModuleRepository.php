@@ -26,4 +26,22 @@ class CourseModuleRepository extends \Doctrine\ORM\EntityRepository
 
         return $qb->getQuery()->getOneOrNullResult();
     }
+
+    public function stepModule($course, $activeModule, $moduleId){
+        $qb = $this->createQueryBuilder('m')
+            ->select('m')
+            ->where('m.course = :course')
+            ->andWhere('m.id <= :activeModuleId')
+            ->andWhere('m.id = :stepModuleId')
+            ->orderBy('m.sort','ASC')
+            ->addOrderBy('m.id','ASC')
+
+            ->setParameter('course', $course->getId())
+            ->setParameter('activeModuleId', $activeModule->getId())
+            ->setParameter('stepModuleId', $moduleId)
+            ->setMaxResults(1)
+        ;
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
 }

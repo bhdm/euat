@@ -92,6 +92,27 @@ class EducationController extends Controller
     }
 
     /**
+     * Переключает на модуль курса, который не выше активного
+     * @Route("/passing/{recordBookId}/{moduleId}", name="course_passing_step", requirements={"recordBookId" = "\d+", "moduleId" = "\d+"})
+     */
+    public function passingStepAction(Request $request, $recordBookId, $moduleId){
+        $em = $this->getDoctrine()->getManager();
+        $recordBook = $this->getDoctrine()->getRepository('AppBundle:RecordBook')->findOneBy(['id' => $recordBookId, 'user' => $this->getUser()]);
+        if ($recordBook === null){
+            throw $this->createNotFoundException('
+                        Произошла ошибка - Данная запись в вашей записной книжке не найдена.
+                        Если эта ошибка произошла при прохождении курса - обратить, пожалуйста, к администратору');
+        }
+        $module = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->stepModule($recordBook->getCourse(), $recordBook->getActiveModule(), $moduleId);
+        if ($module !== null){
+            return $this->render('AppBundle:Education:showModule.html.twig', ['recordBook' => $recordBook, 'module' => $module ]);
+        }else{
+            $module = $recordBook->getActiveModule();
+            return $this->render('AppBundle:Education:showModule.html.twig', ['recordBook' => $recordBook, 'module' => $module ]);
+        }
+    }
+
+    /**
      * Переключает на следующий модуль курса
      * @Route("/passing/next/{recordBookId}", name="course_passing")
      */
@@ -101,7 +122,7 @@ class EducationController extends Controller
         if ($recordBook === null){
             throw $this->createNotFoundException('
                         Произошла ошибка - Данная запись в вашей записной книжке не найдена.
-                        Если эта ошибка произошла при прохождении курса - обратить, пожалуйста, к администратору');
+                        Если эта ошибка произошла при прохождении курса - обратить, пожалуйста, к администратору1');
         }
 
         if ($request->getMethod() === 'POST'){
@@ -120,10 +141,11 @@ class EducationController extends Controller
                 $recordBook->setActiveModule($nextModule);
                 $em->flush($recordBook);
                 $em->refresh($recordBook);
-                return $this->render('AppBundle:Education:showModule.html.twig', ['recordBook' => $recordBook ]);
+                $module = $recordBook->getActiveModule();
+                return $this->render('AppBundle:Education:showModule.html.twig', ['recordBook' => $recordBook, 'module' => $recordBook->getActiveModule() ]);
             }
         }else{
-            return $this->render('AppBundle:Education:showModule.html.twig', ['recordBook' => $recordBook ]);
+            return $this->render('AppBundle:Education:showModule.html.twig', ['recordBook' => $recordBook, 'module' => $recordBook->getActiveModule() ]);
         }
 
     }
