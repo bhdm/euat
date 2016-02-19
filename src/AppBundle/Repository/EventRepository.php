@@ -48,4 +48,17 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
 
         return $result;
     }
+
+    public function search($query){
+        $qb = $this->createQueryBuilder('s');
+        $qb->select('s');
+        $qb->where("s.title LIKE '%$query%'")
+            ->orWhere("s.body  LIKE '%$query%' ")
+            ->andWhere("s.enabled = 1")
+            ->orderBy('s.created', 'DESC');
+        $result = $qb->getQuery()->getResult();
+
+        return $result;
+    }
+
 }

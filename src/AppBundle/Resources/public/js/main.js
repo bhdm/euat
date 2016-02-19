@@ -6,8 +6,8 @@ $(document).ready(function(){
     $('.owl-carousel').owlCarousel({
         loop:true,
         margin:10,
-        nav:true,
-        navText: ['‹','›'],
+        nav: true,
+        navText: [' ',' '],
         responsive:{
             0:{
                 items:1
@@ -44,5 +44,5 @@ $(document).ready(function(){
     //});
 
 
-    $('.phone').mask('+(000) 000-00-00');
+    $('.phone').mask('+999 (000) 000-00-00');
 });

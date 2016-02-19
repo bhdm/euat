@@ -40,23 +40,22 @@ class DefaultController extends Controller
         return ['menu' => $menu];
     }
 
+
     /**
-     * @Route("/send-mail")
+     * @Route("/search", name="search")
+     * @Template()
      */
-    public function sendMailAction(){
-        $html = $this->renderView("@App/mail.html.twig");
-        $message = \Swift_Message::newInstance()
-            ->setSubject('Сумамед-Академия')
-            ->setFrom('send@example.com')
-            ->setTo('shpirt.b@evrika.ru')
-            ->setBody(
-                $this->renderView(
-                // app/Resources/views/Emails/registration.html.twig
-                    '@App/mail.html.twig'
-                ),
-                'text/html'
-            );
-        $this->get('mailer')->send($message);
+    public function searchAction(Request $request){
+        $search = $request->query->get('search');
+        $publications = $this->getDoctrine()->getRepository('AppBundle:Publication')->search($search);
+        $events = $this->getDoctrine()->getRepository('AppBundle:Event')->search($search);
+        $courses = $this->getDoctrine()->getRepository('AppBundle:Course')->search($search);
+        return [
+            'publications' => $publications,
+            'events' => $events,
+            'courses' => $courses,
+            'search' => $search,
+        ];
     }
 
 }

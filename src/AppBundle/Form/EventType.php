@@ -30,7 +30,6 @@ class EventType extends AbstractType
                 'required'    => true,
                 'label' => 'Тип мероприятия'
             ))
-            ->add('category', null, [ 'label' => 'Категория'])
             ->add('specialties', null, [ 'label' => 'Специальности', 'attr' => ['class' => 'multiselect']])
             ->add('city', null, [ 'label' => 'Город'])
             ->add('adrs', null, [ 'label' => 'Адрес'])

@@ -23,8 +23,30 @@
                 format: "MM/dd/YYYY"
             });
 
+            function monthEvents(year, month){
+                $.ajax({
+                    url: Routing.generate('api_get_events_month'),
+                    method: 'POST',
+                    data: {'month': month, 'year' : year },
+                    success: function(json){
+                        $.each( json.dates, function(date, key) {
+                            $('.day[data-day="'+date+'"]').addClass('isEvent');
+                        });
+                    }
+                });
+            }
+
+            var year = null;
+            var month = null;
+            monthEvents(year, month);
+
+            $("#calendar-widget").on("dp.update", function (e) {
+                var year = e.viewDate.year();
+                var month = (e.viewDate.month()+1);
+                monthEvents(year, month);
+            });
+
             $("#calendar-widget").on("dp.change", function (e) {
-                console.log(sd = e);
                 var selectDate = e.date.year()+'-'+(e.date.month()+1)+'-'+e.date.date();
                 $.ajax({
                     url: Routing.generate('api_get_events'),
@@ -42,7 +64,16 @@
                         }
                     }
                 });
+
+                var year = e.date.year();
+                var month = (e.date.month()+1);
+                monthEvents(year, month)
             });
+
+            $('.claendar-tab').click(function () {
+                $('.claendar-tab').removeClass('active');
+                $(this).addClass('active');
+            })
         });
     </script>
 </div>

@@ -1,7 +1,7 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block content %}
-    <h1>Зачетная книжка</h1>
+    <h1 class="blue-text">Зачетная книжка</h1>
     <div>
         <table class="table table-vertical-middle table-th-bold">
             <tr>
@@ -13,7 +13,7 @@
             {% for r in recordbook %}
                 {% set course = r.course %}
                 <tr>
-                    <td style="width: 500px">{{ course.title }}</td>
+                    <td style="width: 500px"><a href="{{ path('course_info', {'id' : course.id}) }}">{{ course.title }}</a></td>
                     <td class="text-center">{{ course.modules | length }}</td>
                     <td class="text-center">{{ r.percent  }}%</td>
                     <td class="text-center">{{ r.passed | date ('d.m.Y') }}</td>
