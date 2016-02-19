@@ -87,7 +87,7 @@ class CourseModule
     /**
      * @var Question
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CourseModule", mappedBy="module")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CourseModuleQuestion", mappedBy="module", cascade={"remove"}, orphanRemoval=true)
      */
     private $questions;
 

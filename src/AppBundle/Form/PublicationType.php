@@ -36,9 +36,9 @@ class PublicationType extends AbstractType
             ))
 
             ->add('slug', TextType::class, [ 'label' => 'URI'])
-            ->add('anons', TextareaType::class, [ 'label' => 'Анонс'])
+            ->add('anons', TextareaType::class, [ 'label' => 'Анонс', 'required' => false])
             ->add('body', TextareaType::class, [ 'label' => 'Контент', 'attr' => ['class' => 'ckeditor']])
-            ->add('source', TextType::class, [ 'label' => 'Источник'])
+            ->add('source', TextType::class, [ 'label' => 'Источник', 'required' => false])
             ->add('created', null, [ 'label' => 'Дата создания'])
             ->add('enabled', ChoiceType::class, array(
                 'choices' => array(

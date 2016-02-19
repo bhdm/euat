@@ -1,6 +1,6 @@
-{% extends '@Admin/layout.html.twig' %}
+{#{% extends '@Admin/layout.html.twig' %}#}
 
-{% block frame %}
+{#{% block frame %}#}
     <div class="well">
         <h2>Вопросы и ответы</h2>
         <form method="POST" action="{{ path('admin_course_module_test_save',{ 'courseId' : module.course.id , 'moduleId' : module.id}) }}" id="form_test">
@@ -57,10 +57,10 @@
             <input type="button" value="СОХРАНИТЬ ТЕСТ" class="btn btn-primary" id="test_submit"/>
         </div>
     </div>
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
+{#{% endblock %}#}
+{##}
+{#{% block javascripts %}#}
+    {#{{ parent() }}#}
     <script>
         $(document).ready(function () {
             {# код проверки заполненности вопросов галочками #}
@@ -178,4 +178,4 @@
             $('.admin-input').tooltip();
         });
     </script>
-{% endblock %}
+{#{% endblock %}#}

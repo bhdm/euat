@@ -38,7 +38,7 @@ class CourseModuleQuestion
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CourseModuleAnswer", mappedBy="question")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CourseModuleAnswer", mappedBy="question", cascade={"remove"}, orphanRemoval=true)
      */
     private $answers;
 

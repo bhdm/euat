@@ -39,31 +39,50 @@
                 </div>
                 <br />
                 {% if statusCourse == 'NEW' %}
-                    <a href="{{ path('enrolment',{'courseId' : course.id}) }}"><button class="btn btn-primary" style="width: 100%">Записаться</button></a>
+                    <button class="btn btn-primary enrolment" style="width: 100%">Записаться</button>
                 {% elseif statusCourse == 'PROGRESS' %}
-                    <a href="{{ path('course_passing',{'recordBookId' : recordBook.id}) }}"><button class="btn btn-primary" style="width: 100%">Перести</button></a>
+                    <a href="{{ path('course_passing',{'recordBookId' : recordBook.id}) }}"><button class="btn btn-primary" style="width: 100%">Перейти в обучение</button></a>
                 {% elseif statusCourse == 'PASSED' %}
 
                 {% endif %}
             {% endif %}
         </div>
         <div class="col-xs-8">
-            <h2>{{ course.title }}</h2>
+            <h1 class="blue-text">{{ course.title }}</h1>
             <div>{{ course.body | raw }}</div>
         </div>
     </div>
-    <h3 class="text-uppercase">Модули курса</h3>
+    <br />
+    <h1 class="blue-text">Модули курса</h1>
+    <br />
     {% for module in course.modules %}
-        <div class="well row">
-            <div class="col-xs-1">
-                <span class="glyphicon glyphicon-facetime-video" style="font-size: 24px"></span>
+        <div class="well row" style="margin-left: 50px">
+            <div class="col-xs-1" style="padding-top: 10px">
+                {% if module.type == 'TEXT' %}
+                    <span class="glyphicon glyphicon-align-justify blue-icon" style="font-size: 24px"></span>
+                {% elseif module.type == 'VIDEO' %}
+                    <span class="glyphicon glyphicon-question-sign blue-icon" style="font-size: 24px"></span>
+                {% elseif module.type == 'TEST' %}
+                    <span class="glyphicon glyphicon-facetime-video blue-icon" style="font-size: 24px"></span>
+                {% endif %}
             </div>
-            <div class="col-xs-1" style="vertical-align: middle">Видео</div>
+            <div class="col-xs-1" style="vertical-align: middle">
+                {% if module.type == 'text' %}
+                    Тектовый модуль
+                {% elseif module.type == 'video' %}
+                    Видео модуль
+                {% elseif module.type == 'test' %}
+                    Тестирование
+                {% endif %}
+            </div>
             <div class="col-xs-6">
                 <b>{{ module.title }}</b>
                 <div class="">{{ module.description }}</div>
             </div>
         </div>
     {% endfor %}
+{% endblock %}
 
+{% block modal %}
+    {{ include('@App/Modal/enrolmentCourse.html.twig') }}
 {% endblock %}

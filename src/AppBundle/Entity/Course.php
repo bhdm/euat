@@ -94,15 +94,10 @@ class Course
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CourseModule", mappedBy="course")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CourseModule", mappedBy="course", cascade={"remove"}, orphanRemoval=true)
+     * @ORM\OrderBy({"sort" = "ASC", "id" = "ASC" })
      */
     private $modules;
-
-    /**
-     * @var Course
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Course", mappedBy="course")
-     */
-    private $users;
 
     /**
      * @var ArrayCollection
@@ -112,9 +107,16 @@ class Course
 
     /**
      * @var Comment
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="course")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="course", cascade={"remove"}, orphanRemoval=true)
+     * @ORM\JoinColumn(name="course_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $comments;
+
+    /**
+     * @var RecordBook
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\RecordBook", mappedBy="course", cascade={"remove"}, orphanRemoval=true)
+     */
+    private $users;
 
     /**
      * Course constructor.

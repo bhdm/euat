@@ -1,18 +1,7 @@
-{% extends "AdminBundle::layout.html.twig" %}
+{#{% extends "AdminBundle::layout.html.twig" %}#}
 
-{#{% block breadcrumb %}#}
-    {#<ul class="breadcrumb well">#}
-        {#<li><a href="{{ path('admin_main') }}">Домой</a> <span class="divider"></span></li>#}
-        {#<li><a href="{{ path('admin_course_list') }}">Курсы</a> <span class="divider"></span></li>#}
-        {#<li class="active"><a href="{{ path('admin_course_list') }}">{{ course.title }}</a> <span class="divider"></span></li>#}
-        {#<li class="active">Модули <span class="divider"></span></li>#}
-        {#<div style="float: right">#}
-            {#<a href="{{ path('admin_course_module_add',{'courseId' : course.id }) }}">Добавить</a> <span class="divider"></span>#}
-        {#</div>#}
-    {#</ul>#}
-{#{% endblock %}#}
 
-{% block frame %}
+{#{% block frame %}#}
     <div class="well">
         <h3>Модули курса</h3>
         <table class="table">
@@ -51,4 +40,4 @@
             {% endfor%}
         </table>
     </div>
-{% endblock %}
+{#{% endblock %}#}

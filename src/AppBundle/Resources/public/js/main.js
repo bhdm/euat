@@ -3,6 +3,10 @@ $(document).ready(function(){
         $('#loginRegisterModal').modal();
     });
 
+    $('.enrolment').click(function(){
+        $('#enrolmentModal').modal();
+    });
+
     $('.owl-carousel').owlCarousel({
         loop:true,
         margin:10,

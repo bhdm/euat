@@ -26,7 +26,7 @@
                     <td>{{ item.title }}</td>
                     {#<td><a href="{{ path('admin_course_module_list',{'courseId' : item.id}) }}" title="Войти в модули курса">{{ item.title }}</a></td>#}
                     <td></td>
-                    <td>{{ item.enabled }}</td>
+                    <td>{{ item.enabled == 1 ? 'Активен' : '' }}</td>
                     <td class="setting">
                         {% spaceless %}
                         <a href="{{ path('admin_course_edit',{'id' : item.id}) }}">
