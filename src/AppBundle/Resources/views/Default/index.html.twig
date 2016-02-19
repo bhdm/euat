@@ -13,7 +13,7 @@
         {% if videos | length > 0 %}
             <div class="title">ВИДЕО</div>
             {% for v in videos %}
-                <div class="new-item">
+                <div class="new-item" style="padding-bottom: 25px">
                     <a href="{{ path('publications', {'url' : v.id }) }}"><div class="new-item-title">{{ v.title }}</div></a>
                     <div class="new-item-anons">
                         {% if is_granted('ROLE_ADMIN') %}
@@ -22,6 +22,22 @@
                             </div>
                         {% endif %}
                         {{ v.body | anons | raw }}
+                    </div>
+                    <div class="col-xs-12 params">
+                        <b>Опубликована:</b> {{ v.created | date('d.m.Y') }}
+                        {% if v.specialties | length > 0 %}
+                            <b>Специальности:</b>
+                            {% for s in p.specialties | slice(0,3) %}
+                                {{ v.title }}
+                                {% if s != v.specialties | last %}
+                                    ,
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        {% if v.specialties | length > 4 %}
+                            <span title="{% for s in v.specialties | slice(4,50) %} {{ s.title }}{% if s != v.specialties | last %},{% endif %}{% endfor %}" style="cursor: pointer">...</span>
+                        {% endif %}
+
                     </div>
                 </div>
             {% endfor %}
@@ -39,6 +55,23 @@
                             </div>
                         {% endif %}
                         {{ e.body | anons | raw }}
+                    </div>
+                    <hr />
+                    <div class="col-xs-12 params">
+                        <b>Опубликована:</b> {{ p.created | date('d.m.Y') }}
+                        {% if p.specialties | length > 0 %}
+                            <b>Специальности:</b>
+                            {% for s in p.specialties | slice(0,3) %}
+                                {{ s.title }}
+                                {% if s != p.specialties | last %}
+                                    ,
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        {% if p.specialties | length > 4 %}
+                            <span title="{% for s in p.specialties | slice(4,50) %} {{ s.title }}{% if s != p.specialties | last %},{% endif %}{% endfor %}" style="cursor: pointer">...</span>
+                        {% endif %}
+
                     </div>
                 </div>
             {% endfor %}
@@ -66,7 +99,6 @@
                             <div class="new-item-anons">
                                 {{ p.body | anons | raw }}
                             </div>
-                            <hr />
                             <div class="col-xs-12 params">
                                 <b>Опубликована:</b> {{ p.created | date('d.m.Y') }}
                                 {% if p.specialties | length > 0 %}
@@ -89,6 +121,22 @@
                             <a href="{{ path('publications', {'url' : p.id }) }}"><div class="new-item-title">{{ p.title }}</div></a>
                             <div class="new-item-anons">
                                 {{ p.body | anons | raw }}
+                            </div>
+                            <div class="col-xs-12 params">
+                                <b>Опубликована:</b> {{ p.created | date('d.m.Y') }}
+                                {% if p.specialties | length > 0 %}
+                                    <b>Специальности:</b>
+                                    {% for s in p.specialties | slice(0,3) %}
+                                        {{ s.title }}
+                                        {% if s != p.specialties | last %}
+                                            ,
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                                {% if p.specialties | length > 4 %}
+                                    <span title="{% for s in p.specialties | slice(4,50) %} {{ s.title }}{% if s != p.specialties | last %},{% endif %}{% endfor %}" style="cursor: pointer">...</span>
+                                {% endif %}
+
                             </div>
                         </div>
                     {% endif %}
