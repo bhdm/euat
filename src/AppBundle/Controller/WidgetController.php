@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class WidgetController extends Controller
 {
@@ -30,5 +31,15 @@ class WidgetController extends Controller
         return ['events' => $events];
     }
 
+    /**
+     * @param Request $request
+     * @return Response
+     * @Template()
+     */
+    public function bannerAction(Request $request){
+
+        $banner = $this->getDoctrine()->getRepository('AppBundle:Banner')->findOneBy(['enabled' => true],[],1);
+        return ['banner' => $banner];
+    }
 
 }

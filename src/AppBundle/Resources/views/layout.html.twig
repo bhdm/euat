@@ -83,7 +83,7 @@
                         {% block content %}{% endblock %}
                     </div>
                     <div class="col-xs-3 text-right">
-                        {% include "@App/Widget/banner.html.twig" %}
+                        {{ render(controller("AppBundle:Widget:banner" )) }}
                     </div>
                 </div>
             {% endblock %}

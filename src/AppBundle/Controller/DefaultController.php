@@ -58,4 +58,13 @@ class DefaultController extends Controller
         ];
     }
 
+    /**
+     * @Route("/partners", name="partners")
+     * @Template()
+     */
+    public function partnersAction(){
+        $partners = $this->getDoctrine()->getRepository('AppBundle:Partner')->findBy([],['id' => 'DESC']);
+        return ['partners' => $partners];
+    }
+
 }

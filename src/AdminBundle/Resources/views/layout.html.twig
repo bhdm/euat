@@ -68,71 +68,11 @@
             <div class="col-md-9">
                 {% block breadcrumb %}
                     <ul class="breadcrumb well">
-                        <li><a href="#">Домой</a> <span class="divider"></span></li>
-                        <li><a href="#">Страницы</a> <span class="divider"></span></li>
-                        <li class="active">Список</li>
+                        <li><a href="{{ path('admin_main') }}">Домой</a> <span class="divider"></span></li>
                     </ul>
                 {% endblock %}
                 {% block content %}
-                    <div class="well">
-                        <div class="panel-heading">
-                            Фильтр:
-                            <div class="btn-group">
-                                {#<button type="button" class="btn btn-default active">Все</button>#}
-                                <button type="button" class="btn btn-default active">Активные</button>
-                                <button type="button" class="btn btn-default">Неактивные</button>
-                            </div>
-                        </div>
-                        <table class="table">
-                            <tr>
-                                <th>#</th>
-                                <th>ID</th>
-                                <th>Заголовок</th>
-                                <th></th>
-                                <th class="text-right">Инструменты</th>
-                            </tr>
-                            <tr>
-                                <th><input type="checkbox"></th>
-                                <td>1</td>
-                                <td>Название</td>
-                                <td><span class="glyphicon glyphicon-star" style="color: green"></span></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th><input type="checkbox"></th>
-                                <td>1</td>
-                                <td>Название</td>
-                                <td><span class="glyphicon glyphicon-star" style="color: green"></span></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th><input type="checkbox"></th>
-                                <td>1</td>
-                                <td>Название</td>
-                                <td><span class="glyphicon glyphicon-star" style="color: red"></span></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th><input type="checkbox"></th>
-                                <td>1</td>
-                                <td>Название</td>
-                                <td><span class="glyphicon glyphicon-star" style="color: green"></span></td>
-                                <td></td>
-                            </tr>
-                        </table>
-                        <div style="text-align: right">
-                            <ul class="pagination">
-                                <li><a href="#">&laquo;</a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">&raquo;</a></li>
-                            </ul>
-                        </div>
-                        {#{% block content %}{% endblock %}#}
-                    </div>
+
                 {% endblock %}
             </div>
         </div>
