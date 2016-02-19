@@ -119,6 +119,7 @@ class EducationController extends Controller
     public function passingAction(Request $request, $recordBookId){
         $em = $this->getDoctrine()->getManager();
         $recordBook = $this->getDoctrine()->getRepository('AppBundle:RecordBook')->findOneBy(['id' => $recordBookId, 'user' => $this->getUser()]);
+        $module = $recordBook->getActiveModule();
         if ($recordBook === null){
             throw $this->createNotFoundException('
                         Произошла ошибка - Данная запись в вашей записной книжке не найдена.
@@ -126,13 +127,46 @@ class EducationController extends Controller
         }
 
         if ($request->getMethod() === 'POST'){
+
+            if ($request->request->get('test') == 1){
+                $questions = $this->getDoctrine()->getRepository('AppBundle:CourseModuleQuestion')->findBy(['module' => $module]);
+                $answers = $request->request->get('answer');
+                $true = 0;
+                foreach ( $questions as $q ){
+                    if (isset($answers[$q->getId()])){
+                        foreach($q->getAnswers() as $a){
+                            if ($a->getCorrect()){
+                                if ($answers[$q->getId()] == $a->getId()){
+                                    $true ++;
+                                }
+                            }
+                        }
+                    }
+                }
+//                dump($true);
+//                dump($questions);
+//                exit;
+                $result = ceil(($true * 100) / count($questions));
+
+
+//                dump($result);
+//                exit;
+
+//                $result = 50;
+                $recordBook->setPercent($result);
+                $em->flush($recordBook);
+
+            }
+
             # Находим следующий модуль курса
             $nextModule = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->nextModule($recordBook->getCourse(), $recordBook->getActiveModule());
             #todo Доделать прохождение теста
             # Если null - то курс пройден
             if ($nextModule === null){
                 $recordBook->setPassed((new \DateTime()));
-                $recordBook->setPercent(100);
+                if ($recordBook->getPercent() == 0){
+                    $recordBook->setPercent(100);
+                }
                 $em->flush($recordBook);
                 $em->refresh($recordBook);
                 return $this->render('AppBundle:Education:coursePassed.html.twig', ['recordBook' => $recordBook]);

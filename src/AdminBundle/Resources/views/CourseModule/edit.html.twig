@@ -10,15 +10,23 @@
 
 {% block content %}
     <div class="well">
-        {% if item.image.path is defined %}
-            <div class="text-right">
-            <img src="{{ item.image.path }}" style="max-width: 200px; display: inline-block" class="thumbnail">
+        {% if item.type == 'VIDEO' %}
+            <div style="margin: 40px 20px">
+                <div class="player" id="videoplayer1"></div>
             </div>
+            <script src="{{ asset('bundles/app/js/uppod-0.5.40.js') }}"></script>
+            <script>
+                $(document).ready(function () {
+                    var link = '{{ base_url~item.file.path }}';
+                    console.log(link);
+                    {#var poster = '{{ base_url~'/upload/video/'~module.image.path }}';#}
+                    this.player = new Uppod({m:"video",uid:"videoplayer1",file:link});
+                });
+            </script>
         {% endif %}
         {{ form_start(form) }}
         {{ form_widget(form) }}
         {{ form_end(form) }}
-
     </div>
     {% if item.type == 'TEST' %}
         {{ render(controller('AdminBundle:CourseModuleTest:list',{'courseId' : item.course.id, 'moduleId' : item.id })) }}

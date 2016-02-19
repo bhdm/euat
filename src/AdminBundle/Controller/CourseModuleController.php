@@ -90,10 +90,10 @@ class CourseModuleController extends Controller{
                 }else{
                     $filename = time(). '.'.$file->guessExtension();
                     $file->move(
-                        __DIR__.'/../../../web/upload/courseModule/video',
+                        __DIR__.'/../../../web/upload/courseModule',
                         $filename
                     );
-                    $item->setFile(['path' => '/upload/courseModule/video/'.$filename ]);
+                    $item->setFile(['path' => '/upload/courseModule/'.$filename ]);
                 }
 
                 $em->flush($item);

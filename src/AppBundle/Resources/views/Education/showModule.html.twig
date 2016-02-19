@@ -48,7 +48,8 @@
 
             {# Если модуль ВИДЕО #}
             {% if module.type == 'TEST' %}
-                <form method="POST">
+                <form method="post" action="{{ path('course_passing', {'recordBookId' : recordBook.id}) }}">
+                    <input type="hidden" name="test" value="1">
                     <div>
                         {{ module.text | raw }}
                         {% if module.text != null %}
@@ -63,7 +64,7 @@
                                             <li>
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" value="{{ a.id }}" name="{{ q.id }}" {{ ka == 0 ? 'checked' : '' }}>
+                                                        <input type="radio" value="{{ a.id }}" name="answer[{{ q.id }}]">
                                                         <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                                                         <div class="test-answer">{{ a.title }}</div>
                                                     </label>
@@ -89,7 +90,7 @@
             {% if module.type != 'TEST' %}
                 <div class="row">
                     <div class="col-xs-offset-6 col-xs-6 text-right">
-                        <form method="post">
+                        <form method="post" action="{{ path('course_passing', {'recordBookId' : recordBook.id}) }}">
                             <button type="submit" class="btn btn-primary"><span></span>Перейти к следующему материалу&nbsp;&nbsp;<span aria-hidden="true">&raquo;</span></button>
                         </form>
                     </div>
