@@ -13,30 +13,40 @@
     </div>
     <div class="col-xs-8" style="padding-right: 0">
         <h1 class="blue-text">{{ event.title }}</h1>
-        <ul class="event-params">
-            {% if event.specialties | length > 0 %}
-                <li><b>Специальности:</b>
-                    {% for s in event.specialties %}
-                        {{ s.title }}
-                        {% if s != event.specialties | last %}
-                            ,
-                        {% endif %}
-                    {% endfor %}
-                </li>
-            {% endif %}
-            {% if event.start != null %}
-                <li><b>Дата начала:</b>     {{ event.start | date('d.m.Y') }}</li>
-            {% endif %}
-            {% if event.end != null %}
-                <li><b>Дата окончания:</b>  {{ event.end  | date('d.m.Y') }}</li>
-            {% endif %}
-            {% if event.city != null %}
-                <li><b>Город:</b>           {{ event.city  }}</li>
-            {% endif %}
-            {% if event.adrs != null %}
-                <li><b>Адрес:</b>           {{ event.adrs }}</li>
-            {% endif %}
-        </ul>
+        <div class="row">
+            <div class="col-xs-6">
+                <ul class="event-params">
+                    {% if event.specialties | length > 0 %}
+                        <li><b>Специальности:</b>
+                            {% for s in event.specialties %}
+                                {{ s.title }}
+                                {% if s != event.specialties | last %}
+                                    ,
+                                {% endif %}
+                            {% endfor %}
+                        </li>
+                    {% endif %}
+                    {% if event.start != null %}
+                        <li><b>Дата начала:</b>     {{ event.start | date('d.m.Y') }}</li>
+                    {% endif %}
+                    {% if event.end != null %}
+                        <li><b>Дата окончания:</b>  {{ event.end  | date('d.m.Y') }}</li>
+                    {% endif %}
+                    {% if event.city != null %}
+                        <li><b>Город:</b>           {{ event.city  }}</li>
+                    {% endif %}
+                    {% if event.adrs != null %}
+                        <li><b>Адрес:</b>           {{ event.adrs }}</li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="col-xs-6 text-right">
+                <span style="font-size: 12px">Расказать друзьям&nbsp;&nbsp;</span>
+                <script type="text/javascript" src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js" charset="utf-8"></script>
+                <script type="text/javascript" src="//yastatic.net/share2/share.js" charset="utf-8"></script>
+                <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,moimir" data-counter=""></div>
+            </div>
+        </div>
         <hr />
         <div class="body">
             {{ event.body | raw }}
