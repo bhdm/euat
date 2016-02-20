@@ -2,7 +2,11 @@
 
 
 {#{% block frame %}#}
+
     <div class="well">
+        <div style="float: right">
+            <a href="{{ path('admin_course_module_add',{'courseId' : course.id }) }}"><button class="btn btn-default">Добавить</button></a>
+        </div>
         <h3>Модули курса</h3>
         <table class="table">
             <tr>
