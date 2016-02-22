@@ -7,19 +7,19 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Entity\Publication;
-use AppBundle\Form\PublicationType;
+use AppBundle\Entity\Journal;
+use AppBundle\Form\JournalType;
 
 /**
- * Class PublicationController
+ * Class JournalController
  * @package AdminBundle\Controller
- * @Route("/admin/publication")
+ * @Route("/admin/journal")
  */
-class PublicationController extends Controller{
-        const ENTITY_NAME = 'Publication';
+class JournalController extends Controller{
+        const ENTITY_NAME = 'Journal';
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/", name="admin_publication_list")
+     * @Route("/", name="admin_journal_list")
      * @Template()
      */
     public function listAction(Request $request){
@@ -37,13 +37,13 @@ class PublicationController extends Controller{
 
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/add", name="admin_publication_add")
+     * @Route("/add", name="admin_journal_add")
      * @Template()
      */
     public function addAction(Request $request){
         $em = $this->getDoctrine()->getManager();
-        $item = new Publication();
-        $form = $this->createForm(PublicationType::class, $item);
+        $item = new Journal();
+        $form = $this->createForm(JournalType::class, $item);
         $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
         $formData = $form->handleRequest($request);
 
@@ -53,14 +53,14 @@ class PublicationController extends Controller{
                 $file = $item->getPreview();
                 $filename = time(). '.'.$file->guessExtension();
                 $file->move(
-                    __DIR__.'/../../../web/upload/publication/',
+                    __DIR__.'/../../../web/upload/journal/',
                     $filename
                 );
-                $item->setPreview(['path' => '/upload/publication/'.$filename ]);
+                $item->setPreview(['path' => '/upload/journal/'.$filename ]);
                 $em->persist($item);
                 $em->flush();
                 $em->refresh($item);
-                return $this->redirect($this->generateUrl('admin_publication_list'));
+                return $this->redirect($this->generateUrl('admin_journal_list'));
             }
         }
         return array('form' => $form->createView());
@@ -68,13 +68,13 @@ class PublicationController extends Controller{
 
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/edit/{id}", name="admin_publication_edit")
+     * @Route("/edit/{id}", name="admin_journal_edit")
      * @Template()
      */
     public function editAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
         $item = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findOneById($id);
-        $form = $this->createForm(PublicationType::class, $item);
+        $form = $this->createForm(JournalType::class, $item);
         $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
         $formData = $form->handleRequest($request);
 
@@ -90,15 +90,15 @@ class PublicationController extends Controller{
                 }else{
                     $filename = time(). '.'.$file->guessExtension();
                     $file->move(
-                        __DIR__.'/../../../web/upload/publication/',
+                        __DIR__.'/../../../web/upload/journal/',
                         $filename
                     );
-                    $item->setPreview(['path' => '/upload/publication/'.$filename ]);
+                    $item->setPreview(['path' => '/upload/journal/'.$filename ]);
                 }
 
                 $em->flush($item);
                 $em->refresh($item);
-                return $this->redirect($this->generateUrl('admin_publication_list'));
+                return $this->redirect($this->generateUrl('admin_journal_list'));
             }
         }
         return array('form' => $form->createView(), 'item' => $item);
@@ -106,7 +106,7 @@ class PublicationController extends Controller{
 
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/remove/{id}", name="admin_publication_remove")
+     * @Route("/remove/{id}", name="admin_journal_remove")
      */
     public function removeAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
