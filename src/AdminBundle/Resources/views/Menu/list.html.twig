@@ -20,12 +20,12 @@
                 <th>Статус</th>
                 <th class="setting">Инструменты</th>
             </tr>
-            {% for item in pagination %}
+            {% for item in items %}
                 <tr>
                     <td>{{ item.id }}</td>
                     <td>{{ item.title }}</td>
                     <td></td>
-                    <td>{{ item.enabled }}</td>
+                    <td>{{ item.enabled == 1 ? 'Активна' : 'Не активна' }}</td>
                     <td class="setting">
                         {% spaceless %}
                         <a href="{{ path('admin_menu_edit',{'id' : item.id}) }}">
@@ -43,10 +43,31 @@
                         {% endspaceless %}
                     </td>
                 </tr>
+                {% for children in item.children %}
+                    <tr>
+                        <td>{{ children.id }}</td>
+                        <td style="padding-left: 50px">{{ children.title }}</td>
+                        <td></td>
+                        <td>{{ children.enabled == 1 ? 'Активна' : 'Не активна' }}</td>
+                        <td class="setting">
+                            {% spaceless %}
+                                <a href="{{ path('admin_menu_edit',{'id' : children.id}) }}">
+                                    <button type="button" class="btn btn-default btn-sm">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </button>
+                                </a>
+                                &nbsp;
+                                &nbsp;
+                                <a href="{{ path('admin_menu_remove',{'id' : children.id}) }}">
+                                    <button type="button" class="btn btn-default btn-sm">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </a>
+                            {% endspaceless %}
+                        </td>
+                    </tr>
+                {% endfor %}
             {% endfor%}
         </table>
-        <nav>
-            {{ knp_pagination_render(pagination) }}
-        </nav>
     </div>
 {% endblock %}

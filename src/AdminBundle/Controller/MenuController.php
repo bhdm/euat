@@ -24,16 +24,9 @@ class MenuController extends Controller{
      * @Template()
      */
     public function listAction(Request $request){
-        $items = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findAll();
+        $items = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findBy(['parent' => null]);
 
-        $paginator  = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $items,
-            $request->query->get('page', 1),
-            20
-        );
-
-        return array('pagination' => $pagination);
+        return array('items' => $items);
     }
 
     /**
