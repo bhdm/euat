@@ -49,10 +49,18 @@ class ProfileFormType extends AbstractType
                 'data-placeholder' => 'Выберите университет'
             ]
         ]);
+        $builder->add('specialty', null, [
+            'label' => 'Специальность',
+            'data_class' => null,
+            'attr' => [
+                'class' => 'specialty',
+                'data-placeholder' => 'Выберите специальность'
+            ]
+        ]);
         $builder->add('academicDegree', ChoiceType::class, [
             'label' => 'Ученая степень',
             'choices' => array(
-                'Нету' => 0,
+                'Нет' => 0,
                 'Кандитат медицинских наук' => 1,
                 'Доктор медицинских наук' => 2
             ),

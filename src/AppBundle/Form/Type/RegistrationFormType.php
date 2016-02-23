@@ -7,6 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class RegistrationFormType extends AbstractType
@@ -36,6 +37,24 @@ class RegistrationFormType extends AbstractType
             'first_options'  => array('label' => 'Пароль'),
             'second_options' => array('label' => 'Повторите пароль'),
         ));
+
+        $builder->add('university', TextType::class, [
+            'label' => 'Университет',
+            'data_class' => null,
+            'attr' => [
+                'class' => 'university',
+                'data-placeholder' => 'Выберите университет'
+            ]
+        ]);
+        $builder->add('specialty', null, [
+            'label' => 'Специальность',
+            'required' => true,
+            'data_class' => null,
+            'attr' => [
+                'class' => 'specialty',
+                'data-placeholder' => 'Выберите специальность'
+            ]
+        ]);
 //        $builder->add('university', null, ['label' => 'Университет', 'attr' => ['class' => 'university', 'data-placeholder' => 'Выберите университет']]);
     }
 

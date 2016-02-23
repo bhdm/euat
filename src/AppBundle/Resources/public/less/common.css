@@ -26,6 +26,9 @@ h1.blue-text {
 .blue-text {
   color: #0e66a2;
 }
+.red {
+  color: #CC0000;
+}
 .blue-icon {
   color: #0e66a2;
 }
@@ -440,4 +443,8 @@ th.picker-switch {
   padding: 0px 20px;
   background: #F5F5F5;
   margin: 0;
+}
+.required:after {
+  content: " *";
+  color: #CC0000;
 }
