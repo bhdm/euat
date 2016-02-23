@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -20,6 +21,16 @@ class PartnerType extends AbstractType
     {
         $builder
             ->add('title', null, ['label' => 'Название партнера'])
+            ->add('type', ChoiceType::class, array(
+                'choices' => array(
+                    'Медицинские организации' => 'Медицинские организации',
+                    'Медицинские сайты' => 'Медицинские сайты',
+                    'Специализированные издания' => 'Специализированные издания',
+                    'Организаторы мероприятий' => 'Организаторы мероприятий'
+                ),
+                'required'    => true,
+                'label' => 'Вид партнеры'
+            ))
             ->add('link', null, ['label' => 'Ссылка'])
             ->add('body', TextareaType::class, ['label' => 'Описание', 'attr' => ['class' => 'ckeditor']])
             ->add('shortDescription', TextareaType::class, ['label' => 'Краткое описание'])

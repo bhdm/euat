@@ -76,17 +76,16 @@ class PublicationController extends Controller{
         $item = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findOneById($id);
         $form = $this->createForm(PublicationType::class, $item);
         $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
+        $oldFile = $item->getPreview();
+
         $formData = $form->handleRequest($request);
-
-        $olfFile = $item->getPreview();
-
 
         if ($request->getMethod() == 'POST'){
             if ($formData->isValid()){
                 $item = $formData->getData();
                 $file = $item->getPreview();
                 if ($file == null){
-                    $item->setPreview($olfFile);
+                    $item->setPreview($oldFile);
                 }else{
                     $filename = time(). '.'.$file->guessExtension();
                     $file->move(

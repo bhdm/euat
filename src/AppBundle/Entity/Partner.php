@@ -63,6 +63,13 @@ class Partner
      */
     private $sort;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255)
+     */
+    private $type;
+
     public function __construct()
     {
         $this->image = array();
@@ -221,5 +228,23 @@ class Partner
     {
         return $this->sort;
     }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+
 }
 
