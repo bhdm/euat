@@ -29,12 +29,12 @@
         <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
         {% endstylesheets %}
 
-        <link rel="stylesheet" href="{{ asset('bundles/app/less/menu.css') }}">
-        {#{% if app.request.attributes.get('_route') != 'homepage' %}#}
+        {% if app.request.attributes.get('_route') != 'homepage' %}
+            <link rel="stylesheet" href="{{ asset('bundles/app/less/menu.css') }}">
             {#{% stylesheets "@AppBundle/Resources/public/less/menu.less" %}#}
             {#<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />#}
             {#{% endstylesheets %}#}
-        {#{% endif %}#}
+        {% endif %}
 
     {% endblock %}
 </head>
@@ -68,7 +68,7 @@
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-top" aria-labelledby="dropdownMenu1">
                                     {% if is_granted('ROLE_ADMIN') %}
-                                    <li><a href="{{ path('admin_main') }}">В админ панель</a></li>
+                                        <li><a href="{{ path('admin_main') }}">В админ панель</a></li>
                                     {% endif %}
                                     <li><a href="{{ path('fos_user_profile_edit') }}">В профиль</a></li>
                                     <li><a href="{{ path('record_book') }}">Зачетка</a></li>
