@@ -18,7 +18,7 @@ class SlidebarType extends AbstractType
         $builder
             ->add('title',null, ['label' => 'Название слайда'])
             ->add('url',null, ['label' => 'Ссылка'])
-            ->add('file',FileType::class, ['label' => 'файл'])
+            ->add('file',FileType::class, ['label' => 'файл', 'data_class' => null, 'required' => false ])
         ;
     }
     

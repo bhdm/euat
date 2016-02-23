@@ -22,7 +22,9 @@ class ApiController extends Controller
             $date = 'now';
         }
         $date = new \DateTime($date);
-        $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findEvent($date,$date,[], true);
+
+        $owner = $request->query->get('owner');
+        $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findEvent($owner, $date,$date,[], true);
 
         return new JsonResponse(['events' => $events]);
     }
@@ -47,8 +49,8 @@ class ApiController extends Controller
         $start = new \DateTime($year.'-'.$month.'-1');
         $end = new \DateTime($year.'-'.$month.'-1');
         $end->modify('+1 month');
-
-        $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findEvent($start,$end,[]);
+        $owner = $request->query->get('owner');
+        $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findEvent($owner,$start,$end,[]);
 
         $dates = [];
         foreach ($events as $e){

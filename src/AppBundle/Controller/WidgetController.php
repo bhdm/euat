@@ -15,7 +15,7 @@ class WidgetController extends Controller
      * @Route("/widget-calendar/{year}/{month}", name="widget_calendar", defaults={"year"=null, "month"=null }, options={"exponse" = true})
      * @Template("")
      */
-    public function calendarAction($year=null, $month=null){
+    public function calendarAction(Request $request, $year=null, $month=null){
         if ($year === null){
             $year = (new \DateTime())->format('Y');
         }
@@ -26,7 +26,8 @@ class WidgetController extends Controller
         $dateStart = new \DateTime($year.'-'.$month.'-01 00:00:00');
         $dateEnd = new \DateTime($year.'-'.($month+1).'-01 00:00:00');
 
-        $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findEvent($dateStart,$dateEnd);
+        $owner = $request->query->get('owner');
+        $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findEvent($owner,$dateStart,$dateEnd);
 
         return ['events' => $events];
     }

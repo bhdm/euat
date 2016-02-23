@@ -13,12 +13,27 @@
             <img src="{{ publication.preview.path }}" style="max-width: 250px; float: left; margin: 0 20px 10px 10px" class="img-thumbnail">
         {% endif %}
         <h1 class="blue-text">{{ publication.title }}</h1>
-        {{ publication.body | raw }}
-        <div class="text-left">
-            <span style="font-size: 12px">Расказать друзьям&nbsp;&nbsp;</span>
-            <script type="text/javascript" src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js" charset="utf-8"></script>
-            <script type="text/javascript" src="//yastatic.net/share2/share.js" charset="utf-8"></script>
-            <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,moimir" data-counter="" style="text-align: left"></div>
+        <div>
+            {{ publication.body | raw }}
+        </div>
+        <div class="row">
+            <div class="col-xs-3">
+                <span style="font-size: 12px">Расказать друзьям&nbsp;&nbsp;</span>
+                <script type="text/javascript" src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js" charset="utf-8"></script>
+                <script type="text/javascript" src="//yastatic.net/share2/share.js" charset="utf-8"></script>
+                <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,moimir" data-counter="" style="text-align: left"></div>
+            </div>
+            <div class="col-xs-6">
+                {% if p.specialties | length > 0 %}
+                    <b>Специальности:</b>
+                    {% for s in p.specialties  %}
+                        {{ s.title }}
+                        {% if s != p.specialties | last %}
+                            ,
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
         </div>
     </div>
 

@@ -29,8 +29,17 @@ class Event
      */
     private $title;
 
+
     /**
-     * @var boolean
+     * @var string EAT|Partner
+     *
+     * @ORM\Column(name="owner", type="string", length=255, nullable=true)
+     */
+    private $owner;
+
+
+    /**
+     * @var string
      *
      * @ORM\Column(name="type", type="string", length=255)
      */
@@ -384,6 +393,22 @@ class Event
     public function setSpecialties($specialties)
     {
         $this->specialties = $specialties;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
+    /**
+     * @param string $owner
+     */
+    public function setOwner($owner)
+    {
+        $this->owner = $owner;
     }
 
 

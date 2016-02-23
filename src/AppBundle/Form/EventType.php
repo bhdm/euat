@@ -24,13 +24,22 @@ class EventType extends AbstractType
             ->add('title', null, [ 'label' => 'Название'])
             ->add('type', ChoiceType::class, array(
                 'choices' => array(
-                    'EAT' => 'EAT',
+                    'Конгрессы и Съезды' => 'CONGRESS',
+                    'Школы' => 'SCHOOL',
                     'Партнерcкое' => 'PARTNER'
                 ),
                 'required'    => true,
                 'label' => 'Тип мероприятия'
             ))
             ->add('specialties', null, [ 'label' => 'Специальности', 'attr' => ['class' => 'multiselect']])
+//            ->add('owner', ChoiceType::class, array(
+//                'choices' => array(
+//                    'EAT' => 'EAT',
+//                    'Партнеры' => 'Partner'
+//                ),
+//                'required'    => true,
+//                'label' => 'Состояние'
+//            ))
             ->add('city', null, [ 'label' => 'Город'])
             ->add('adrs', null, [ 'label' => 'Адрес'])
             ->add('start', DateType::class, [ 'label' => 'Дата начала'])

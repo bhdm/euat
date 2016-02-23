@@ -36,6 +36,10 @@ h1.blue-text {
   margin: 0 auto;
   text-align: left;
 }
+.slider {
+  height: 240px;
+  overflow: hidden;
+}
 .slider img {
   width: 100%;
 }
@@ -57,7 +61,7 @@ h1.blue-text {
   width: 400px;
 }
 .navbar-form {
-  padding-top: 6px;
+  padding-top: 10px;
 }
 .nomenu {
   width: 150px;
@@ -275,7 +279,7 @@ footer {
 }
 .owl-prev {
   position: absolute;
-  top: 46%;
+  top: 24%;
   margin-top: -15px;
   width: 37px;
   height: 55px;
@@ -290,7 +294,7 @@ footer {
 }
 .owl-next {
   position: absolute;
-  top: 46%;
+  top: 24%;
   margin-top: -15px;
   width: 37px;
   height: 55px;
@@ -308,7 +312,7 @@ footer {
 }
 .owl-dots {
   position: absolute;
-  bottom: 20px;
+  bottom: 200px;
   width: 100%;
   text-align: center;
 }
@@ -393,12 +397,14 @@ table.table-th-bold tr th {
 .ui-menu-item {
   text-align: left;
 }
-.event-list {
-  font-size: 15px;
-  padding: 5px 10px;
+.events-list {
+  font-size: 13px;
 }
-.event-list:not(:last-child) {
+.events-list:not(:last-child) {
   border-bottom: 1px dashed darkgray;
+}
+.events-list li {
+  padding: 5px 10px;
 }
 th.prev,
 th.next,
