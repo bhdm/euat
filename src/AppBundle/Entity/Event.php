@@ -113,9 +113,23 @@ class Event
      */
     private $specialties;
 
+    /**
+     * @var boolean
+     * @ORM\Column(name="allowCommentary", type="boolean", nullable=true)
+     */
+    private $allowCommentary;
+
+    /**
+     * @var Comment
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="event")
+     */
+    private $comments;
+
+
     public function __construct()
     {
         $this->specialties = new ArrayCollection();
+        $this->comments = new ArrayCollection();
         $this->enabled = true;
         $this->created = new \DateTime();
     }
@@ -411,7 +425,39 @@ class Event
         $this->owner = $owner;
     }
 
+    /**
+     * @return boolean
+     */
+    public function isAllowCommentary()
+    {
+        return $this->allowCommentary;
+    }
+
+    /**
+     * @param boolean $allowCommentary
+     */
+    public function setAllowCommentary($allowCommentary)
+    {
+        $this->allowCommentary = $allowCommentary;
+    }
+
+    /**
+     * @return Comment
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @param Comment $comments
+     */
+    public function setComments($comments)
+    {
+        $this->comments = $comments;
+    }
 
 
 }
+
 

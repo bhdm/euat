@@ -54,6 +54,12 @@ class Comment
     private $publication;
 
     /**
+     * @var Event
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Event", inversedBy="comments")
+     */
+    private $event;
+
+    /**
      * @var Publication
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Course", inversedBy="comments")
      */
@@ -209,6 +215,23 @@ class Comment
     {
         $this->course = $course;
     }
+
+    /**
+     * @return Event
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+
+    /**
+     * @param Event $event
+     */
+    public function setEvent($event)
+    {
+        $this->event = $event;
+    }
+
 
 
 }

@@ -28,6 +28,14 @@
         {% stylesheets "@AppBundle/Resources/public/less/common.less" %}
         <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
         {% endstylesheets %}
+
+        <link rel="stylesheet" href="{{ asset('bundles/app/less/menu.css') }}">
+        {#{% if app.request.attributes.get('_route') != 'homepage' %}#}
+            {#{% stylesheets "@AppBundle/Resources/public/less/menu.less" %}#}
+            {#<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />#}
+            {#{% endstylesheets %}#}
+        {#{% endif %}#}
+
     {% endblock %}
 </head>
 <body>

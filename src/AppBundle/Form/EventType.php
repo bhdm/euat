@@ -31,6 +31,14 @@ class EventType extends AbstractType
                 'required'    => true,
                 'label' => 'Тип мероприятия'
             ))
+            ->add('allowCommentary', ChoiceType::class, array(
+                'choices' => array(
+                    'Запретить' => false,
+                    'Разрешить' => true,
+                ),
+                'required'    => true,
+                'label' => 'Комментарии'
+            ))
             ->add('specialties', null, [ 'label' => 'Специальности', 'attr' => ['class' => 'multiselect']])
 //            ->add('owner', ChoiceType::class, array(
 //                'choices' => array(

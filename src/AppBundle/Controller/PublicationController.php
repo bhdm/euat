@@ -79,9 +79,9 @@ class PublicationController extends Controller
         if ($type === 'publication'){
             $publication = $this->getDoctrine()->getRepository('AppBundle:Publication')->findOneBy(['id' => $id]);
             $comment->setPublication($publication);
-        }elseif($type === 'course'){
-            $course = $this->getDoctrine()->getRepository('AppBundle:Course')->findOneBy(['id' => $id]);
-            $comment->setCourse($course);
+        }elseif($type === 'event'){
+            $event = $this->getDoctrine()->getRepository('AppBundle:Event')->findOneBy(['id' => $id]);
+            $comment->setEvent($event);
         }else{
             throw $this->createNotFoundException('Вы пытаетесь прикрепить комментарий к странице, на который запрещены комментарии');
         }
