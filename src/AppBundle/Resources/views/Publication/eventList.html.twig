@@ -12,7 +12,15 @@
         {{ render(controller("AppBundle:Widget:calendar" )) }}
     </div>
     <div class="col-xs-8" style="padding-right: 0">
-        <h1 class="blue-text">События</h1>
+        {% if type == null %}
+            <h1 class="blue-text">События</h1>
+        {% elseif type == 'congress' %}
+            <h1 class="blue-text">Конгрессы и Съезды</h1>
+        {% elseif type == 'school' %}
+            <h1 class="blue-text">Школы</h1>
+        {% elseif type == 'partner' %}
+            <h1 class="blue-text">Партнерские события</h1>
+        {% endif %}
         <div>
             {% for p in events %}
                 <div class="new-item">

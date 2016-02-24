@@ -44,13 +44,17 @@ class PublicationController extends Controller
     }
 
     /**
-     * @Route("events", name="events")
+     * @Route("events/{type}", name="events", defaults={"type" = null})
      * @Template("AppBundle:Publication:eventList.html.twig")
      */
-    public function eventListAction(Request $request)
+    public function eventListAction(Request $request, $type)
     {
-        $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findBy(['enabled' => true],['start' => 'DESC']);
-        return ['events' => $events];
+        if ($type === null){
+            $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findBy(['enabled' => true],['start' => 'DESC']);
+        }else{
+            $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findBy(['enabled' => true, 'type' => $type],['start' => 'DESC']);
+        }
+        return ['events' => $events, 'type' => $type];
     }
 
 
@@ -93,4 +97,5 @@ class PublicationController extends Controller
         $referer = $request->headers->get('referer');
         return $this->redirect($referer);
     }
+
 }
