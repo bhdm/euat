@@ -15,6 +15,7 @@
             <div class="title">ВИДЕО</div>
             {% for v in videos %}
                 <div class="row new-item" style="padding-bottom: 25px">
+                    {% if v.preview.path is defined %}
                     <div class="col-xs-3">
                         <img src="{{ v.preview.path }}" class="img-thumbnail">
                     </div>
@@ -30,6 +31,20 @@
                         </div>
                         <div style="color: #666; font-size: 11px;">{{ v.created | date('d.m.Y') }}</div>
                     </div>
+                    {% else %}
+                        <div class="col-xs-12">
+                            <a href="{{ path('publications', {'url' : v.id }) }}"><span class="new-item-title">{{ v.title }}</span></a>
+                            <div class="new-item-anons">
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <div class="editor">
+                                        <a href="{{ path('admin_publication_edit',{'id' : v.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>
+                                    </div>
+                                {% endif %}
+                                {{ v.body | anons | raw }}
+                            </div>
+                            <div style="color: #666; font-size: 11px;">{{ v.created | date('d.m.Y') }}</div>
+                        </div>
+                    {% endif %}
                 </div>
             {% endfor %}
         {% endif %}
