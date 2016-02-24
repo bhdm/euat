@@ -10,6 +10,7 @@
         {{ render(controller("AppBundle:Widget:calendar" )) }}
     </div>
     <div class="col-xs-8" style="padding-right: 0">
+        <br />
         {% if videos | length > 0 %}
             <div class="title">ВИДЕО</div>
             {% for v in videos %}
