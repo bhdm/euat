@@ -25,7 +25,7 @@ class Journal extends BaseEntity
     protected $title;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="array", nullable=true)
      */
     protected $photo;
 
@@ -69,6 +69,16 @@ class Journal extends BaseEntity
 
     public function __construct(){
         $this->posts = new ArrayCollection();
+        $this->photo = array();
+        $this->created = new \DateTime();
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->title;
     }
 
     /**

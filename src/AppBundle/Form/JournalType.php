@@ -29,8 +29,8 @@ class JournalType extends AbstractType
 
             ->add('enabled',ChoiceType::class,  array(
                 'choices' => array(
-                    '1' => 'Открыт',
-                    '0' => 'Закрыт',
+                    'Открыт' => '1',
+                    'Закрыт' => '0',
                 ),
                 'label' => 'Доступ',
                 'required'  => false,

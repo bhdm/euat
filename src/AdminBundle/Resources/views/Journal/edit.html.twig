@@ -19,6 +19,8 @@
         {{ form_widget(form) }}
         {{ form_end(form) }}
     </div>
+
+    {{ render(controller('AdminBundle:JournalPost:list',{'journalId': item.id })) }}
 {% endblock %}
 
 {% block javascripts %}

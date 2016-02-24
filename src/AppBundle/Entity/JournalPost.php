@@ -74,6 +74,7 @@ class JournalPost extends BaseEntity{
 
     public function __construct(){
         $this->author = array();
+        $this->created = new \DateTime();
     }
 
     /**

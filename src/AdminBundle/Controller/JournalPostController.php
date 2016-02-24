@@ -7,23 +7,26 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Entity\Journal;
-use AppBundle\Form\JournalType;
+use AppBundle\Entity\JournalPost;
+use AppBundle\Form\JournalPostType;
 
 /**
- * Class JournalController
+ * Class JournalPostController
  * @package AdminBundle\Controller
- * @Route("/admin/journal")
+ * @Route("/admin/journalpost")
  */
-class JournalController extends Controller{
-        const ENTITY_NAME = 'Journal';
+class JournalPostController extends Controller{
+        const ENTITY_NAME = 'JournalPost';
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/", name="admin_journal_list")
+     * @Route("/{journalId}/list", name="admin_journalpost_list")
      * @Template()
      */
-    public function listAction(Request $request){
-        $items = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findAll();
+    public function listAction(Request $request, $journalId){
+        $journal = $this->getDoctrine()->getRepository('AppBundle:Journal')->findOneBy(['id' => $journalId]);
+//        dump($journal);
+//        exit;
+        $items = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findBy(['journal' => $journal]);
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -32,49 +35,45 @@ class JournalController extends Controller{
             20
         );
 
-        return array('pagination' => $pagination);
+        return array('pagination' => $pagination, 'journal' => $journal);
     }
 
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/add", name="admin_journal_add")
+     * @Route("/{journalId}/add", name="admin_journalpost_add")
      * @Template()
      */
-    public function addAction(Request $request){
+    public function addAction(Request $request, $journalId){
+        $journal = $this->getDoctrine()->getRepository('AppBundle:Journal')->find($journalId);
         $em = $this->getDoctrine()->getManager();
-        $item = new Journal();
-        $form = $this->createForm(JournalType::class, $item);
+        $item = new JournalPost();
+        $form = $this->createForm(JournalPostType::class, $item);
         $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
         $formData = $form->handleRequest($request);
 
         if ($request->getMethod() == 'POST'){
             if ($formData->isValid()){
                 $item = $formData->getData();
-                $file = $item->getPhoto();
-                $filename = time(). '.'.$file->guessExtension();
-                $file->move(
-                    __DIR__.'/../../../web/upload/journal/',
-                    $filename
-                );
-                $item->setPhoto(['path' => '/upload/journal/'.$filename ]);
+//                $item->setPhoto(['path' => '/upload/journalpost/'.$filename ]);
+                $item->setJournal($journal);
                 $em->persist($item);
                 $em->flush();
                 $em->refresh($item);
-                return $this->redirect($this->generateUrl('admin_journal_list'));
+                return $this->redirect($this->generateUrl('admin_journal_edit', ['id' => $journalId]));
             }
         }
-        return array('form' => $form->createView());
+        return array('form' => $form->createView(), 'journal' => $journal);
     }
 
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/edit/{id}", name="admin_journal_edit")
+     * @Route("/edit/{id}", name="admin_journalpost_edit")
      * @Template()
      */
     public function editAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
         $item = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findOneById($id);
-        $form = $this->createForm(JournalType::class, $item);
+        $form = $this->createForm(JournalPostType::class, $item);
         $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
         $formData = $form->handleRequest($request);
 
@@ -90,15 +89,15 @@ class JournalController extends Controller{
                 }else{
                     $filename = time(). '.'.$file->guessExtension();
                     $file->move(
-                        __DIR__.'/../../../web/upload/journal/',
+                        __DIR__.'/../../../web/upload/journalpost/',
                         $filename
                     );
-                    $item->setPhoto(['path' => '/upload/journal/'.$filename ]);
+                    $item->setPhoto(['path' => '/upload/journalpost/'.$filename ]);
                 }
 
                 $em->flush($item);
                 $em->refresh($item);
-                return $this->redirect($this->generateUrl('admin_journal_list'));
+                return $this->redirect($this->generateUrl('admin_journalpost_list'));
             }
         }
         return array('form' => $form->createView(), 'item' => $item);
@@ -106,7 +105,7 @@ class JournalController extends Controller{
 
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/remove/{id}", name="admin_journal_remove")
+     * @Route("/remove/{id}", name="admin_journalpost_remove")
      */
     public function removeAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();

@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -26,16 +27,14 @@ class JournalPostType extends AbstractType
             ->add('bodyEn', null, ['label' => 'Текст статьи (Англ)', 'attr' => ['class' => 'ckeditor']])
             ->add('keywordsEn', null, ['label' => 'Ключевые слова (Англ)'])
             ->add('author', null, ['label' => 'Авторы'])
-            ->add('enabled','choice',  array(
-                'empty_value' => false,
+            ->add('enabled', ChoiceType::class,  array(
                 'choices' => array(
-                    '1' => 'Открыт',
-                    '0' => 'Закрыт',
+                    'Открыт' => 1,
+                    'Закрыт' => 0,
                 ),
                 'label' => 'Доступ',
                 'required'  => false,
             ))
-            ->add('submit','submit', ['label' => 'Сохранить'])
         ;
     }
 
