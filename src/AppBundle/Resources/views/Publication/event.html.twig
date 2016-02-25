@@ -34,7 +34,9 @@
                         </li>
                     {% endif %}
                     {% if event.start != null %}
-                        <li><b>Дата начала:</b>     {{ event.start | date('d.m.Y') }}</li>
+                        <li>
+                            <b>Дата начала:</b>     {{ event.start | date('d.m.Y') }} {{ event.time | date('H:i') }}
+                        </li>
                     {% endif %}
                     {% if event.end != null %}
                         <li><b>Дата окончания:</b>  {{ event.end  | date('d.m.Y') }}</li>

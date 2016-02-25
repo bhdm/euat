@@ -74,6 +74,13 @@ class Event
     private $end;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="time", type="time", nullable=true)
+     */
+    private $time;
+
+    /**
      * @var City
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\City", inversedBy="events")
@@ -456,6 +463,23 @@ class Event
     {
         $this->comments = $comments;
     }
+
+    /**
+     * @return \DateTime
+     */
+    public function getTime()
+    {
+        return $this->time;
+    }
+
+    /**
+     * @param \DateTime $time
+     */
+    public function setTime($time)
+    {
+        $this->time = $time;
+    }
+
 
 
 }
