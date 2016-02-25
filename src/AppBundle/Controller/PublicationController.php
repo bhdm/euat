@@ -17,7 +17,7 @@ class PublicationController extends Controller
      */
     public function indexAction(Request $request, $url)
     {
-        $publication = $this->getDoctrine()->getRepository('AppBundle:Publication')->findOneBy(['id' => $url,'enabled' => false]);
+        $publication = $this->getDoctrine()->getRepository('AppBundle:Publication')->findOneBy(['id' => $url,'enabled' => true]);
         return ['publication' => $publication];
     }
 
