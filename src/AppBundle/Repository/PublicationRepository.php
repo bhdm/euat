@@ -12,7 +12,7 @@ class PublicationRepository extends \Doctrine\ORM\EntityRepository
 {
     public function findAll()
     {
-        return parent::findBy(['enabled' => true]);
+//        return parent::findBy(['enabled' => true]);
     }
 
     public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
