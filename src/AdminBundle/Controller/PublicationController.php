@@ -23,7 +23,7 @@ class PublicationController extends Controller{
      * @Template()
      */
     public function listAction(Request $request){
-        $items = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->search('');
+        $items = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->search('', false);
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
