@@ -26,7 +26,14 @@
             <h1 class="blue-text">{{ publication.title }}</h1>
             <div>
                 {{ publication.body | raw }}
+                {% if publication.video.path is defined %}
+                    <video controls>
+                        <source src="{{ publication.video.path }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                {% endif %}
             </div>
+
             <div class="row row-params">
                 <div class="col-xs-4" style="padding-top: 5px;">
                     {#<span style="font-size: 12px">Расказать друзьям&nbsp;&nbsp;</span>#}

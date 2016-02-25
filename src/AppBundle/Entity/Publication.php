@@ -68,6 +68,13 @@ class Publication
     private $preview;
 
     /**
+     * @var array
+     *
+     * @ORM\Column(name="video", type="array")
+     */
+    private $video;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="enabled", type="boolean", nullable=true)
@@ -112,6 +119,7 @@ class Publication
         $this->enabled = true;
         $this->created = new \DateTime();
         $this->preview = array();
+        $this->video = array();
         $this->specialties = new ArrayCollection();
         $this->comments = new ArrayCollection();
 
@@ -341,6 +349,22 @@ class Publication
     public function setAnons($anons)
     {
         $this->anons = $anons;
+    }
+
+    /**
+     * @return array
+     */
+    public function getVideo()
+    {
+        return $this->video;
+    }
+
+    /**
+     * @param array $video
+     */
+    public function setVideo($video)
+    {
+        $this->video = $video;
     }
 
 
