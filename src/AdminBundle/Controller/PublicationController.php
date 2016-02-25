@@ -23,7 +23,7 @@ class PublicationController extends Controller{
      * @Template()
      */
     public function listAction(Request $request){
-        $items = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findAll();
+        $items = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->search('', false);
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -57,6 +57,15 @@ class PublicationController extends Controller{
                     $filename
                 );
                 $item->setPreview(['path' => '/upload/publication/'.$filename ]);
+
+                $file = $item->getVideo();
+                $filename = time(). '.'.$file->guessExtension();
+                $file->move(
+                    __DIR__.'/../../../web/upload/video/',
+                    $filename
+                );
+                $item->setVideo(['path' => '/upload/video/'.$filename ]);
+
                 $em->persist($item);
                 $em->flush();
                 $em->refresh($item);
@@ -77,6 +86,7 @@ class PublicationController extends Controller{
         $form = $this->createForm(PublicationType::class, $item);
         $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
         $oldFile = $item->getPreview();
+        $oldFile2 = $item->getVideo();
 
         $formData = $form->handleRequest($request);
 
@@ -93,6 +103,18 @@ class PublicationController extends Controller{
                         $filename
                     );
                     $item->setPreview(['path' => '/upload/publication/'.$filename ]);
+                }
+
+                $file = $item->getVideo();
+                if ($file == null){
+                    $item->setVideo($oldFile);
+                }else{
+                    $filename = time(). '.'.$file->guessExtension();
+                    $file->move(
+                        __DIR__.'/../../../web/upload/video/',
+                        $filename
+                    );
+                    $item->setVideo(['path' => '/upload/video/'.$filename ]);
                 }
 
                 $em->flush($item);

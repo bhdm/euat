@@ -17,7 +17,7 @@ class PublicationController extends Controller
      */
     public function indexAction(Request $request, $url)
     {
-        $publication = $this->getDoctrine()->getRepository('AppBundle:Publication')->findOneById($url);
+        $publication = $this->getDoctrine()->getRepository('AppBundle:Publication')->findOneBy(['id' => $url,'enabled' => false]);
         return ['publication' => $publication];
     }
 
@@ -64,8 +64,9 @@ class PublicationController extends Controller
      */
     public function categotyAction($categoryUrl){
         $category = $this->getDoctrine()->getRepository('AppBundle:Category')->findOneBySlug($categoryUrl);
+        $publications = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['enabled' => true, 'category' => $category ]);
 
-        return ['category' => $category];
+        return ['category' => $category,'publications' => $publications];
     }
 
 

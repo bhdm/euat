@@ -27,7 +27,7 @@
                                     <a href="{{ path('admin_publication_edit',{'id' : v.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>
                                 </div>
                             {% endif %}
-                            {{ v.body | anons | raw }}
+                            {{ v.anons  | raw }}
                         </div>
                         <div style="color: #666; font-size: 11px;">{{ v.created | date('d.m.Y') }}</div>
                     </div>
@@ -40,7 +40,7 @@
                                         <a href="{{ path('admin_publication_edit',{'id' : v.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>
                                     </div>
                                 {% endif %}
-                                {{ v.body | anons | raw }}
+                                {{ v.anons  | raw }}
                             </div>
                             <div style="color: #666; font-size: 11px;">{{ v.created | date('d.m.Y') }}</div>
                         </div>
@@ -61,7 +61,7 @@
                                 <a href="{{ path('admin_publication_edit',{'id' : e.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>
                             </div>
                         {% endif %}
-                        {{ e.body | anons | raw }}
+                        {{ e.anons  | raw }}
                     </div>
                 </div>
             {% endfor %}
@@ -88,7 +88,7 @@
                             {{ p.created | date('d.m.Y') }}
                             <a href="{{ path('publications', {'url' : p.id }) }}"><span class="new-item-title">{{ p.title }}</span></a>
                             <div class="new-item-anons">
-                                {{ p.body | anons | raw }}
+                                {{ p.anons  | raw }}
                             </div>
                         </div>
                     {% else %}
@@ -96,7 +96,7 @@
                             {{ p.created | date('d.m.Y') }}
                             <a href="{{ path('publications', {'url' : p.id }) }}"><span class="new-item-title">{{ p.title }}</span></a>
                             <div class="new-item-anons">
-                                {{ p.body | anons | raw }}
+                                {{ p.anons  | raw }}
                             </div>
                         </div>
                     {% endif %}

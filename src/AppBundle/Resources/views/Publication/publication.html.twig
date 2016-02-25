@@ -25,8 +25,18 @@
             {% endif %}
             <h1 class="blue-text">{{ publication.title }}</h1>
             <div>
+                {{ publication.anons | raw }}
                 {{ publication.body | raw }}
+                {% if publication.video.path is defined %}
+                    <div style="text-align: center">
+                        <video controls style="width: 640px; height: 420px;">
+                            <source src="{{ publication.video.path }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                {% endif %}
             </div>
+
             <div class="row row-params">
                 <div class="col-xs-4" style="padding-top: 5px;">
                     {#<span style="font-size: 12px">Расказать друзьям&nbsp;&nbsp;</span>#}
