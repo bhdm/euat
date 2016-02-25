@@ -36,7 +36,7 @@ class EventType extends AbstractType
                     'Запретить' => false,
                     'Разрешить' => true,
                 ),
-                'required'    => true,
+                'required'    => false,
                 'label' => 'Комментарии'
             ))
             ->add('specialties', null, [ 'label' => 'Специальности', 'attr' => ['class' => 'multiselect']])

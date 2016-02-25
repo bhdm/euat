@@ -63,10 +63,7 @@
                 {% if event.specialties | length > 0 %}
                     <b>Специальности:</b>
                     {% for s in event.specialties  %}
-                        {{ s.title }}
-                        {% if s != event.specialties | last %}
-                            ,
-                        {% endif %}
+                        {{ s.title }}{% if s != event.specialties | last %},{% endif %}
                     {% endfor %}
                 {% endif %}
             </div>

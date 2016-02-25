@@ -27,6 +27,9 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
 //        dump($dateStart);
 //        dump($dateEnd);
 //        exit;
+        if ($returnArray == false){
+            $dateEnd->modify('+2 month');
+        }
         $qb = $this->createQueryBuilder('e');
         if ($returnArray === true){
             $qb->select('e.id , e.type, e.title, e.start, e.end');
@@ -49,6 +52,7 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
 //        $result = $qb->getQuery()->getSQL();
 //        echo  $result;
 //        exit;
+        $qb->getMaxResults(5);
         $result = $qb->getQuery()->getResult();
 
         return $result;
