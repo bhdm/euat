@@ -25,6 +25,7 @@
             {% endif %}
             <h1 class="blue-text">{{ publication.title }}</h1>
             <div>
+                {{ publication.anons | raw }}
                 {{ publication.body | raw }}
                 {% if publication.video.path is defined %}
                     <div style="text-align: center">
