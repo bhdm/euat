@@ -31,7 +31,7 @@ class PublicationType extends AbstractType
                     'Запретить' => false,
                     'Разрешить' => true,
                 ),
-                'required'    => true,
+                'required'    => false,
                 'label' => 'Комментарии'
             ))
 
