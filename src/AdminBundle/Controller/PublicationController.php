@@ -51,21 +51,25 @@ class PublicationController extends Controller{
             if ($formData->isValid()){
                 $item = $formData->getData();
                 $file = $item->getPreview();
-                $filename = time(). '.'.$file->guessExtension();
-                $file->move(
-                    __DIR__.'/../../../web/upload/publication/',
-                    $filename
-                );
-                $item->setPreview(['path' => '/upload/publication/'.$filename ]);
+
+                if ($file){
+                    $filename = time(). '.'.$file->guessExtension();
+                    $file->move(
+                        __DIR__.'/../../../web/upload/publication/',
+                        $filename
+                    );
+                    $item->setPreview(['path' => '/upload/publication/'.$filename ]);
+                }
 
                 $file = $item->getVideo();
-                $filename = time(). '.'.$file->guessExtension();
-                $file->move(
-                    __DIR__.'/../../../web/upload/video/',
-                    $filename
-                );
-                $item->setVideo(['path' => '/upload/video/'.$filename ]);
-
+                if ($file) {
+                    $filename = time() . '.' . $file->guessExtension();
+                    $file->move(
+                        __DIR__ . '/../../../web/upload/video/',
+                        $filename
+                    );
+                    $item->setVideo(['path' => '/upload/video/' . $filename]);
+                }
                 $em->persist($item);
                 $em->flush();
                 $em->refresh($item);
@@ -107,7 +111,7 @@ class PublicationController extends Controller{
 
                 $file = $item->getVideo();
                 if ($file == null){
-                    $item->setVideo($oldFile);
+                    $item->setVideo($oldFile2);
                 }else{
                     $filename = time(). '.'.$file->guessExtension();
                     $file->move(
