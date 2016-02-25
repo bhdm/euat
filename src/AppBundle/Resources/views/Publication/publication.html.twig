@@ -27,10 +27,12 @@
             <div>
                 {{ publication.body | raw }}
                 {% if publication.video.path is defined %}
-                    <video controls>
-                        <source src="{{ publication.video.path }}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div style="text-align: center">
+                        <video controls style="width: 640px; height: 420px;">
+                            <source src="{{ publication.video.path }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
                 {% endif %}
             </div>
 
