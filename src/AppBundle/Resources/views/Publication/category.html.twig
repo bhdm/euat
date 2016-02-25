@@ -3,7 +3,7 @@
 {% block content %}
     <h1>{{ category.title }}</h1>
     <div>
-        {% for p in category.publications %}
+        {% for p in publications %}
             <div class="new-item">
                 <a href="{{ path('publications', {'url' : p.id }) }}"><div class="new-item-title">{{ p.title }}</div></a>
                 <div class="new-item-anons">
