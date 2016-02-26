@@ -76,9 +76,16 @@ class Event
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="time", type="time", nullable=true)
+     * @ORM\Column(name="timeStart", type="time", nullable=true)
      */
-    private $time;
+    private $timeStart;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="timeEnd", type="time", nullable=true)
+     */
+    private $timeEnd;
 
     /**
      * @var City
@@ -478,22 +485,6 @@ class Event
     }
 
     /**
-     * @return \DateTime
-     */
-    public function getTime()
-    {
-        return $this->time;
-    }
-
-    /**
-     * @param \DateTime $time
-     */
-    public function setTime($time)
-    {
-        $this->time = $time;
-    }
-
-    /**
      * @return string
      */
     public function getPartner()
@@ -523,6 +514,38 @@ class Event
     public function setContacts($contacts)
     {
         $this->contacts = $contacts;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getTimeStart()
+    {
+        return $this->timeStart;
+    }
+
+    /**
+     * @param \DateTime $timeStart
+     */
+    public function setTimeStart($timeStart)
+    {
+        $this->timeStart = $timeStart;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getTimeEnd()
+    {
+        return $this->timeEnd;
+    }
+
+    /**
+     * @param \DateTime $timeEnd
+     */
+    public function setTimeEnd($timeEnd)
+    {
+        $this->timeEnd = $timeEnd;
     }
 
 
