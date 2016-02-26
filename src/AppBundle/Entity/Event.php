@@ -555,6 +555,22 @@ class Event
         $this->timeEnd = $timeEnd;
     }
 
+    /**
+     * @return string
+     */
+    public function getSponsor()
+    {
+        return $this->sponsor;
+    }
+
+    /**
+     * @param string $sponsor
+     */
+    public function setSponsor($sponsor)
+    {
+        $this->sponsor = $sponsor;
+    }
+
 
 
 }
