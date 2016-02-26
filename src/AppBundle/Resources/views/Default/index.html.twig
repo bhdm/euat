@@ -90,7 +90,7 @@
             <div class="title">ОБРАЗОВАНИЕ</div>
             {% for e in educations %}
                 <div class="new-item">
-                    {{ p.created | date('d.m.Y') }}
+                    {{ e.created | date('d.m.Y') }}
                     <a href="{{ path('publications', {'url' : e.id }) }}"><span class="new-item-title">{{ e.title }}</span></a>
                     <div class="new-item-anons">
                         {% if is_granted('ROLE_ADMIN') %}
