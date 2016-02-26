@@ -149,6 +149,13 @@ class Event
     /**
      * @var string
      *
+     * @ORM\Column(name="sponsor", type="string", nullable=true)
+     */
+    private $sponsor;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="contacts", type="string", nullable=true)
      */
     private $contacts;
