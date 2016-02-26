@@ -50,7 +50,7 @@
         {% endif %}
         <br />
         <div class="title">НОВОСТИ</div>
-        {% for p in publications %}
+        {% for p in publications | slice(0,2) %}
             <div class="new-item">
                 {% if is_granted('ROLE_ADMIN') %}
                     {#<div class="editor">#}
