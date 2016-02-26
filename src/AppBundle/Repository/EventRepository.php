@@ -52,6 +52,7 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
 //        $result = $qb->getQuery()->getSQL();
 //        echo  $result;
 //        exit;
+        $qb->getFirstResult(1);
         $qb->getMaxResults(5);
         $result = $qb->getQuery()->getResult();
 
