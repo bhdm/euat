@@ -10,7 +10,7 @@
             <div id="calendar-widget"></div>
             <div id="calendar-list" class="thumbnail">
                 <ul class="events-list">
-                    {% for e in events | slice(0,4) %}
+                    {% for e in events | slice(0,5) %}
                         <li><span>{{ e.start | date('d.m.Y') }}</span>&nbsp;&nbsp;<a href="{{ path('event',{'url' : e.id}) }}">{{ e.title }}</a></li>
                     {% endfor %}
                 </ul>
