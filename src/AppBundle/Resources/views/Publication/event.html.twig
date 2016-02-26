@@ -40,13 +40,13 @@
                     {% if event.start != null %}
                         <li>
                             <b>Дата начала:</b>     {{ event.start | date('d.m.Y') }}
-                            {% if time != null %}
-                                {{ event.time | date('H:i') }}
-                            {% endif %}
                         </li>
                     {% endif %}
                     {% if event.end != null %}
                         <li><b>Дата окончания:</b>  {{ event.end  | date('d.m.Y') }}</li>
+                    {% endif %}
+                    {% if timeStart != null %}
+                        <li><b>Время проведения:</b>  {{ event.timeStart | date('H:i') }} {{ event.timeEnd != null ? ' - '~event.timeEnd | date('H:i') : '' }}</li>
                     {% endif %}
                     {% if event.city != null %}
                         <li><b>Город:</b>           {{ event.city  }}</li>

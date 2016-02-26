@@ -52,7 +52,7 @@ class EventType extends AbstractType
             ->add('adrs', null, [ 'label' => 'Адрес'])
             ->add('start', DateType::class, [ 'label' => 'Дата начала'])
             ->add('timeStart', TimeType::class, [ 'label' => 'Время начала', 'required' => false])
-            ->add('end',  DateType::class, [ 'label' => 'Дата окончания'])
+            ->add('end',  DateType::class, [ 'label' => 'Дата окончания', 'required' => false])
             ->add('timeEnd', TimeType::class, [ 'label' => 'Время окончания', 'required' => false])
             ->add('partner', null, [ 'label' => 'Партнеры'])
             ->add('contacts', TextareaType::class, [ 'label' => 'Контакная информация'])
