@@ -45,7 +45,7 @@
                     {% if event.end != null %}
                         <li><b>Дата окончания:</b>  {{ event.end  | date('d.m.Y') }}</li>
                     {% endif %}
-                    {% if timeStart != null %}
+                    {% if event.timeStart != null %}
                         <li><b>Время проведения:</b>  {{ event.timeStart | date('H:i') }} {{ event.timeEnd != null ? ' - '~event.timeEnd | date('H:i') : '' }}</li>
                     {% endif %}
                     {% if event.city != null %}
