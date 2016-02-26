@@ -33,6 +33,10 @@
                             {% endfor %}
                         </li>
                     {% endif %}
+                    {% if event.partner != null %}
+                        <li><b>Партнеры:</b> {{ event.partner }}</li>
+                    {% endif %}
+
                     {% if event.start != null %}
                         <li>
                             <b>Дата начала:</b>     {{ event.start | date('d.m.Y') }}
@@ -49,6 +53,9 @@
                     {% endif %}
                     {% if event.adrs != null %}
                         <li><b>Адрес:</b>           {{ event.adrs }}</li>
+                    {% endif %}
+                    {% if event.contacts != null %}
+                        <li><b>Контактная информация:</b> {{ event.contacts }}</li>
                     {% endif %}
                 </ul>
             </div>

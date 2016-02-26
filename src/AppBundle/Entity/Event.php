@@ -132,6 +132,19 @@ class Event
      */
     private $comments;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="partner", type="string", nullable=true)
+     */
+    private $partner;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contacts", type="string", nullable=true)
+     */
+    private $contacts;
 
     public function __construct()
     {
@@ -478,6 +491,38 @@ class Event
     public function setTime($time)
     {
         $this->time = $time;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPartner()
+    {
+        return $this->partner;
+    }
+
+    /**
+     * @param string $partner
+     */
+    public function setPartner($partner)
+    {
+        $this->partner = $partner;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContacts()
+    {
+        return $this->contacts;
+    }
+
+    /**
+     * @param string $contacts
+     */
+    public function setContacts($contacts)
+    {
+        $this->contacts = $contacts;
     }
 
 

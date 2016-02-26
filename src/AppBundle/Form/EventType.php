@@ -8,7 +8,6 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -54,6 +53,8 @@ class EventType extends AbstractType
             ->add('start', DateType::class, [ 'label' => 'Дата начала'])
             ->add('time', TimeType::class, [ 'label' => 'Время начала'])
             ->add('end',  DateType::class, [ 'label' => 'Дата окончания'])
+            ->add('partner', null, [ 'label' => 'Партнеры'])
+            ->add('contacts', TextareaType::class, [ 'label' => 'Контакная информация'])
             ->add('slug', null, [ 'label' => 'URI'])
             ->add('body', null, [ 'label' => 'Контент', 'attr' => ['class' => 'ckeditor']])
             ->add('enabled', ChoiceType::class, array(
