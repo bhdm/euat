@@ -73,12 +73,11 @@
                         </div>
                     {% else %}
                         <div class="col-xs-12">
-                            {{ p.created | date('d.m.Y') }}
                             <a href="{{ path('publications', {'url' : p.id }) }}"><span class="new-item-title">{{ p.title }}</span></a>
                             <div class="new-item-anons">
                                 {{ p.anons  | raw }}
                             </div>
-                            <div style="color: #666; font-size: 11px;">{{ v.created | date('d.m.Y') }}</div>
+                            <div style="color: #666; font-size: 11px;">{{ p.created | date('d.m.Y') }}</div>
                         </div>
                     {% endif %}
                 </div>
@@ -100,7 +99,7 @@
                         {% endif %}
                         {{ e.anons  | raw }}
                     </div>
-                    <div style="color: #666; font-size: 11px;">{{ v.created | date('d.m.Y') }}</div>
+                    <div style="color: #666; font-size: 11px;">{{ e.created | date('d.m.Y') }}</div>
                 </div>
             {% endfor %}
         {% endif %}
