@@ -15,26 +15,28 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('assets/vendor/fancybox/source/jquery.fancybox.css') }}" type="text/css" media="screen" />
+    <style>
+        .vcenter {
+            display: inline-block;
+            vertical-align: middle;
+            float: none;
+        }
+    </style>
 {% endblock %}
 {% block content %}
     <h1 class="blue-text">Наши партнеры</h1>
     <br />
-    {% for p in partners %}
+    <div>
         <div class="row">
-            <div class="col-sm-4 col-md-3">
-                <div class="thumbnail">
-                    <a href="#content-{{ p.id }}" class="fancybox"><img src="{{ p.image.path }}" style="max-height: 150px;"></a>
+            {% for p in partners %}
+                <div class="col-xs-4 col-md-2 col-lg-2 vcenter">
+                    <div class="thumbnail">
+                        <a href="#content-{{ p.id }}" class="fancybox"><img src="{{ p.image.path }}" style="max-height: 150px;" title="{{ p.title }}"></a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-4 col-md-3">
-                <div class="caption" style="color: #333">
-                    <a href="#content-{{ p.id }}" class="fancybox" style="text-decoration: none">
-                        <h3 style="color: #333; margin-top: 0">{{ p.title }}</h3>
-                    </a>
-                    <p style="color: #333">{{ p.shortDescription | slice(0,150) }}</p>
-                    <p style="color: #333 !important;">Ссылка: <a href="{{ p.link }}">{{ p.link }}</a></p>
-                </div>
-            </div>
+            {% endfor %}
+        </div>
+        {% for p in partners %}
             <div style="display: none">
                 <div id="content-{{ p.id }}">
                     <h2>{{ p.title }}</h2>
@@ -42,7 +44,7 @@
                     {{ p.body | raw }}
                 </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 
 {% endblock %}
