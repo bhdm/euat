@@ -21,6 +21,9 @@
             vertical-align: middle;
             float: none;
         }
+        .box-shadow:hover{
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
     </style>
 {% endblock %}
 {% block content %}
@@ -30,7 +33,7 @@
         <div class="row">
             {% for p in prezidium %}
                 <div class="col-xs-6 col-sm-4 col-md-3">
-                    <div class="thumbnail" style="height: 280px">
+                    <div class="thumbnail box-shadow" style="height: 280px">
                         <a href="{{ path('prezidium_info',{'id' : p.id}) }}"><img src="{{ p.photo.path }}" style="height: 185px"/></a>
                         <div class="caption">
                             <a href="{{ path('prezidium_info',{'id' : p.id}) }}" style=" text-decoration: none">
