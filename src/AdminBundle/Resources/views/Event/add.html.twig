@@ -16,3 +16,16 @@
         </form>
     </div>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function(){
+            $("#event_title").syncTranslit({
+                destination: "event_slug",
+                caseStyle: "lower",
+                urlSeparator: "_"
+            });
+        });
+    </script>
+{% endblock %}
