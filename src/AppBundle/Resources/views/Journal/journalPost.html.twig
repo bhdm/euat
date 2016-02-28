@@ -14,14 +14,16 @@
         </div>
         <div class="col-xs-8" style="padding-right: 0">
 
-                <h1 class="blue-text">{{ post.title }}</h1>
-                <div class="params">
-                    <b>Авторы:</b> {{ post.author }}<br />
-                    <b>Описание:</b> {{ post.description | anons }}<br />
-                    <b>Ключевые слова:</b> {{ post.keywords }}
-                </div>
+            <h1 class="blue-text">{{ post.title }}</h1>
+            <div class="params">
+                <b>Авторы:</b> {{ post.author }}<br />
+                <b>Описание:</b> {{ post.description | anons }}<br />
+                <b>Ключевые слова:</b> {{ post.keywords }}
+            </div>
+            <br />
+            <br />
             <div>
-                {{ post.body }}
+                {{ post.body | raw }}
             </div>
 
         </div>
