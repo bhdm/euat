@@ -83,6 +83,9 @@
                 </div>
             </div>
         {% endfor %}
+        <div class="text-right">
+            <a href="{{ path('category',{'categoryUrl', 'new'}) }}"><button type="button" class="btn btn-primary">Читать все новости</button></a>
+        </div>
     </div>
     <div class="col-xs-12">
         {% if educations | length > 0 %}
