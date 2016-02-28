@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,7 +18,20 @@ class OrganizationType extends AbstractType
     {
         $builder
             ->add('title', null, ['label' => 'Название'])
-            ->add('country', null, ['label' => 'Страна'])
+            ->add('country', ChoiceType::class, array(
+                'choices' => array(
+                    'РФ' => 'ru',
+                    'Украина' => 'uk',
+                    'Казахстан' => 'kz',
+                    'Татарстан' => 'tr',
+                    'Республика Молдова' => 'md',
+                    'Республика Булерусь' => 'by',
+                    'Республика узбекистан' => 'uz',
+                    'Монголия' => 'mn',
+                ),
+                'required'    => true,
+                'label' => 'Страна'
+            ))
             ->add('descripton', null, ['label' => 'Описание'])
             ->add('logo', FileType::class, [ 'label' => 'Картинка', 'data_class' => null, 'required' => false])
             ->add('link', null, ['label' => 'Сайт'])
