@@ -63,6 +63,12 @@ class User extends BaseUser
     protected $sex;
 
     /**
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Specialty", inversedBy="userHobby")
+     */
+    protected $hobby;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="workPlace", type="string", nullable=true)
@@ -151,6 +157,7 @@ class User extends BaseUser
         $this->certificate = array();
         $this->courses = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->hobby = new ArrayCollection();
         parent::__construct();
     }
 
@@ -464,6 +471,38 @@ class User extends BaseUser
     public function setCourses($courses)
     {
         $this->courses = $courses;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHobby()
+    {
+        return $this->hobby;
+    }
+
+    /**
+     * @param mixed $hobby
+     */
+    public function setHobby($hobby)
+    {
+        $this->hobby = $hobby;
+    }
+
+    /**
+     * @return Comment
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @param Comment $comments
+     */
+    public function setComments($comments)
+    {
+        $this->comments = $comments;
     }
 
 

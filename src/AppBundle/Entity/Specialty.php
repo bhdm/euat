@@ -61,6 +61,12 @@ class Specialty
     private $courses;
 
     /**
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", mappedBy="hobby")
+     */
+    protected $userHobby;
+
+    /**
      * Specialty constructor.
      */
     public function __construct()

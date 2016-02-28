@@ -57,6 +57,16 @@ class ProfileFormType extends AbstractType
                 'data-placeholder' => 'Выберите специальность'
             ]
         ]);
+
+        $builder->add('hobby', null, [
+            'label' => 'Интересующие специальности',
+            'data_class' => null,
+            'attr' => [
+                'class' => 'specialty multiselect',
+                'data-placeholder' => 'Выберите специальности'
+            ]
+        ]);
+
         $builder->add('academicDegree', ChoiceType::class, [
             'label' => 'Ученая степень',
             'choices' => array(

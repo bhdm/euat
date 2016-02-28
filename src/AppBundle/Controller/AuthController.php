@@ -130,7 +130,9 @@ class AuthController extends Controller
 
             $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
 
-            return $response;
+            return $this->render('FOSUserBundle:Profile:edit.html.twig', array(
+                'form' => $form->createView()
+            ));
         }
 
         return $this->render('FOSUserBundle:Profile:edit.html.twig', array(
