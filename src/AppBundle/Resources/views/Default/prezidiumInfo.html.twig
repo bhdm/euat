@@ -24,11 +24,21 @@
     </style>
 {% endblock %}
 {% block content %}
-    <h1 class="blue-text">Президиум: {{ prezidium }}</h1>
     <br />
     <div>
         <div class="row">
-
+            <div class="col-xs-4">
+                <div class="thumbnail">
+                    <img src="{{ prezidium.photo.path }}" />
+                </div>
+            </div>
+            <div class="col-xs-8">
+                <h1 class="blue-text">{{ prezidium }}</h1>
+                <p style="color: #888">{{ prezidium.post }}</p>
+                <div class="description">
+                    {{ prezidium.description }}
+                </div>
+            </div>
         </div>
     </div>
 
