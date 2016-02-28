@@ -26,15 +26,16 @@
                     {% if event.specialties | length > 0 %}
                         <li><b>Специальности:</b>
                             {% for s in event.specialties %}
-                                {{ s.title }}
-                                {% if s != event.specialties | last %}
-                                    ,
-                                {% endif %}
+                                {{ s.title }}{% if s != event.specialties | last %}, {% endif %}
                             {% endfor %}
                         </li>
                     {% endif %}
-                    {% if event.partner != null %}
-                        <li><b>Партнеры:</b> {{ event.partner }}</li>
+                    {% if event.partners | length > 0 %}
+                        <li><b>Партнеры:</b>
+                            {% for part in event.partners  %}
+                                {{ part.title }}{% if part != event.partners | last %}, {% endif %}
+                            {% endfor %}
+                        </li>
                     {% endif %}
 
                     {% if event.start != null %}
