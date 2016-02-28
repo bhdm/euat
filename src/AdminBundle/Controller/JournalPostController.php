@@ -77,24 +77,9 @@ class JournalPostController extends Controller{
         $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
         $formData = $form->handleRequest($request);
 
-        $olfFile = $item->getPhoto();
-
-
         if ($request->getMethod() == 'POST'){
             if ($formData->isValid()){
                 $item = $formData->getData();
-                $file = $item->getPhoto();
-                if ($file == null){
-                    $item->setPhoto($olfFile);
-                }else{
-                    $filename = time(). '.'.$file->guessExtension();
-                    $file->move(
-                        __DIR__.'/../../../web/upload/journalpost/',
-                        $filename
-                    );
-                    $item->setPhoto(['path' => '/upload/journalpost/'.$filename ]);
-                }
-
                 $em->flush($item);
                 $em->refresh($item);
                 return $this->redirect($this->generateUrl('admin_journalpost_list'));
