@@ -59,12 +59,20 @@ class EventType extends AbstractType
             ->add('contacts', TextareaType::class, [ 'label' => 'Контакная информация'])
             ->add('slug', null, [ 'label' => 'URI'])
             ->add('body', null, [ 'label' => 'Контент', 'attr' => ['class' => 'ckeditor']])
+            ->add('theses', ChoiceType::class, array(
+                'choices' => array(
+                    'Активна' => true,
+                    'Не активна' => false
+                ),
+                'required'    => false,
+                'label' => 'Вставка тезисов'
+            ))
             ->add('enabled', ChoiceType::class, array(
                 'choices' => array(
                     'Активная' => true,
                     'Неактивна' => false
                 ),
-                'required'    => true,
+                'required'    => false,
                 'label' => 'Состояние'
             ));
         ;

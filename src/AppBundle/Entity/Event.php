@@ -160,6 +160,16 @@ class Event
      */
     private $contacts;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="theses", type="boolean", nullable=true)
+     */
+    private $theses;
+
+    /**
+     * Event constructor.
+     */
     public function __construct()
     {
         $this->specialties = new ArrayCollection();
@@ -167,6 +177,7 @@ class Event
         $this->comments = new ArrayCollection();
         $this->enabled = true;
         $this->created = new \DateTime();
+        $this->theses = false;
     }
 
     /**
@@ -570,6 +581,22 @@ class Event
     public function setPartners($partners)
     {
         $this->partners = $partners;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTheses()
+    {
+        return $this->theses;
+    }
+
+    /**
+     * @param mixed $theses
+     */
+    public function setTheses($theses)
+    {
+        $this->theses = $theses;
     }
 
 
