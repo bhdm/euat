@@ -65,6 +65,16 @@
         <div class="body">
             {{ event.body | raw }}
         </div>
+        {% if event.theses == true %}
+            <br />
+            <div style="border: 1px solid #CCC; padding: 20px">
+                <div class="caption"><b>Оставить заявку</b></div>
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
+            </div>
+            <br />
+        {% endif %}
         <div class="row row-params">
             <div class="col-xs-5" style="padding-top: 7px;">
                 {#<span style="font-size: 12px">Расказать друзьям&nbsp;&nbsp;</span>#}

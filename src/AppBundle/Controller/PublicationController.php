@@ -7,7 +7,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class PublicationController extends Controller
 {
@@ -40,7 +44,36 @@ class PublicationController extends Controller
     public function eventAction(Request $request, $url)
     {
         $event = $this->getDoctrine()->getRepository('AppBundle:Event')->findOneById($url);
-        return ['event' => $event];
+        $form = $this->createFormBuilder()
+            ->add('fio', TextType::class, ['label' => 'Ф.И.О'])
+            ->add('email', TextType::class, ['label' => 'E-mail'])
+            ->add('phone', TextType::class, ['label' => 'Телефон'])
+            ->add('theses', TextareaType::class, ['label' => 'Тезис', 'attr' => ['style' => 'height: 150px']])
+            ->add('submit', SubmitType::class, ['label' => 'Отправить'])
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
+//            return $this->render('@App/Mail/setTheses.html.twig',['data' => $data, 'event' => $event]);
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject('ПОльзователь оставил тезис')
+                ->setFrom('info@euat.ru')
+                ->setTo('korotun@euat.ru')
+                ->setBody(
+                    $this->renderView(
+                        '@App/Mail/setTheses.html.twig',
+                        array('data' => $data, 'event' => $event)
+                    ),
+                    'text/html'
+                );
+            $this->get('mailer')->send($message);
+        }
+
+        return ['event' => $event, 'form' => $form->createView()];
     }
 
     /**
