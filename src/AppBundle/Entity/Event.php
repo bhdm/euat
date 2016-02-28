@@ -142,9 +142,9 @@ class Event
     /**
      * @var string
      *
-     * @ORM\Column(name="partner", type="string", nullable=true)
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Partner", inversedBy="events")
      */
-    private $partner;
+    private $partners;
 
     /**
      * @var string
@@ -163,6 +163,7 @@ class Event
     public function __construct()
     {
         $this->specialties = new ArrayCollection();
+        $this->partners = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->enabled = true;
         $this->created = new \DateTime();
@@ -494,22 +495,6 @@ class Event
     /**
      * @return string
      */
-    public function getPartner()
-    {
-        return $this->partner;
-    }
-
-    /**
-     * @param string $partner
-     */
-    public function setPartner($partner)
-    {
-        $this->partner = $partner;
-    }
-
-    /**
-     * @return string
-     */
     public function getContacts()
     {
         return $this->contacts;
@@ -569,6 +554,22 @@ class Event
     public function setSponsor($sponsor)
     {
         $this->sponsor = $sponsor;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPartners()
+    {
+        return $this->partners;
+    }
+
+    /**
+     * @param string $partners
+     */
+    public function setPartners($partners)
+    {
+        $this->partners = $partners;
     }
 
 

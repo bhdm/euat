@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -70,9 +71,22 @@ class Partner
      */
     private $type;
 
+    /**
+     * @var string
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Event", mappedBy="partners")
+     */
+    private $events;
+
     public function __construct()
     {
         $this->image = array();
+        $this->events = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->title;
     }
 
     /**
@@ -244,6 +258,23 @@ class Partner
     {
         $this->type = $type;
     }
+
+    /**
+     * @return string
+     */
+    public function getEvents()
+    {
+        return $this->events;
+    }
+
+    /**
+     * @param string $events
+     */
+    public function setEvents($events)
+    {
+        $this->events = $events;
+    }
+
 
 
 }
