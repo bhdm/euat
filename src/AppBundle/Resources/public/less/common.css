@@ -1,13 +1,16 @@
+* {
+  font-family: "Tahoma, Verdana, Arial, sans-serif" !important;
+}
 body {
   text-align: center;
-  font-family: 'HelveticaNeue-Light';
+  font-family: "Tahoma, Verdana, Arial, sans-serif";
 }
 a {
   cursor: pointer !important;
 }
 h1.blue-text {
   font-size: 22px;
-  font-family: 'HelveticaNeue-Light';
+  font-family: "Tahoma, Verdana, Arial, sans-serif";
 }
 .blue-text {
   color: #0e66a2;
