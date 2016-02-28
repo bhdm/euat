@@ -17,7 +17,7 @@
             <h1 class="blue-text">{{ post.title }}</h1>
             <div class="params">
                 <b>Авторы:</b> {{ post.author }}<br />
-                <b>Описание:</b> {{ post.description | anons }}<br />
+                <b>Описание:</b> {{ post.description | raw }}<br />
                 <b>Ключевые слова:</b> {{ post.keywords }}
             </div>
             <br />
