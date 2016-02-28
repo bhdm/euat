@@ -92,4 +92,23 @@ class DefaultController extends Controller
         $organizations = $this->getDoctrine()->getRepository('AppBundle:Organization')->findBy(['country' => $country]);
         return ['organizations' => $organizations];
     }
+
+    /**
+     * @Route("/prezidium", name="prezidium")
+     * @Template()
+     */
+    public function prezidiumAction(){
+        $prezidium = $this->getDoctrine()->getRepository('AppBundle:Prezidium')->findAll();
+        return ['prezidium' => $prezidium];
+    }
+
+    /**
+     * @Route("/prezidium/{id}", name="prezidium_info")
+     * @Template()
+     */
+    public function prezidiumInfoAction($id){
+        $prezidium = $this->getDoctrine()->getRepository('AppBundle:Prezidium')->findOneBy(['id' => $id]);
+        return ['prezidium' => $prezidium];
+    }
+
 }

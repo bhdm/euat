@@ -1,0 +1,52 @@
+{% extends 'AppBundle::layout.html.twig' %}
+{% block javascript %}
+    {{ parent() }}
+    <script src="{{ asset('assets/vendor/moment/moment.js') }}"></script>
+    <script src="{{ asset('assets/vendor/moment/locale/ru.js') }}"></script>
+    <script src="{{ asset('assets/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+
+    <script src="{{ asset('assets/vendor/fancybox/source/jquery.fancybox.pack.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.fancybox').fancybox();
+        })
+    </script>
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/vendor/fancybox/source/jquery.fancybox.css') }}" type="text/css" media="screen" />
+    <style>
+        .vcenter {
+            display: inline-block;
+            vertical-align: middle;
+            float: none;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <h1 class="blue-text">Президиум</h1>
+    <br />
+    <div>
+        <div class="row">
+            {% for p in prezidium %}
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <a href="{{ path('prezidium_info',{'id' : p.id}) }}"><img src="{{ p.photo.path }}" /></a>
+                        <div class="caption">
+                            <a href="{{ path('prezidium_info',{'id' : p.id}) }}" style=" text-decoration: none">
+                                <h3 style="color: #333; text-decoration: none">{{ p }}</h3>
+                            </a>
+                            <p>
+                                {{ p.post }}
+                            </p>
+                            <p>
+                              {{ p.description | minidesc }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

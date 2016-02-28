@@ -7,6 +7,7 @@ class AppExtension extends \Twig_Extension
     {
         return array(
             new \Twig_SimpleFilter('anons', array($this, 'anonsFilter')),
+            new \Twig_SimpleFilter('minidesc', array($this, 'minidescFilter')),
         );
     }
 
@@ -15,6 +16,13 @@ class AppExtension extends \Twig_Extension
         mb_internal_encoding("UTF-8");
         $text = strip_tags($text);
         $text = mb_substr($text,0,400);
+        return $text.'...';
+    }
+    public function minidescFilter($text)
+    {
+        mb_internal_encoding("UTF-8");
+        $text = strip_tags($text);
+        $text = mb_substr($text,0,200);
         return $text.'...';
     }
 
