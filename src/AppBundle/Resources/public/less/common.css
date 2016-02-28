@@ -3,14 +3,12 @@
 }
 body {
   text-align: center;
-  font-family: Tahoma, Verdana, Arial, sans-serif;
 }
 a {
   cursor: pointer !important;
 }
 h1.blue-text {
   font-size: 22px;
-  font-family: Tahoma, Verdana, Arial, sans-serif !important;
 }
 .blue-text {
   color: #0e66a2;
