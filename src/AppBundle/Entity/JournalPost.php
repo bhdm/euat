@@ -68,6 +68,21 @@ class JournalPost extends BaseEntity{
     protected $author;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    protected $authorEn;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $source;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $sourceEn;
+
+    /**
      * @ORM\Column(type="string", nullable=true)
      */
     protected $pages;
@@ -254,6 +269,55 @@ class JournalPost extends BaseEntity{
     {
         $this->pages = $pages;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAuthorEn()
+    {
+        return $this->authorEn;
+    }
+
+    /**
+     * @param mixed $authorEn
+     */
+    public function setAuthorEn($authorEn)
+    {
+        $this->authorEn = $authorEn;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSource()
+    {
+        return $this->source;
+    }
+
+    /**
+     * @param mixed $source
+     */
+    public function setSource($source)
+    {
+        $this->source = $source;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSourceEn()
+    {
+        return $this->sourceEn;
+    }
+
+    /**
+     * @param mixed $sourceEn
+     */
+    public function setSourceEn($sourceEn)
+    {
+        $this->sourceEn = $sourceEn;
+    }
+
 
 
 
