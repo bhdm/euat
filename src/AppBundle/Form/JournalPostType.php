@@ -24,6 +24,7 @@ class JournalPostType extends AbstractType
             ->add('author', null, ['label' => 'Авторы'])
             ->add('source', null, ['label' => 'Список литературы', 'attr' => ['class' => 'ckeditor']])
 
+            ->add('pagesEN', null, ['label' => 'Страницы (Англ)'])
             ->add('titleEn', null, ['label' => 'Название статьи (Англ)'])
             ->add('descriptionEn', null, ['label' => 'Описание статьи (Англ)', 'attr' => ['class' => 'ckeditor']])
             ->add('bodyEn', null, ['label' => 'Текст статьи (Англ)', 'attr' => ['class' => 'ckeditor']])

@@ -87,6 +87,12 @@ class JournalPost extends BaseEntity{
      */
     protected $pages;
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $pagesEn;
+
+
     public function __construct(){
         $this->author = array();
         $this->created = new \DateTime();
@@ -316,6 +322,22 @@ class JournalPost extends BaseEntity{
     public function setSourceEn($sourceEn)
     {
         $this->sourceEn = $sourceEn;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPagesEn()
+    {
+        return $this->pagesEn;
+    }
+
+    /**
+     * @param mixed $pagesEn
+     */
+    public function setPagesEn($pagesEn)
+    {
+        $this->pagesEn = $pagesEn;
     }
 
 
