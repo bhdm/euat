@@ -216,6 +216,9 @@ class Prezidium
         $this->post = $post;
     }
 
+    public function getFullname(){
+        return $this->lastName . ' ' . mb_substr($this->firstName, 0, 1, 'utf-8') . '.' . ($this->surName ? ' ' . mb_substr($this->surName, 0, 1, 'utf-8') . '.' : '');
+    }
 
 }
 
