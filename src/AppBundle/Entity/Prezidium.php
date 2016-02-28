@@ -45,6 +45,14 @@ class Prezidium
     /**
      * @var string
      *
+     * @ORM\Column(name="post", type="string", length=255, nullable=true)
+     */
+    private $post;
+
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
@@ -191,5 +199,23 @@ class Prezidium
     {
         return $this->photo;
     }
+
+    /**
+     * @return string
+     */
+    public function getPost()
+    {
+        return $this->post;
+    }
+
+    /**
+     * @param string $post
+     */
+    public function setPost($post)
+    {
+        $this->post = $post;
+    }
+
+
 }
 

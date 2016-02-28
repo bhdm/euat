@@ -20,6 +20,7 @@ class PrezidiumType extends AbstractType
             ->add('lastName', null, ['label' => 'Фамилия'])
             ->add('firstName', null, ['label' => 'Имя'])
             ->add('surName', null, ['label' => 'Отчество'])
+            ->add('post', null, ['label' => 'Должность'])
             ->add('photo', FileType::class,['label' => 'Фотография'])
             ->add('description', TextareaType::class, ['label' => 'Описание'])
         ;
