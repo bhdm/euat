@@ -36,24 +36,25 @@
                     <div class="col-xs-7">{{ journal.tom }}</div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-xs-12"><p>{{ journal.description | raw }}</p></div>
+            </div>
+            <div class="row">
+                <h3 class="blue-text">Статьи журнала</h3>
+                {% for post in journal.posts %}
+                    <div class="row">
+                        <div class="caption" style="font-size: 16px"><a href="#">{{ post.title }}</a></div>
+                        <div class="params">
+                            <b>Авторы:</b> {{ post.author }}<br />
+                            <b>Описание:</b> {{ post.description | raw }}<br />
+                            <b>Ключевые слова:</b> {{ post.keywords }}
+                        </div>
+                    </div>
+                    <hr />
+                {% endfor %}
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xs-12"><p>{{ journal.description | raw }}</p></div>
-    </div>
-    <div class="row">
-        <h3 class="blue-text">Статьи журнала</h3>
-        {% for post in journal.posts %}
-            <div class="row">
-                <div class="caption" style="font-size: 16px"><a href="#">{{ post.title }}</a></div>
-                <div class="params">
-                    <b>Авторы:</b> {{ post.author }}<br />
-                    <b>Описание:</b> {{ post.description | raw }}<br />
-                    <b>Ключевые слова:</b> {{ post.keywords }}
-                </div>
-            </div>
-            <hr />
-        {% endfor %}
-    </div>
+
 
 {% endblock %}
