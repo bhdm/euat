@@ -4,12 +4,29 @@
     <h1>{{ category.title }}</h1>
     <div>
         {% for p in publications %}
-            <div class="new-item">
-                <a href="{{ path('publications', {'url' : p.id }) }}"><div class="new-item-title">{{ p.title }}</div></a>
-                <div class="new-item-anons">
-                    {{ p.body | anons | raw }}
+            {% if p.preview.path is defined %}
+                <div class="col-xs-3">
+                    <a href="{{ path('publications', {'url' : p.id }) }}">
+                        <img src="{{ p.preview.path }}" style="width: 100%" class="img-thumbnail">
+                    </a>
                 </div>
-            </div>
+                <div class="col-xs-9">
+                    <a href="{{ path('publications', {'url' : p.id }) }}"><span class="new-item-title">{{ p.title }}</span></a>
+                    <div class="new-item-anons">
+                        {{ p.anons  | raw }}
+                    </div>
+                    <div style="color: #666; font-size: 11px;">{{ p.created | date('d.m.Y') }}</div>
+                </div>
+            {% else %}
+                <div class="col-xs-12">
+                    <a href="{{ path('publications', {'url' : p.id }) }}"><span class="new-item-title">{{ p.title }}</span></a>
+                    <div class="new-item-anons">
+                        {{ p.anons  | raw }}
+                    </div>
+                    <div style="color: #666; font-size: 11px;">{{ p.created | date('d.m.Y') }}</div>
+                </div>
+            {% endif %}
+
         {% endfor %}
     </div>
 {% endblock %}
