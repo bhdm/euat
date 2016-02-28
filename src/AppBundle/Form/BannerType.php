@@ -21,6 +21,7 @@ class BannerType extends AbstractType
             ->add('title', null, ['label' => 'Название'])
             ->add('file', FileType::class, [ 'label' => 'Картинка', 'data_class' => null, 'required' => false])
             ->add('enabled', ChoiceType::class, array(
+                'required' => false,
                 'choices' => array(
                     'Активная' => true,
                     'Неактивна' => false
