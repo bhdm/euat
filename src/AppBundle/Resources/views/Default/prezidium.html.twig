@@ -29,7 +29,7 @@
     <div>
         <div class="row">
             {% for p in prezidium %}
-                <div class="col-sm-4 col-md-3">
+                <div class="col-xs-2 col-sm-4 col-md-3">
                     <div class="thumbnail" style="height: 280px">
                         <a href="{{ path('prezidium_info',{'id' : p.id}) }}"><img src="{{ p.photo.path }}" style="height: 185px"/></a>
                         <div class="caption">
