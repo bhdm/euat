@@ -46,7 +46,7 @@
                         <div class="caption" style="font-size: 16px"><a href="#">{{ post.title }}</a></div>
                         <div class="params">
                             <b>Авторы:</b> {{ post.author }}<br />
-                            <b>Описание:</b> {{ post.description | anons | slice(0,500) | raw }}<br />
+                            <b>Описание:</b> {{ post.description | anons }}<br />
                             <b>Ключевые слова:</b> {{ post.keywords }}
                         </div>
                     </div>
