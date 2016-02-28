@@ -13,19 +13,26 @@
             {{ render(controller("AppBundle:Widget:calendar" )) }}
         </div>
         <div class="col-xs-8" style="padding-right: 0">
-
+            <ol class="breadcrumb">
+                <li><a href="{{ path('journals') }}">Журналы</a></li>
+                <li><a href="{{ path('journal',{'joutnalId' : post.journal.id }) }}">{{ post.journal.title }}</a></li>
+                <li class="active">Статья</li>
+            </ol>
             <h1 class="blue-text">{{ post.title }}</h1>
             <div class="params">
                 <b>Авторы:</b> {{ post.author }}<br />
                 <b>Описание:</b> {{ post.description | raw }}<br />
-                <b>Ключевые слова:</b> {{ post.keywords }}
+                {#<b>Ключевые слова:</b> {{ post.keywords }}#}
             </div>
-            <br />
             <br />
             <div>
                 {{ post.body | raw }}
             </div>
-
+            <br />
+            <div class="params">
+                <b>Список литературы:</b> {{ post.source }}<br />
+                {#<b>Ключевые слова:</b> {{ post.keywords }}#}
+            </div>
         </div>
     </div>
 
