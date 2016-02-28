@@ -5,10 +5,10 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Organizaation
+ * Organization
  *
- * @ORM\Table(name="organizaation")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\OrganizaationRepository")
+ * @ORM\Table(name="organization")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\OrganizationRepository")
  */
 class Organization
 {
@@ -76,7 +76,7 @@ class Organization
      *
      * @param string $title
      *
-     * @return Organizaation
+     * @return Organization
      */
     public function setTitle($title)
     {
@@ -100,7 +100,7 @@ class Organization
      *
      * @param string $country
      *
-     * @return Organizaation
+     * @return Organization
      */
     public function setCountry($country)
     {
@@ -124,7 +124,7 @@ class Organization
      *
      * @param string $descripton
      *
-     * @return Organizaation
+     * @return Organization
      */
     public function setDescripton($descripton)
     {
@@ -148,7 +148,7 @@ class Organization
      *
      * @param array $logo
      *
-     * @return Organizaation
+     * @return Organization
      */
     public function setLogo($logo)
     {
@@ -172,7 +172,7 @@ class Organization
      *
      * @param string $link
      *
-     * @return Organizaation
+     * @return Organization
      */
     public function setLink($link)
     {

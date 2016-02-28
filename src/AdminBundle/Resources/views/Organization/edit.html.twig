@@ -10,9 +10,9 @@
 
 {% block content %}
     <div class="well">
-        {% if item.preview.path is defined %}
+        {% if item.logo.path is defined %}
             <div class="text-right">
-            <img src="{{ item.preview.path }}" style="max-width: 200px; display: inline-block" class="thumbnail">
+            <img src="{{ item.logo.path }}" style="max-width: 200px; display: inline-block" class="thumbnail">
             </div>
         {% endif %}
         {{ form_start(form) }}

@@ -79,4 +79,17 @@ class DefaultController extends Controller
     public function mapAction(){
         return [];
     }
+
+    /**
+     * @param Request $request
+     * @return array
+     *
+     * @Route("organizations-info", name="organization_info", options={"expose"=true})
+     * @Template()
+     */
+    public function organizationInfoAction(Request $request){
+        $country = $request->request->get('id');
+        $organizations = $this->getDoctrine()->getRepository('AppBundle:Organization')->findBy(['country' => $country]);
+        return ['organizations' => $organizations];
+    }
 }

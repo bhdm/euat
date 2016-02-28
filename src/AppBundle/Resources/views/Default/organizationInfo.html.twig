@@ -1,0 +1,9 @@
+<div class="row text-center">
+    {% for o in organizations %}
+        <div class="col-xs-4 col-md-2 col-lg-2">
+            <a href="#" class="thumbnail">
+                <img src="{{ o.logo.path }}" alt="{{ o.title }}" title="{{ o.title }}" style="width: 100%">
+            </a>
+        </div>
+    {% endfor %}
+</div>
