@@ -2,9 +2,9 @@
 
 {% block content %}
     <h1 class="blue-text">{{ category.title }}</h1>
-    <div class="new-item">
+    <div class="">
         {% for p in publications %}
-            <div>
+            <div class="new-item row">
                 {% if p.preview.path is defined %}
                     <div class="col-xs-3">
                         <a href="{{ path('publications', {'url' : p.id }) }}">
