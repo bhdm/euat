@@ -64,7 +64,7 @@ class PublicationController extends Controller
      */
     public function categotyAction($categoryUrl){
         $category = $this->getDoctrine()->getRepository('AppBundle:Category')->findOneBySlug($categoryUrl);
-        $publications = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['enabled' => true, 'category' => $category ]);
+        $publications = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['enabled' => true, 'category' => $category ],['created' => 'DESC']);
 
         return ['category' => $category,'publications' => $publications];
     }
