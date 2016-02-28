@@ -40,7 +40,8 @@ class WidgetController extends Controller
     public function bannerAction(Request $request){
 
         $banner = $this->getDoctrine()->getRepository('AppBundle:Banner')->findBy(['enabled' => true],[],1);
-        $banner = $banner[array_rand($banner)];
+        $key = array_rand($banner);
+        $banner = $banner[$key];
         return ['banner' => $banner];
     }
 
