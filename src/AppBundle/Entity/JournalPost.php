@@ -63,12 +63,12 @@ class JournalPost extends BaseEntity{
     protected $body;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $author;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $authorEn;
 
