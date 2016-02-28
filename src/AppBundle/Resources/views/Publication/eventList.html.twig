@@ -28,6 +28,7 @@
                     <span class="glyphicon glyphicon-calendar"></span>
                     {{ p.start | date('d.m.Y') }}{{ p.end != null ? ' - '~p.end | date('d.m.Y') : '' }}
                 </span>
+                    <br />
                     <a href="{{ path('event', {'url' : p.id }) }}"><span class="new-item-title">{{ p.title }}</span></a>
                     <div class="new-item-anons">
                         {{ p.body | anons | raw }}
