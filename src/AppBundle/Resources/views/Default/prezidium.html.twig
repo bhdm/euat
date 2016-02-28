@@ -34,9 +34,9 @@
                         <a href="{{ path('prezidium_info',{'id' : p.id}) }}"><img src="{{ p.photo.path }}" style="height: 185px"/></a>
                         <div class="caption">
                             <a href="{{ path('prezidium_info',{'id' : p.id}) }}" style=" text-decoration: none">
-                                <h4 style="color: #333; text-decoration: none; font-size: 16px;"><b>{{ p.fullname }}</b></h4>
+                                <h4 style="color: #333; text-decoration: none; font-size: 16px;">{{ p.fullname }}</h4>
                             </a>
-                            <p>
+                            <p style="color: #888">
                                 {{ p.post }}
                             </p>
                             {#<p>#}
