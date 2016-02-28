@@ -26,7 +26,6 @@ class BannerType extends AbstractType
                     'Активная' => true,
                     'Неактивна' => false
                 ),
-                'required'    => true,
                 'label' => 'Состояние'
             ))
             ->add('start', DateTimeType::class, [ 'label' => 'Дата начала'])
