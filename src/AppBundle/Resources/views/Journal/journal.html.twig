@@ -43,7 +43,7 @@
                 <h3 class="blue-text">Статьи журнала</h3>
                 {% for post in journal.posts %}
                     <div class="row">
-                        <div class="caption" style="font-size: 16px"><a href="#">{{ post.title }}</a></div>
+                        <div class="caption" style="font-size: 16px"><a href="{{ path('journal-post', {'journalId' : journal.id, 'postId' : post.id}) }}">{{ post.title }}</a></div>
                         <div class="params">
                             <b>Авторы:</b> {{ post.author }}<br />
                             <b>Описание:</b> {{ post.description | anons }}<br />

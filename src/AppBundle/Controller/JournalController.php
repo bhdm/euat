@@ -45,7 +45,7 @@ class JournalController extends Controller
      * @param $postId
      * @return Request
      *
-     * @Route("/journal/{journalId}/post/{postId}")
+     * @Route("/journal/{journalId}/post/{postId}", name="journal-post")
      * @Template()
      */
     public function journalPostAction($journalId, $postId){
@@ -55,4 +55,8 @@ class JournalController extends Controller
         return ['journal' => $journal, 'post' => $post];
 
     }
+
+
+
+
 }
