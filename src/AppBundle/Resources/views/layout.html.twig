@@ -99,6 +99,9 @@
         {% endif %}
         {{ render(controller("AppBundle:Default:generateMenu" )) }}
         <div class="content">
+            {% for flashMessage in app.session.flashbag.get('info') %}
+                <div class="alert alert-info text-center">{{ flashMessage }}</div>
+            {% endfor %}
             {% block fullContent %}
                 <div class="row">
                     <div class="col-xs-9">
@@ -134,7 +137,7 @@
                         <div><strong>Наши контакты</strong></div>
                         <div>
                             Адрес: <span class="blue-text">129085, Россия, Москва, Звездный бульвар, д. 21, стр. 1</span><br />
-                            Телефон: <span class="blue-text">+7 (977) 612-26-957</span><br />
+                            Телефон: <span class="blue-text">+7 (977) 612-26-95</span><br />
                             Телефон: <span class="blue-text">+7 (929) 986-69-80</span><br />
                             Эл.почта: <span class="blue-text"><a href="mailto:office@euat.ru">office@euat.ru</a></span><br />
                         </div>

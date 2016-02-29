@@ -46,6 +46,7 @@ class PublicationController extends Controller
         $event = $this->getDoctrine()->getRepository('AppBundle:Event')->findOneById($url);
         $form = $this->createFormBuilder()
             ->add('fio', TextType::class, ['label' => 'Ф.И.О'])
+            ->add('place', TextType::class, ['label' => 'Место работы'])
             ->add('email', TextType::class, ['label' => 'E-mail'])
             ->add('phone', TextType::class, ['label' => 'Телефон'])
             ->add('theses', TextareaType::class, ['label' => 'Тезис', 'attr' => ['style' => 'height: 150px']])
@@ -60,7 +61,7 @@ class PublicationController extends Controller
 //            return $this->render('@App/Mail/setTheses.html.twig',['data' => $data, 'event' => $event]);
 
             $message = \Swift_Message::newInstance()
-                ->setSubject('ПОльзователь оставил тезис')
+                ->setSubject('Пользователь оставил тезис')
                 ->setFrom('info@euat.ru')
                 ->setTo('korotun@euat.ru')
                 ->setBody(
@@ -72,7 +73,8 @@ class PublicationController extends Controller
                 );
             $this->get('mailer')->send($message);
         }
-
+        $session = $request->getSession();
+        $session->getFlashBag()->add('info', 'Ваша заявка отправлена');
         return ['event' => $event, 'form' => $form->createView()];
     }
 
