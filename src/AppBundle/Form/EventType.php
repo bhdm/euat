@@ -67,6 +67,14 @@ class EventType extends AbstractType
                 'required'    => false,
                 'label' => 'Вставка тезисов'
             ))
+            ->add('register', ChoiceType::class, array(
+                'choices' => array(
+                    'Активна' => true,
+                    'Не активна' => false
+                ),
+                'required'    => false,
+                'label' => 'Регистрация'
+            ))
             ->add('enabled', ChoiceType::class, array(
                 'choices' => array(
                     'Активная' => true,

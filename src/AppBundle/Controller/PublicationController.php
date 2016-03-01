@@ -44,37 +44,67 @@ class PublicationController extends Controller
     public function eventAction(Request $request, $url)
     {
         $event = $this->getDoctrine()->getRepository('AppBundle:Event')->findOneById($url);
-        $form = $this->createFormBuilder()
-            ->add('fio', TextType::class, ['label' => 'Ф.И.О'])
-            ->add('place', TextType::class, ['label' => 'Место работы'])
-            ->add('email', TextType::class, ['label' => 'E-mail'])
-            ->add('phone', TextType::class, ['label' => 'Телефон'])
-            ->add('theses', TextareaType::class, ['label' => 'Тезис', 'attr' => ['style' => 'height: 150px']])
-            ->add('submit', SubmitType::class, ['label' => 'Отправить'])
-            ->getForm();
 
-        $form->handleRequest($request);
+        if ($event->isTheses() == true){
+            $form = $this->createFormBuilder()
+                ->add('fio', TextType::class, ['label' => 'Ф.И.О'])
+                ->add('place', TextType::class, ['label' => 'Место работы'])
+                ->add('email', TextType::class, ['label' => 'E-mail'])
+                ->add('phone', TextType::class, ['label' => 'Телефон'])
+                ->add('theses', TextareaType::class, ['label' => 'Тезис', 'attr' => ['style' => 'height: 150px']])
+                ->add('submit', SubmitType::class, ['label' => 'Отправить'])
+                ->getForm();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
+            $form->handleRequest($request);
 
-//            return $this->render('@App/Mail/setTheses.html.twig',['data' => $data, 'event' => $event]);
-
-            $message = \Swift_Message::newInstance()
-                ->setSubject('Пользователь оставил тезис')
-                ->setFrom('info@euat.ru')
-                ->setTo('korotun@euat.ru')
-                ->setBody(
-                    $this->renderView(
-                        '@App/Mail/setTheses.html.twig',
-                        array('data' => $data, 'event' => $event)
-                    ),
-                    'text/html'
-                );
-            $this->get('mailer')->send($message);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $data = $form->getData();
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Пользователь оставил тезис')
+                    ->setFrom('info@euat.ru')
+                    ->setTo('korotun@euat.ru')
+                    ->setBody(
+                        $this->renderView(
+                            '@App/Mail/setTheses.html.twig',
+                            array('data' => $data, 'event' => $event)
+                        ),
+                        'text/html'
+                    );
+                $this->get('mailer')->send($message);
+                $session = $request->getSession();
+                $session->getFlashBag()->add('info', 'Ваша заявка отправлена');
+            }
         }
-        $session = $request->getSession();
-        $session->getFlashBag()->add('info', 'Ваша заявка отправлена');
+        if ($event->isRegister() == true){
+            $form = $this->createFormBuilder()
+                ->add('fio', TextType::class, ['label' => 'Ф.И.О'])
+                ->add('place', TextType::class, ['label' => 'Место работы'])
+                ->add('post', TextType::class, ['label' => 'Должность'])
+                ->add('email', TextType::class, ['label' => 'E-mail'])
+                ->add('phone', TextType::class, ['label' => 'Телефон'])
+                ->add('submit', SubmitType::class, ['label' => 'Отправить'])
+                ->getForm();
+
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $data = $form->getData();
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Пользователь оставил заявку на регистрацию')
+                    ->setFrom('info@euat.ru')
+                    ->setTo('korotun@euat.ru')
+                    ->setBody(
+                        $this->renderView(
+                            '@App/Mail/setRegister.html.twig',
+                            array('data' => $data, 'event' => $event)
+                        ),
+                        'text/html'
+                    );
+                $this->get('mailer')->send($message);
+                $session = $request->getSession();
+                $session->getFlashBag()->add('info', 'Ваша заявка отправлена');
+            }
+        }
         return ['event' => $event, 'form' => $form->createView()];
     }
 

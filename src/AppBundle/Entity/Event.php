@@ -168,6 +168,14 @@ class Event
     private $theses;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="register", type="boolean", nullable=true)
+     */
+    private $register;
+
+
+    /**
      * Event constructor.
      */
     public function __construct()
@@ -178,6 +186,7 @@ class Event
         $this->enabled = true;
         $this->created = new \DateTime();
         $this->theses = false;
+        $this->register = false;
     }
 
     /**
@@ -586,7 +595,7 @@ class Event
     /**
      * @return mixed
      */
-    public function getTheses()
+    public function isTheses()
     {
         return $this->theses;
     }
@@ -597,6 +606,22 @@ class Event
     public function setTheses($theses)
     {
         $this->theses = $theses;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isRegister()
+    {
+        return $this->register;
+    }
+
+    /**
+     * @param boolean $register
+     */
+    public function setRegister($register)
+    {
+        $this->register = $register;
     }
 
 
