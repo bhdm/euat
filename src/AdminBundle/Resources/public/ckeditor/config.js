@@ -21,5 +21,5 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] }
 //        { name: 'others' },
     ];
-
+    config.filebrowserUploadUrl = '/bundles/admin/ckeditor/upload.php';
 };
