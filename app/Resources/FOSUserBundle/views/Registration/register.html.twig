@@ -67,6 +67,9 @@
                 <br />
                 {{ form_start(form, {'action': path('fos_user_registration_register'), 'attr': {'id': 'registration_form'}}) }}
                 {{ form_widget(form) }}
+                <div class="form-group text-right" style="    padding-right: 15px;">
+                    <input type="checkbox" required > Я согласен(на) c <a href="{{ path('page',{'url' : 'offerta'}) }}" target="_blank">пользовательским соглашением</a>
+                </div>
                 <div class="row">
                     <div class="col-sm-9 col-sm-offset-3 registration-submit-button text-right">
                         <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
