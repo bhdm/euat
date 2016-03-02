@@ -45,6 +45,7 @@ class PublicationController extends Controller
     {
         $event = $this->getDoctrine()->getRepository('AppBundle:Event')->findOneById($url);
 
+        $form = null;
         if ($event->isTheses() == true){
             $form = $this->createFormBuilder()
                 ->add('fio', TextType::class, ['label' => 'Ф.И.О'])
@@ -74,6 +75,7 @@ class PublicationController extends Controller
                 $session = $request->getSession();
                 $session->getFlashBag()->add('info', 'Ваша заявка отправлена');
             }
+            $form = $form->createView();
         }
         if ($event->isRegister() == true){
             $form = $this->createFormBuilder()
@@ -104,8 +106,9 @@ class PublicationController extends Controller
                 $session = $request->getSession();
                 $session->getFlashBag()->add('info', 'Ваша заявка отправлена');
             }
+            $form = $form->createView();
         }
-        return ['event' => $event, 'form' => $form->createView()];
+        return ['event' => $event, 'form' => $form];
     }
 
     /**
