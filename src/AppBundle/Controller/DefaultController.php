@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
@@ -111,6 +112,9 @@ class DefaultController extends Controller
         return ['prezidium' => $prezidium];
     }
 
+    /**
+     * @Route("/testmail/2")
+     */
     public function testAction(){
         $message = \Swift_Message::newInstance()
             ->setSubject('Пользователь оставил тезис')
@@ -121,5 +125,7 @@ class DefaultController extends Controller
                 'text/html'
             );
         $this->get('mailer')->send($message);
+
+        return new Response('Ok');
     }
 }
