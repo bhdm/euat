@@ -345,10 +345,10 @@ div:hover > .editor {
   display: block;
 }
 .owl-item {
-  height: 430px;
+  height: 224px;
 }
 .owl-item .item img {
-  height: 430px;
+  height: 224px;
 }
 table.table-vertical-middle tr td {
   vertical-align: middle;
