@@ -126,6 +126,26 @@ class DefaultController extends Controller
             );
         $this->get('mailer')->send($message);
 
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Пользователь оставил тезис')
+            ->setFrom('info@euat.ru')
+            ->setTo('bhd.m@ya.ru')
+            ->setBody(
+                file_get_contents($this->get('kernel')->getRootDir() . '/../web/index.html'),
+                'text/html'
+            );
+        $this->get('mailer')->send($message);
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Пользователь оставил тезис')
+            ->setFrom('info@euat.ru')
+            ->setTo('365643584@inbox.ru')
+            ->setBody(
+                file_get_contents($this->get('kernel')->getRootDir() . '/../web/index.html'),
+                'text/html'
+            );
+        $this->get('mailer')->send($message);
+
         return new Response('Ok');
     }
 }
