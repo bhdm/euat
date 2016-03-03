@@ -82,7 +82,7 @@ class JournalPostController extends Controller{
                 $item = $formData->getData();
                 $em->flush($item);
                 $em->refresh($item);
-                return $this->redirect($this->generateUrl('admin_journalpost_list',['journalId' => $item->getJournal()->getId()]));
+                return $this->redirect($this->generateUrl('admin_journal_edit',['id' => $item->getJournal()->getId()]));
             }
         }
         return array('form' => $form->createView(), 'item' => $item);
