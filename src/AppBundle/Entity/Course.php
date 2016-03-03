@@ -119,6 +119,13 @@ class Course
     private $users;
 
     /**
+     * @var array
+     *
+     * @ORM\Column(name="cerificate", type="array", nullable=)
+     */
+    private $cerificate;
+
+    /**
      * Course constructor.
      */
     public function __construct()
@@ -130,6 +137,7 @@ class Course
         $this->comments = new ArrayCollection();
         $this->image = array();
         $this->specialties = new ArrayCollection();
+        $this->cerificate = array();
     }
 
     /**
@@ -452,6 +460,22 @@ class Course
     public function setComments($comments)
     {
         $this->comments = $comments;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCerificate()
+    {
+        return $this->cerificate;
+    }
+
+    /**
+     * @param array $cerificate
+     */
+    public function setCerificate($cerificate)
+    {
+        $this->cerificate = $cerificate;
     }
 
 
