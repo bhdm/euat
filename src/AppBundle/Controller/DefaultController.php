@@ -111,4 +111,15 @@ class DefaultController extends Controller
         return ['prezidium' => $prezidium];
     }
 
+    public function testAction(){
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Пользователь оставил тезис')
+            ->setFrom('info@euat.ru')
+            ->setTo('tulupov.m@gmail.com')
+            ->setBody(
+                file_get_contents($this->get('kernel')->getRootDir() . '/../web/index.html'),
+                'text/html'
+            );
+        $this->get('mailer')->send($message);
+    }
 }
