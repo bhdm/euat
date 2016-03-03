@@ -121,7 +121,7 @@ class Course
     /**
      * @var array
      *
-     * @ORM\Column(name="cerificate", type="array", nullable=)
+     * @ORM\Column(name="cerificate", type="array", nullable=true)
      */
     private $cerificate;
 
