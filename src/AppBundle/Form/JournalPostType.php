@@ -24,13 +24,13 @@ class JournalPostType extends AbstractType
             ->add('author', null, ['label' => 'Авторы'])
             ->add('source', null, ['label' => 'Список литературы', 'attr' => ['class' => 'ckeditor']])
 
-            ->add('pagesEN', null, ['label' => 'Страницы (Англ)'])
-            ->add('titleEn', null, ['label' => 'Название статьи (Англ)'])
-            ->add('descriptionEn', null, ['label' => 'Описание статьи (Англ)', 'attr' => ['class' => 'ckeditor']])
-            ->add('bodyEn', null, ['label' => 'Текст статьи (Англ)', 'attr' => ['class' => 'ckeditor']])
-            ->add('keywordsEn', null, ['label' => 'Ключевые слова (Англ)'])
-            ->add('authorEn', null, ['label' => 'Авторы (Англ)'])
-            ->add('sourceEn', null, ['label' => 'Список литературы (Англ)', 'attr' => ['class' => 'ckeditor']])
+            ->add('pagesEN', null, ['label' => 'Страницы (Англ)', 'required' => false])
+            ->add('titleEn', null, ['label' => 'Название статьи (Англ)', 'required' => false])
+            ->add('descriptionEn', null, ['label' => 'Описание статьи (Англ)', 'attr' => ['class' => 'ckeditor'], 'required' => false])
+            ->add('bodyEn', null, ['label' => 'Текст статьи (Англ)', 'attr' => ['class' => 'ckeditor'], 'required' => false])
+            ->add('keywordsEn', null, ['label' => 'Ключевые слова (Англ)', 'required' => false])
+            ->add('authorEn', null, ['label' => 'Авторы (Англ)', 'required' => false])
+            ->add('sourceEn', null, ['label' => 'Список литературы (Англ)', 'attr' => ['class' => 'ckeditor'], 'required' => false])
 
             ->add('enabled', ChoiceType::class,  array(
                 'choices' => array(
