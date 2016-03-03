@@ -5,6 +5,41 @@
     <script src="{{ asset('assets/vendor/moment/moment.js') }}"></script>
     <script src="{{ asset('assets/vendor/moment/locale/ru.js') }}"></script>
     <script src="{{ asset('assets/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+
+    <script src="{{ asset('bundles/admin/ckeditor/ckeditor.js') }}"></script>
+
+    <script>
+        $(document).ready(function(){
+            CKEDITOR.on( '.ck', function( event ) {
+                var editor = event.editor,
+                        element = editor.element;
+
+                // Customize editors for headers and tag list.
+                // These editors don't need features like smileys, templates, iframes etc.
+                if ( element.is( 'h1', 'h2', 'h3' ) || element.getAttribute( 'id' ) == 'taglist' ) {
+                    // Customize the editor configurations on "configLoaded" event,
+                    // which is fired after the configuration file loading and
+                    // execution. This makes it possible to change the
+                    // configurations before the editor initialization takes place.
+                    editor.on( 'configLoaded', function() {
+
+                        // Remove unnecessary plugins to make the editor simpler.
+                        editor.config.removePlugins = 'colorbutton,find,flash,font,' +
+                                'forms,iframe,image,newpage,removeformat,' +
+                                'smiley,specialchar,stylescombo,templates';
+
+                        // Rearrange the layout of the toolbar.
+                        editor.config.toolbarGroups = [
+                            { name: 'editing',		groups: [ 'basicstyles', 'links' ] },
+                            { name: 'undo' },
+                            { name: 'clipboard',	groups: [ 'selection', 'clipboard' ] },
+                            { name: 'about' }
+                        ];
+                    });
+                }
+            });
+        });
+    </script>
 {% endblock %}
 
 {% block stylesheets %}
@@ -38,16 +73,22 @@
             <h1 class="blue-text">{{ post.title }}</h1>
             <div class="params">
                 <b>Авторы:</b> {{ post.author }}<br />
-                <b>Описание:</b> {{ post.description | raw }}<br />
+                <b>Описание:</b>
+                <div class="ck ck-desc">
+                    {{ post.description | raw }}
+                </div>
                 {#<b>Ключевые слова:</b> {{ post.keywords }}#}
             </div>
             <br />
-            <div class="pub-content">
+            <div class="pub-content ck ck-body">
                 {{ post.body | raw }}
             </div>
             <br />
             <div class="params">
-                <b>Список литературы:</b> {{ post.source | raw }}<br />
+                <b>Список литературы:</b>
+                <div class="ck ck-owner">
+                    {{ post.source | raw }}
+                </div>
                 {#<b>Ключевые слова:</b> {{ post.keywords }}#}
             </div>
         </div>
