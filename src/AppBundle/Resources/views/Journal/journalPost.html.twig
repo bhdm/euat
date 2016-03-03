@@ -10,7 +10,7 @@
 
     <script>
         $(document).ready(function(){
-            CKEDITOR.on( 'ck', function( event ) {
+            CKEDITOR.on( 'instanceCreated', function( event ) {
                 var editor = event.editor,
                         element = editor.element;
 
@@ -80,7 +80,7 @@
                 {#<b>Ключевые слова:</b> {{ post.keywords }}#}
             </div>
             <br />
-            <div class="pub-content ck ck-body">
+            <div class="pub-content ck ck-body" contenteditable="true">
                 {{ post.body | raw }}
             </div>
             <br />
