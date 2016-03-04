@@ -9,6 +9,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -118,7 +119,10 @@ class Journal extends BaseEntity
      */
     public function getPosts()
     {
-        return $this->posts;
+
+        $criteria = Criteria::create();
+        $criteria->where(Criteria::expr()->eq('enabled', true));
+        return $this->posts->matching($criteria);
     }
 
     /**
