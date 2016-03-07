@@ -119,7 +119,6 @@ class Journal extends BaseEntity
      */
     public function getPosts()
     {
-
         $criteria = Criteria::create();
         $criteria->where(Criteria::expr()->eq('enabled', true));
         return $this->posts->matching($criteria);

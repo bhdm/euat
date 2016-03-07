@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -180,7 +181,9 @@ class Menu
      */
     public function getChildren()
     {
-        return $this->children;
+        $criteria = Criteria::create();
+        $criteria->where(Criteria::expr()->eq('enabled', true));
+        return $this->children->matching($criteria);
     }
 
     /**
