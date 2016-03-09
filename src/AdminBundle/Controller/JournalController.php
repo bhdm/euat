@@ -86,14 +86,14 @@ class JournalController extends Controller{
                 $item = $formData->getData();
                 $file = $item->getPhoto();
                 if ($file){
-                    $item->setPhoto($olfFile);
-                }else{
                     $filename = time(). '.'.$file->guessExtension();
                     $file->move(
                         __DIR__.'/../../../web/upload/journal/',
                         $filename
                     );
                     $item->setPhoto(['path' => '/upload/journal/'.$filename ]);
+                }else{
+                    $item->setPhoto($olfFile);
                 }
 
                 $em->flush($item);
