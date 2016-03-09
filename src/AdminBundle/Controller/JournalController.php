@@ -85,7 +85,7 @@ class JournalController extends Controller{
             if ($formData->isValid()){
                 $item = $formData->getData();
                 $file = $item->getPhoto();
-                if ($file == null){
+                if ($file){
                     $item->setPhoto($olfFile);
                 }else{
                     $filename = time(). '.'.$file->guessExtension();
