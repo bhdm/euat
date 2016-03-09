@@ -94,7 +94,7 @@ class PublicationController extends Controller
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Пользователь оставил заявку на регистрацию')
                     ->setFrom('info@euat.ru')
-                    ->setTo('korotun@euat.ru')
+                    ->setTo('office@euat.ru')
                     ->setBody(
                         $this->renderView(
                             '@App/Mail/setRegister.html.twig',
