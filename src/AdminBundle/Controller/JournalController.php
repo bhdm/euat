@@ -74,13 +74,12 @@ class JournalController extends Controller{
     public function editAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
         $item = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findOneById($id);
+        $olfFile = $item->getPhoto();
         $form = $this->createForm(JournalType::class, $item);
         $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
         $formData = $form->handleRequest($request);
-
-        $olfFile = $item->getPhoto();
-
-
+//        var_dump($item);
+//        exit;
         if ($request->getMethod() == 'POST'){
             if ($formData->isValid()){
                 $item = $formData->getData();
@@ -95,7 +94,6 @@ class JournalController extends Controller{
                     );
                     $item->setPhoto(['path' => '/upload/journal/'.$filename ]);
                 }
-
                 $em->flush($item);
                 $em->refresh($item);
                 return $this->redirect($this->generateUrl('admin_journal_list'));
