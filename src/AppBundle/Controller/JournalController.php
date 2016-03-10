@@ -22,7 +22,7 @@ class JournalController extends Controller
      */
     public function journalsAction()
     {
-        $journals = $this->getDoctrine()->getRepository('AppBundle:Journal')->findBy(['enabled' => true],['id' => 'DESC']);
+        $journals = $this->getDoctrine()->getRepository('AppBundle:Journal')->findBy(['enabled' => true],['id' => 'ASC']);
         return ['journals' => $journals];
     }
 
