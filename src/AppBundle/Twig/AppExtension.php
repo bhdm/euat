@@ -15,6 +15,8 @@ class AppExtension extends \Twig_Extension
     {
         mb_internal_encoding("UTF-8");
         $text = strip_tags($text);
+//        $text = str_replace('&nbsp;','',$text);
+//        $text = str_replace('&nbsp;','',$text);
         $text = mb_substr($text,0,400);
         return $text.'...';
     }
