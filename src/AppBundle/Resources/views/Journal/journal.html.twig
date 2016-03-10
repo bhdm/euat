@@ -51,7 +51,7 @@
                             <div class="caption" style="font-size: 16px"><a href="{{ path('journal-post', {'journalId' : journal.id, 'postId' : post.id}) }}">{{ post.title }}</a></div>
                             <div class="params">
                                 <b>Авторы:</b> {{ post.author }}<br />
-                                <b>Описание:</b> {{ post.description | anons }}<br />
+                                <b>Описание:</b> {{ post.description | raw | anons }}<br />
                                 <b>Ключевые слова:</b> {{ post.keywords }}
                             </div>
                         </div>
