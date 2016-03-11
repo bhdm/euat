@@ -38,14 +38,14 @@ class RegistrationFormType extends AbstractType
             'second_options' => array('label' => 'Повторите пароль'),
         ));
 
-        $builder->add('university', TextType::class, [
-            'label' => 'Университет',
-            'data_class' => null,
-            'attr' => [
-                'class' => 'university',
-                'data-placeholder' => 'Выберите университет'
-            ]
-        ]);
+//        $builder->add('university', TextType::class, [
+//            'label' => 'Университет',
+//            'data_class' => null,
+//            'attr' => [
+//                'class' => 'university',
+//                'data-placeholder' => 'Выберите университет'
+//            ]
+//        ]);
         $builder->add('specialty', null, [
             'label' => 'Специальность',
             'required' => true,
