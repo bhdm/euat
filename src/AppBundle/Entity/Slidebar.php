@@ -41,11 +41,22 @@ class Slidebar
     private $file;
 
     /**
+     * @var boolean
+     * @ORM\Column(name="enabled", type="boolean", nullable=true)
+     */
+    private $enabled;
+
+    /**
      * @return string
      */
     public function __toString()
     {
         return $this->title;
+    }
+
+    public function __construct()
+    {
+        $this->enabled = true;
     }
 
     /**
@@ -105,6 +116,23 @@ class Slidebar
     {
         $this->url = $url;
     }
+
+    /**
+     * @return boolean
+     */
+    public function isEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * @param boolean $enabled
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+    }
+
 
 }
 
