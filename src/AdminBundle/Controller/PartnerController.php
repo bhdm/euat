@@ -74,11 +74,10 @@ class PartnerController extends Controller{
     public function editAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
         $item = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findOneById($id);
+        $olfFile = $item->getImage();
         $form = $this->createForm(PartnerType::class, $item);
         $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
         $formData = $form->handleRequest($request);
-
-        $olfFile = $item->getImage();
 
 
         if ($request->getMethod() == 'POST'){
