@@ -24,7 +24,7 @@ class DefaultController extends Controller
         $videos = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['category' => $categoryVideo]);
         $educations = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['category' => $categoryEducation]);
 
-        $carusel = $this->getDoctrine()->getRepository('AppBundle:Slidebar')->findBy([],['id' => 'DESC']);
+        $carusel = $this->getDoctrine()->getRepository('AppBundle:Slidebar')->findBy(['enabled' => true],['id' => 'DESC']);
         return [
             'publications' => $publications,
             'videos' => $videos,
