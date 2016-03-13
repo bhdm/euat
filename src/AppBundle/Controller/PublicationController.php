@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Comment;
+use AppBundle\Entity\EventRegisterLog;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -91,6 +92,16 @@ class PublicationController extends Controller
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $data = $form->getData();
+
+                $log = new EventRegisterLog();
+                $log->setEmail($data['email']);
+                $log->setName($data['fio']);
+                $log->setPost($data['post']);
+                $log->setWorkplace($data['place']);
+                $log->setPhone($data['phone']);
+                $this->getDoctrine()->getManager()->persist($log);
+                $this->getDoctrine()->getManager()->flush($log);
+
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Пользователь оставил заявку на регистрацию')
                     ->setFrom('info@euat.ru')
