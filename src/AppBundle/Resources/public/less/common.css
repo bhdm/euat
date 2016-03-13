@@ -275,7 +275,7 @@ footer {
 }
 .owl-prev {
   position: absolute;
-  top: 24%;
+  top: 45%;
   margin-top: -15px;
   width: 37px;
   height: 55px;
@@ -290,7 +290,7 @@ footer {
 }
 .owl-next {
   position: absolute;
-  top: 24%;
+  top: 45%;
   margin-top: -15px;
   width: 37px;
   height: 55px;
@@ -308,7 +308,7 @@ footer {
 }
 .owl-dots {
   position: absolute;
-  bottom: 200px;
+  bottom: 0px;
   width: 100%;
   text-align: center;
 }

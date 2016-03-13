@@ -99,7 +99,7 @@ class User extends BaseUser
     /**
      * @var array
      *
-     * @ORM\Column(name="certificateFile", type="array")
+     * @ORM\Column(name="certificateFile", type="array", nullable=true)
      */
     protected $certificate = array();
 

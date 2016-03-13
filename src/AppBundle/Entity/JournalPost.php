@@ -28,12 +28,12 @@ class JournalPost extends BaseEntity{
     protected $title;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $titleEn;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $descriptionEn;
 
@@ -48,7 +48,7 @@ class JournalPost extends BaseEntity{
     protected $keywordsEn;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $bodyEn;
 
@@ -63,12 +63,12 @@ class JournalPost extends BaseEntity{
     protected $body;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $author;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $authorEn;
 
