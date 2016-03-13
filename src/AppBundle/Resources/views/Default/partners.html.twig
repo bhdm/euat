@@ -8,7 +8,9 @@
     <script src="{{ asset('assets/vendor/fancybox/source/jquery.fancybox.pack.js') }}"></script>
     <script>
         $(document).ready(function () {
-            $('.fancybox').fancybox();
+            $('.fancybox').fancybox({
+                maxWidth: 500,
+            });
         })
     </script>
 {% endblock %}
