@@ -38,9 +38,9 @@
         </div>
         {% for p in partners %}
             <div style="display: none">
-                <div id="content-{{ p.id }}">
-                    <h2>{{ p.title }}</h2>
-                    <img src="{{ p.image.path }}" style="max-height: 150px;">
+                <div id="content-{{ p.id }}" style="text-align: left">
+                    <h2 style="padding-bottom: 10px">{{ p.title }}</h2>
+                    <img src="{{ p.image.path }}" style="max-height: 150px; float: left; margin-right: 20px">
                     {{ p.body | raw }}
                 </div>
             </div>
