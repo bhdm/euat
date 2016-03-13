@@ -20,7 +20,7 @@ class JournalType extends AbstractType
             ->add('title', null, ['label' => 'Название'])
             ->add('photo', FileType::class, ['label' => 'Фото обложки', 'data_class' => null, 'required' => false])
             ->add('year', null, ['label' => 'Год выпуска'])
-            ->add('month', null, ['label' => 'Месяц выпуска'])
+            ->add('month', null, ['label' => 'номер выпуска'])
             ->add('tom', null, ['label' => 'Том'])
             ->add('pages', null, ['label' => 'Страницы'])
             ->add('description', null, ['label' => 'Описание', 'attr' => ['class' => 'ckeditor']])
