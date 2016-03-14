@@ -100,7 +100,7 @@
         {{ render(controller("AppBundle:Default:generateMenu" )) }}
         <div class="content">
             {% for flashMessage in app.session.flashbag.get('info') %}
-                <div class="alert alert-info text-center">{{ flashMessage }}</div>
+                <div class="alert alert-success text-center">{{ flashMessage }}</div>
             {% endfor %}
             {% block fullContent %}
                 <div class="row">

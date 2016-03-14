@@ -21,10 +21,10 @@ class DefaultController extends Controller
         $categoryNews = $this->getDoctrine()->getRepository('AppBundle:Category')->findOneBy(['slug' => 'new']);
 
         $publications = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['category' => $categoryNews],['created' => 'DESC'], 4);
-        $videos = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['category' => $categoryVideo]);
-        $educations = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['category' => $categoryEducation]);
+        $videos = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['category' => $categoryVideo],['id' => 'DESC'], 3);
+        $educations = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['category' => $categoryEducation],['id' => 'DESC'], 2);
 
-        $carusel = $this->getDoctrine()->getRepository('AppBundle:Slidebar')->findBy([],['id' => 'DESC']);
+        $carusel = $this->getDoctrine()->getRepository('AppBundle:Slidebar')->findBy(['enabled' => true],['id' => 'DESC']);
         return [
             'publications' => $publications,
             'videos' => $videos,

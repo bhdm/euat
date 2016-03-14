@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,6 +20,14 @@ class SlidebarType extends AbstractType
             ->add('title',null, ['label' => 'Название слайда'])
             ->add('url',null, ['label' => 'Ссылка'])
             ->add('file',FileType::class, ['label' => 'файл', 'data_class' => null, 'required' => false ])
+            ->add('enabled', ChoiceType::class, array(
+                'choices' => array(
+                    'Активная' => true,
+                    'Неактивна' => false
+                ),
+                'required'    => true,
+                'label' => 'Состояние'
+            ));
         ;
     }
     

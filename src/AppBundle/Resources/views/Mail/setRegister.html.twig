@@ -1,6 +1,7 @@
 Пользователь зарегистрировался на событие
 <br />
-<b>{{ event.title }}</b>
+<b><a href="{{ url('event',{'url' : event.id }) }}">{{ event.title }}</a> ({{ event.start | date('d.m.Y') }})</b>
+
 <br />
 <b>Ф.И.О: </b> {{ data.fio }} <br />
 <b>Место работы: </b> {{ data.place }} <br />

@@ -458,3 +458,11 @@ th.picker-switch {
 .jqvmap-zoomout {
   top: 0px;
 }
+.jqvmap-label {
+  position: absolute;
+  background: #333;
+  color: #FFF;
+  border-radius: 3px;
+  padding: 5px 10px;
+  border: 1px solid #000;
+}

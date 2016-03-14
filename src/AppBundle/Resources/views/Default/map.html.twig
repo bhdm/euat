@@ -35,7 +35,49 @@
                             console.log("something is went wrong - country tooltip is not loaded");
                         }
                     });
+                },
+
+                onLabelShow: function(event, label, code){
+//                    alert(code);
+//                    label.text('Bears, vodka, balalaika');
+
+//                    alert('1');
+                    if (code == 'ru'){
+                        label.text('РФ');
+                    }
+                    if (code == 'ua'){
+                        label.text('Украина');
+                    }
+                    if (code == 'kz'){
+                        label.text('Казахстан');
+                    }
+                    if (code == 'tj'){
+                        label.text('Таджикистан');
+                    }
+                    if (code == 'tr'){
+                        label.text('Татарстан');
+                    }
+                    if (code == 'md'){
+                        label.text('Республика Молдова');
+                    }
+                    if (code == 'by'){
+                        label.text('Республика Беларусь');
+                    }
+                    if (code == 'uz'){
+                        label.text('Республика узбекистан');
+                    }
+                    if (code == 'mn'){
+                        label.text('Монголия');
+                    }
+                    if (code == 'am'){
+                        label.text('Армения');
+                    }
+                    if (code == 'kg'){
+                        label.text('Киргизия');
+                    }
                 }
+
+
 
             });
 
