@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -54,6 +55,7 @@ class EventType extends AbstractType
             ->add('timeStart', TimeType::class, [ 'label' => 'Время начала', 'required' => false])
             ->add('end',  DateType::class, [ 'label' => 'Дата окончания', 'required' => false])
             ->add('timeEnd', TimeType::class, [ 'label' => 'Время окончания', 'required' => false])
+
             ->add('partners', null, [ 'label' => 'Партнеры'])
             ->add('sponsor', null, [ 'label' => 'Спонсоры'])
             ->add('contacts', TextareaType::class, [ 'label' => 'Контакная информация'])

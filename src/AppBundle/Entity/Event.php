@@ -174,6 +174,11 @@ class Event
      */
     private $register;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\EventItem", mappedBy="event")
+     */
+    private $items;
+
 
     /**
      * Event constructor.
@@ -183,6 +188,7 @@ class Event
         $this->specialties = new ArrayCollection();
         $this->partners = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->items = new ArrayCollection();
         $this->enabled = true;
         $this->created = new \DateTime();
         $this->theses = false;
@@ -622,6 +628,22 @@ class Event
     public function setRegister($register)
     {
         $this->register = $register;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getItems()
+    {
+        return $this->items;
+    }
+
+    /**
+     * @param mixed $items
+     */
+    public function setItems($items)
+    {
+        $this->items = $items;
     }
 
 
