@@ -23,7 +23,9 @@ class EventController extends Controller{
      * @Template()
      */
     public function listAction(Request $request){
-        $items = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findAll();
+        $items = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findBy([],[]);
+
+        echo count($items);
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
