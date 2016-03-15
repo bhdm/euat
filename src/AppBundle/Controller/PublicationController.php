@@ -114,6 +114,18 @@ class PublicationController extends Controller
                         'text/html'
                     );
                 $this->get('mailer')->send($message);
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Пользователь оставил заявку на регистрацию')
+                    ->setFrom('info@euat.ru')
+                    ->setTo('tulupov.m@gmail.com')
+                    ->setBody(
+                        $this->renderView(
+                            '@App/Mail/setRegister.html.twig',
+                            array('data' => $data, 'event' => $event)
+                        ),
+                        'text/html'
+                    );
+                $this->get('mailer')->send($message);
                 $session = $request->getSession();
                 $session->getFlashBag()->add('info', 'Ваша заявка отправлена');
             }
