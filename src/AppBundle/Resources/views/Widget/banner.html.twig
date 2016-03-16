@@ -2,3 +2,26 @@
     <br />
     <a href="{{ banner.url }}" target="_blank"><img src="{{ banner.file.path }}" style="width: 240px; border: 1px solid #CCC;" title="{{ banner.title }}" alt="{{ banner.title }}" ></a>
 {% endif %}
+<br />
+<br />
+{% if interview %}
+    <div class="well" style="width: 240px; float: right;    margin-right: 3px;">
+        <div class="text-left">
+            <div class="caption" style="padding-bottom: 10px"><b>{{ interview.title }}</b></div>
+            {% for q in interview.questions %}
+                <div style="padding-bottom: 10px; border-bottom: 1px solid #CCC">
+                    <div>{{ q }}</div>
+                    {% for c in q.choices %}
+                        <div style="padding-left: 20px">
+                            <input type="radio" name="q[{{ q.id }}]">&nbsp;&nbsp;&nbsp;{{ c.title }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+        <br />
+        <div class="text-center">
+            <button type="button" class="btn btn-primary">Отправить</button>
+        </div>
+    </div>
+{% endif %}

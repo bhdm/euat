@@ -41,14 +41,6 @@ class CourseModuleTestController extends Controller{
         if ($request->isMethod('POST')) {
             $em = $this->getDoctrine()->getManager();
 
-//            $maxPosition = $em->createQuery('
-//				SELECT MAX(m.position)
-//				FROM LearningMainBundle:CourseModule m
-//				WHERE m.course = :courseId
-//			')->setParameter('courseId', $courseId)
-//                ->getSingleScalarResult();
-//
-//            $position = $maxPosition == null ? 1 : $maxPosition + 1;
 
             $module = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->findOneBy(['id' => $moduleId]);
 

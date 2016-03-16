@@ -1,5 +1,14 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
+{% block social %}
+    <meta property="og:title" content="{{ publication.title }}">
+    <meta property="og:type" content="article">
+    {% if publication.preview.path is defined  %}
+        <meta property="og:image" content="{{ publication.preview.path }}">
+    {% endif %}
+    <meta property="og:description" content="{{ publication.anons }}">
+{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     {% stylesheets "@AppBundle/Resources/public/less/comments.less" %}
