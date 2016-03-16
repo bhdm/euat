@@ -23,7 +23,7 @@ class WidgetController extends Controller
             $month = (new \DateTime())->format('m');
         }
 
-        $dateStart = new \DateTime($year.'-'.$month.'-01 00:00:00');
+        $dateStart = new \DateTime();
         $dateEnd = new \DateTime($year.'-'.($month+1).'-01 00:00:00');
 
         $owner = $request->query->get('owner');
