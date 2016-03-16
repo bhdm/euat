@@ -190,4 +190,16 @@ class PublicationController extends Controller
         return $this->redirect($referer);
     }
 
+    /**
+     * @Route("comment/remove/{id}", name="comment_remove")
+     */
+    public function commentRemoveAction(Request $request, $id){
+        $comment = $this->getDoctrine()->getRepository('AppBundle:Comment')->find($id);
+        $this->getDoctrine()->getManager()->remove($comment);
+        $this->getDoctrine()->getManager()->flush();
+        $referer = $request->headers->get('referer');
+        return $this->redirect($referer);
+    }
+
+
 }

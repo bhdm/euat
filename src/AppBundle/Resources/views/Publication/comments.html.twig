@@ -11,9 +11,15 @@
                         <img src="{{ asset('bundles/app/images/icons/no_avatar.png') }}" />
                     </div>
                     <div class="commentText">
-                        <div class="commentOwner">{{ comment.owner }}</div>
+                        <div class="commentOwner">
+                            {{ comment.owner }}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a href="{{ path('comment_remove',{'id' : comment.id }) }}" style="color: #888; float: right" title="Удалить комментарий">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </a>
+                            {% endif %}
+                        </div>
                         <p class="">{{ comment.body }}</p> <span class="date sub-text">{{ comment.created | date('d.m.Y') }}</span>
-
                     </div>
                 </li>
                 {% else %}
@@ -24,6 +30,7 @@
                 </li>
                 {% endfor %}
             </ul>
+            {% if is_granted('ROLE_USER') %}
             <form class="form" role="form" method="post" action="{{ path('comment_add', {'id' : id, 'type' : type }) }}">
                 <div class="form-group">
                     {#<input class="form-control" type="text" placeholder="Your comments" />#}
@@ -33,6 +40,7 @@
                     <button class="btn btn-primary">Отпрвить</button>
 
             </form>
+            {% endif %}
         </div>
     </div>
 </div>
