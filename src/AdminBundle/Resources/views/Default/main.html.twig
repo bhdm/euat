@@ -1,0 +1,49 @@
+{% extends "AdminBundle::layout.html.twig" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <div class="well">
+                <h3>Новые комментарии</h3>
+                <table class="table">
+                {% for comment in lastComments %}
+                    <tr>
+                        <td>
+                            Пользователь {{ comment.owner }} оставил комментарий:
+                            <i>{{ comment.body }}</i>
+                        </td>
+                        <td>
+                            <a href="{{ path('comment_remove',{'id' : comment.id }) }}"></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </table>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="well">
+                <h3>Новые пользователи</h3>
+                <table class="table">
+                    {% for user in lastUsers %}
+                        <tr>
+                            <td>
+                                Новый пользователь: {{ user }}
+                                {#<i>{{ comment.body }}</i>#}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .frame{
+            width: 100%;
+        }
+    </style>
+
+{% endblock %}

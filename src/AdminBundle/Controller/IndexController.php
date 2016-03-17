@@ -12,11 +12,14 @@ class IndexController extends Controller
 {
     /**
      * @Route("/admin", name="admin_main")
-     * @Template()
+     * @Template("@Admin/Default/main.html.twig")
      */
     public function indexAction()
     {
-        return array();
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
+        $lastComments = $this->getDoctrine()->getRepository('AppBundle:Comment')->findBy([],['id' => 'DESC'], 10);
+        $lastUsers = $this->getDoctrine()->getRepository('AppBundle:User')->findBy([],['id' => 'DESC'], 10);
+        return ['lastComments' => $lastComments, 'lastUsers' => $lastUsers];
     }
 
 
