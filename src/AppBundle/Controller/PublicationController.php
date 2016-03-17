@@ -184,6 +184,19 @@ class PublicationController extends Controller
         $em->persist($comment);
         $em->flush($comment);
 
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Пользователь оставил комментарий')
+            ->setFrom('info@euat.ru')
+            ->setTo('korotun@euat.ru')
+            ->setBody(
+                $this->renderView(
+                    '@App/Mail/newComment.html.twig',
+                    array('comment' => $comment)
+                ),
+                'text/html'
+            );
+        $this->get('mailer')->send($message);
+
         $session = $request->getSession();
         $session->getFlashBag()->add('notice', 'Ваш комментарий оставлен');
         $referer = $request->headers->get('referer');

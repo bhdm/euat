@@ -1,0 +1,11 @@
+Пользователь {{ comment.owner }} оставил комментарий
+<br />
+{% if comment.event != null %}
+    К событию <a href="{{ url('event',{'url' : comment.event.id}) }}">{{ comment.event.title }}</a>
+{% else %}
+    К публикации <a href="{{ url('publications',{'url' : comment.publication.id}) }}">{{ comment.publication.title }}</a>
+{% endif %}
+<br />
+<b>Комментарий:</b>
+<br />
+{{ comment.body }}
