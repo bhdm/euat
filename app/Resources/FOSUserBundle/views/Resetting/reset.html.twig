@@ -1,5 +1,15 @@
 {% extends '@FOSUser/fos_layout.html.twig' %}
 
+
+{% block styles %}
+	{{ parent() }}
+
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+{% endblock %}
+
 {% block fos_user_content %}
 
 	{% if invalid_username is defined %}
