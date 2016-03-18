@@ -116,17 +116,10 @@
                          data-image="{{ post.journal.photo.path is defined ? post.journal.photo.path : '' }}"></div>
                 </div>
                 <div class="col-xs-4">
-                    {% if event.specialties | length > 0 %}
-                        <b>Специальности:</b>
-                        {% for s in event.specialties  %}
-                            {{ s.title }}{% if s != event.specialties | last %},{% endif %}
-                        {% endfor %}
-                    {% endif %}
+
                 </div>
                 <div class="col-xs-3 text-right">
-                    <div style="padding-top: 10px; padding-bottom: 6px">
-                        <span class="glyphicon glyphicon-calendar"></span> {{ event.created | date('d.m.Y') }}
-                    </div>
+
                 </div>
             </div>
 
