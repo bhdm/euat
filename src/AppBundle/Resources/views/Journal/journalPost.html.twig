@@ -6,7 +6,7 @@
     {% if post.journal.photo.path is defined  %}
         <meta property="og:image" content="{{ post.journal.photo.path }}">
     {% endif %}
-    <meta property="og:description" content="{{ post.description | raw }}">
+    <meta property="og:description" content="{{ post.description | anons }}">
 {% endblock %}
 
 {% block javascript %}
@@ -112,7 +112,7 @@
                     <script type="text/javascript" src="//yastatic.net/share2/share.js" charset="utf-8"></script>
                     <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,gplus,twitter" data-counter="" style="text-align: left;"
                          data-title="{{ post.title }}"
-                         data-description="{{ post.description | raw }}"
+                         data-description="{{ post.description | anons }}"
                          data-image="{{ post.journal.photo.path is defined ? post.journal.photo.path : '' }}"></div>
                 </div>
                 <div class="col-xs-4">
