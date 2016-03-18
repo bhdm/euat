@@ -51,12 +51,14 @@ class CourseController extends Controller{
             if ($formData->isValid()){
                 $item = $formData->getData();
                 $file = $item->getImage();
-                $filename = time(). '.'.$file->guessExtension();
-                $file->move(
-                    __DIR__.'/../../../web/upload/course/',
-                    $filename
-                );
-                $item->setImage(['path' => '/upload/course/'.$filename ]);
+                if ($file){
+                    $filename = time(). '.'.$file->guessExtension();
+                    $file->move(
+                        __DIR__.'/../../../web/upload/course/',
+                        $filename
+                    );
+                    $item->setImage(['path' => '/upload/course/'.$filename ]);
+                }
                 $em->persist($item);
                 $em->flush();
                 $em->refresh($item);
