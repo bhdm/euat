@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\RecordBook;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -13,6 +14,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 /**
  * Class EducationController
  * @package AppBundle\Controller
+ * @Security("has_role('ROLE_ADMIN')")
  */
 class EducationController extends Controller
 {
