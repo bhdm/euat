@@ -179,6 +179,11 @@ class Event
      */
     private $items;
 
+    /**
+     * @var boolean
+     * @ORM\Column(name="digest", type="boolean", nullable=true)
+     */
+    private $digest;
 
     /**
      * Event constructor.
@@ -193,6 +198,7 @@ class Event
         $this->created = new \DateTime();
         $this->theses = false;
         $this->register = false;
+        $this->digest = true;
     }
 
     /**
@@ -644,6 +650,22 @@ class Event
     public function setItems($items)
     {
         $this->items = $items;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isDigest()
+    {
+        return $this->digest;
+    }
+
+    /**
+     * @param boolean $digest
+     */
+    public function setDigest($digest)
+    {
+        $this->digest = $digest;
     }
 
 

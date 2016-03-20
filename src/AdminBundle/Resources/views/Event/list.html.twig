@@ -11,6 +11,10 @@
 {% endblock %}
 
 {% block content %}
+    <form class="form-inline" method="GET">
+        <input type="text" class="form-control" placeholder="Поиск" name="search" value="{{ search }}">
+        <button type="submit" class="btn btn-primary">Найти</button>
+    </form>
     <div class="well">
         <table class="table">
             <tr>

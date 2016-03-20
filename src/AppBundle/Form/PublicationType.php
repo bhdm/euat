@@ -41,6 +41,15 @@ class PublicationType extends AbstractType
             ->add('body', TextareaType::class, [ 'label' => 'Контент', 'attr' => ['class' => 'ckeditor']])
             ->add('source', TextType::class, [ 'label' => 'Источник', 'required' => false])
             ->add('created', null, [ 'label' => 'Дата создания'])
+            ->add('digest', ChoiceType::class, array(
+                'choices' => array(
+                    'Включить' => true,
+                    'Отключить' => false
+                ),
+                'required'    => true,
+                'label' => 'В рассылку'
+            ))
+
             ->add('enabled', ChoiceType::class, array(
                 'choices' => array(
                     'Активная' => true,

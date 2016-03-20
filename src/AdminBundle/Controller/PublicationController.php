@@ -23,7 +23,9 @@ class PublicationController extends Controller{
      * @Template()
      */
     public function listAction(Request $request){
-        $items = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->search('', false);
+        $fields = $this->getDoctrine()->getManager()->getClassMetadata('AppBundle:Publication')->getFieldNames();
+        $search = $request->query->get('search');
+        $items = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->search($search, false);
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -32,7 +34,7 @@ class PublicationController extends Controller{
             20
         );
 
-        return array('pagination' => $pagination);
+        return array('pagination' => $pagination, 'search' =>$search);
     }
 
     /**

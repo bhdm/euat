@@ -77,6 +77,14 @@ class EventType extends AbstractType
                 'required'    => false,
                 'label' => 'Регистрация'
             ))
+            ->add('digest', ChoiceType::class, array(
+                'choices' => array(
+                    'Включить' => true,
+                    'Отключить' => false
+                ),
+                'required'    => true,
+                'label' => 'В рассылку'
+            ))
             ->add('enabled', ChoiceType::class, array(
                 'choices' => array(
                     'Активная' => true,
@@ -84,7 +92,9 @@ class EventType extends AbstractType
                 ),
                 'required'    => false,
                 'label' => 'Состояние'
-            ));
+            ))
+
+
         ;
     }
     

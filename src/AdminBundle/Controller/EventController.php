@@ -23,7 +23,8 @@ class EventController extends Controller{
      * @Template()
      */
     public function listAction(Request $request){
-        $items = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findBy([],[]);
+        $search = $request->query->get('search');
+        $items = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->search($search, false);
 
 //        echo count($items);
 
@@ -34,7 +35,7 @@ class EventController extends Controller{
             20
         );
 
-        return array('pagination' => $pagination);
+        return array('pagination' => $pagination, 'search' =>$search);
     }
 
     /**

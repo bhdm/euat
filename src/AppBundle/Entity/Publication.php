@@ -112,9 +112,16 @@ class Publication
      */
     private $allowCommentary;
 
+    /**
+     * @var boolean
+     * @ORM\Column(name="digest", type="boolean", nullable=true)
+     */
+    private $digest;
+
 
     public function __construct()
     {
+        $this->digest = true;
         $this->allowCommentary = true;
         $this->enabled = true;
         $this->created = new \DateTime();
@@ -367,7 +374,21 @@ class Publication
         $this->video = $video;
     }
 
+    /**
+     * @return boolean
+     */
+    public function isDigest()
+    {
+        return $this->digest;
+    }
 
+    /**
+     * @param boolean $digest
+     */
+    public function setDigest($digest)
+    {
+        $this->digest = $digest;
+    }
 
 }
 

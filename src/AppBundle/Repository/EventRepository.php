@@ -55,13 +55,16 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
         return $result;
     }
 
-    public function search($query){
+    public function search($query, $st = true){
         $qb = $this->createQueryBuilder('s');
         $qb->select('s');
         $qb->where("s.title LIKE '%$query%'")
-            ->orWhere("s.body  LIKE '%$query%' ")
-            ->andWhere("s.enabled = 1")
-            ->orderBy('s.created', 'DESC');
+            ->orWhere("s.body  LIKE '%$query%' ");
+//            ->orWhere("s.start  = '$query' ");
+        if ($st == true){
+            $qb->andWhere("s.enabled = 1");
+        }
+            $qb->orderBy('s.created', 'DESC');
         $result = $qb->getQuery()->getResult();
 
         return $result;
