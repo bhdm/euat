@@ -33,7 +33,7 @@ class PartnerType extends AbstractType
             ))
             ->add('link', null, ['label' => 'Ссылка'])
             ->add('body', TextareaType::class, ['label' => 'Описание', 'attr' => ['class' => 'ckeditor']])
-            ->add('shortDescription', TextareaType::class, ['label' => 'Краткое описание'])
+//            ->add('shortDescription', TextareaType::class, ['label' => 'Краткое описание'])
             ->add('image', FileType::class, ['label' => 'Логотип', 'data_class' => null, 'required' => false])
             ->add('sort', IntegerType::class, ['label' => 'Порядок'])
         ;

@@ -2,6 +2,9 @@ $(document).ready(function(){
     $('#login').click(function(){
         $('#loginRegisterModal').modal();
     });
+    $('.login2').click(function(){
+        $('#loginRegisterModal').modal();
+    });
 
     $('.enrolment').click(function(){
         $('#enrolmentModal').modal();
