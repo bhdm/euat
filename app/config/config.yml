@@ -93,7 +93,7 @@ fos_user:
     user_class: AppBundle\Entity\User
     from_email:
         address:        mailer@euat.ru
-        sender_name:    euat
+        sender_name:    euat.ru
     registration:
         confirmation:
             enabled:    true
