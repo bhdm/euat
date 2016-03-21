@@ -84,6 +84,7 @@ swiftmailer:
     port:      "%mailer_port%"
     auth_mode:  "%mailer_auth_mode%"
     encryption: "%mailer_encryption%"
+    sender_address: "mailer@euat.ru"
     spool:     { type: memory }
 
 fos_user:
