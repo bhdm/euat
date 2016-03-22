@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 /**
  * Class EducationController
  * @package AppBundle\Controller
- * @Security("has_role('ROLE_USER')")
+ * @Security("has_role('ROLE_STUDENT')")
  */
 class EducationController extends Controller
 {
