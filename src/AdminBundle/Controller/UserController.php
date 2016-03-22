@@ -45,7 +45,7 @@ class UserController extends Controller{
     public function addAction(Request $request){
         $em = $this->getDoctrine()->getManager();
         $item = new User();
-        $form = $this->createForm(ProfileFormType::class, $item);
+        $form = $this->createForm(UserType::class, $item);
         $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
         $formData = $form->handleRequest($request);
 
@@ -69,7 +69,7 @@ class UserController extends Controller{
     public function editAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
         $item = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findOneById($id);
-        $form = $this->createForm(ProfileFormType::class, $item);
+        $form = $this->createForm(UserType::class, $item);
         $form->add('certificateDate', DateType::class, ['label' => 'Дата окончания', 'required' => false]);
         $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
         $formData = $form->handleRequest($request);

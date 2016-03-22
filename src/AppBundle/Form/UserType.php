@@ -1,7 +1,6 @@
 <?php
 namespace AppBundle\Form;
 
-use Doctrine\DBAL\Types\StringType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -11,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserType extends AbstractType
 {
@@ -34,14 +34,7 @@ class UserType extends AbstractType
         $builder->add('country', null, ['label' => 'Страна', 'attr' => ['class' => 'county']]);
         $builder->add('city', TextType::class, ['label' => 'Город', 'attr' => ['class' => 'city']]);
         $builder->add('phone', null, ['label' => 'Телефон', 'attr' => ['class' => 'phone']]);
-//        $builder->add('plainPassword', RepeatedType::class, array(
-//            'type' => PasswordType::class,
-//            'invalid_message' => 'Пароли должны совпадать',
-//            'options' => array('attr' => array('class' => 'password-field')),
-//            'required' => true,
-//            'first_options'  => array('label' => 'Пароль'),
-//            'second_option' => array('label' => 'Повторите пароль'),
-//        ));
+
         $builder->add('university', TextType::class, [
             'label' => 'Университет',
             'data_class' => null,
@@ -102,14 +95,11 @@ class UserType extends AbstractType
         $builder->add('workPost', null, ['label' => 'Должность']);
     }
 
-    public function getParent()
+    public function configureOptions(OptionsResolver $resolver)
     {
-        return '';
-    }
-
-    public function getBlockPrefix()
-    {
-        return 'app_user';
+        $resolver->setDefaults(array(
+            'data_class' => 'AppBundle\Entity\User'
+        ));
     }
 
 }
