@@ -138,11 +138,13 @@ class EducationController extends Controller
                 $answers = $request->request->get('answer');
                 $true = 0;
                 foreach ( $questions as $q ){
-                    if (isset($answers[$q->getId()])){
-                        foreach($q->getAnswers() as $a){
-                            if ($a->getCorrect()){
-                                if ($answers[$q->getId()] == $a->getId()){
-                                    $true ++;
+                    foreach ($q->getAnswers() as $a){
+                        if (isset($answers[$a->getId()])){
+                            foreach($q->getAnswers() as $a){
+                                if ($a->getCorrect()){
+                                    if ($answers[$q->getId()] == $a->getId()){
+                                        $true ++;
+                                    }
                                 }
                             }
                         }
@@ -151,7 +153,18 @@ class EducationController extends Controller
 //                dump($true);
 //                dump($questions);
 //                exit;
-                $result = ceil(($true * 100) / count($questions));
+
+                # Получаем кол-во правильный ответов всего
+                $countTrue = 0;
+                foreach ($q as $questions){
+                    foreach ($q->getAnswers() as $a){
+                        if ($a->getCorrect()){
+                            $countTrue ++;
+                        }
+                    }
+                }
+
+                $result = ceil(($true * 100) / $countTrue);
 
 
 //                dump($result);
