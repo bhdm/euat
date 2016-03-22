@@ -55,6 +55,8 @@ class AuthController extends Controller
     public function editAction(Request $request)
     {
         $user = $this->getUser();
+        $oldAvatar = $user->getAvatar();
+        $oldCertificate = $user->getCertificate();
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
@@ -113,7 +115,29 @@ class AuthController extends Controller
             }
             $user->setUniversity($university);
 
-            $user->setCertificate([]);
+            $file = $user->getAvatar();
+            if ($file == null){
+                $user->setAvatar($oldAvatar);
+            }else{
+                $filename = time(). '.'.$file->guessExtension();
+                $file->move(
+                    __DIR__.'/../../../web/upload/avatar/',
+                    $filename
+                );
+                $user->setAvatar(['path' => '/upload/avatar/'.$filename ]);
+            }
+
+            $file = $user->getCertificate();
+            if ($file == null){
+                $user->setCertificate($oldCertificate);
+            }else{
+                $filename = time(). '.'.$file->guessExtension();
+                $file->move(
+                    __DIR__.'/../../../web/upload/certificate/',
+                    $filename
+                );
+                $user->setCertificate(['path' => '/upload/certificate/'.$filename ]);
+            }
 
             /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
             $userManager = $this->get('fos_user.user_manager');
@@ -122,6 +146,7 @@ class AuthController extends Controller
             $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS, $event);
 
             $userManager->updateUser($user);
+            $userManager->reloadUser($user);
 
             if (null === $response = $event->getResponse()) {
                 $url = $this->generateUrl('fos_user_profile_show');

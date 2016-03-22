@@ -1,10 +1,12 @@
 <?php
 namespace AdminBundle\Controller;
 
+use AppBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\HttpFoundation\Request;
@@ -68,6 +70,7 @@ class UserController extends Controller{
         $em = $this->getDoctrine()->getManager();
         $item = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findOneById($id);
         $form = $this->createForm(ProfileFormType::class, $item);
+        $form->add('certificateDate', DateType::class, ['label' => 'Дата окончания']);
         $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
         $formData = $form->handleRequest($request);
 
@@ -79,7 +82,7 @@ class UserController extends Controller{
                 return $this->redirect($this->generateUrl('admin_user_list'));
             }
         }
-        return array('form' => $form->createView());
+        return array('form' => $form->createView(), 'item' => $item);
     }
 
     /**

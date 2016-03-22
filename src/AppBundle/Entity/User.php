@@ -151,9 +151,20 @@ class User extends BaseUser
      */
     private $comments;
 
+    /**
+     * @ORM\Column(name="avatar", type="array", nullable=true)
+     */
+    private $avatar;
+
+    /**
+     * @ORM\Column(name="digest", type="boolean", nullable=true)
+     */
+    private $digest;
 
     public function __construct()
     {
+        $this->digest = true;
+        $this->avatar = array();
         $this->certificate = array();
         $this->courses = new ArrayCollection();
         $this->comments = new ArrayCollection();
@@ -504,6 +515,23 @@ class User extends BaseUser
     {
         $this->comments = $comments;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @param mixed $avatar
+     */
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+    }
+
 
 
 

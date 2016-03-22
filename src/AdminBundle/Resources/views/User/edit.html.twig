@@ -11,19 +11,35 @@
 {% block content %}
     <div class="well">
 
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
-            {{ form_end(form) }}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {% if item.certificate.path is defined %}
+            <a href="{{ item.certificate.path }}" class="fancybox">
+                <img src="{{ item.certificate.path }}" style="max-width: 200px">
+            </a>
+        {% endif %}
+        {{ form_end(form) }}
 
     </div>
 {% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/vendor/fancybox/source/jquery.fancybox.css') }}"/>
     <style>
         #wzc_mainbundle_user_birthdate_day, #wzc_mainbundle_user_birthdate_month, #wzc_mainbundle_user_birthdate_year{
             display: inline-block;
             width: 100px
         }
     </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/vendor/fancybox/source/jquery.fancybox.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            $('.fancybox').fancybox();
+        })
+    </script>
 {% endblock %}
