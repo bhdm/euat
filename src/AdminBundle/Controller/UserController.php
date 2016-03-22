@@ -98,6 +98,10 @@ class UserController extends Controller{
         $em = $this->getDoctrine()->getManager();
         $item = $em->getRepository('AppBundle:'.self::ENTITY_NAME)->findOneById($id);
         if ($item){
+            foreach ($item->getCourses() as $c){
+                $em->remove($c);
+                $em->flush();
+            }
             $em->remove($item);
             $em->flush();
         }
