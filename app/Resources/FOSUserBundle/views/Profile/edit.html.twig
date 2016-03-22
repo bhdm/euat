@@ -89,10 +89,10 @@
           {{ form_errors(form) }}
           <div class="edit-title text-uppercase">Профиль</div>
           {#{{ dump(form.avatar.vars) }}#}
-          {% if form.avatar.vars.data.path is defined %}
+          {% if user.avatar.path is defined %}
             <label class="col-sm-4 control-label" for="fos_user_profile_form_email"></label>
             <div class="col-sm-8">
-              <img src="{{ form.avatar.vars.data.path }}" class="img-thumbnail" style="max-width: 200px;   margin-left: -5px; margin-bottom: 10px">
+              <img src="{{ user.avatar.path }}" class="img-thumbnail" style="max-width: 200px;   margin-left: -5px; margin-bottom: 10px">
             </div>
           {% endif %}
 
@@ -117,10 +117,10 @@
           {{ form_row(form.specialty) }}
           {{ form_row(form.hobby) }}
           {{ form_row(form.academicDegree) }}
-          {% if form.certificate.vars.data.path is defined %}
+          {% if user.certificate.path is defined %}
             <label class="col-sm-4 control-label" for="fos_user_profile_form_email"></label>
             <div class="col-sm-8">
-              <img src="{{ form.certificate.vars.data.path }}" class="img-thumbnail" style="max-width: 200px;   margin-left: -5px; margin-bottom: 10px">
+              <img src="{{ user.certificate.path }}" class="img-thumbnail" style="max-width: 200px;   margin-left: -5px; margin-bottom: 10px">
             </div>
           {% endif %}
           {{ form_row(form.certificate) }}

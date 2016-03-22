@@ -145,6 +145,8 @@ class AuthController extends Controller
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS, $event);
 
+            $this->getDoctrine()->getManager()->flush($user);
+
             $userManager->updateUser($user);
             $userManager->reloadUser($user);
 
@@ -152,16 +154,17 @@ class AuthController extends Controller
                 $url = $this->generateUrl('fos_user_profile_show');
                 $response = new RedirectResponse($url);
             }
-
             $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
 
             return $this->render('FOSUserBundle:Profile:edit.html.twig', array(
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'user' => $user
             ));
         }
 
         return $this->render('FOSUserBundle:Profile:edit.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'user' => $this->getUser()
         ));
     }
 }

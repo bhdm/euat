@@ -70,13 +70,18 @@ class UserController extends Controller{
         $em = $this->getDoctrine()->getManager();
         $item = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findOneById($id);
         $form = $this->createForm(ProfileFormType::class, $item);
-        $form->add('certificateDate', DateType::class, ['label' => 'Дата окончания']);
+        $form->add('certificateDate', DateType::class, ['label' => 'Дата окончания', 'required' => false]);
         $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
         $formData = $form->handleRequest($request);
 
         if ($request->getMethod() == 'POST'){
             if ($formData->isValid()){
                 $item = $formData->getData();
+                $date = $item->getCertificateDate();
+                $now = new \DateTime();
+                if ($date != null && $date > $now ){
+                    $item->setRoles(['ROLE_STUDENT']);
+                }
                 $em->flush($item);
                 $em->refresh($item);
                 return $this->redirect($this->generateUrl('admin_user_list'));
