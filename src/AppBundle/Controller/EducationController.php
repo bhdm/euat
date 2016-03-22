@@ -21,7 +21,6 @@ class EducationController extends Controller
      * Страница списка курсов
      * @return \Symfony\Component\HttpFoundation\Response
      *
-     * @Security("has_role('ROLE_USER')")
      * @Route("/courses/{specialty}", name="courses", defaults={"specialty" = null})
      * @Template("")
      */
@@ -35,7 +34,6 @@ class EducationController extends Controller
      * Информация о курсе
      * @return \Symfony\Component\HttpFoundation\Response
      *
-     * @Security("has_role('ROLE_STUDENT')")
      * @Route("/course/{id}/info", name="course_info")
      * @Template("")
      */
