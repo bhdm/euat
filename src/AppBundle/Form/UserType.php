@@ -35,11 +35,9 @@ class UserType extends AbstractType
         $builder->add('city', TextType::class, ['label' => 'Город', 'attr' => ['class' => 'city']]);
         $builder->add('phone', null, ['label' => 'Телефон', 'attr' => ['class' => 'phone']]);
 
-        $builder->add('university', TextType::class, [
+        $builder->add('university', null, [
             'label' => 'Университет',
-            'data_class' => null,
             'attr' => [
-                'class' => 'university',
                 'data-placeholder' => 'Выберите университет'
             ]
         ]);
