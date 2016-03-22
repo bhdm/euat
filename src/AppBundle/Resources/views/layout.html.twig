@@ -76,7 +76,9 @@
                                         <li><a href="{{ path('admin_main') }}">В админ панель</a></li>
                                     {% endif %}
                                     <li><a href="{{ path('fos_user_profile_edit') }}">В профиль</a></li>
-                                    <li><a href="{{ path('record_book') }}">Зачетка</a></li>
+                                    {% if is_granted('ROLE_STUDENT') %}
+                                        <li><a href="{{ path('record_book') }}">Зачетка</a></li>
+                                    {% endif %}
                                     <li role="separator" class="divider"></li>
                                     <li><a href="{{ path('fos_user_security_logout') }}">Выйти</a></li>
                                 </ul>
