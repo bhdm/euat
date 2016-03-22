@@ -139,13 +139,9 @@ class EducationController extends Controller
                 $true = 0;
                 foreach ( $questions as $q ){
                     foreach ($q->getAnswers() as $a){
-                        if (isset($answers[$a->getId()])){
-                            foreach($q->getAnswers() as $a){
-                                if ($a->getCorrect()){
-                                    if ($answers[$q->getId()] == $a->getId()){
-                                        $true ++;
-                                    }
-                                }
+                        if ($a->getCorrect()){
+                            if (isset($answers[$a->getId()]) && $a->getId()) {
+                                $true ++;
                             }
                         }
                     }
@@ -156,7 +152,7 @@ class EducationController extends Controller
 
                 # Получаем кол-во правильный ответов всего
                 $countTrue = 0;
-                foreach ($q as $questions){
+                foreach ($questions as $q){
                     foreach ($q->getAnswers() as $a){
                         if ($a->getCorrect()){
                             $countTrue ++;
@@ -172,8 +168,8 @@ class EducationController extends Controller
 
 //                $result = 50;
 //                if ($result > 80){
-                    $recordBook->setPercent($result);
-                    $em->flush($recordBook);
+                $recordBook->setPercent($result);
+                $em->flush($recordBook);
 //                }
 
 
