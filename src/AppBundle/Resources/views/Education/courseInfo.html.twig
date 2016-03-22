@@ -38,7 +38,7 @@
                     {% endif %}
                 </div>
                 <br />
-                {% if app.user.certificateDate != null %}
+                {% if app.user.certificate is not empty %}
                     {% if statusCourse == 'NEW' %}
                         <button class="btn btn-primary enrolment" style="width: 100%">Записаться</button>
                     {% elseif statusCourse == 'PROGRESS' %}
