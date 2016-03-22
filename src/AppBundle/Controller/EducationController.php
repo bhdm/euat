@@ -40,7 +40,7 @@ class EducationController extends Controller
      */
     public function courseInfoAction($id){
         $course = $this->getDoctrine()->getRepository('AppBundle:Course')->findOneBy(['id' => $id]);
-        $recordBook = $this->getDoctrine()->getRepository('AppBundle:RecordBook')->findOneBy(['course' => $course]);
+        $recordBook = $this->getDoctrine()->getRepository('AppBundle:RecordBook')->findOneBy(['course' => $course,'user'=> $this->getUser()]);
         if ($recordBook === null){
             $statusCourse = 'NEW';
         }else{
