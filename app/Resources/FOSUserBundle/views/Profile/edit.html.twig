@@ -117,6 +117,12 @@
           {{ form_row(form.specialty) }}
           {{ form_row(form.hobby) }}
           {{ form_row(form.academicDegree) }}
+          {% if form.certificate.vars.data.path is defined %}
+            <label class="col-sm-4 control-label" for="fos_user_profile_form_email"></label>
+            <div class="col-sm-8">
+              <img src="{{ form.certificate.vars.data.path }}" class="img-thumbnail" style="max-width: 200px;   margin-left: -5px; margin-bottom: 10px">
+            </div>
+          {% endif %}
           {{ form_row(form.certificate) }}
           <div class="edit-title text-uppercase">Информация о работе</div>
           {{ form_row(form.workPlace) }}
