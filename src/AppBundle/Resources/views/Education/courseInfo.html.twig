@@ -38,12 +38,17 @@
                     {% endif %}
                 </div>
                 <br />
-                {% if statusCourse == 'NEW' %}
-                    <button class="btn btn-primary enrolment" style="width: 100%">Записаться</button>
-                {% elseif statusCourse == 'PROGRESS' %}
-                    <a href="{{ path('course_passing',{'recordBookId' : recordBook.id}) }}"><button class="btn btn-primary" style="width: 100%">Перейти в обучение</button></a>
-                {% elseif statusCourse == 'PASSED' %}
+                {% if app.user.certificateDate != null %}
+                    {% if statusCourse == 'NEW' %}
+                        <button class="btn btn-primary enrolment" style="width: 100%">Записаться</button>
+                    {% elseif statusCourse == 'PROGRESS' %}
+                        <a href="{{ path('course_passing',{'recordBookId' : recordBook.id}) }}"><button class="btn btn-primary" style="width: 100%">Перейти в обучение</button></a>
+                    {% elseif statusCourse == 'PASSED' %}
 
+
+                    {% endif %}
+                {% else %}
+                    <div class="alert alert-danger">Для получения доступа к курсу необходимо указать копию сертификата</div>
                 {% endif %}
             {% endif %}
         </div>

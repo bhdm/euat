@@ -8,7 +8,6 @@
         </div>
     {% endif %}
     <div>
-        {% if is_granted('ROLE_STUDENT') %}
         {% for course in courses %}
             <div class="row">
                 <div class="col-md-offset-1 col-xs-3">
@@ -60,6 +59,5 @@
                 </div>
             </div>
         {% endfor %}
-        {% endif %}
     </div>
 {% endblock %}
