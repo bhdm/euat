@@ -46,7 +46,7 @@
                 </script>
             {% endif %}
 
-            {# Если модуль ТЕСТ #}
+            {# Если модуль ВИДЕО #}
             {% if module.type == 'TEST' %}
                 <form method="post" action="{{ path('course_passing', {'recordBookId' : recordBook.id}) }}">
                     <input type="hidden" name="test" value="1">
@@ -62,7 +62,7 @@
                                     <ul>
                                         {% for ka, a in q.answers %}
                                             <li>
-                                                <div class="check">
+                                                <div class="checkbox">
                                                     <label>
                                                         <input type="checkbox" value="{{ a.id }}" name="answer[{{ q.id }}]">
                                                         <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
