@@ -38,7 +38,12 @@
                     {% endif %}
                 </div>
                 <br />
-                {% if app.user.certificate is not empty %}
+                {% if app.user.certificate is empty %}
+
+                    <div class="alert alert-danger">Для получения доступа к курсу необходимо указать копию сертификата</div>
+                {% elseif app.user.certificateDate == null %}
+                    <div class="alert alert-danger">Ваш сертификат пока не проверен модератором сайта</div>
+                {% else %}
                     {% if statusCourse == 'NEW' %}
                         <button class="btn btn-primary enrolment" style="width: 100%">Записаться</button>
                     {% elseif statusCourse == 'PROGRESS' %}
@@ -47,8 +52,7 @@
 
 
                     {% endif %}
-                {% else %}
-                    <div class="alert alert-danger">Для получения доступа к курсу необходимо указать копию сертификата</div>
+
                 {% endif %}
             {% endif %}
         </div>
