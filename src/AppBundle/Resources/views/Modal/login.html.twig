@@ -1,3 +1,4 @@
+{% if not is_granted('ROLE_USER') %}
 <div id="loginRegisterModal" class="modal in" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -30,3 +31,4 @@
         </div>
     </div>
 </div>
+{% endif %}
