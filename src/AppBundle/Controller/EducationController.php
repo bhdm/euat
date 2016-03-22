@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 /**
  * Class EducationController
  * @package AppBundle\Controller
- * @Security("has_role('ROLE_ADMIN')")
+ * @Security("has_role('ROLE_USER')")
  */
 class EducationController extends Controller
 {
@@ -155,8 +155,11 @@ class EducationController extends Controller
 //                exit;
 
 //                $result = 50;
-                $recordBook->setPercent($result);
-                $em->flush($recordBook);
+//                if ($result > 80){
+                    $recordBook->setPercent($result);
+                    $em->flush($recordBook);
+//                }
+
 
             }
 
