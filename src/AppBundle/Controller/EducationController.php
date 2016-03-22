@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Session\Session;
 /**
  * Class EducationController
  * @package AppBundle\Controller
- * @Security("has_role('ROLE_STUDENT')")
  */
 class EducationController extends Controller
 {
@@ -22,6 +21,7 @@ class EducationController extends Controller
      * Страница списка курсов
      * @return \Symfony\Component\HttpFoundation\Response
      *
+     * @Security("has_role('ROLE_USER')")
      * @Route("/courses/{specialty}", name="courses", defaults={"specialty" = null})
      * @Template("")
      */
@@ -35,6 +35,7 @@ class EducationController extends Controller
      * Информация о курсе
      * @return \Symfony\Component\HttpFoundation\Response
      *
+     * @Security("has_role('ROLE_STUDENT')")
      * @Route("/course/{id}/info", name="course_info")
      * @Template("")
      */
@@ -71,6 +72,7 @@ class EducationController extends Controller
      * @param Request $request
      * @param $courseId
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Security("has_role('ROLE_STUDENT')")
      * @Route("/enrolment/{courseId}", name="enrolment")
      */
     public function enrolmentAction(Request $request, $courseId){
@@ -116,6 +118,7 @@ class EducationController extends Controller
 
     /**
      * Переключает на следующий модуль курса
+     * @Security("has_role('ROLE_STUDENT')")
      * @Route("/passing/next/{recordBookId}", name="course_passing")
      */
     public function passingAction(Request $request, $recordBookId){
