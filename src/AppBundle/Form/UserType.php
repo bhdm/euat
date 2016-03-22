@@ -68,7 +68,7 @@ class UserType extends AbstractType
             ),
             'required'    => true
         ]);
-        $builder->add('certificate', FileType::class, ['label' => 'Скан сертификата', 'data_class' => null, 'required' => false]);
+//        $builder->add('certificate', FileType::class, ['label' => 'Скан сертификата', 'data_class' => null, 'required' => false]);
 
 
         $builder->add('workTypeOrganization', ChoiceType::class, [
