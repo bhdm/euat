@@ -70,7 +70,11 @@ class UserController extends Controller{
         $em = $this->getDoctrine()->getManager();
         $item = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findOneById($id);
         $form = $this->createForm(UserType::class, $item);
-        $form->add('certificateDate', DateType::class, ['label' => 'Дата окончания', 'required' => false]);
+        $form->add('certificateDate', DateType::class, [
+            'label' => 'Дата окончания',
+            'required' => false,
+            'years' => range(2010,2050)
+        ]);
         $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
         $formData = $form->handleRequest($request);
 

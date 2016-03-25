@@ -1,0 +1,36 @@
+{% set user = recordBook.user %}
+{% set course = recordBook.course %}
+<html>
+    <head>
+        <style>
+            .fio{
+                position: absolute;
+                font-size: 18px;
+                top: 300px;
+                left: 0;
+                right: 0;
+                text-align: center;
+            }
+            .course-title{
+                position: absolute;
+                font-size: 16px;
+                top: 140px;
+                left: 0;
+                right: 0;
+                text-align: center;
+            }
+            .recordbook-id{
+                position: absolute;
+                font-size: 18px;
+                top: 375px;
+                left: 500px;
+            }
+        </style>
+    </head>
+    <body style="position: relative">
+        <img src="{{ asset('bundles/app/images/certificate.png') }}">
+        <div class="fio">{{ user.lastName }} {{ user.firstName }} {{ user.surName }}</div>
+        <div class="course-title">{{ course.title }}</div>
+        <div class="recordbook-id">{{ recordBook.id }}</div>
+    </body>
+</html>

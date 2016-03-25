@@ -1,10 +1,11 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "41e616491d5d5f932b6e9b1a2daee16c",
+    "hash": "297c29c34debdbe42442b5bc12abb425",
+    "content-hash": "c4bf4510c6244816a4d1a4642cbded5a",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -839,7 +840,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/8f1fc2273b37c61ddcc1620abf4500320a23763e",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/16b04c49af05dd3fb381e4abe04f0e5e231ac76d",
                 "reference": "8f1fc2273b37c61ddcc1620abf4500320a23763e",
                 "shasum": ""
             },
@@ -1281,6 +1282,49 @@
                 "psr-3"
             ],
             "time": "2015-10-14 12:51:02"
+        },
+        {
+            "name": "mpdf/mpdf",
+            "version": "v6.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mpdf/mpdf.git",
+                "reference": "a15743d030ce3b5b7be36c6e83f76589b27c3f2c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mpdf/mpdf/zipball/a15743d030ce3b5b7be36c6e83f76589b27c3f2c",
+                "reference": "a15743d030ce3b5b7be36c6e83f76589b27c3f2c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=4.3.10"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "mpdf.php",
+                    "classes"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-1.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Ian Back"
+                }
+            ],
+            "description": "A PHP class to generate PDF files from HTML with Unicode/UTF-8 and CJK support",
+            "homepage": "http://www.mpdf1.com/mpdf/index.php",
+            "keywords": [
+                "pdf",
+                "php",
+                "utf-8"
+            ],
+            "time": "2015-03-01 10:27:49"
         },
         {
             "name": "paragonie/random_compat",
@@ -2167,6 +2211,61 @@
                 "framework"
             ],
             "time": "2015-12-26 16:49:48"
+        },
+        {
+            "name": "tfox/mpdf-port-bundle",
+            "version": "1.3.1",
+            "target-dir": "TFox/MpdfPortBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tasmanianfox/MpdfPortBundle.git",
+                "reference": "783ff384420b09e1e8460aefc9d9a645261aeae4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tasmanianfox/MpdfPortBundle/zipball/783ff384420b09e1e8460aefc9d9a645261aeae4",
+                "reference": "783ff384420b09e1e8460aefc9d9a645261aeae4",
+                "shasum": ""
+            },
+            "require": {
+                "mpdf/mpdf": "6.0.*",
+                "symfony/framework-bundle": "~2.3|~3.0"
+            },
+            "require-dev": {
+                "sensio/framework-extra-bundle": "*",
+                "symfony/browser-kit": "*",
+                "symfony/class-loader": "*",
+                "symfony/security-bundle": "*",
+                "symfony/yaml": "*"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "TFox\\MpdfPortBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sergei Beljakov",
+                    "email": "sergei.beljakov@tfox.eu"
+                }
+            ],
+            "description": "A wrapper for mPDF class which allows to use mPDF in Symfony2 projects",
+            "homepage": "http://github.com/tasmanianfox/MpdfPortBundle",
+            "keywords": [
+                "mpdf",
+                "pdf"
+            ],
+            "time": "2016-02-15 07:56:10"
         },
         {
             "name": "twig/twig",

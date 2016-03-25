@@ -199,4 +199,21 @@ class EducationController extends Controller
 
     }
 
+    /**
+     * генерация сертификата
+     * @Route("/certificate/{recordBookId}", name="generate_certificate")
+     */
+    public function generateCertificateAction($recordBookId){
+        $recordBook = $this->getDoctrine()->getRepository('AppBundle:RecordBook')->findOneBy(['id'=> $recordBookId]);
+        if ($recordBook->getUser() != $this->getUser() || $recordBook->getPassed() == null){
+            throw $this->createNotFoundException('Сертификат не доступен');
+        }
+        
+        $mpdfService = $this->get('tfox.mpdfport');
+        $html = $this->renderView('@App/Education/certificate.html.twig', ['recordBook' => $recordBook]);
+        $response = $mpdfService->generatePdfResponse($html);
+
+        return $response;
+    }
+
 }
