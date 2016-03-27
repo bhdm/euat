@@ -87,6 +87,20 @@
             <br />
             <a href="{{ path('category',{'categoryUrl': 'new'}) }}"><button type="button" class="btn btn-primary">Читать все новости</button></a>
         </div>
+
+        {% if journalposts | length > 0 %}
+            <br />
+            <div class="title">Статьи</div>
+            {% for e in journalposts %}
+                <div class="new-item">
+                    <a href="{{ path('journal-post', {'journalId' : e.journal.id , 'postId': e.id }) }}"><span class="new-item-title">{{ e.title }}</span></a>
+                    <div class="new-item-anons">
+                        {{ e.description | raw }}
+                    </div>
+                    <div style="color: #666; font-size: 11px;">{{ e.created | date('d.m.Y') }}</div>
+                </div>
+            {% endfor %}
+        {% endif %}
     </div>
     {#<div class="col-xs-12">#}
         {#{% if educations | length > 0 %}#}
@@ -108,20 +122,4 @@
             {#{% endfor %}#}
         {#{% endif %}#}
     {#</div>#}
-
-    <div class="col-xs-12">
-        {% if journalposts | length > 0 %}
-            <br />
-            <div class="title">Статьи</div>
-            {% for e in journalposts %}
-                <div class="new-item">
-                    <a href="{{ path('publications', {'url' : e.id }) }}"><span class="new-item-title">{{ e.title }}</span></a>
-                    <div class="new-item-anons">
-                        {{ e.description | raw }}
-                    </div>
-                    <div style="color: #666; font-size: 11px;">{{ e.created | date('d.m.Y') }}</div>
-                </div>
-            {% endfor %}
-        {% endif %}
-    </div>
 {% endblock %}
