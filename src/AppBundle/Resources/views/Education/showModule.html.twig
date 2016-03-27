@@ -7,7 +7,15 @@
             <ol class="breadcrumb">
                 {% for number,m in course.modules %}
                     <li class="{{ m == module ? 'active' : '' }}">
-                        <a href="{{ path('course_passing_step',{'recordBookId' : recordBook.id, 'moduleId': m.id  }) }}">{{ number+1 }}. {{ m.type | trans }}</a></li>
+                        <a href="{{ path('course_passing_step',{'recordBookId' : recordBook.id, 'moduleId': m.id  }) }}">{{ number+1 }}.
+                        {% if m.type == 'TEST' %}
+                            Тестирование
+                        {% elseif m.type == 'VIDEO' %}
+                            Видеоматериал
+                        {% elseif m.type == 'TEXT' %}
+                            Текстовый материал
+                        {% endif %}
+                        </a></li>
                 {% endfor %}
             </ol>
             {# конец крошек#}
