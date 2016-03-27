@@ -112,7 +112,7 @@
     <div class="col-xs-12">
         {% if journalposts | length > 0 %}
             <br />
-            <div class="title">ОБРАЗОВАНИЕ</div>
+            <div class="title">Статьи</div>
             {% for e in journalposts %}
                 <div class="new-item">
                     <a href="{{ path('publications', {'url' : e.id }) }}"><span class="new-item-title">{{ e.title }}</span></a>
