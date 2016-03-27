@@ -90,7 +90,7 @@
 
         {% if journalposts | length > 0 %}
             <br />
-            <div class="title">Статьи</div>
+            <div class="title">СТАТЬИ</div>
             {% for e in journalposts %}
                 <div class="new-item">
                     <a href="{{ path('journal-post', {'journalId' : e.journal.id , 'postId': e.id }) }}"><span class="new-item-title">{{ e.title }}</span></a>
