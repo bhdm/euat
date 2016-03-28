@@ -1,0 +1,146 @@
+<html>
+<head></head>
+<body>
+<table style="width: 600px; border: 1px solid #337ab7" cellpadding="0" cellspacing="0">
+    <tr>
+        <td>
+            <img src="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ asset('bundles/app/images/logo3.png') }}" style="width: 130px; margin-top: 10px">
+        </td>
+        <td style="text-align: left; padding-right: 20px">
+            <span style="color: #337ab7; font-family: 'Arial'; font-size: 20px">
+                Евразиская
+                Ассоциация
+                Терапевтов
+            </span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="padding: 20px;font-family: 'Arial';color: #333">
+            Несколько лет назад художница Кончетта Антико (Concetta Antico) осознала, что богатство красок, которое она видит в окружающем мире, недоступно для зрения остальных людей, а является результатом генетической мутации. Оказалось.что это симптом тетрахроматии — восприятия видимого диапазона спектра электромагнитного излучения комбинациями четырёх основных цветов, а не трёх цветов, как у нормальных людей.
+        </td>
+    </tr>
+    {#<tr>#}
+        {#<td colspan="2" style="font-family: 'Arial';">#}
+            {#<span style="font-size: 18px; padding: 10px; color: #337ab7;">Новости за неделю</span>#}
+        {#</td>#}
+    {#</tr>#}
+    <tr>
+        <td colspan="2" style="font-family: 'Arial'; background: #337ab7; padding: 10px" >
+            <span style="font-size: 18px; padding: 10px; color: #fff;">Новости за неделю</span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="padding: 20px">
+            <table style="font-family: 'Arial';">
+                {% for p in publications %}
+                    <tr>
+                        {% if p.preview.path is defined %}
+                            <td style="vertical-align: top" valign="top">
+                                <img src="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ p.preview.path }}" style="max-width: 150px; max-height: 100px; margin: 0 10px 0 0">
+                            </td>
+                            <td style="color: #333; vertical-align: top" valign="top">
+                                <a href="#" style="color: #337ab7; text-decoration: none; padding-bottom: 10px"><b>{{ p.title }}</b></a>
+                                <div style="padding: 3px; font-size: 0">&nbsp;</div>
+                                {{ p.anons }}
+                                <br />
+                                <a href="#" style="color: #337ab7;">Читать далее...</a>
+                                <br />
+                                <br />
+                            </td>
+                        {% else %}
+                            <td colspan="2" style="color: #333">
+                                <a href="#" style="color: #337ab7; text-decoration: none; padding-bottom: 5px"><b>{{ p.title }}</b></a>
+                                <div style="padding: 3px; font-size: 0">&nbsp;</div>
+                                {{ p.anons }}
+                                <br />
+                                <a href="#" style="color: #337ab7;">Читать далее...</a>
+                                <br />
+                                <br />
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="font-family: 'Arial'; background: #337ab7; padding: 10px" >
+            <span style="font-size: 18px; padding: 10px; color: #fff;">Ближайшие события</span>
+        </td>
+    </tr>
+    {#<tr>#}
+        {#<td colspan="2" style="font-family: 'Arial';">#}
+            {#<span style="font-size: 18px; padding: 10px; color: #337ab7;">Ближайшие события</span>#}
+        {#</td>#}
+    {#</tr>#}
+    <tr>
+        <td colspan="2" style="padding: 20px">
+            <table style="font-family: 'Arial';">
+                {% for p in events %}
+                    <tr>
+                        {% if p.preview.path is defined %}
+                            <td style="vertical-align: top" valign="top">
+                                <img src="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ p.preview.path }}" style="max-width: 150px; max-height: 100px; margin: 0 10px 0 0">
+                            </td>
+                            <td style="color: #333; vertical-align: top" valign="top">
+                                <div style="color: #333;font-size: 13px">{{ p.start | date('d.m.Y') }} - {{ p.end | date('d.m.Y') }}</div>
+                                <a href="#" style="color: #337ab7; text-decoration: none; padding-bottom: 10px"><b>{{ p.title }}</b></a>
+                                <div style="color: #555;font-size: 13px">
+                                    <b>Город: </b> {{ p.city }}
+                                </div>
+                                <div style="color: #555;font-size: 13px">
+                                    {% if p.specialties | length > 0 %}
+                                        <b>Специальности: </b>
+                                        {% for s in p.specialties  %}
+                                            {{ s.title }}
+                                            {% if s != p.specialties | last %}, {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                                {#<div style="padding: 3px; font-size: 0">&nbsp;</div>#}
+                                {#{{ p.anons }}#}
+                                {#<br />#}
+                                {#<a href="#" style="color: #337ab7;">Читать далее...</a>#}
+                                <br />
+                                <br />
+                            </td>
+                        {% else %}
+                            <td colspan="2" style="color: #333">
+                                <div style="color: #333;font-size: 13px">{{ p.start | date('d.m.Y') }} - {{ p.end | date('d.m.Y') }}</div>
+                                <a href="#" style="color: #337ab7; text-decoration: none; padding-bottom: 5px"><b>{{ p.title }}</b></a>
+                                <div style="color: #555;font-size: 13px">
+                                    <b>Город: </b> {{ p.city }}
+                                </div>
+                                <div style="color: #555;font-size: 13px">
+                                    {% if p.specialties | length > 0 %}
+                                        <b>Специальности: </b>
+                                        {% for s in p.specialties  %}
+                                            {{ s.title }}
+                                            {% if s != p.specialties | last %}, {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                                {#<div style="padding: 3px; font-size: 0">&nbsp;</div>#}
+                                {#{{ p.body | anons }}#}
+                                {#<br />#}
+                                {#<a href="#" style="color: #337ab7;">Читать далее...</a>#}
+                                <br />
+                                <br />
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="background: #337ab7; padding: 10px">
+            <div style="color: #FFF; font-family: 'Arial'; ">
+                С уважением, <br />
+                euat.ru
+            </div>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

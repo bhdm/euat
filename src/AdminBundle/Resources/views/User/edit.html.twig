@@ -10,14 +10,48 @@
 
 {% block content %}
     <div class="well">
-
         {{ form_start(form) }}
-        {{ form_widget(form) }}
-        {% if item.certificate.path is defined %}
-            <a href="{{ item.certificate.path }}" class="fancybox">
-                <img src="{{ item.certificate.path }}" style="max-width: 200px">
-            </a>
+        {% if item.avatar.path is defined %}
+            <div class="row">
+                <div id="user-avatar" class="col-sm-8 col-sm-offset-4">
+                    <a href="{{ item.avatar.path }}" class="fancybox ">
+                        <img src="{{ item.avatar.path }}" style="max-width: 200px" class="img-thumbnail">
+                        <br />
+                        <br />
+                    </a>
+                </div>
+            </div>
         {% endif %}
+        {{ form_row(form.username) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.lastName) }}
+        {{ form_row(form.firstName) }}
+        {{ form_row(form.surName) }}
+        {{ form_row(form.birthDate) }}
+        {{ form_row(form.sex) }}
+        {{ form_row(form.country) }}
+        {{ form_row(form.city) }}
+        {{ form_row(form.phone) }}
+        {{ form_row(form.university) }}
+        {{ form_row(form.specialty) }}
+        {{ form_row(form.hobby) }}
+        {{ form_row(form.academicDegree) }}
+        {{ form_row(form.workTypeOrganization) }}
+        {{ form_row(form.workPlace) }}
+        {{ form_row(form.workPlaceTitle) }}
+        {{ form_row(form.workPost) }}
+        {% if item.certificate.path is defined %}
+            <div class="row">
+                <div id="user-certificate" class="col-sm-8 col-sm-offset-4">
+                    <a href="{{ item.certificate.path }}" class="fancybox ">
+                        <img src="{{ item.certificate.path }}" style="max-width: 200px" class="img-thumbnail">
+                        <br />
+                        <br />
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+        {{ form_row(form.certificateDate) }}
         {{ form_end(form) }}
 
     </div>
@@ -30,6 +64,9 @@
         #wzc_mainbundle_user_birthdate_day, #wzc_mainbundle_user_birthdate_month, #wzc_mainbundle_user_birthdate_year{
             display: inline-block;
             width: 100px
+        }
+        #user-avatar{
+            /*position: absolute;*/
         }
     </style>
 {% endblock %}

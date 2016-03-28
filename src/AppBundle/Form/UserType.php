@@ -16,7 +16,7 @@ class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('avatar', FileType::class, ['label' => 'Фотография', 'data_class' => null, 'required' => false]);
+//        $builder->add('avatar', FileType::class, ['label' => 'Фотография', 'data_class' => null, 'required' => false]);
         $builder->add('email', null, ['label' => 'E-mail']);
         $builder->add('username', HiddenType::class);
         $builder->add('lastName', null, ['label' => 'Фамилия']);

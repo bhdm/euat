@@ -23,13 +23,15 @@ class DefaultController extends Controller
         $publications = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['category' => $categoryNews],['created' => 'DESC'], 4);
         $videos = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['category' => $categoryVideo],['id' => 'DESC'], 3);
         $educations = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['category' => $categoryEducation],['id' => 'DESC'], 2);
+        $journalposts = $this->getDoctrine()->getRepository('AppBundle:JournalPost')->findBy(['enabled' => true],['id' => 'DESC'], 3);
 
         $carusel = $this->getDoctrine()->getRepository('AppBundle:Slidebar')->findBy(['enabled' => true],['id' => 'DESC']);
         return [
             'publications' => $publications,
             'videos' => $videos,
             'educations' => $educations,
-            'carusel' => $carusel
+            'carusel' => $carusel,
+            'journalposts' => $journalposts
         ];
 
     }
