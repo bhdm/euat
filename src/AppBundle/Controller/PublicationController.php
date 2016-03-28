@@ -187,7 +187,7 @@ class PublicationController extends Controller
         $message = \Swift_Message::newInstance()
             ->setSubject('Пользователь оставил комментарий')
             ->setFrom('info@euat.ru')
-            ->setTo('korotun@euat.ru')
+            ->setTo('notify@euat.ru')
             ->setBody(
                 $this->renderView(
                     '@App/Mail/newComment.html.twig',
