@@ -41,14 +41,16 @@
             {% endif %}
             <div сlass="pub-content">
                 {{ publication.anons | raw }}
-                {{ publication.body | raw }}
-                {% if publication.video.path is defined %}
-                    <div style="text-align: center">
-                        <video controls style="width: 100%;">
-                            <source src="{{ publication.video.path }}" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
+                {% if publication.private != true %}
+                    {{ publication.body | raw }}
+                    {% if publication.video.path is defined %}
+                        <div style="text-align: center">
+                            <video controls style="width: 100%;">
+                                <source src="{{ publication.video.path }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    {% endif %}
                 {% endif %}
             </div>
             <br />

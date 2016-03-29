@@ -118,6 +118,10 @@ class Publication
      */
     private $digest;
 
+    /**
+     * @ORM\Column(name="isPrivate", type="boolean", nullable=true)
+     */
+    private $private;
 
     public function __construct()
     {
@@ -129,8 +133,10 @@ class Publication
         $this->video = array();
         $this->specialties = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->private = false;
 
     }
+
 
     /**
      * Get id
@@ -389,6 +395,23 @@ class Publication
     {
         $this->digest = $digest;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getPrivate()
+    {
+        return $this->private;
+    }
+
+    /**
+     * @param mixed $private
+     */
+    public function setPrivate($private)
+    {
+        $this->private = $private;
+    }
+
 
 }
 

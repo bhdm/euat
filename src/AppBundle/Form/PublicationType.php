@@ -35,6 +35,14 @@ class PublicationType extends AbstractType
                 'required'    => false,
                 'label' => 'Комментарии'
             ))
+            ->add('private', ChoiceType::class, array(
+                'choices' => array(
+                    'Для всех' => false,
+                    'Для зарегистрированных' => true,
+                ),
+                'required'    => false,
+                'label' => 'Комментарии'
+            ))
 
             ->add('slug', TextType::class, [ 'label' => 'URI'])
             ->add('anons', TextareaType::class, [ 'label' => 'Анонс', 'required' => false])
@@ -46,7 +54,7 @@ class PublicationType extends AbstractType
                     'Включить' => true,
                     'Отключить' => false
                 ),
-                'required'    => true,
+                'required'    => false,
                 'label' => 'В рассылку'
             ))
 
@@ -55,7 +63,7 @@ class PublicationType extends AbstractType
                     'Активная' => true,
                     'Неактивна' => false
                 ),
-                'required'    => true,
+                'required'    => false,
                 'label' => 'Состояние'
             ));
         ;
