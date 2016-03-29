@@ -1,5 +1,10 @@
 {% extends "@App/layout.html.twig" %}
 
 {% block content %}
-    <h1>Произошла ошибка или данной страницы не существует :(</h1>
+    <div class="text-center">
+        <img src="{{ asset('bundles/app/images/404.jpg') }}">
+        <br />
+        <h1 class="title text-center text-uppercase" style="font-size: 24px">Произошла ошибка или данной страницы не существует :(</h1>
+        <a href="{{ path('homepage') }}">Перейти на главную</a>
+    </div>
 {% endblock %}
