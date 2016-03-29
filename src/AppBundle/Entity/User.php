@@ -532,7 +532,23 @@ class User extends BaseUser
         $this->avatar = $avatar;
     }
 
-
+    /**
+     * @ORM\PostPersist()
+     */
+    public function postPersist(){
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Пользователь Зарегистрировался')
+            ->setFrom('info@euat.ru')
+            ->setTo('notify@euat.ru')
+            ->setBody(
+                $this->renderView(
+                    '@App/Mail/setNewRegister.html.twig',
+                    array('user' => $this)
+                ),
+                'text/html'
+            );
+        $this->get('mailer')->send($message);
+    }
 
 
 }

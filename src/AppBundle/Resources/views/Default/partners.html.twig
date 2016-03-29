@@ -51,8 +51,9 @@
                 <div id="content-{{ p.id }}" style="text-align: left">
                     <h2 style="padding-bottom: 10px">{{ p.title }}</h2>
                     <img src="{{ p.image.path }}" style="max-height: 150px; max-width: 150px; float: left; margin-right: 20px">
-                    <a href="{{ p.link }}" target="_blank">{{ p.link }}</a>
                     {{ p.body | raw }}
+                    <br />
+                    <a href="{{ p.link }}" target="_blank">{{ p.link }}</a>
                 </div>
             </div>
         {% endfor %}

@@ -119,6 +119,19 @@ class AuthController extends Controller
             if ($file == null){
                 $user->setAvatar($oldAvatar);
             }else{
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Пользователь загрузил аватарку')
+                    ->setFrom('info@euat.ru')
+                    ->setTo('notify@euat.ru')
+                    ->setBody(
+                        $this->renderView(
+                            '@App/Mail/setAvatar.html.twig',
+                            array('user' => $user)
+                        ),
+                        'text/html'
+                    );
+                $this->get('mailer')->send($message);
+
                 $filename = time(). '.'.$file->guessExtension();
                 $file->move(
                     __DIR__.'/../../../web/upload/avatar/',
@@ -131,6 +144,19 @@ class AuthController extends Controller
             if ($file == null){
                 $user->setCertificate($oldCertificate);
             }else{
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Пользователь загрузил сертификат')
+                    ->setFrom('info@euat.ru')
+                    ->setTo('notify@euat.ru')
+                    ->setBody(
+                        $this->renderView(
+                            '@App/Mail/setCertificate.html.twig',
+                            array('user' => $user)
+                        ),
+                        'text/html'
+                    );
+                $this->get('mailer')->send($message);
+
                 $filename = time(). '.'.$file->guessExtension();
                 $file->move(
                     __DIR__.'/../../../web/upload/certificate/',
