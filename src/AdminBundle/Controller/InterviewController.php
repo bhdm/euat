@@ -104,9 +104,20 @@ class InterviewController extends Controller{
      */
     public function saveQuestionsAction(Request $request, $interviewId){
         $interview = $this->getDoctrine()->getRepository('AppBundle:Interview')->findOneById($interviewId);
+        $em = $this->getDoctrine()->getManager();
+
 
         if ($request->isMethod('POST')) {
-            $em = $this->getDoctrine()->getManager();
+
+            #Удаляем все старые вопросы и ответы
+            foreach($interview->getQuestions() as $q){
+                foreach($q->getChoices() as $a){
+                    $em->remove($a);
+                    $em->flush();
+                }
+                $em->remove($q);
+                $em->flush();
+            }
 
             $answerTrue = $request->request->get('answerTrue');
 
