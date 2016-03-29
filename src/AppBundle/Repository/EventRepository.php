@@ -64,7 +64,7 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
         if ($st == true){
             $qb->andWhere("s.enabled = 1");
         }
-            $qb->orderBy('s.created', 'DESC');
+            $qb->orderBy('s.id', 'DESC');
         $result = $qb->getQuery()->getResult();
 
         return $result;

@@ -182,6 +182,9 @@ class AuthController extends Controller
             }
             $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
 
+            $session =  $request->getSession();
+            $session->getFlashBag()->add('info', 'Ваш профиль успешно обновлен');
+
             return $this->render('FOSUserBundle:Profile:edit.html.twig', array(
                 'form' => $form->createView(),
                 'user' => $user
