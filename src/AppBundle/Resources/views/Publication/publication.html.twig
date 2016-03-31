@@ -43,7 +43,7 @@
     </div>
     <div class="col-xs-8" style="padding-right: 0">
         <div>
-            <h1 class="blue-text">{{ publication.title }}</h1>
+            <h1 class="blue-text" itemprop="name">{{ publication.title }}</h1>
             {% if publication.preview.path is defined  %}
                 <img src="{{ publication.preview.path }}"
                      style="max-width: 250px; float: left; margin: 0 20px 10px 10px"
@@ -53,7 +53,7 @@
                      title="{{ publication.title }}"
                 />
             {% endif %}
-            <div сlass="pub-content">
+            <div сlass="pub-content" itemprop="description">
                 {{ publication.anons | raw }}
                 {% if publication.private != true %}
                     {{ publication.body | raw }}
