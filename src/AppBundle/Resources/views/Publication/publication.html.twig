@@ -37,7 +37,7 @@
         <div>
             <h1 class="blue-text">{{ publication.title }}</h1>
             {% if publication.preview.path is defined  %}
-                <img src="{{ publication.preview.path }}" style="max-width: 250px; float: left; margin: 0 20px 10px 10px" class="img-thumbnail">
+                <img src="{{ publication.preview.path }}" style="max-width: 250px; float: left; margin: 0 20px 10px 10px" class="img-thumbnail" itemprop="image">
             {% endif %}
             <div сlass="pub-content">
                 {{ publication.anons | raw }}
