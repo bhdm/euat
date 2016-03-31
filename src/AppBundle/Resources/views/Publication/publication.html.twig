@@ -7,6 +7,14 @@
         <meta property="og:image" content="{{ publication.preview.path }}">
     {% endif %}
     <meta property="og:description" content="{{ publication.anons }}">
+
+    <meta itemscope itemtype="http://schema.org/Article" />
+    <meta itemprop="headline" content="{{ publication.title }}" />
+    <meta itemprop="description" content="{{ publication.anons }}" />
+    {% if publication.preview.path is defined  %}
+        <meta itemprop="image" content="{{ publication.preview.path }}" />
+    {% endif %}
+
 {% endblock %}
 
 {% block stylesheets %}
