@@ -1,0 +1,537 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block content %}
+    <h1 class="blue-text">Тест</h1>
+    <div>
+        <div class="row">
+            <div class="row">
+                <div class=" col-xs-offset-4 col-xs-4">
+                    <div class="dump"></div>
+                    <div class="question_0_error"></div>
+                    <div class="question_1_error"></div>
+                    <div class="question_2_error"></div>
+                    <div class="question_3_error"></div>
+                    <div class="question_4_error"></div>
+                </div>
+            </div>
+            <div class=" col-xs-offset-4 col-xs-2">
+                Пол
+            </div>
+            <div class="col-xs-4">
+                <select class="question_0 form-control" onchange="compute();">
+                    <option value="1">Мужской</option>
+                    <option value="0">Женский</option>
+                </select>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class=" col-xs-offset-4 col-xs-2">
+                Рассовая принадлежность
+            </div>
+            <div class="col-xs-4">
+                <select class="question_1 form-control" onchange="compute();">
+                    <option value="1">Афроамериканец</option>
+                    <option value="1.156">Другой</option>
+                </select>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class=" col-xs-offset-4 col-xs-2">
+                Возраст (Лет)
+            </div>
+            <div class="col-xs-4">
+                <input type="text" onkeyup="compute();" class="question_2 form-control" name="question_2" placeholder="Возраст">
+                <input type="hidden" class="question_2_units" name="question_2_units" value="1">
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class=" col-xs-offset-4 col-xs-2">
+                Креатинин
+            </div>
+            <div class="col-xs-2">
+                <input type="text" onkeyup="compute();" class="question_3 form-control" name="question_3" placeholder="Креатинин">
+            </div>
+            <div class="col-xs-2">
+                <select class="form-control question_3_units" onchange="compute();">
+                    <option value="1.0">mg/dL</option>
+                    <option value="0.011312217">µmol/L</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class=" col-xs-offset-4 col-xs-4">
+                <div class="result_1_title_area"></div>
+                <div class="result_1_sub_title_area"></div>
+                <div class="result_1_answer_area"></div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/app/js/test.js') }}"></script>
+    <script>
+        var database = new Object();
+        database['calculator_336'] = 'SLICC/ACR Damage Index Rheumatology ';
+        database['calculator_34'] = 'Canadian C-Spine Rule Emergency Neurology / Neurosurgery Orthopedics Medical Imaging emergency er cervical Rule Canadian fracture xray x ray trauma orthopedics C Spine MVA MVC neck NEXUS';
+        database['calculator_82'] = 'Thyroid Carcinoma: Anaplastic Oncology Otolaryngology (ENT) cancer Carcinoma ent ear nose throat TNM staging Thyroid Anaplastic';
+        database['calculator_125'] = 'Kidney Failure Risk Equation (8 Variable) Nephrology nephrology ckd kidney Risk dialysis Chronic Disease failure Equation 2011 RRT Tangri pru kfre';
+        database['calculator_162'] = 'Myocardial Performance Index (CO and ET) Cardiology cardiology myocardial index HEART CHF failure Ejection time Performance CO ET closure opening tei doppler';
+        database['calculator_145'] = 'Prognosis in Alcoholic Hepatitis Gastroenterology Score gi gastroenterology Hepatitis alcoholic MELD Child Pugh PELD';
+        database['calculator_339'] = 'Mayo Early Screen for Discharge Planning Medical Administration Mayo Rankin discharge planning';
+        database['calculator_333'] = 'Revised Venous Clinical Severity Score Vascular Surgery Severity revised vein VCSS venous reflux';
+        database['calculator_354'] = 'Multiple Myeloma Prognosis (R-ISS) Hematology Oncology Myeloma ISS R-ISS chromosome CA LDH';
+        database['calculator_110'] = 'Hemodynamics (Echo) Cardiology cardiology echo echocardiogram Hemodynamics';
+        database['calculator_214'] = 'Percent Reduction of Urea Nephrology nephrology urea pru Kt V ktv reduction Percent';
+        database['calculator_324'] = 'Vascular Quality Initiative (VQI) Cardiac Risk Index (CRI) | Open AAA Repair Cardiology Vascular Surgery Anesthesiology aortic VSG CRI AAA Repair abdominal aneurysm Open oaaa aorta';
+        database['calculator_89'] = 'SAH Fisher Grade Neurology / Neurosurgery neurology hemorrhage SAH Fisher Grade subarachnoid vasospasm';
+        database['calculator_157'] = 'MS: Mitral Valve Area (Cont) Cardiology cardiology echo echocardiogram Valve Area Cont stenosis mitral MS';
+        database['calculator_92'] = 'Forrest Classification Gastroenterology gi gastroenterology Bleed gastrointestinal Forrest Classification PUD rebleed';
+        database['calculator_155'] = 'MR: Quantification (Volumetric) Cardiology cardiology Quantification Volumetric regurgitation echo echocardiogram MR mitral';
+        database['calculator_194'] = 'Alcohol Relapse Risk after Liver Transplant Gastroenterology Risk gi gastroenterology liver cirrhosis Transplant Relapse alcoholism alcohol abuse';
+        database['calculator_277'] = 'Geriatric Depression Scale Mental Health Geriatrics depression SAD mde geriatric depressed';
+        database['calculator_197'] = 'Simplified Disease Activity Index for RA (SDAI) Rheumatology index Disease Simplified rheumatology determine Activity RA SDAI rheumatoid arhritis DMARD SJC TJC PGA EGA CRP remission';
+        database['calculator_11'] = 'Anion Gap Emergency Nephrology emergency er nephrology Anion Gap acidosis hyperchloremic electrolyte';
+        database['calculator_253'] = 'Framingham Risk Score (ATP-III) Cardiology ';
+        database['calculator_205'] = 'Shunt Fraction (Invasive) Cardiology Critical Care cardiology Fraction Shunt Invasive';
+        database['calculator_138'] = 'Mayo Quadratic eGFR Nephrology nephrology ckd eGFR EPI GFR CrCl Mayo Quadratic MDRD';
+        database['calculator_208'] = 'TIMI Risk Score (STEMI) Cardiology Emergency Critical Care cardiology emergency er Risk Score MI ACS TIMI STEMI';
+        database['calculator_120'] = 'Metabolic Syndrome (IDF) Cardiology cardiology diabetes International ATP III syndrome Metabolic IDF federation atpiii';
+        database['calculator_10'] = 'Infarct Size - Inferior Cardiology Emergency cardiology emergency er MI myocardial infarction ACS Infarct size Inferior';
+        database['calculator_134'] = 'MASCC Febrile Neutropenia Risk Infectious Disease Hematology Oncology Risk hematology heme oncology MASCC Febrile Neutropenia';
+        database['calculator_275'] = 'DAS28-CRP for Rheumatoid Arthritis  Rheumatology RA rheumatoid CRP ESR Arthritis';
+        database['calculator_91'] = 'Forrester HF Class Cardiology cardiology HEART Class forrester hf failure, CHF';
+        database['calculator_213'] = 'Transtubular K Gradient Nephrology nephrology Gradient Transtubular K TTKG potassium hyperkalemia hypokalemia';
+        database['calculator_178'] = 'PE Clinical Probability Emergency Urology Respirology Hematology Orthopedics Critical Care Medical Imaging emergency er Pulmonary respirology hematology heme oncology orthopedics DVT Clinical Probability PE embolism wells Well';
+        database['calculator_112'] = 'Henderson-Hasselbalch Nephrology nephrology acidosis Henderson Hasselbalch acid base alkalosis pH';
+        database['calculator_274'] = 'SLICC SLE Criteria Rheumatology Lupus SLE SLICC ACR';
+        database['calculator_75'] = 'Lund-Mackay Sinusitis Stage Infectious Disease Otolaryngology (ENT) Chronic ent ear nose throat Lund Mackay Sinusitis Stage rhinosinusitis';
+        database['calculator_343'] = 'Dialysis Duration Needed for Ethylene Glycol Ingestion Nephrology dialysis ethylene glycol overdose EG';
+        database['file_source_3'] = 'Terms of Use and Privacy Policy  ';
+        database['calculator_192'] = 'Reynolds CAD Risk Cardiology cardiology Risk CAD coronary Disease artery lipid Framingham Reynolds';
+        database['calculator_128'] = 'Kt/V Daugirdas Nephrology nephrology dialysis urea Kt V ktv hemodialysis URR reduction ration adequacy Daugirdas';
+        database['calculator_209'] = 'Stevenson HF Class Cardiology cardiology mortality Class CHF hf Stevenson';
+        database['calculator_182'] = 'Pediatric Strep Score Emergency Infectious Disease Pediatrics emergency er Score pediatric streptococcal Strep Pharygitis';
+        database['calculator_12'] = 'APACHE II Gastroenterology Critical Care Anesthesiology APACHE II 2 ICU critical care prognosis mortality knaus gi gastroenterology';
+        database['reference_book_5'] = 'Screening for Breast Cancer (CTFPHC) Oncology Preventive Medicine ';
+        database['calculator_223'] = 'Water Deficit in Hypernatremia Emergency Nephrology Geriatrics emergency er nephrology Sodium na Water Deficit hypernatremia';
+        database['calculator_181'] = 'Pediatric Glasgow Coma Scale Emergency Neurology / Neurosurgery Pediatrics emergency er pediatric GCS Scale coma Glasgow';
+        database['calculator_24'] = 'Bishop Score Obstetrics Score Bishop delivery cervix cervical station preeclampsia pre eclampsia PET PPROM labor labour fetal fetus nulliparity nulliparous induction pelvic pregnancy';
+        database['calculator_3'] = 'ROKS - Recurrence Of Kidney Stone (2014) Nephrology Urology nephrology urology Nephrolithiasis Stone calcium oxalate struvite cysteine cystine ESWL lithotripsy';
+        database['calculator_68'] = 'Duke Treadmill Score Cardiology cardiology Score Angina Duke Treadmill ST';
+        database['calculator_133'] = 'LV/RV Contractility (dp/dt) Cardiology cardiology echo echocardiogram LV RV Contractility dp dt';
+        database['calculator_267'] = 'Calcium Correction for Hypoalbuminemia Nephrology Endocrinology calcium albumin ionized hypoalbuminemia';
+        database['calculator_77'] = 'Mucosal Melanoma Oncology Otolaryngology (ENT) cancer ent ear nose throat TNM staging Mucosal Melanoma';
+        database['calculator_327'] = 'APRI (AST to Platelet Ratio Index) Gastroenterology Hepatitis liver cirrhosis platelet fibrosis hepatitis C ast nafld nash hepatic steatosis apri';
+        database['reference_book_3'] = 'CSN PD Adequacy Guidelines and Recommendations 2011 Nephrology ';
+        database['calculator_32'] = 'Pretest Probablity of CAD Cardiology cardiology CAD coronary Disease Pretest Probablity artery GXT stress test';
+        database['calculator_15'] = 'AR: Regurgitant Orifice (PISA) Cardiology cardiology AR aortic regurgitation echo echocardiogram Regurgitant Orifice PISA';
+        database['calculator_104'] = 'Risk of Graft Failure at 5-Years, Predicted at Time of Transplant Nephrology nephrology Risk graft failure renal 5 Years Predicted Transplant rejection time';
+        database['calculator_98'] = 'Lipid Lowering Guidelines using Framingham (2008) Endocrinology cardiology stroke cva prognosis CAD Cardiac lipid Framingham CHF using Lowering Guidelines 2008 CVD';
+        database['calculator_316'] = 'Vascular Quality Initiative (VQI) Cardiac Risk Index (CRI) | Carotid Endarterectomy Cardiology Vascular Surgery Anesthesiology Risk MI myocardial infarction index Cardiac cardiovascular VSG carotid endarterectomy abdominal new england';
+        database['calculator_107'] = 'Hodgkins Disease | Prognosis Hematology Oncology Score prognosis hematology heme oncology Disease Prognostic International Hodgkins hassenclever IPS';
+        database['calculator_33'] = 'Canadian CT Head Rule Emergency Neurology / Neurosurgery Orthopedics Surgery Medical Imaging emergency er Rule Canadian CT Head GCS fracture skull xray x ray amnesia trauma new orleans orthopedics';
+        database['file_source_14'] = 'Blood on MRI Neurology / Neurosurgery ';
+        database['calculator_35'] = 'HEART Score | Chest pain in the ER Cardiology Emergency cardiology emergency er Score MI HEART Chest pain ED';
+        database['calculator_109'] = 'MDS Revised - International Prognostic Scoring System (IPSS-R) Hematology Oncology hematology heme oncology Prognostic Scoring International MDS Intnl IPSS IPSSR myelodysplastic syndrome system WPSS';
+        database['calculator_111'] = 'Cardiac Output - Fick Cardiology Critical Care Anesthesiology cardiology Cardiac Output Fick catheterization';
+        database['calculator_228'] = 'Before Skin Incision Urology Vascular Surgery Surgery Surgery Surgical Before Anaesthesia or Safe checklist safety skin incision';
+        database['calculator_170'] = 'Prognosis in Renal Cell Carcinoma (UISS) Urology Oncology prognosis oncology renal cell Carcinoma TNM UISS RCC Nephrectomy Zisman';
+        database['file_source_18'] = 'Top View Dermatome Map Neurology / Neurosurgery ';
+        database['calculator_51'] = 'CrCl Cockroft-Gault Nephrology nephrology GFR creatinine clearance glomerular filtration rate CrCl CockroftGault Cockroft Gault';
+        database['calculator_143'] = 'MDS WHO Classification-based Prognostic Scoring System (WPSS) Hematology Oncology hematology heme oncology Prognostic Scoring Classification MDS IPSS myelodysplastic syndrome system WPSS Anemia WHO transfusion karyotype RARS refractory blasts Del5q 5q';
+        database['calculator_146'] = 'Hamilton Depression Rating Scale (HAM-D or HDRS) Mental Health Geriatrics emergency er Scale depression hamilton rating mental health';
+        database['calculator_193'] = 'Alcoholism - Risk of Relapse Gastroenterology Risk gi gastroenterology Hepatitis liver Relapse abuse alcoholism';
+        database['calculator_119'] = 'ICH Volume Neurology / Neurosurgery neurology hemorrhage ICH intracranial intracerebral Volume';
+        database['calculator_113'] = 'HIT 4Ts score Hematology Cardiac Surgery emergency er Score hematology heme oncology HIT 4Ts heparin induced thrombocytopenia platelet';
+        database['calculator_72'] = 'Emory Model (TIPSS) Gastroenterology gi gastroenterology liver cirrhosis Emory Model TIPSS MELD Child Pugh';
+        database['calculator_56'] = 'ECG: Cycle Length Cardiology Emergency ECG ekg cardiology emergency er Cycle Length';
+        database['calculator_102'] = 'Risk of Graft Failure at 5-Years, Predicted 1 Year Post Transplant Nephrology nephrology Risk graft failure Post renal 5 Years Predicted 1 Transplant rejection';
+        database['calculator_247'] = 'Phenytoin Adjustment in Renal Failure Nephrology Neurology / Neurosurgery nephrology ckd neurology dialysis failure renal Phenytoin Adjustment ESRD albumin';
+        database['calculator_212'] = 'TICI Score Neurology / Neurosurgery Score neurology infarction Cerebral TICI Thrombolysis';
+        database['calculator_148'] = 'MGUS Prognosis Hematology Oncology Geriatrics prognosis hematology heme oncology Myeloma MGUS monoclonal gammopathy Waldenstrom';
+        database['calculator_325'] = 'VQI: Respiratory Adverse Event Risk Post Vascular Surgery Respirology Vascular Surgery Anesthesiology vascular Surgery failure respiratory Pneumonia VQI resp';
+        database['calculator_88'] = 'Exercise Capacity (METs) Cardiology cardiology exercise capacity mets';
+        database['calculator_74'] = 'Hypopharyngeal Carcinoma Oncology Otolaryngology (ENT) cancer Carcinoma ent ear nose throat TNM staging Hypopharyngeal pharnyx pharyngeal';
+        database['calculator_97'] = 'Fractional Excretion of Urea Nephrology nephrology failure creatinine AKI acute renal Fractional Excretion urea';
+        database['file_source_13'] = 'Anterior Dermatome Map Neurology / Neurosurgery ';
+        database['calculator_123'] = 'MDS Intnl Prognostic Scoring Sys (IPSS) Hematology Oncology hematology heme oncology Prognostic Scoring International MDS Intnl IPSS myelodysplastic syndrome system WPSS';
+        database['calculator_185'] = 'Modified Ashworth Scale (MAS) Physical Medicine and Rehabilitation Scale syndrome Modified physical rehabilitation Ashworth MAS Spasticity Upper Motor Neuron Tone';
+        database['calculator_189'] = 'Pulmonary Resistance Cardiology Critical Care cardiology Pulmonary PCWP Flow Resistance PAP TPR PVR';
+        database['calculator_79'] = 'Oral Cavity Carcinoma Oncology Otolaryngology (ENT) cancer Carcinoma ent ear nose throat TNM staging Oral Cavity';
+        database['calculator_269'] = 'Alvarado Score for Acute Appendicitis Emergency Surgery appy appendicitis alvarado';
+        database['calculator_4'] = 'Solitary Pulmonary Nodule Malignancy Risk Respirology Solitary Pulmonary Nodule Malignancy Risk lung cancer respirology';
+        database['calculator_96'] = 'Fractional Excretion of Sodium Emergency Nephrology emergency er nephrology failure creatinine AKI acute renal Fractional Excretion Sodium na';
+        database['calculator_43'] = 'Child Pugh Score Emergency Infectious Disease Gastroenterology Critical Care emergency er Score prognosis gi gastroenterology liver cirrhosis MELD Child Pugh ascites encephalopathy';
+        database['calculator_152'] = 'Modified Rankin Scale (mRS) Neurology / Neurosurgery stroke cva neurology Scale Modified Rankin mRS';
+        database['calculator_191'] = 'Rate Pressure Product Cardiology cardiology rate Pressure exercise Product';
+        database['calculator_270'] = 'CIWA-Ar Emergency Mental Health Critical Care Alcohol EtOH withdrawal ciwa benzo benzodiazepine';
+        database['calculator_78'] = 'Nasopharyngeal Carcinoma Oncology Otolaryngology (ENT) cancer Carcinoma ent ear nose throat TNM staging pharyngeal Nasopharyngeal nasal';
+        database['calculator_322'] = 'Vascular Quality Initiative (VQI) Cardiac Risk Index (CRI) | EVAR Cardiology Vascular Surgery Anesthesiology Risk myocardial infarction index Cardiac myocardial infarction Endovascular Repair aneurysm EVAR Endovascular aneurysm repair';
+        database['calculator_140'] = 'MDRD eGFR Emergency Nephrology emergency er nephrology ckd eGFR EPI GFR CrCl MDRD';
+        database['calculator_345'] = 'NEXUS Chest Decision Instrument for Blunt Chest Trauma Surgery Medical Imaging trauma NEXUS Chest';
+        database['calculator_70'] = 'Syncope - EGSYS Score Cardiology Geriatrics cardiology Score Syncope EGSYS';
+        database['calculator_271'] = 'Patient Health Questionnaire-9 (PHQ-9) Mental Health Geriatrics depression mde major depression';
+        database['file_source_15'] = 'Rule of Nines Emergency Critical Care ';
+        database['calculator_29'] = 'BODE Index for COPD Respirology Pulmonary respirology index BODE COPD Chronic Obstructive Disease';
+        database['calculator_99'] = 'Lipid Lowering Guidelines using Framingham (ATP-III) Endocrinology cardiology stroke cva prognosis CAD Cardiac lipid Framingham CHF Lowering Guidelines CVD ATP 3 III';
+        database['calculator_135'] = '6-Month Mortality on HD Nephrology nephrology dialysis mortality Prognostic Model hemodialysis 6 month integrated survival hd';
+        database['calculator_317'] = 'GAD-7 Anxiety Scale Mental Health Geriatrics generalized anxiety PTSD panic social GAD';
+        database['calculator_292'] = 'Predicting 3 Year Survival for Incident Elderly ESRD Patients Nephrology Geriatrics ';
+        database['calculator_326'] = 'FIB-4 for Noninvasive Diagnosis of Hepatic Fibrosis Gastroenterology Hepatitis cirrhosis fibrosis hep hep C hepatitis C ast alt platelets';
+        database['calculator_116'] = 'SAH Hunt & Hess Scale Neurology / Neurosurgery neurology hemorrhage Scale SAH subarachnoid vasospasm hunt hess';
+        database['calculator_318'] = 'Polymyalgia Rheumatica (2012 EULAR/ACR Provisional Criteria) Rheumatology Geriatrics pain steroid CRP ESR PMR Shoulder Steroids';
+        database['file_source_23'] = 'Terms of Use - Web  ';
+        database['calculator_41'] = 'CHA2DS2-VASc Score for AF Cardiology Emergency Neurology / Neurosurgery Geriatrics cardiology emergency er Score tia stroke cva neurology Warfarin atrial fibrillation Afib AF coumadin prevention CHA2DS2 VASc CHA2DS2VASc';
+        database['reference_book_7'] = 'Screening for Hypertension (CTFPHC) Cardiology Nephrology Preventive Medicine ';
+        database['calculator_188'] = 'Pneumonia risk (CURB-65) Emergency Respirology Infectious Disease Critical Care Geriatrics emergency er Risk respirology Severity index Pneumonia CURB 65 PORT CAP lim fine';
+        database['calculator_131'] = 'Laryngeal Carcinoma: Supraglottic Oncology Otolaryngology (ENT) Carcinoma ent ear nose throat TNM staging Laryngeal glottis larynx Supraglottic';
+        database['calculator_222'] = 'Warfarin Bleeding Risk - Elderly Cardiology Geriatrics cardiology Risk Warfarin Bleeding atrial fibrillation Afib AF Elderly';
+        database['calculator_63'] = 'Discriminant Function (Alcoholic Hepatitis) Gastroenterology gi gastroenterology Hepatitis prednisone Discriminant Function alcoholic pentoxyfilline';
+        database['calculator_245'] = 'Gupta Perioperative Cardiac Risk Cardiology Urology Surgery Anesthesiology cardiology Risk Surgery index Cardiac Surgical revised gupta perioperative';
+        database['calculator_62'] = 'Dialysis Risk After Cardiac Surgery (Mehta) Cardiology Nephrology Cardiac Surgery emergency er nephrology Risk dialysis Surgery Cardiac cardiovascular failure Post AKI acute renal mehta';
+        database['calculator_126'] = 'Killip Class Cardiology Emergency Critical Care cardiology emergency er MI ACS Class CHF Killip shock myocardial infarction';
+        database['calculator_314'] = 'Bleeding Risk in Atrial Fibrillation: ATRIA  Cardiology Warfarin Bleeding Afib AF atrial fib';
+        database['calculator_103'] = 'Risk of Graft Failure at 5-Years, Predicted 7 Days Post Transplant Nephrology nephrology Risk graft failure Post renal 5 Years Predicted Transplant rejection 7 days';
+        database['calculator_226'] = 'Before Induction of Anaesthesia Urology Vascular Surgery Surgery Surgery induction Surgical Before Anaesthesia or Safe checklist safety';
+        database['calculator_323'] = 'Vascular Quality Initiative (VQI) Cardiac Risk Index (CRI) | Infra-inguinal Bypass Cardiology Vascular Surgery Anesthesiology Risk MI myocardial infarction index Cardiac VSG CRI Bypass infra inguinal';
+        database['calculator_121'] = 'In-flight PaO₂ (based on ABG) Respirology respirology PaO2 In flight ABG O2';
+        database['calculator_332'] = 'RPDAI (Relapsing Polychondritis Disease Activity Index) Cardiology Rheumatology RP relapsing polychondritis';
+        database['calculator_360'] = 'Corrected Sodium in Hyperglycemia Nephrology Sodium na glucose hyponatremia hyperglycemia glc';
+        database['calculator_344'] = 'Total Body Water (Watson Formula) Nephrology Water TBW total body water watson';
+        database['calculator_28'] = 'BMI/BSA (Mosteller) General Calculators Hematology Oncology Anesthesiology Area body mass index surface dosing bmi bsa hematology heme oncology';
+        database['calculator_7'] = 'Access Recirculation Nephrology nephrology Access Recirculation vascular AVF fistula graft AVG dialysis';
+        database['calculator_151'] = 'Modified Fisher Scale Neurology / Neurosurgery neurology hemorrhage Scale SAH Fisher Modified subarachonoid intraventricular';
+        database['calculator_163'] = 'Myocardial Performance Index (IVRT and IVCT) Cardiology cardiology myocardial index time Performance IVRT IVCT isovolemic contraction relaxation';
+        database['calculator_206'] = 'Smoldering Multiple Myeloma Prognosis Hematology Oncology prognosis hematology heme oncology Multiple Myeloma Smoldering MM plasmacytosis mprotein SMM';
+        database['calculator_290'] = 'ASDAS-CRP (Ankylosing Spondylitis Disease Activity Score) Rheumatology AS CRP Ankylosing Spondylitis';
+        database['calculator_86'] = 'Pulmonary Embolism Severity Index (PESI) Emergency Urology Respirology Hematology Orthopedics Critical Care emergency er Pulmonary respirology Severity index hematology heme orthopedics DVT PE embolism PESI';
+        database['calculator_42'] = 'Framingham CHF Criteria Cardiology cardiology HEART Framingham CHF Criteria failure';
+        database['calculator_108'] = 'Hematopoietic cell transplantation - specific comorbidity index (HCT-CI) Hematology Oncology index hematology heme oncology cell Hematopoietic transplantation specific comorbidity HCT CI allogeneic stem cell sorror hctci';
+        database['calculator_64'] = 'Diffuse Large B-Cell Lymphoma Prognosis (R-IPI) Hematology Oncology prognosis index hematology heme oncology Prognostic DLBCL R IPI RIPI International revised rituximab diffuse large b cell lymphoma';
+        database['calculator_17'] = 'AS: Aortic Valve Area (DVI) Cardiology cardiology aortic echo echocardiogram AS Valve Area stenosis DVI';
+        database['file_source_16'] = 'Head and Neck Dermatome Map Neurology / Neurosurgery ';
+        database['calculator_268'] = 'Sequential Organ Failure Assessment  (SOFA) Cardiac Surgery Critical Care Anesthesiology FiO2 PaO2 CSICU SOFA';
+        database['calculator_240'] = 'Due Date by LMP Obstetrics Medical Imaging Anesthesiology pregnancy Due Date LMP last menstrual period EDC estimated confinement EDD ultrasound wheel';
+        database['calculator_249'] = 'Serum Ascites to Albumin Gradient (SAAG) Gastroenterology Gradient gi gastroenterology cirrhosis ascites Hypertension albumin Serum SAAG portal';
+        database['calculator_187'] = 'DIPSS Prognosis in Myelofibrosis Hematology Oncology hematology heme oncology Scoring system Myelofibrosis cervantes';
+        database['calculator_142'] = 'MDS Anemia - EPO/GCSF Response Hematology Oncology hematology heme oncology MDS myelodysplastic syndrome Anemia EPO GCSF Response';
+        database['calculator_234'] = 'Patient Characteristics?  ';
+        database['calculator_244'] = 'Gestational Age Obstetrics Medical Imaging pregnancy LMP Gestational Age dates';
+        database['calculator_76'] = 'Maxillary Sinus Carcinoma Oncology Otolaryngology (ENT) cancer Sinus Carcinoma ent ear nose throat TNM staging Maxillary';
+        database['calculator_2'] = 'Glomerulosclerosis on Biopsy (2015) Nephrology nephrology glomerulosclerosis ckd biopsy kidney glomerulus glomeruli pathology';
+        database['calculator_165'] = 'NEXUS C-Spine Criteria Emergency Neurology / Neurosurgery Orthopedics Surgery Medical Imaging emergency er cervical fracture trauma orthopedics C Spine NEXUS Criteria hoffman';
+        database['calculator_313'] = 'The Richmond Agitation Sedation Score (RASS) Neurology / Neurosurgery Critical Care ';
+        database['calculator_139'] = 'PCI complication - Mayo Cardiology cardiology PCI CAD percutaneous coronary intervention angiogram stent Mayo complication singh';
+        database['calculator_200'] = 'RV Systolic Pressure (TR Jet) Cardiology cardiology regurgitation echo echocardiogram Pressure Systolic RV TR Jet right ventricle tricuspid RVSP';
+        database['calculator_232'] = 'Residual Urea Clearance  ';
+        database['file_source_41'] = 'FRAX™ Orthopedics Endocrinology Rheumatology 382 FRAX BMD';
+        database['calculator_149'] = 'MIPI - Mantle Cell Lymphoma Prognosis Hematology Oncology prognosis index hematology heme oncology Prognostic International cell lymphoma MIPI Mantle ecog Ki67 MIPIb';
+        database['calculator_154'] = 'MR: Quantification (PISA) Cardiology cardiology Quantification regurgitation echo echocardiogram PISA MR mitral';
+        database['calculator_341'] = 'NAFLD Fibrosis Score Gastroenterology liver cirrhosis delivery fibrosis nafld nash';
+        database['calculator_196'] = 'Adult Onset Stills Disease, Diagnostic Criteria Rheumatology Disease Criteria adult Onset stills Diagnostic rheumatology';
+        database['calculator_55'] = 'Dialysis Risk After Cardiac Surgery (Cleveland Clinic Score by Thakar) Cardiology Nephrology Cardiac Surgery cardiology emergency er Risk dialysis Surgery Cardiac cardiovascular failure AKI acute renal post CVT Thakar';
+        database['calculator_52'] = 'CrCl from 24h Urine Nephrology nephrology GFR creatinine clearance glomerular filtration rate CrCl from 24h Urine 24 hour';
+        database['calculator_93'] = 'Fosphenytoin Load Neurology / Neurosurgery neurology Fosphenytoin Load seizure';
+        database['definition_11'] = 'Bellucci Classification Otolaryngology (ENT) ';
+        database['calculator_280'] = 'Surgical Apgar Score Vascular Surgery Surgery APGAR Postoperative Gawande';
+        database['calculator_54'] = 'CT Severity Index (Pancreatitis) Gastroenterology Medical Imaging Severity prognosis gi gastroenterology index CT pancreatitis pancreas';
+        database['calculator_287'] = 'Pre-test probability of CAD (CAD consortium) Cardiology Emergency Anesthesiology ';
+        database['reference_book_8'] = 'Screening for Type 2 Diabetes (CTFPHC) Preventive Medicine Endocrinology ';
+        database['calculator_210'] = 'Systemic Vascular Resistance Cardiology Critical Care cardiology vascular Resistance Systemic SVR';
+        database['calculator_183'] = 'PELD Score - Age Younger Than 12 years Emergency Pediatrics Gastroenterology emergency er Score gi gastroenterology pediatric liver Disease MELD Stage PELD end';
+        database['calculator_180'] = 'Pediatric Endotracheal Tube Size Emergency Pediatrics Anesthesiology emergency er size pediatric ET Endotracheal Tube ETT intubation';
+        database['calculator_20'] = 'Autoimmune Hepatitis Diagnosis Gastroenterology gi gastroenterology Autoimmune Hepatitis Diagnosis alp phos sma ana lkm smooth muscle liver cirrhosis aih';
+        database['calculator_276'] = 'DAS28-ESR for Rheumatoid Arthritis  Rheumatology RA rheumatoid CRP ESR Arthritis';
+        database['reference_book_2'] = 'Access Care and Complications Management Nephrology ';
+        database['calculator_71'] = 'Ejection Fraction (Simplified) Cardiology cardiology echo echocardiogram Ejection Fraction Simplified EF';
+        database['calculator_272'] = 'DRAGON Score for Post-TPA Stroke Outcome Neurology / Neurosurgery Physical Medicine and Rehabilitation stroke prognosis mRS tPA alteplase NIHSS';
+        database['calculator_81'] = 'Salivary Gland Carcinoma Oncology Otolaryngology (ENT) cancer Carcinoma ent ear nose throat TNM staging Salivary Gland';
+        database['calculator_49'] = 'Corticosteroid Equivalence Respirology respirology Corticosteroid Equivalence steroid dex dexamethason glucocorticoid prednisone methylprednisolone cortisone hydrocortisone';
+        database['calculator_171'] = 'Osmolal Gap Emergency Nephrology emergency er nephrology Gap Osmolal Osmolality Osm ethylene glycol methanol DKA ketones ketone ethanol EtOH lactate lactic acidosis';
+        database['calculator_164'] = 'Nasal Cannula FiO₂ Estimation Respirology respirology FiO2 nasal O2 Cannula Estimation';
+        database['calculator_53'] = 'CRUSADE Score for Post-MI Bleeding Risk Cardiology cardiology Score MI ACS Bleeding hemorrhage Crusade NSTEMI';
+        database['calculator_168'] = 'TIMI Risk Score (NSTEMI) Cardiology Emergency Critical Care cardiology emergency er Risk Score MI ACS NSTEMI TIMI';
+        database['calculator_338'] = 'International Prostate Symptom Score (IPSS) Urology Geriatrics IPSS prostate bph boo bladder nocturia void voiding AUASS';
+        database['calculator_159'] = 'MS: Mitral Valve Area (PHT) Cardiology cardiology echo echocardiogram Valve Area stenosis mitral MS PHT';
+        database['calculator_37'] = 'ACC/AHA CV Risk Calculator (2013) Cardiology Preventive Medicine Anesthesiology Geriatrics cardiology Risk diabetes ascvd lipid cv cardiovascular acc aha';
+        database['calculator_356'] = 'Injury Severity Score Emergency Orthopedics Surgery trauma ISS Traumatic';
+        database['calculator_334'] = 'BISAP Score Gastroenterology Critical Care APACHE pancreatitis pancreas ranson ransom';
+        database['calculator_19'] = 'AS: Aortic Valve Area (Hakki) Cardiology cardiology aortic echo echocardiogram AS Valve Area stenosis Hakki';
+        database['calculator_129'] = 'Laryngeal Carcinoma: Glottic Oncology Otolaryngology (ENT) Carcinoma ent ear nose throat TNM staging Laryngeal Glottic glottis larynx';
+        database['calculator_153'] = 'Modified Strep Score Otolaryngology (ENT) Score ent ear nose throat Modified gas streptococcal pharyngitis Strep streptococcus';
+        database['calculator_224'] = 'Westley Croup Score Emergency Infectious Disease Pediatrics emergency er Score Croup cough pediatrics Westley';
+        database['calculator_160'] = 'MS: Mitral Valve Area (PISA) Cardiology cardiology echo echocardiogram PISA Valve Area stenosis mitral MS';
+        database['calculator_285'] = 'Euroscore II Cardiac Surgery CABG euroscore MVR AVR';
+        database['calculator_207'] = 'Spetzler-Martin Score Neurology / Neurosurgery Score neurology AVM malformation Spetzler Martin ateriovenous';
+        database['calculator_5'] = 'A-a Gradient Emergency Respirology Critical Care emergency er respirology Aa a Gradient alveolar FiO2 PaCO2 PaO2 respiratory quotient';
+        database['calculator_101'] = 'Glasgow Coma Scale (GCS) Neurology / Neurosurgery Surgery Critical Care Anesthesiology neurology GCS Scale FOUR 4 coma Glasgow';
+        database['calculator_13'] = 'APGAR Emergency Pediatrics emergency er pediatrics APGAR pediatric neonate newborn';
+        database['calculator_48'] = 'ECG: Corrected QT Cardiology Emergency ECG ekg cardiology emergency er Corrected QT';
+        database['calculator_167'] = 'NSCLC Stage Respirology Oncology lung cancer respirology oncology cell staging Stage NSCLC non small nonsmall';
+        database['calculator_127'] = 'Kt/V from PRU Nephrology nephrology dialysis from urea pru Kt V ktv hemodialysis URR reduction ration adequacy';
+        database['calculator_141'] = 'MDRD eGFR (6 Variable) Nephrology nephrology ckd eGFR EPI GFR CrCl 6 MDRD six Variable';
+        database['calculator_201'] = 'Modified SAD PERSONS Scale Emergency Mental Health emergency er Scale depression Modified SAD PERSONS';
+        database['calculator_225'] = 'WFNS SAH Scale Neurology / Neurosurgery neurology hemorrhage GCS Scale SAH subarachnoid WFNS world federation of neurological surgeons';
+        database['calculator_22'] = 'Surgery in Asymptomatic Aortic Stenosis Cardiology Cardiac Surgery cardiology aortic echo echocardiogram AS stenosis Asymptomatic Surgery Timing BNP';
+        database['file_source_17'] = 'Posterior Dermatome Map Neurology / Neurosurgery ';
+        database['calculator_94'] = 'FOUR Score Neurology / Neurosurgery Score neurology GCS FOUR 4 coma wijdicks';
+        database['calculator_85'] = 'Epworth Sleepiness Scale Respirology respirology Obstructive Epworth Sleepiness Scale OSA apnea sleep';
+        database['calculator_330'] = 'PERC Rule for Pulmonary Embolism Emergency Urology Respirology Hematology Medical Imaging Pulmonary DVT PE embolism wells Well Wells d-dimer PERC';
+        database['calculator_1'] = 'ECG: Heart Rate Cardiology Emergency ECG Heart Rate ekg cardiology emergency er';
+        database['calculator_241'] = 'Due Date by Ultrasound Obstetrics Medical Imaging Anesthesiology pregnancy Due Date LMP last menstrual period EDC estimated confinement EDD ultrasound wheel';
+        database['calculator_312'] = 'CAM-ICU Neurology / Neurosurgery Critical Care care intensive delirium';
+        database['calculator_137'] = 'PD Candidacy (MATCH-D) Nephrology nephrology dialysis d hd Home Candidacy MATCH matchd PD Peritoneal central CAPD CCPD APD';
+        database['calculator_25'] = 'Blatchford Score Gastroenterology Score admission gi gastroenterology Blatchford Bleed endoscopy gastrointestinal';
+        database['calculator_252'] = 'Framingham Risk Score (2008) Cardiology ';
+        database['reference_book_6'] = 'Screening for Cervical Cancer (CTFPHC) Oncology Preventive Medicine ';
+        database['calculator_291'] = 'ASDAS-ESR (Ankylosing Spondylitis Disease Activity Score) Rheumatology AS ESR Ankylosing Spondylitis';
+        database['calculator_311'] = 'Diffuse Large B-cell Lymphoma Prognosis (NCCN-IPI) Hematology Oncology prognosis DLBCL rituximab lymphoma';
+        database['calculator_340'] = 'Mayo Score for Ulcerative Colitis Activity Gastroenterology Surgery Mayo ibd colitis UC ulcerative';
+        database['calculator_198'] = 'Membranous Prognosis Nephrology nephrology prognosis Nephropathy Membranous proteinuria cattran nephrotic';
+        database['calculator_144'] = 'Prognosis after TIPSS using MELD Score Emergency Infectious Disease Gastroenterology emergency er Score gi gastroenterology liver cirrhosis MELD Child Pugh PELD';
+        database['calculator_36'] = 'BC Cardiac Surgical Intensive Care Score Cardiology Cardiac Surgery cardiology Score mortality aortic BC Cardiac Surgical Intensive Care CSICU Ascending Procedure CABG Valves';
+        database['calculator_122'] = 'In-flight PaO₂ (ABG & PFT) Respirology respirology PaO2 In flight ABG O2 PFT';
+        database['calculator_30'] = 'BMI/BSA (Du Bois) General Calculators Hematology Oncology Anesthesiology Area body mass index surface dosing bmi bsa hematology heme oncology';
+        database['calculator_83'] = 'Thyroid Carcinoma: Medullary Oncology Otolaryngology (ENT) cancer Carcinoma ent ear nose throat TNM staging Thyroid Medullary';
+        database['calculator_230'] = 'Membrane Transport Type  ';
+        database['calculator_235'] = 'PD Prescription  ';
+        database['calculator_281'] = 'Schwartz Pediatric Bedside eGFR  (2009) Nephrology eGFR GFR creatinine clearance Schwartz cystatin';
+        database['calculator_319'] = 'Scleroderma/Systemic Sclerosis (2013 EULAR/ACR Criteria) Rheumatology ';
+        database['calculator_195'] = 'Revised Cardiac Risk Index (Lee Criteria) Cardiology Anesthesiology cardiology Risk index Cardiac Criteria revised Lee detsky eagle gupta VSG CRI';
+        database['calculator_172'] = 'Ottawa Ankle Rules Emergency Orthopedics Medical Imaging emergency er fracture xray x ray orthopedics Ottawa Ankle Rules weight bear lateral malleolus medical 5th metatarsal navicular';
+        database['calculator_118'] = 'ICH Score Neurology / Neurosurgery Score neurology hemorrhage ICH intracranial intracerebral';
+        database['calculator_236'] = 'FINDRISC Diabetes Risk Calculator Endocrinology Risk diabetes 2 bmi endocrinology 1 glucose preventative medicine findrisc canrisk igt tolerance a1c hba1c waist fruit vegetable type dm dm2';
+        database['calculator_353'] = 'HOSPITAL Score Medical Administration admission preventative PAR readmission hospital';
+        database['calculator_190'] = 'Ransons Criteria Emergency Gastroenterology Critical Care emergency er prognosis gi gastroenterology Criteria pancreatitis Ransons';
+        database['calculator_204'] = 'Shunt Fraction (Echo) Cardiology cardiology echo echocardiogram Fraction Shunt LVOT RVOT';
+        database['calculator_6'] = 'ABCD² Score Neurology / Neurosurgery Geriatrics ABCD2 Score tia stroke cva diabetes admission johnston rothwell neurology';
+        database['calculator_286'] = '3-Month Mortality in Incident Elderly ESRD Patients Nephrology Geriatrics dialysis mortality hemodialysis hd ESRD';
+        database['definition_5'] = 'House Brackmann Otolaryngology (ENT) ent ear nose throat 7 facial nerve cranial VII CN House Brackmann damage palsy seven';
+        database['calculator_211'] = 't-PA Dosing in Acute Stroke Neurology / Neurosurgery stroke cva neurology dosing acute tPA t pa';
+        database['calculator_23'] = 'PCI mortality - Canada Score Cardiology cardiology Score mortality PCI Canada CAD percutaneous coronary intervention angiogram stent';
+        database['calculator_179'] = 'Peak Expiratory Flow Prediction Emergency Respirology emergency er respirology Peak Expiratory Flow Prediction PEF asthma exacerbation';
+        database['calculator_161'] = 'MS: Mitral Valve Area (Hakki) Cardiology cardiology echo echocardiogram Valve Area stenosis Hakki mitral MS';
+        database['calculator_117'] = 'ICH FUNC Score Neurology / Neurosurgery Physical Medicine and Rehabilitation Score neurology hemorrhage ICH FUNC intracranial functional independence intracerebral';
+        database['calculator_114'] = 'Hodgkins Marrow Involvement Hematology Oncology hematology heme oncology Hodgkins Marrow Involvement bone marrow';
+        database['calculator_84'] = 'Thyroid Carcinoma: Well-Differentiated Oncology Otolaryngology (ENT) cancer Carcinoma ent ear nose throat TNM staging Thyroid Well Differentiated';
+        database['calculator_278'] = 'Jones Criteria for Diagnosis of Rheumatic Fever Cardiology Infectious Disease Rheumatology Strep Jones ARF Rheumatic Fever Carditis Sydenham Sydenhams';
+        database['calculator_158'] = 'MS: Mitral Valve Area (Gorlin) Cardiology cardiology echo echocardiogram Valve Area stenosis Gorlin mitral MS';
+        database['calculator_69'] = 'DVT Clinical Probability (Wells) Emergency Urology Respirology Hematology Orthopedics Critical Care Medical Imaging emergency er Pulmonary respirology hematology heme oncology orthopedics DVT Clinical Probability deep vein thrombosis PE embolism wells d dimer';
+        database['calculator_90'] = 'Follicular Lymphoma prognosis Hematology Oncology prognosis hematology heme oncology lymphoma Follicular';
+        database['calculator_40'] = 'CHADS2 Score for AF Cardiology Emergency Neurology / Neurosurgery Geriatrics cardiology emergency er Score tia stroke cva neurology Warfarin atrial fibrillation Afib AF CHADS2 coumadin prevention';
+        database['calculator_21'] = 'AVM Rupture Risk Neurology / Neurosurgery Risk stroke cva neurology AVM Rupture arteriovenous malformation';
+        database['calculator_130'] = 'Laryngeal Carcinoma: Subglottic Oncology Otolaryngology (ENT) Carcinoma ent ear nose throat TNM staging Laryngeal glottis larynx Subglottic';
+        database['calculator_315'] = 'DIPSS Plus Score for Prognosis in Myelofibrosis Hematology Oncology Myelofibrosis DIPPS Plus';
+        database['definition_6'] = 'NYHA Functional Class Cardiology cardiology HEART Class CHF failure functional NYHA';
+        database['calculator_294'] = 'Aortic Stenosis Risk Score Cardiology Cardiac Surgery aortic AS stenosis';
+        database['definition_2'] = 'Alberta Croup Severity Emergency Infectious Disease Pediatrics emergency er Alberta Croup Severity cough barky pediatrics';
+        database['calculator_136'] = 'Home HD Candidacy (MATCH-D) Nephrology nephrology dialysis d hemodialysis hd Home hhd hemo Candidacy MATCH matchd NHD nocturnal quotidian intensive';
+        database['calculator_132'] = 'Left Atrial Systolic Pressure Cardiology cardiology echo echocardiogram atrial Pressure Left Systolic';
+        database['calculator_80'] = 'Oropharyngeal Carcinoma Oncology Otolaryngology (ENT) cancer Carcinoma ent ear nose throat TNM staging pharyngeal Oral Oropharyngeal pharynx';
+        database['calculator_176'] = 'PCI mortality - Michigan Cardiology cardiology mortality PCI CAD percutaneous coronary intervention angiogram stent Michigan';
+        database['calculator_150'] = 'Modified Bernoulli Equation Cardiology cardiology echo echocardiogram Equation Modified Bernoulli';
+        database['calculator_203'] = 'Seattle Heart Failure Model Cardiology cardiology HEART CHF failure Model Seattle';
+        database['calculator_100'] = 'Mortality in IPF (GAP Index) Respirology respirology Gap mortality index IPF';
+        database['calculator_342'] = 'Dialysis Duration Needed for Methanol Ingestion Nephrology dialysis clearance urea methanol MeOH overdose';
+        database['calculator_124'] = 'Multiple Myeloma Prognosis (ISS) Hematology Oncology prognosis hematology heme oncology International staging system Multiple Myeloma ISS';
+        database['reference_book_4'] = 'PD Prescription Guide Nephrology dialysis PET bsa creatinine renal Function urea Volume Kt V ktv adequacy PD Peritoneal CAPD CCPD APD prescription guide RRF residual distribution membrane transport RKF residual kidney function ultrafiltration UF high average low glucose';
+        database['calculator_177'] = 'PCWP (Echo) Cardiology cardiology Pulmonary echo echocardiogram Pressure mitral PCWP capillary wedge inflow annulus velocity';
+        database['calculator_95'] = 'Fractional Shortening Cardiology cardiology echo echocardiogram Fractional Shortening';
+        database['calculator_47'] = 'Contrast Nephropathy Post-PCI Nephrology nephrology PCI failure eGFR Contrast Nephropathy Post CIN AKI acute renal';
+        database['calculator_106'] = 'Bleeding Risk in Atrial Fibrillation: HAS-BLED Score Cardiology Geriatrics cardiology Risk Score stroke liver Bleeding atrial fibrillation Afib AF CHA2DS2 VASc CHA2DS2VASc renal Function OAC HAS BLED HASBLED Hypertension Abnormal History Bleeding Predisposition Labile INRs Elderly Drugs Alcohol Usage';
+        database['calculator_175'] = 'Parkland Formula Emergency Surgery Critical Care emergency er Burns Parkland Formula burn fluid resuscitation degree';
+        database['calculator_284'] = 'VSGNE Ruptured Abdominal Aortic Aneurysm (RAAA) Risk Score Emergency Vascular Surgery Anesthesiology AAA rAAA';
+        database['calculator_321'] = 'San Francisco Syncope Rule Cardiology Geriatrics Syncope';
+        database['calculator_67'] = 'Duke Criteria for Endocarditis Cardiology Infectious Disease cardiology Criteria Duke Endocarditis SBE IE';
+        database['calculator_282'] = 'Schwartz Pediatric eGFR, Full Model  (2009) Nephrology ';
+        database['calculator_299'] = 'BASDAI Rheumatology AS Ankylosing Spondylitis BASDAI';
+        database['calculator_169'] = 'Carboplatin AUC Dosing (Calvert) Oncology Area dosing oncology GFR Carboplatin AUC Calvert under curve chemotherapy';
+        database['calculator_73'] = 'Ethmoid Sinus Carcinoma Oncology Otolaryngology (ENT) cancer Ethmoid Sinus Carcinoma ent ear nose throat TNM staging';
+        database['calculator_251'] = 'eGFR using CKD-EPI Nephrology Geriatrics ';
+        database['calculator_14'] = 'AR: Quantification (Volumetric) Cardiology cardiology AR Quantification Volumetric aortic regurgitation echo echocardiogram';
+        database['calculator_227'] = 'Before Patient Leaves OR Urology Vascular Surgery Surgery Surgery Surgical Before Anaesthesia or Safe checklist safety patient leaves';
+        database['calculator_215'] = 'VALIANT Heart Failure Risk Score Cardiology cardiology Risk Score HEART CHF failure hf VALIANT hospitalization';
+        database['calculator_357'] = 'Brain Metastases Prognostic Index Oncology mets Brain met metastasis metastases';
+        database['calculator_50'] = 'Cerebral Perfusion Pressure Neurology / Neurosurgery Critical Care neurology Cerebral Perfusion Pressure CPP MAP ICP';
+        database['calculator_250'] = 'Mangled Extremity Severity Score (MESS) Orthopedics Surgery Score Severity trauma orthopedics Extremity Mangled MESS salvage';
+        database['calculator_105'] = 'Acute GVHD Grading Hematology Oncology graft hematology heme oncology Disease acute GVHD Grading host versus glucksberg ibmtr';
+        database['calculator_293'] = 'Diffuse Large B-cell Lymphoma Prognosis (IPI24) Hematology Oncology prognosis DLBCL IPI ipi24 nomogram Diffuse Large B-cell Lymphoma';
+        database['calculator_296'] = 'Ottawa SAH Rule Emergency Neurology / Neurosurgery hemorrhage SAH subarachnoid headache';
+        database['calculator_156'] = 'MS: Wilkins Echo Score Cardiology cardiology Score echo echocardiogram stenosis mitral MS Wilkins';
+        database['calculator_186'] = 'National Pressure Ulcer Advisory Panel Staging System (NPUAP) Physical Medicine and Rehabilitation Pressure staging system physical rehabilitation Injury National Ulcer Advisory Panel NPUAP Ulcers Spinal Cord SCI';
+        database['calculator_295'] = 'Ottawa SAH Inclusion & Exclusion  ';
+        database['calculator_261'] = 'Postoperative Respiratory Failure Risk Calculator Urology Respirology Obstetrics Orthopedics Otolaryngology (ENT) Vascular Surgery Surgery Critical Care Anesthesiology Risk respirology Surgery pregnancy Surgical failure ent respiratory intubation gupta or Postoperative estimate Calculator otolaryngology obstetrics PRF wean mechanical ventilation reintubation';
+        database['calculator_246'] = 'Ideal Body Weight General Calculators body mass index bmi weight Ideal ibw';
+        database['calculator_359'] = 'MELD Score - Age above 12 years Infectious Disease Gastroenterology MELD Sodium Transplant MELDNa MELD-Na INR Bilirubin';
+        database['calculator_308'] = 'Kidney Failure Risk Equation (4 Variable) Nephrology ckd kidney dialysis failure eGFR Transplant ESRD kfre';
+        database['calculator_173'] = 'Ottawa Knee Rules Emergency Orthopedics Surgery Medical Imaging emergency er fracture xray x ray orthopedics Ottawa Rules Knee patella patellar fibula weight bear flex';
+        database['calculator_302'] = 'Vasculitis Damage Index (VDI) Rheumatology index GPA MPA ANCA Vasculitis VDI';
+        database['calculator_174'] = 'PaO₂:FiO₂ Ratio Respirology respirology Pressure Fraction Fractional syndrome Ratio ARDS adult respiratory distress Pa02 Fi02 partial oxygen inspired arterial';
+        database['calculator_66'] = 'Dubbo Osteoporotic Fracture Risk Endocrinology Geriatrics Risk Score fracture Dubbo Osteoporotic tTscore osteoporosis endocrinology';
+        database['calculator_147'] = 'SNAP-IV 26 - Teacher & Parent Rating Scale Pediatrics Mental Health pediatrics Scale rating mental health add adhd odd hyperactivity inattention impulsivity snap teacher parent peds';
+        database['calculator_18'] = 'AS: Aortic Valve Area (Gorlin) Cardiology cardiology aortic echo echocardiogram AS Valve Area stenosis Gorlin';
+        database['calculator_9'] = 'Infarct Size - Anterior Cardiology Emergency cardiology emergency er Infarct Size Anterior MI myocardial infarction ACS';
+        database['calculator_335'] = 'SLEDAI-2K Nephrology Rheumatology Lupus SLE SLEDAI 2K';
+        database['calculator_337'] = 'Crohns Disease Activity Index (CDAI) Gastroenterology Surgery Disease CDAI crohn crohns crohns ibd inflammatory bowel colitis';
+        database['calculator_279'] = 'Clinical Disease Activity Index for RA (CDAI) Rheumatology RA SDAI rheumatoid Arthritis CDAI DAS DAS28';
+        database['calculator_216'] = 'Asymptomatic ICA (Internal Carotid Artery) Stenosis Surgical Risk Stratification Cardiology Neurology / Neurosurgery Vascular Surgery Anesthesiology cardiology Risk stroke neurology vascular survival carotid endarterectomy stenting analysis';
+        database['calculator_45'] = 'CMML Prognostic Scoring Systems (from Spain and Dusseldorf) Hematology Oncology hematology heme oncology Chronic CMML Prognostic Scoring Systems Spain Dusseldorf Myelomonocytic Leukemia';
+        database['calculator_199'] = 'Rockall Score Gastroenterology Score gi gastroenterology Bleed endoscopy Rockall';
+        database['calculator_184'] = 'Disability Rating Scale (DRS) Physical Medicine and Rehabilitation Scale coma functional rating Disability DRS physical rehabilitation Traumatic Brain Injury Assessment Outcome Measurement TBI Wright';
+        database['calculator_16'] = 'AS: Aortic Valve Area (Cont) Cardiology cardiology aortic echo echocardiogram AS Valve Area Cont stenosis';
+        database['calculator_248'] = 'Pneumonia Severity Index (PORT Score) Respirology Infectious Disease Critical Care Geriatrics respirology Severity index Pneumonia CURB 65 PORT lim fine';
+        database['calculator_273'] = 'NIH Stroke Scale/Score (NIHSS) Neurology / Neurosurgery stroke cva NIHSS NIH';
+        database['calculator_26'] = 'Bleeding Risk in Atrial Fibrillation: OBRI Cardiology cardiology Risk Warfarin Bleeding OBRI atrial fibrillation Afib AF';
+
+        function compute() {
+            $(".dump").html('');
+            var total_variables = 4;
+
+            set_unit();
+            $0 = Number($(".question_0").val());
+            variable_feedback = variable_feedback + 0 + " is " + $0 + ", ";
+
+            set_unit();
+            $1 = Number($(".question_1").val());
+            variable_feedback = variable_feedback + 1 + " is " + $1 + ", ";
+
+            $2 = Number(Number(remove_non_numbers($(".question_2").val())) * Number($(".question_2_units").val()));
+            validate_entry('2', $2, $(".question_2").val());
+
+            $3 = Number(Number(remove_non_numbers($(".question_3").val())) * Number($(".question_3_units").val()));
+            validate_entry('3', $3, $(".question_3").val());
+
+            for (var i = 0; i < total_variables; i++) {
+                if ($(".question_" + i + "_error").html() != "") {
+                    $(".results_content").html("Please ensure that all values are within the accepted ranges. Look for the red warning text.");
+                    return;
+                }
+            }
+            for (var i = 0; i < total_variables; i++) {
+                if ($(".question_" + i).val() === undefined) {
+                    $(".results_content").html("Please answer all questions. The results will be computed once all questions are answered.");
+                    return;
+                } else if ($(".question_" + i).val() == "") {
+                    $(".results_content").html("Please answer all questions. The results will be computed once all questions are answered.");
+                    return;
+                } else {
+                    var temp = $(".dump").html();
+                    temp = temp + ".question_" + i + " is " + $(".question_" + i).val() + "<br/>";
+                    $(".dump").html(temp);
+                }
+            }
+            $(".results_content").html("");
+            var variable_feedback = '';
+
+            var $result0 = '';
+            var result_0_title_by_formula = '';
+            var result_0_sub_title_by_formula = '';
+            var result_0_condition_by_formula = '';
+
+            var $result1 = '';
+            var result_1_title_by_formula = '';
+            var result_1_sub_title_by_formula = '';
+            var result_1_condition_by_formula = '';
+
+            $result0 = (function() {
+
+                var gender = $0;
+                var race = $1;
+                var age = $2;
+                var creatinine = $3;
+
+                var k;
+                var alpha;
+                var constant;
+
+                if(gender == 1.0) { //male
+                    k = 0.9;
+                    alpha = -0.411;
+                    constant = 1.0;
+                }
+                else {
+                    k = 0.7;
+                    alpha = -0.329;
+                    constant = 1.018;
+                }
+
+                var scrOverK = creatinine/k;
+
+                var minFactor;
+                var maxFactor;
+
+                if(scrOverK > 1) {
+                    minFactor = 1;
+                    maxFactor = scrOverK;
+                }
+                else {
+                    minFactor = scrOverK;
+                    maxFactor = 1;
+                }
+
+                var results = 141 * Math.pow(minFactor, alpha) * Math.pow(maxFactor, -1.209) * Math.pow(0.993, age) * constant * race;
+
+                return Math.round(results * 10.0)/10.0;
+
+            })();
+            append_to_debug('$result' + 0 + " is " + $result0);
+
+            append_to_results("<div class='result_0_group'><h3 class='result_0_title_area'></h3><div class='result_0_mini_title_area mini_title'></div><div class='result_0_sub_title_area answers_sub_title'></div><div class='result_0_answer_area answers'></div><div class='result_0_note_area note answers_note'></div></div>");
+            populate_elements('result_0_title_area', result_0_title_by_formula, "Estimated GFR using CKD-EPI");
+            populate_elements('result_0_sub_title_area', result_0_sub_title_by_formula, "");
+
+            populate_elements('result_0_answer_area', String($result0 + " mL/min/1.73mВІ"), "");
+
+            clean_up_result_group("0");
+
+            $result1 = (function() {
+
+                var gender = $0;
+                var race = $1;
+                var age = $2;
+                var creatinine = $3;
+
+                var MDRDconstant;
+
+                if(gender == 1.0) { //male
+                    MDRDconstant = 1.0;
+                }
+                else {
+                    MDRDconstant = 0.742;
+                }
+
+                if(race == 1.0) { //white
+                    MDRDconstant *= 1.0;
+                }
+                else {
+                    MDRDconstant *= 1.21;
+                }
+
+                var mdrdResults = (186*MDRDconstant)/(Math.pow(creatinine,1.154) * Math.pow(age,0.203));
+
+                return Math.round(mdrdResults * 10.0)/10.0;
+
+            })();
+            append_to_debug('$result' + 1 + " is " + $result1);
+
+            append_to_results("<div class='result_1_group'><h3 class='result_1_title_area'></h3><div class='result_1_mini_title_area mini_title'></div><div class='result_1_sub_title_area answers_sub_title'></div><div class='result_1_answer_area answers'></div><div class='result_1_note_area note answers_note'></div></div>");
+            populate_elements('result_1_title_area', result_1_title_by_formula, "Estimated GFR using MDRD");
+            populate_elements('result_1_sub_title_area', result_1_sub_title_by_formula, "");
+
+            populate_elements('result_1_answer_area', String($result1 + " mL/min/1.73mВІ"), "");
+
+
+            clean_up_result_group("1");
+
+
+//            scroll_to_results_section();
+        }
+
+    </script>
+{% endblock %}
