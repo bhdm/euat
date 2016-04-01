@@ -159,4 +159,13 @@ class DefaultController extends Controller
     public function test1Action(){
         return [];
     }
+
+
+    /**
+     * @Route("/webinar", name="webinar")
+     * @Template()
+     */
+    public function webinarAction(){
+        return [];
+    }
 }
