@@ -70,4 +70,31 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
         return $result;
     }
 
+    public function filter($type,$start,$end,$text){
+        $qb = $this->createQueryBuilder('s');
+        $qb->select('s');
+        $qb->where('s.enabled = 1');
+        if ($type != null){
+            $qb->andWhere('s.type = :type');
+            $qb->setParameter('type', $type);
+        }
+
+        if ($start != null){
+            $qb->andWhere('s.end >= :dateStart')
+                ->setParameter('dateStart' , $start);
+        }
+        if ($end != null){
+            $qb->andWhere('s.start <= :dateEnd')
+                ->setParameter('dateEnd' , $end);
+        }
+
+        $qb->andWhere("(s.title LIKE '%$text%' OR s.body LIKE '%$text%' OR s.adrs LIKE '%$text%')");
+
+
+        $qb->orderBy('s.start', 'DESC');
+        $result = $qb->getQuery()->getResult();
+
+        return $result;
+    }
+
 }

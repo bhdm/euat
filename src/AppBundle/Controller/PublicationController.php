@@ -140,12 +140,17 @@ class PublicationController extends Controller
      */
     public function eventListAction(Request $request, $type)
     {
-        if ($type === null){
-            $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findBy(['enabled' => true],['start' => 'DESC']);
-        }else{
-            $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findBy(['enabled' => true, 'type' => $type],['start' => 'DESC']);
-        }
-        return ['events' => $events, 'type' => $type];
+        $start = $request->query->get('start');
+        $end = $request->query->get('end');
+        $text = $request->query->get('searchtext');
+        $events = $this->getDoctrine()->getRepository('AppBundle:Event')->filter($type,$start,$end,$text);
+        return [
+            'events' => $events,
+            'type' => $type,
+            'start' => $start,
+            'end' => $end,
+            'text' => $text
+        ];
     }
 
 
