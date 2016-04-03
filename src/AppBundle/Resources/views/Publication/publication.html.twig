@@ -55,7 +55,12 @@
             {% endif %}
             <div сlass="pub-content" itemprop="description">
                 {{ publication.anons | raw }}
-                {% if publication.private != true %}
+                {% if publication.private == true and is_granted('ROLE_USER') != true %}
+                    <br />
+                    <br />
+                    <br />
+                    <div class="alert alert-info text-center">Для доступа к материалу, пожалуйста, <a href="#" onclick="$('#loginRegisterModal').modal();return false;" style="cursor: pointer">авторизуйтесь</a></div>
+                {% else %}
                     {{ publication.body | raw }}
                     {% if publication.video.path is defined %}
                         <div style="text-align: center">

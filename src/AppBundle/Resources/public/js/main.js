@@ -4,6 +4,7 @@ $(document).ready(function(){
     });
     $('.login2').click(function(){
         $('#loginRegisterModal').modal();
+        return false;
     });
 
     $('.enrolment').click(function(){
