@@ -41,7 +41,7 @@ class PublicationType extends AbstractType
                     'Для зарегистрированных' => true,
                 ),
                 'required'    => false,
-                'label' => 'Комментарии'
+                'label' => 'Доступ'
             ))
 
             ->add('slug', TextType::class, [ 'label' => 'URI'])
