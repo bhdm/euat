@@ -11,21 +11,100 @@
 {% block content %}
     <div class="well">
         {{ form_start(form) }}
-        {{ form_widget(form) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.slug) }}
+        {{ form_row(form.type) }}
+        {{ form_row(form.allowCommentary) }}
+        {{ form_row(form.specialties) }}
+        {{ form_row(form.city) }}
+        {{ form_row(form.adrs) }}
+
+        {{ form_row(form.start) }}
+        {{ form_row(form.timeStart) }}
+        {{ form_row(form.end) }}
+        {{ form_row(form.timeEnd) }}
+
+        <div class="form-group">
+            {#{{ form_widget(form.items) }}#}
+            <ul class="items" data-prototype="{{ form_widget(form.items.vars.prototype)|e }}">
+                {% for item in form.items %}
+                    <li>
+                        {{ form_row(item.start | date('Y.m.d')) }} {{ form_row(item.timeStart | date('H:i')) }}
+                        -
+                        {{ form_row(item.end | date('Y.m.d')) }} {{ form_row(item.timeEnd | date('H:i')) }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        {{ form_row(form.partners) }}
+        {{ form_row(form.sponsor) }}
+        {{ form_row(form.theses) }}
+
+        {{ form_row(form.body) }}
+        {{ form_row(form.theses) }}
+        {{ form_row(form.register) }}
+        {{ form_row(form.digest) }}
+        {{ form_row(form.enabled) }}
+
         {{ form_end(form) }}
-        </form>
     </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     <script>
+        function addTagForm($collectionHolder, $newLinkLi) {
+            var prototype = $collectionHolder.data('prototype');
+            var index = $collectionHolder.data('index');
+            if (index == 0){
+                index = 2;
+            }
+//            var index = $collectionHolder.data('index');
+            var newForm = prototype.replace(/__name__label__/g, 'Дата: '+index);
+            $collectionHolder.data('index', index + 1);
+            var $newFormLi = $('<li></li>').append(newForm);
+            $newLinkLi.before($newFormLi);
+        }
+
         $(document).ready(function(){
             $("#event_title").syncTranslit({
                 destination: "event_slug",
                 caseStyle: "lower",
                 urlSeparator: "_"
             });
+
+            var $collectionHolder;
+
+            var $addTagLink = $('<a href="#" class="btn btn-primary add_tag_link">Добавить дату</a>');
+            var $newLinkLi = $('<li class="text-right"></li>');
+            $newLinkLi.append($addTagLink);
+
+            $collectionHolder = $('.items');
+            $collectionHolder.append($newLinkLi);
+            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+            $addTagLink.on('click', function(e) {
+                e.preventDefault();
+                addTagForm($collectionHolder, $newLinkLi);
+            });
+
         });
     </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        ul.items{
+            list-style: none;
+        }
+        li .form-group {
+            margin-left: -45px !important;
+        }
+        ul.items li:not(:last-child){
+            border-top: 1px solid #CCC;
+            padding-top: 15px;
+        }
+    </style>
 {% endblock %}

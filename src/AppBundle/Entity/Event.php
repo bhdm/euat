@@ -175,7 +175,7 @@ class Event
     private $register;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\EventItem", mappedBy="event")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\EventItem", mappedBy="event", cascade={"persist"})
      */
     private $items;
 
@@ -668,7 +668,13 @@ class Event
         $this->digest = $digest;
     }
 
+    public function removeItem($item){
+        $this->items->removeElement($item);
+    }
 
+    public function addItem($item){
+        $this->items->add($item);
+    }
 
 }
 

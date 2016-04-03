@@ -54,6 +54,19 @@ class EventItem
      */
     private $event;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="timeStart", type="time", nullable=true)
+     */
+    private $timeStart;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="timeEnd", type="time", nullable=true)
+     */
+    private $timeEnd;
 
     /**
      * Get id
@@ -177,6 +190,36 @@ class EventItem
         $this->event = $event;
     }
 
+    /**
+     * @return \DateTime
+     */
+    public function getTimeStart()
+    {
+        return $this->timeStart;
+    }
 
+    /**
+     * @param \DateTime $timeStart
+     */
+    public function setTimeStart($timeStart)
+    {
+        $this->timeStart = $timeStart;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getTimeEnd()
+    {
+        return $this->timeEnd;
+    }
+
+    /**
+     * @param \DateTime $timeEnd
+     */
+    public function setTimeEnd($timeEnd)
+    {
+        $this->timeEnd = $timeEnd;
+    }
 }
 

@@ -1,6 +1,8 @@
 <?php
 namespace AdminBundle\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -69,18 +71,39 @@ class EventController extends Controller{
      */
     public function editAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
-        $item = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findOneById($id);
-        $form = $this->createForm(EventType::class, $item);
+
+        $event = $this->getDoctrine()->getRepository('AppBundle:Event')->findOneById($id);
+        if (!$event) {
+            throw $this->createNotFoundException('No event found for id '.$id);
+        }
+        $originalItems = new ArrayCollection();
+        foreach ($event->getItems() as $tag) {
+            $originalItems->add($tag);
+        }
+        $form = $this->createForm(EventType::class, $event);
         $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
+
         $formData = $form->handleRequest($request);
 
-        if ($request->getMethod() == 'POST'){
-            if ($formData->isValid()){
-                $item = $formData->getData();
-                $em->flush($item);
-                $em->refresh($item);
-                return $this->redirect($this->generateUrl('admin_event_list'));
+        if ($formData->isValid()){
+            $event = $formData->getData();
+            foreach ($originalItems as $item) {
+                if (false === $event->getItems()->contains($item)) {
+                    $em->remove($item);
+                    $em->flush($item);
+//                    $em->persist($item);
+                }
             }
+//            dump($event);
+//            exit;
+            $em->flush($event);
+
+            foreach ($event->getItems() as $item){
+                $item->setEvent($event);
+                $em->persist($item);
+            }
+            $em->flush();
+            return $this->redirect($this->generateUrl('admin_event_list'));
         }
         return array('form' => $form->createView());
     }

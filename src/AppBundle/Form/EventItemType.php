@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,9 +18,11 @@ class EventItemType extends AbstractType
     {
         $builder
             ->add('start', DateType::class, ['label' => 'Дата начала'])
-            ->add('end', DateType::class, ['label' => 'Дата окончания'])
-            ->add('city', null, ['label' => 'Город'])
-            ->add('adrs', null, ['label' => 'Адрес'])
+            ->add('timeStart', TimeType::class, ['label' => 'Время начала'])
+            ->add('end', DateType::class, ['label' => 'Дата начала'])
+            ->add('timeEnd', TimeType::class, ['label' => 'Время окончания'])
+//            ->add('city', null, ['label' => 'Город'])
+//            ->add('adrs', null, ['label' => 'Адрес'])
         ;
     }
     

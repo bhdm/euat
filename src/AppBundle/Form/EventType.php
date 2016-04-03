@@ -94,6 +94,15 @@ class EventType extends AbstractType
                 'label' => 'Состояние'
             ))
 
+             ->add('items', CollectionType::class, array(
+                 'entry_type' => EventItemType::class,
+                 'allow_add'    => true,
+                 'allow_delete' => true,
+                 'label'    => 'Дополнительные даты',
+                 'required' => false,
+                 'label_attr' => ['style' => 'display: none']
+             ));
+
 
         ;
     }
