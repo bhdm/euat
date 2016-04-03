@@ -52,20 +52,21 @@ class EventController extends Controller{
      */
     public function addAction(Request $request){
         $em = $this->getDoctrine()->getManager();
-        $item = new Event();
-        $form = $this->createForm(EventType::class, $item);
+
+        $event = new Event();
+
+        $form = $this->createForm(EventType::class, $event);
         $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
+
         $formData = $form->handleRequest($request);
 
-        if ($request->getMethod() == 'POST'){
-            if ($formData->isValid()){
-                $item = $formData->getData();
-                $em->persist($item);
-                $em->flush();
-                $em->refresh($item);
-                return $this->redirect($this->generateUrl('admin_event_list'));
-            }
+        if ($formData->isValid()){
+            $event = $formData->getData();
+            $em->persist($event);
+            $em->flush($event);
+            return $this->redirect($this->generateUrl('admin_event_list'));
         }
+
         return array('form' => $form->createView());
     }
 
