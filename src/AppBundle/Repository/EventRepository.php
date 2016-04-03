@@ -32,18 +32,24 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
         }else{
             $qb->select('e');
         }
-        $qb->where('e.end >= :dateStart')
-            ->andWhere('e.start <= :dateEnd')
-            ->setParameters([
+        $qb->leftJoin('e.items', 'i');
+
+        $qb->where('( e.end >= :dateStart and e.start <= :dateEnd ) ');
+        $qb->orWhere('( i.end >= :dateStart and i.start <= :dateEnd ) ');
+
+        $qb->setParameters([
                 'dateStart' => $dateStart,
                 'dateEnd' => $dateEnd
             ]);
+
+
         if (isset($owner) && $owner === 'Partner'){
             $qb->andWhere("e.type = 'PARTNER'");
         }else{
             $qb->andWhere("e.type != 'PARTNER'");
         }
-        $qb->orderBy('e.start');
+        $qb->orderBy('e.start', 'ASC')
+            ->addOrderBy('i.start', 'ASC');
 
 //        $result = $qb->getQuery()->getSQL();
 //        echo  $result;
@@ -73,6 +79,7 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
     public function filter($type,$start,$end,$text){
         $qb = $this->createQueryBuilder('s');
         $qb->select('s');
+        $qb->leftJoin('e.items', 'i');
         $qb->where('s.enabled = 1');
         if ($type != null){
             $qb->andWhere('s.type = :type');
@@ -80,11 +87,11 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
         }
 
         if ($start != null){
-            $qb->andWhere('s.end >= :dateStart')
+            $qb->andWhere('( s.end >= :dateStart OR i.end >= :dateStart )')
                 ->setParameter('dateStart' , $start);
         }
         if ($end != null){
-            $qb->andWhere('s.start <= :dateEnd')
+            $qb->andWhere('( s.start <= :dateEnd OR i.start <= :dateEnd )')
                 ->setParameter('dateEnd' , $end);
         }
 

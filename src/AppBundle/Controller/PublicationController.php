@@ -39,12 +39,17 @@ class PublicationController extends Controller
     }
 
     /**
-     * @Route("event/{url}", name="event", options={"expose"=true})
+     * @Route("event/{url}/{number}", name="event", options={"expose"=true}, defaults={"number" = null})
      * @Template("AppBundle:Publication:event.html.twig")
      */
-    public function eventAction(Request $request, $url)
+    public function eventAction(Request $request, $url, $number)
     {
         $event = $this->getDoctrine()->getRepository('AppBundle:Event')->findOneById($url);
+        if ($number !== null){
+            $eventItem = $this->getDoctrine()->getRepository('AppBundle:EventItem')->findOneBy(['id' => $number]);
+        }else{
+            $eventItem = null;
+        }
 
         $form = null;
         if ($event->isTheses() == true){
@@ -131,7 +136,7 @@ class PublicationController extends Controller
             }
             $form = $form->createView();
         }
-        return ['event' => $event, 'form' => $form];
+        return ['event' => $event, 'form' => $form, 'eventItem' => $eventItem];
     }
 
     /**

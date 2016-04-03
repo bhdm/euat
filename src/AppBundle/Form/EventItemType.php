@@ -18,9 +18,9 @@ class EventItemType extends AbstractType
     {
         $builder
             ->add('start', DateType::class, ['label' => 'Дата начала'])
-            ->add('timeStart', TimeType::class, ['label' => 'Время начала'])
-            ->add('end', DateType::class, ['label' => 'Дата начала'])
-            ->add('timeEnd', TimeType::class, ['label' => 'Время окончания'])
+            ->add('timeStart', TimeType::class, ['label' => 'Время начала', 'required' => false])
+            ->add('end', DateType::class, ['label' => 'Дата начала', 'required' => false])
+            ->add('timeEnd', TimeType::class, ['label' => 'Время окончания', 'required' => false])
 //            ->add('city', null, ['label' => 'Город'])
 //            ->add('adrs', null, ['label' => 'Адрес'])
         ;

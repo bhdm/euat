@@ -48,17 +48,37 @@
                         </li>
                     {% endif %}
 
-                    {% if event.start != null %}
-                        <li>
-                            <b>Дата начала:</b>     {{ event.start | date('d.m.Y') }}
-                        </li>
+                    {% if eventItem == null %}
+                        {% if event.start != null %}
+                            <li>
+                                <b>Дата начала:</b>     {{ event.start | date('d.m.Y') }}
+                            </li>
+                        {% endif %}
+                        {% if event.end != null %}
+                            <li><b>Дата окончания:</b>  {{ event.end  | date('d.m.Y') }}</li>
+                        {% endif %}
+                    {% else %}
+                        {% if eventItem.start != null %}
+                            <li>
+                                <b>Дата начала:</b>     {{ eventItem.start | date('d.m.Y') }}
+                            </li>
+                        {% endif %}
+                        {% if eventItem.end != null %}
+                            <li><b>Дата окончания:</b>  {{ eventItem.end  | date('d.m.Y') }}</li>
+                        {% endif %}
                     {% endif %}
-                    {% if event.end != null %}
-                        <li><b>Дата окончания:</b>  {{ event.end  | date('d.m.Y') }}</li>
+
+                    {% if eventItem == null %}
+                        {% if event.timeStart != null %}
+                            <li><b>Время проведения:</b>  {{ event.timeStart | date('H:i') }} {{ event.timeEnd != null ? ' - '~event.timeEnd | date('H:i') : '' }}</li>
+                        {% endif %}
+                    {% else %}
+                        {% if eventItem.timeStart != null %}
+                            <li><b>Время проведения:</b>  {{ eventItem.timeStart | date('H:i') }} {{ eventItem.timeEnd != null ? ' - '~eventItem.timeEnd | date('H:i') : '' }}</li>
+                        {% endif %}
                     {% endif %}
-                    {% if event.timeStart != null %}
-                        <li><b>Время проведения:</b>  {{ event.timeStart | date('H:i') }} {{ event.timeEnd != null ? ' - '~event.timeEnd | date('H:i') : '' }}</li>
-                    {% endif %}
+
+
                     {% if event.city != null %}
                         <li><b>Город:</b>           {{ event.city  }}</li>
                     {% endif %}
