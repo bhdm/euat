@@ -11,10 +11,22 @@
 {% endblock %}
 
 {% block content %}
-    <form class="form-inline" method="GET">
-        <input type="text" class="form-control" placeholder="Поиск" name="search" value="{{ search }}">
-        <button type="submit" class="btn btn-primary">Найти</button>
-    </form>
+    <div class="row">
+        <div class="col-xs-12">
+            <form class="form-inline" method="GET">
+                <input type="text" class="form-control" placeholder="ID" name="id" value="{{ searchId }}">
+                <input type="text" class="form-control" placeholder="Поиск" name="search" value="{{ search }}">
+                <select class="form-control" name="type">
+                    <option {{ searchType == '1' ? 'selecteed="selected' : '' }}value="0">Все категории</option>
+                    <option {{ searchType == '1' ? 'selecteed="selected' : '' }}value="SCHOOL">Школы</option>
+                    <option {{ searchType == '1' ? 'selecteed="selected' : '' }}value="CONGRESS">Конгрессы</option>
+                    <option {{ searchType == '1' ? 'selecteed="selected' : '' }}value="PARTNER">Партнерские</option>
+                </select>
+                <button type="submit" class="btn btn-primary">Найти</button>
+            </form>
+        </div>
+    </div>
+
     <div class="well">
         <table class="table">
             <tr>
@@ -36,18 +48,18 @@
                     <td>{{ item.enabled }}</td>
                     <td class="setting">
                         {% spaceless %}
-                        <a href="{{ path('admin_event_edit',{'id' : item.id}) }}">
-                            <button type="button" class="btn btn-default btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </button>
-                        </a>
+                            <a href="{{ path('admin_event_edit',{'id' : item.id}) }}">
+                                <button type="button" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                            </a>
                             &nbsp;
                             &nbsp;
-                        <a href="{{ path('admin_event_remove',{'id' : item.id}) }}">
-                            <button type="button" class="btn btn-default btn-sm">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </button>
-                        </a>
+                            <a href="{{ path('admin_event_remove',{'id' : item.id}) }}">
+                                <button type="button" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </a>
                         {% endspaceless %}
                     </td>
                 </tr>

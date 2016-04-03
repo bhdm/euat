@@ -26,7 +26,12 @@ class EventController extends Controller{
      */
     public function listAction(Request $request){
         $search = $request->query->get('search');
-        $items = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->search($search, false);
+        $searchId = $request->query->get('id');
+        $searchType = $request->query->get('type');
+        if ($searchType == 0){
+            $searchType = null;
+        }
+        $items = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->search($search,false, $searchId,$searchType);
 
 //        echo count($items);
 
@@ -37,7 +42,7 @@ class EventController extends Controller{
             20
         );
 
-        return array('pagination' => $pagination, 'search' =>$search);
+        return array('pagination' => $pagination, 'search' =>$search, 'searchType' => $searchType, 'searchId' => $searchId);
     }
 
     /**
@@ -91,11 +96,8 @@ class EventController extends Controller{
                 if (false === $event->getItems()->contains($item)) {
                     $em->remove($item);
                     $em->flush($item);
-//                    $em->persist($item);
                 }
             }
-//            dump($event);
-//            exit;
             $em->flush($event);
 
             foreach ($event->getItems() as $item){
@@ -105,6 +107,7 @@ class EventController extends Controller{
             $em->flush();
             return $this->redirect($this->generateUrl('admin_event_list'));
         }
+
         return array('form' => $form->createView());
     }
 
