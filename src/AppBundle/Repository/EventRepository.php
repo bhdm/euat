@@ -78,8 +78,8 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
 
     public function filter($type,$start,$end,$text){
         $qb = $this->createQueryBuilder('s');
-        $qb->select('s');
-        $qb->leftJoin('e.items', 'i');
+        $qb->select('s', 'i');
+        $qb->leftJoin('s.items', 'i');
         $qb->where('s.enabled = 1');
         if ($type != null){
             $qb->andWhere('s.type = :type');

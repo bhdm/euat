@@ -43,10 +43,10 @@
         <div>
             {% for p in events %}
                 <div class="new-item">
-                <span style="padding-right: 20px; color: #888">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                    {{ p.start | date('d.m.Y') }}{{ p.end != null ? ' - '~p.end | date('d.m.Y') : '' }}
-                </span>
+                    <span style="padding-right: 20px; color: #888">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                        {{ p.start | date('d.m.Y') }}{{ p.end != null ? ' - '~p.end | date('d.m.Y') : '' }}
+                    </span>
                     <br />
                     <a href="{{ path('event', {'url' : p.id }) }}"><span class="new-item-title">{{ p.title }}</span></a>
                     <div class="new-item-anons">
@@ -58,6 +58,24 @@
                         {% endif %}
                     </div>
                 </div>
+                {% for i in p.items %}
+                    <div class="new-item">
+                    <span style="padding-right: 20px; color: #888">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                        {{ i.start | date('d.m.Y') }}{{ i.end != null ? ' - '~i.end | date('d.m.Y') : '' }}
+                    </span>
+                        <br />
+                        <a href="{{ path('event', {'url' : p.id, 'number' : i.id }) }}"><span class="new-item-title">{{ p.title }}</span></a>
+                        <div class="new-item-anons">
+                            {{ p.body | anons | raw }}
+                            {% if p.category != null %}
+                                <div style="color: #555">
+                                    {{ p.category.title }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
             {% endfor %}
         </div>
     </div>
