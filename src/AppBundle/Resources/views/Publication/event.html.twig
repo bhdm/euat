@@ -94,6 +94,13 @@
         <hr />
         <div class="body">
             {{ event.body | raw }}
+
+            <h3 class="title">Спонсоры события:</h3>
+            {% for p in event.partners %}
+                <img src="{{ p.image.path }}" style="height: 80px;" class="img-thumbnail" title="{{ p.title }}">
+            {% endfor %}
+            <br />
+            <br />
         </div>
         {% if form != null %}
             <br />
