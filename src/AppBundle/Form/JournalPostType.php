@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -23,6 +24,7 @@ class JournalPostType extends AbstractType
             ->add('keywords', null, ['label' => 'Ключевые слова'])
             ->add('author', null, ['label' => 'Авторы'])
             ->add('source', null, ['label' => 'Список литературы', 'attr' => ['class' => 'ckeditor']])
+            ->add('file', FileType::class, [ 'label' => 'PDF', 'data_class' => null, 'required' => false])
 
 //            ->add('pagesEN', null, ['label' => 'Страницы (Англ)', 'required' => false])
 //            ->add('titleEn', null, ['label' => 'Название статьи (Англ)', 'required' => false])

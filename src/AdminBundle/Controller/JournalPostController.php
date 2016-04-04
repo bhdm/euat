@@ -54,7 +54,16 @@ class JournalPostController extends Controller{
         if ($request->getMethod() == 'POST'){
             if ($formData->isValid()){
                 $item = $formData->getData();
-//                $item->setPhoto(['path' => '/upload/journalpost/'.$filename ]);
+                $file = $item->getPreview();
+                if ($file){
+                    $filename = time(). '.'.$file->guessExtension();
+                    $file->move(
+                        __DIR__.'/../../../web/upload/journalPDF/',
+                        $filename
+                    );
+                    $item->setPreview(['path' => '/upload/journalPDF/'.$filename ]);
+                }
+
                 $item->setJournal($journal);
                 $em->persist($item);
                 $em->flush();
@@ -73,6 +82,7 @@ class JournalPostController extends Controller{
     public function editAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
         $item = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findOneById($id);
+        $oldFile = $item->getFile();
         $form = $this->createForm(JournalPostType::class, $item);
         $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
         $formData = $form->handleRequest($request);
@@ -80,6 +90,17 @@ class JournalPostController extends Controller{
         if ($request->getMethod() == 'POST'){
             if ($formData->isValid()){
                 $item = $formData->getData();
+                $file = $item->getPreview();
+                if ($file == null){
+                    $item->setPreview($oldFile);
+                }else{
+                    $filename = time(). '.'.$file->guessExtension();
+                    $file->move(
+                        __DIR__.'/../../../web/upload/journalPDF/',
+                        $filename
+                    );
+                    $item->setPreview(['path' => '/upload/journalPDF/'.$filename ]);
+                }
                 $em->flush($item);
                 $em->refresh($item);
                 return $this->redirect($this->generateUrl('admin_journal_edit',['id' => $item->getJournal()->getId()]));

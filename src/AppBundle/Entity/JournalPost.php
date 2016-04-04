@@ -98,12 +98,18 @@ class JournalPost extends BaseEntity{
      */
     private $digest;
 
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $file;
+
 
     public function __construct(){
         parent::__construct();
         $this->author = array();
         $this->created = new \DateTime();
         $this->digest = true;
+        $this->file = array();
     }
 
     /**
@@ -364,7 +370,22 @@ class JournalPost extends BaseEntity{
         $this->digest = $digest;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
 
+    /**
+     * @param mixed $file
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+    }
 
+    
 
 }
