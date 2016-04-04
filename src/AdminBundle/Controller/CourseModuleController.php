@@ -31,9 +31,9 @@ class CourseModuleController extends Controller{
 
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/module/up/{id}", name="admin_course_module_up")
+     * @Route(/{id}/up", name="admin_course_module_up")
      */
-    public function upAction($id){
+    public function upAction($courseId, $id){
         $module = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->find($id);
         $nextModule = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->nextModule($module->getCourse(), $module);
         $nextSort = $nextModule->getSort();
@@ -50,9 +50,9 @@ class CourseModuleController extends Controller{
 
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/module/down/{id}", name="admin_course_module_down")
+     * @Route("/{id}/down", name="admin_course_module_down")
      */
-    public function downAction($id){
+    public function downAction($courseId, $id){
         $module = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->find($id);
         $nextModule = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->backModule($module->getCourse(), $module);
         $nextSort = $nextModule->getSort();
