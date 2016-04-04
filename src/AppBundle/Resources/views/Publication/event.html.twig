@@ -40,13 +40,13 @@
                             {% endfor %}
                         </li>
                     {% endif %}
-                    {% if event.partners | length > 0 %}
-                        <li><b>Партнеры:</b>
-                            {% for part in event.partners  %}
-                                {{ part.title }}{% if part != event.partners | last %}, {% endif %}
-                            {% endfor %}
-                        </li>
-                    {% endif %}
+                    {#{% if event.partners | length > 0 %}#}
+                    {#<li><b>Партнеры:</b>#}
+                    {#{% for part in event.partners  %}#}
+                    {#{{ part.title }}{% if part != event.partners | last %}, {% endif %}#}
+                    {#{% endfor %}#}
+                    {#</li>#}
+                    {#{% endif %}#}
 
                     {% if eventItem == null %}
                         {% if event.start != null %}
@@ -95,12 +95,14 @@
         <div class="body">
             {{ event.body | raw }}
 
-            <h3 class="title">Спонсоры события:</h3>
-            {% for p in event.partners %}
-                <img src="{{ p.image.path }}" style="height: 80px;" class="img-thumbnail" title="{{ p.title }}">
-            {% endfor %}
-            <br />
-            <br />
+            {% if event.partners | length > 0 %}
+                <h3 class="title">партнеры события:</h3>
+                {% for p in event.partners %}
+                    <img src="{{ p.image.path }}" style="max-height: 70px; max-width: 120px; margin-bottom: 10px" class="img-thumbnail" title="{{ p.title }}">
+                {% endfor %}
+                <br />
+                <br />
+            {% endif %}
         </div>
         {% if form != null %}
             <br />
