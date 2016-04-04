@@ -98,7 +98,7 @@
             {% if event.partners | length > 0 %}
                 <h3 class="title">партнеры события:</h3>
                 {% for p in event.partners %}
-                    <div class="thumbnail" style="display: inline-block">
+                    <div class="thumbnail" style="display: inline-block; height: 70px;">
                         <img src="{{ p.image.path }}" style="max-height: 70px; max-width: 120px;" title="{{ p.title }}">
                     </div>
                 {% endfor %}
