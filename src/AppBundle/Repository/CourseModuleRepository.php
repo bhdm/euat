@@ -13,9 +13,8 @@ class CourseModuleRepository extends \Doctrine\ORM\EntityRepository
     public function nextModule($course, $activeModule){
         $qb = $this->createQueryBuilder('m')
             ->select('m')
-//            ->from('AppBundle:CourseModule','m')
             ->where('m.course = :course')
-            ->andWhere('m.id > :moduleId')
+            ->andWhere('m.sort >= :moduleId')
             ->orderBy('m.sort','ASC')
             ->addOrderBy('m.id','ASC')
 
@@ -26,6 +25,24 @@ class CourseModuleRepository extends \Doctrine\ORM\EntityRepository
 
         return $qb->getQuery()->getOneOrNullResult();
     }
+
+    public function backModule($course, $activeModule){
+        $qb = $this->createQueryBuilder('m')
+            ->select('m')
+            ->where('m.course = :course')
+            ->andWhere('m.id < :moduleId')
+            ->orderBy('m.sort','DESC')
+            ->addOrderBy('m.id','DESC')
+
+            ->setParameter('course', $course->getId())
+            ->setParameter('moduleId', $activeModule->getId())
+            ->setMaxResults(1)
+        ;
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
+
+
 
     public function stepModule($course, $activeModule, $moduleId){
         $qb = $this->createQueryBuilder('m')

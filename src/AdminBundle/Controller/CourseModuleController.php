@@ -24,9 +24,45 @@ class CourseModuleController extends Controller{
      */
     public function listAction(Request $request, $courseId){
         $course = $this->getDoctrine()->getRepository('AppBundle:Course')->findOneBy(['id' => $courseId]);
-        $modules = $course->getModules();
+        $modules = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->findBy(['course' => $course],['sort' => 'ASC','id' => 'ASC']);
 
         return array('modules' => $modules,'course' => $course);
+    }
+
+    /**
+     * @Security("has_role('ROLE_ADMIN')")
+     * @Route("/module/up/{id}", name="admin_course_module_up")
+     */
+    public function upAction($id){
+        $module = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->find($id);
+        $nextModule = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->nextModule($module->getCourse(), $module);
+        $nextSort = $nextModule->getSort();
+        $backSort = $module->getSort();
+        if ($nextSort == $backSort){
+            $backSort ++;
+        }
+        $module->setSort($nextSort);
+        $nextModule->setSort($backSort);
+        $this->getDoctrine()->getManager()->flush();
+    }
+
+
+
+    /**
+     * @Security("has_role('ROLE_ADMIN')")
+     * @Route("/module/down/{id}", name="admin_course_module_down")
+     */
+    public function downAction($id){
+        $module = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->find($id);
+        $nextModule = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->backModule($module->getCourse(), $module);
+        $nextSort = $nextModule->getSort();
+        $backSort = $module->getSort();
+        if ($nextSort == $backSort){
+            $backSort ++;
+        }
+        $module->setSort($nextSort);
+        $nextModule->setSort($backSort);
+        $this->getDoctrine()->getManager()->flush();
     }
 
     /**
