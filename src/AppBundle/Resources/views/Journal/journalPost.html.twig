@@ -82,7 +82,12 @@
                 <li><a href="{{ path('journal',{'journalId' : post.journal.id }) }}">{{ post.journal.title }}</a></li>
                 <li class="active">Статья</li>
             </ol>
-            <h1 class="blue-text">{{ post.title }}</h1>
+            <h1 class="blue-text">{{ post.title }}
+                {% if post.file.path is defined %}
+                    <a href="{{ post.file.path }}" class="btn btn-default" target="_blank">PDF</a>
+                {% endif %}
+            </h1>
+
             <div class="params">
                 <b>Авторы:</b> {{ post.author }}<br />
                 <b>Описание:</b>
