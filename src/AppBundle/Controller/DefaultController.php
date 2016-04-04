@@ -21,7 +21,8 @@ class DefaultController extends Controller
         $categoryNews = $this->getDoctrine()->getRepository('AppBundle:Category')->findOneBy(['slug' => 'new']);
 
         $publications = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['category' => $categoryNews],['created' => 'DESC'], 4);
-        $videos = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['category' => $categoryVideo],['id' => 'DESC'], 3);
+        $videos = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['category' => $categoryVideo],['id' => 'DESC'], 50);
+        shuffle($videos);
         $educations = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['category' => $categoryEducation],['id' => 'DESC'], 2);
         $journalposts = $this->getDoctrine()->getRepository('AppBundle:JournalPost')->findBy(['enabled' => true],['id' => 'DESC'], 100);
         shuffle($journalposts);

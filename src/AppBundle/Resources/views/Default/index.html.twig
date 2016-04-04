@@ -13,7 +13,7 @@
         <br />
         {% if videos | length > 0 %}
             <div class="title">ВИДЕО</div>
-            {% for v in videos %}
+            {% for v in videos | slice(0,2) %}
                 <div class="row new-item" style="padding-bottom: 25px">
                     {% if v.preview.path is defined %}
                     <div class="col-xs-3">
