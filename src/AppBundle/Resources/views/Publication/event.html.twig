@@ -8,9 +8,10 @@
 
     <style>
         .vcenter {
-            display: inline-block;
+            display: table-cell;
             vertical-align: middle;
             float: none;
+
         }
     </style>
 {% endblock %}
@@ -105,11 +106,13 @@
 
             {% if event.partners | length > 0 %}
                 <h3 class="title">партнеры события:</h3>
-                {% for p in event.partners %}
-                    <div class="thumbnail vcenter" style="display: inline-block; height: 70px;">
-                        <img src="{{ p.image.path }}" style="max-height: 70px; max-width: 120px;" title="{{ p.title }}">
-                    </div>
-                {% endfor %}
+                <div style="display: table-row">
+                    {% for p in event.partners %}
+                        <div class="thumbnail vcenter" style="display: inline-block; height: 70px;">
+                            <img src="{{ p.image.path }}" style="max-height: 70px; max-width: 120px;" title="{{ p.title }}">
+                        </div>
+                    {% endfor %}
+                </div>
                 <br />
                 <br />
             {% endif %}
