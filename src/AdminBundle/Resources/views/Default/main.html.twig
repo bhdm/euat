@@ -27,7 +27,7 @@
                     {% for user in lastUsers %}
                         <tr>
                             <td>
-                                Новый пользователь: {<a href="{{ path('admin_user_edit',{'id' : user.id }) }}" target="_blank">{ user }}</a>
+                                Новый пользователь: <a href="{{ path('admin_user_edit',{'id' : user.id }) }}" target="_blank">{{  user }}</a>
                                 {#<i>{{ comment.body }}</i>#}
                             </td>
                         </tr>
