@@ -31,7 +31,7 @@ class CourseModuleController extends Controller{
 
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route(/{id}/up", name="admin_course_module_up")
+     * @Route("/{id}/up", name="admin_course_module_up")
      */
     public function upAction($courseId, $id){
         $module = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->find($id);
