@@ -36,14 +36,17 @@ class CourseModuleController extends Controller{
     public function upAction($courseId, $id){
         $module = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->find($id);
         $nextModule = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->nextModule($module->getCourse(), $module);
-        $nextSort = $nextModule->getSort();
-        $backSort = $module->getSort();
-        if ($nextSort == $backSort){
-            $backSort ++;
+        if ($nextModule){
+            $nextSort = $nextModule->getSort();
+            $backSort = $module->getSort();
+            if ($nextSort == $backSort){
+                $backSort ++;
+            }
+            $module->setSort($nextSort);
+            $nextModule->setSort($backSort);
+            $this->getDoctrine()->getManager()->flush();
         }
-        $module->setSort($nextSort);
-        $nextModule->setSort($backSort);
-        $this->getDoctrine()->getManager()->flush();
+        return $this->redirect($request->headers->get('referer'));
     }
 
 
@@ -55,14 +58,17 @@ class CourseModuleController extends Controller{
     public function downAction($courseId, $id){
         $module = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->find($id);
         $nextModule = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->backModule($module->getCourse(), $module);
-        $nextSort = $nextModule->getSort();
-        $backSort = $module->getSort();
-        if ($nextSort == $backSort){
-            $backSort ++;
+        if ($nextModule){
+            $nextSort = $nextModule->getSort();
+            $backSort = $module->getSort();
+            if ($nextSort == $backSort){
+                $backSort ++;
+            }
+            $module->setSort($nextSort);
+            $nextModule->setSort($backSort);
+            $this->getDoctrine()->getManager()->flush();
         }
-        $module->setSort($nextSort);
-        $nextModule->setSort($backSort);
-        $this->getDoctrine()->getManager()->flush();
+        return $this->redirect($request->headers->get('referer'));
     }
 
     /**
