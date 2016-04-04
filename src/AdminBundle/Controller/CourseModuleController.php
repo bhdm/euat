@@ -33,7 +33,7 @@ class CourseModuleController extends Controller{
      * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{id}/up", name="admin_course_module_up")
      */
-    public function upAction($courseId, $id){
+    public function upAction(Request $request, $courseId, $id){
         $module = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->find($id);
         $nextModule = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->nextModule($module->getCourse(), $module);
         if ($nextModule){
@@ -55,7 +55,7 @@ class CourseModuleController extends Controller{
      * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{id}/down", name="admin_course_module_down")
      */
-    public function downAction($courseId, $id){
+    public function downAction(Request $request, $courseId, $id){
         $module = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->find($id);
         $nextModule = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->backModule($module->getCourse(), $module);
         if ($nextModule){
