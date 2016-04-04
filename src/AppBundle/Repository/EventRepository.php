@@ -71,7 +71,7 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
             $qb->andWhere("s.id = $id");
         }
         if ($type != null){
-            $qb->andWhere("s.type = $type");
+            $qb->andWhere("s.type = '$type'");
         }
 
         if ($st == true){
