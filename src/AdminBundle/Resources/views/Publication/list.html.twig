@@ -13,6 +13,12 @@
 {% block content %}
     <div class="well">
         <form class="form-inline" method="GET">
+            <select class="form-control" name="category">
+                <option value="0">Все</option>
+                {% for c in categries %}
+                    <option value="{{ c.id }}">{{ c.title }}</option>
+                {% endfor %}
+            </select>
             <input type="text" class="form-control" placeholder="Поиск" name="search" value="{{ search }}">
             <button type="submit" class="btn btn-primary">Найти</button>
         </form>
