@@ -28,7 +28,7 @@ class EventController extends Controller{
         $search = $request->query->get('search');
         $searchId = $request->query->get('id');
         $searchType = $request->query->get('type');
-        if ($searchType == 0){
+        if ($searchType === 0){
             $searchType = null;
         }
         $items = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->search($search,false, $searchId,$searchType);
