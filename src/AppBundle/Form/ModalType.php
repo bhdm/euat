@@ -4,11 +4,10 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PageType extends AbstractType
+class ModalType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -18,11 +17,8 @@ class PageType extends AbstractType
     {
         $builder
             ->add('title', null, ['label' => 'Название'])
-            ->add('slug', null, ['label' => 'URI'])
-            ->add('metaTitle', null, ['label' => 'МЕТА заголовок'])
-            ->add('metaDescription', null, ['label' => 'МЕТА описание'])
-            ->add('metaKeyword', null, ['label' => 'МЕТА слова'])
             ->add('body', null, [ 'label' => 'Контент', 'attr' => ['class' => 'ckeditor']])
+            ->add('frequency', null, [ 'label' => 'Частота (в днях)'])
             ->add('enabled', ChoiceType::class, array(
                 'choices' => array(
                     'Активная' => true,
@@ -40,7 +36,7 @@ class PageType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Page'
+            'data_class' => 'AppBundle\Entity\Modal'
         ));
     }
 }

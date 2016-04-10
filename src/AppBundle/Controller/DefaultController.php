@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -168,5 +169,43 @@ class DefaultController extends Controller
      */
     public function webinarAction(){
         return [];
+    }
+
+    /**
+     * @Route("/modal", name="modal")
+     */
+    public function modalAction(Request $request){
+
+//        # Данный метод срабатывает только в 1 из 4 раз
+//        if (mt_rand(0,3) != 2){
+//            return new Response('');
+//        }
+
+        $modals = $this->getDoctrine()->getRepository('AppBundle:Modal')->findBy(['enabled' => true]);
+        $cookie = $request->cookies;
+
+        $showModals = [];
+        foreach ($modals as $modal){
+            $modalCookie = $cookie->get('modal-'.$modal->getId());
+            if ($modalCookie === null){
+                $showModals[]  =  $modal;
+            }
+        }
+
+        $response = new Response();
+
+        if (count($showModals) > 0){
+            # Перемешиваем массив и берем первый элемент
+            shuffle($showModals);
+            $modal = $showModals[0];
+            $nextDate = new \DateTime('+'.$modal->getFrequency().' days');
+            $cok = new Cookie('modal-'.$modal->getId(), $nextDate->format('d-m-Y'), $nextDate);
+            $response->headers->setCookie($cok);
+            $response->setContent($this->renderView('AppBundle:Modal:modal.html.twig',['modal' => $modal]));
+            $response->send();
+        }else{
+            return new Response('');
+        }
+
     }
 }

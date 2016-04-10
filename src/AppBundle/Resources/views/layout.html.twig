@@ -183,5 +183,6 @@
 {% block modal %}{% endblock %}
 {% include "@App/Modal/login.html.twig" %}
 {% include "@App/counter.html.twig" %}
+{{ render(controller("AppBundle:Default:modal" )) }}
 </body>
 </html>
