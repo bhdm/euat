@@ -536,18 +536,15 @@ class User extends BaseUser
      * @ORM\PostPersist()
      */
     public function postPersist(){
-        $message = \Swift_Message::newInstance()
-            ->setSubject('Пользователь Зарегистрировался')
-            ->setFrom('info@euat.ru')
-            ->setTo('notify@euat.ru')
-            ->setBody(
-                $this->renderView(
-                    '@App/Mail/setNewRegister.html.twig',
-                    array('user' => $this)
-                ),
-                'text/html'
-            );
-        $this->get('mailer')->send($message);
+//        $message = \Swift_Message::newInstance()
+//            ->setSubject('Пользователь Зарегистрировался')
+//            ->setFrom('info@euat.ru')
+//            ->setTo('notify@euat.ru')
+//            ->setBody(
+//                $this->container->get('templating')->render('@App/Mail/setNewRegister.html.twig', array('user' => $this)),
+//                'text/html'
+//            );
+//        $this->get('mailer')->send($message);
     }
 
 

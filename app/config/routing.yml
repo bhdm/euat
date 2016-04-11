@@ -17,6 +17,14 @@ fos_user_profile_edit:
     path: '/profile/edit'
     defaults: {_controller : AppBundle:Auth:edit}
 
+fos_user_profile_show:
+    path: '/profile/show'
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: fos_user_profile_edit
+        permanent: true
+
+
 
 page:
     path:      /{url}
