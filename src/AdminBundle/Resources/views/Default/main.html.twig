@@ -9,7 +9,12 @@
                 {% for comment in lastComments %}
                     <tr>
                         <td>
-                            Пользователь <a href="{{ path('admin_user_edit',{'id' : comment.owner.id }) }}" target="_blank">{{ comment.owner }}</a> оставил комментарий:
+
+                            Пользователь
+                            {% if comment.owner != null %}
+                                <a href="{{ path('admin_user_edit',{'id' : comment.owner.id }) }}" target="_blank">{{ comment.owner }}</a>
+                            {% endif %}
+                                оставил комментарий:
                             <i>{{ comment.body }}</i>
                         </td>
                         <td>
