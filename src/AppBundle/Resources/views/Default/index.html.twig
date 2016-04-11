@@ -21,12 +21,8 @@
                     </div>
                     <div class="col-xs-9">
                         <a href="{{ path('publications', {'url' : v.id }) }}"><span class="new-item-title">{{ v.title }}</span></a>
+                        {% if is_granted('ROLE_ADMIN') %} <a href="{{ path('admin_publication_edit',{'id' : v.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>{% endif %}
                         <div class="new-item-anons">
-                            {% if is_granted('ROLE_ADMIN') %}
-                                <div class="editor">
-                                    <a href="{{ path('admin_publication_edit',{'id' : v.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>
-                                </div>
-                            {% endif %}
                             {{ v.anons  | raw }}
                         </div>
                         <div style="color: #666; font-size: 11px;">{{ v.created | date('d.m.Y') }}</div>
@@ -34,12 +30,8 @@
                     {% else %}
                         <div class="col-xs-12">
                             <a href="{{ path('publications', {'url' : v.id }) }}"><span class="new-item-title">{{ v.title }}</span></a>
+                            {% if is_granted('ROLE_ADMIN') %}<a href="{{ path('admin_publication_edit',{'id' : v.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>{% endif %}
                             <div class="new-item-anons">
-                                {% if is_granted('ROLE_ADMIN') %}
-                                    <div class="editor">
-                                        <a href="{{ path('admin_publication_edit',{'id' : v.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>
-                                    </div>
-                                {% endif %}
                                 {{ v.anons  | raw }}
                             </div>
                             <div style="color: #666; font-size: 11px;">{{ v.created | date('d.m.Y') }}</div>
@@ -52,11 +44,6 @@
         <div class="title">НОВОСТИ</div>
         {% for p in publications | slice(0,2) %}
             <div class="new-item">
-                {% if is_granted('ROLE_ADMIN') %}
-                    {#<div class="editor">#}
-                    {#<a href="{{ path('admin_publication_edit',{'id' : p.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>#}
-                    {#</div>#}
-                {% endif %}
                 <div class="row">
                     {% if p.preview.path is defined %}
                         <div class="col-xs-3">
@@ -66,6 +53,7 @@
                         </div>
                         <div class="col-xs-9">
                             <a href="{{ path('publications', {'url' : p.id }) }}"><span class="new-item-title">{{ p.title }}</span></a>
+                            {% if is_granted('ROLE_ADMIN') %} <a href="{{ path('admin_publication_edit',{'id' : p.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>{% endif %}
                             <div class="new-item-anons">
                                 {{ p.anons  | raw }}
                             </div>
@@ -74,6 +62,7 @@
                     {% else %}
                         <div class="col-xs-12">
                             <a href="{{ path('publications', {'url' : p.id }) }}"><span class="new-item-title">{{ p.title }}</span></a>
+                            {% if is_granted('ROLE_ADMIN') %}<a href="{{ path('admin_publication_edit',{'id' : p.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>{% endif %}
                             <div class="new-item-anons">
                                 {{ p.anons  | raw }}
                             </div>
@@ -94,6 +83,7 @@
             {% for e in journalposts |slice(0, 2) %}
                 <div class="new-item">
                     <a href="{{ path('journal-post', {'journalId' : e.journal.id , 'postId': e.id }) }}"><span class="new-item-title">{{ e.title }}</span></a>
+                    {% if is_granted('ROLE_ADMIN') %} <a href="{{ path('admin_journalpost_edit',{'id' : e.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>{% endif %}
                     <div class="new-item-anons">
                         {{ e.description | raw }}
                     </div>

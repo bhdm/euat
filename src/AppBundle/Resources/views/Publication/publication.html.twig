@@ -43,7 +43,9 @@
     </div>
     <div class="col-xs-8" style="padding-right: 0">
         <div>
-            <h1 class="blue-text" itemprop="name">{{ publication.title }}</h1>
+            <h1 class="blue-text" itemprop="name">{{ publication.title }}
+                {% if is_granted('ROLE_ADMIN') %} <a href="{{ path('admin_publication_edit',{'id' : publication.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>{% endif %}
+            </h1>
             {% if publication.preview.path is defined  %}
                 <img src="{{ publication.preview.path }}"
                      style="max-width: 250px; float: left; margin: 0 20px 10px 10px"

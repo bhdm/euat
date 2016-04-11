@@ -66,6 +66,7 @@
                     </span>
                         <br />
                         <a href="{{ path('event', {'url' : p.id, 'number' : i.id }) }}"><span class="new-item-title">{{ p.title }}</span></a>
+                        {% if is_granted('ROLE_ADMIN') %} <a href="{{ path('admin_event_edit',{'id' : p.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>{% endif %}
                         <div class="new-item-anons">
                             {{ p.body | anons | raw }}
                             {% if p.category != null %}
