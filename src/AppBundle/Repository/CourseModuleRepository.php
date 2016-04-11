@@ -14,12 +14,14 @@ class CourseModuleRepository extends \Doctrine\ORM\EntityRepository
         $qb = $this->createQueryBuilder('m')
             ->select('m')
             ->where('m.course = :course')
-            ->andWhere('m.sort >= :moduleId')
-            ->orderBy('m.sort','ASC')
+            ->andWhere('m.sort >= :sort')
+            ->andWhere('m.id != :id')
+            ->orderBy('m.sort','DESC')
             ->addOrderBy('m.id','ASC')
 
             ->setParameter('course', $course->getId())
-            ->setParameter('moduleId', $activeModule->getId())
+            ->setParameter('sort', $activeModule->getSort())
+            ->setParameter('id', $activeModule->getId())
             ->setMaxResults(1)
             ;
 
@@ -30,15 +32,19 @@ class CourseModuleRepository extends \Doctrine\ORM\EntityRepository
         $qb = $this->createQueryBuilder('m')
             ->select('m')
             ->where('m.course = :course')
-            ->andWhere('m.id < :moduleId')
+            ->andWhere('m.sort <= :sort')
+            ->andWhere('m.id != :id')
             ->orderBy('m.sort','DESC')
-            ->addOrderBy('m.id','DESC')
+            ->addOrderBy('m.id','ASC')
 
             ->setParameter('course', $course->getId())
-            ->setParameter('moduleId', $activeModule->getId())
+            ->setParameter('sort', $activeModule->getSort())
+            ->setParameter('id', $activeModule->getId())
             ->setMaxResults(1)
         ;
 
+//        echo $qb->getQuery()->getSql();
+//        exit;
         return $qb->getQuery()->getOneOrNullResult();
     }
 

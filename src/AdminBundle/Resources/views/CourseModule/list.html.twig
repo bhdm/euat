@@ -13,7 +13,7 @@
                 <th>№</th>
                 <th>Название модуля</th>
                 <th>Тип</th>
-                <th></th>
+                <th>Сорт</th>
                 <th>Статус</th>
                 <th class="setting">Инструменты</th>
             </tr>
@@ -22,8 +22,8 @@
                     <td>{{ item.id }}</td>
                     <td>{{ item.title }}</td>
                     <td>{{ item.type }}</td>
-                    <td></td>
-                    <td>{{ item.enabled }}</td>
+                    <td>{{ item.sort }}</td>
+                    <td>{{ item.enabled == 1 ? 'Активен' : 'Не активен'}}</td>
                     <td class="setting">
                         <a href="{{ path('admin_course_module_up',{ 'courseId' : course.id, 'id' : item.id }) }}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button></a>
                         <a href="{{ path('admin_course_module_down',{ 'courseId' : course.id, 'id' : item.id }) }}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button></a>

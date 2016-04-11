@@ -24,7 +24,7 @@ class CourseModuleController extends Controller{
      */
     public function listAction(Request $request, $courseId){
         $course = $this->getDoctrine()->getRepository('AppBundle:Course')->findOneBy(['id' => $courseId]);
-        $modules = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->findBy(['course' => $course],['sort' => 'ASC','id' => 'ASC']);
+        $modules = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->findBy(['course' => $course],['sort' => 'DESC','id' => 'ASC']);
 
         return array('modules' => $modules,'course' => $course);
     }
@@ -36,6 +36,8 @@ class CourseModuleController extends Controller{
     public function upAction(Request $request, $courseId, $id){
         $module = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->find($id);
         $nextModule = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->nextModule($module->getCourse(), $module);
+//        dump($nextModule);
+//        exit;
         if ($nextModule){
             $nextSort = $nextModule->getSort();
             $backSort = $module->getSort();
