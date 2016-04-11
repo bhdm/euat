@@ -419,8 +419,10 @@ th.picker-switch {
   font-size: 17px;
   color: #337AB7;
   font-weight: bold;
+  max-width: 430px;
 }
 .test-answer {
+  max-width: 430px;
   font-size: 16px;
   display: inline-block;
   vertical-align: top;
