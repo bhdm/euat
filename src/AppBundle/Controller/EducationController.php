@@ -208,10 +208,20 @@ class EducationController extends Controller
         if ($recordBook->getUser() != $this->getUser() || $recordBook->getPassed() == null){
             throw $this->createNotFoundException('Сертификат не доступен');
         }
-        
-        $mpdfService = $this->get('tfox.mpdfport');
+
+        $arguments = array(
+            'constructorArgs' => ['','', 0, '', 0, 0, 0, 16, 9, 9, 'L'],
+            'writeHtmlMode' => null, //$mode argument for WriteHTML method
+            'writeHtmlInitialise' => null, //$mode argument for WriteHTML method
+            'writeHtmlClose' => null, //$close argument for WriteHTML method
+            'outputFilename' => null, //$filename argument for Output method
+            'outputDest' => null //$dest argument for Output method
+        );
+
+        $mpdfService = $this->get('tfox.mpdfport', $arguments);
+
         $html = $this->renderView('@App/Education/certificate.html.twig', ['recordBook' => $recordBook]);
-        $response = $mpdfService->generatePdfResponse($html);
+        $response = $mpdfService->generatePdfResponse($html,$arguments);
 
         return $response;
     }

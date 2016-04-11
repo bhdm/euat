@@ -95,7 +95,7 @@ class Course
     /**
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\CourseModule", mappedBy="course", cascade={"remove"}, orphanRemoval=true)
-     * @ORM\OrderBy({"sort" = "ASC", "id" = "ASC" })
+     * @ORM\OrderBy({"sort" = "DESC", "id" = "ASC" })
      */
     private $modules;
 
