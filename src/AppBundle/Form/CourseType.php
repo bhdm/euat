@@ -32,7 +32,7 @@ class CourseType extends AbstractType
                     'Активная' => true,
                     'Неактивна' => false
                 ),
-                'required'    => true,
+                'required'    => false,
                 'label' => 'Состояние'
             ))
             ->add('start', DateType::class, ['label' => 'Дата начала'])
