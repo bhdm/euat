@@ -69,7 +69,7 @@ class PublicationController extends Controller
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Пользователь оставил тезис')
                     ->setFrom('info@euat.ru')
-                    ->setTo('korotun@euat.ru')
+                    ->setTo('office@euat.ru')
                     ->setBody(
                         $this->renderView(
                             '@App/Mail/setTheses.html.twig',
@@ -111,18 +111,6 @@ class PublicationController extends Controller
                     ->setSubject('Пользователь оставил заявку на регистрацию')
                     ->setFrom('info@euat.ru')
                     ->setTo('school@euat.ru')
-                    ->setBody(
-                        $this->renderView(
-                            '@App/Mail/setRegister.html.twig',
-                            array('data' => $data, 'event' => $event)
-                        ),
-                        'text/html'
-                    );
-                $this->get('mailer')->send($message);
-                $message = \Swift_Message::newInstance()
-                    ->setSubject('Пользователь оставил заявку на регистрацию')
-                    ->setFrom('info@euat.ru')
-                    ->setTo('tulupov.m@gmail.com')
                     ->setBody(
                         $this->renderView(
                             '@App/Mail/setRegister.html.twig',
