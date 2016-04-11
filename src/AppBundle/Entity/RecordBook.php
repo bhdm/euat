@@ -43,6 +43,14 @@ class RecordBook
     private $passed;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="attempt", type="datetime", nullable=true)
+     */
+    private $attempt;
+
+
+    /**
      * @var string
      *
      * @ORM\Column(name="percent", type="decimal", scale=2, nullable=true)
@@ -156,6 +164,7 @@ class RecordBook
         return $this->passed;
     }
 
+
     /**
      * Set percent
      *
@@ -236,7 +245,23 @@ class RecordBook
         $this->course = $course;
     }
 
+    /**
+     * @return \DateTime
+     */
+    public function getAttempt()
+    {
+        return $this->attempt;
+    }
 
+    /**
+     * @param \DateTime $attempt
+     */
+    public function setAttempt($attempt)
+    {
+        $this->attempt = $attempt;
+    }
+
+    
 
 }
 

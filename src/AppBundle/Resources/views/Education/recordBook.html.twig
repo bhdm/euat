@@ -12,14 +12,16 @@
                 <th class="text-center">Сертификат</th>
             </tr>
             {% for r in recordbook %}
-                {% set course = r.course %}
-                <tr>
-                    <td style="width: 500px"><a href="{{ path('course_info', {'id' : course.id}) }}">{{ course.title }}</a></td>
-                    <td class="text-center">{{ course.modules | length }}</td>
-                    <td class="text-center">{{ r.percent  }}%</td>
-                    <td class="text-center">{{ r.passed | date ('d.m.Y') }}</td>
-                    <td class="text-center"><a href="{{ path('generate_certificate',{'recordBookId' : r.id }) }}">Скачать</a></td>
-                </tr>
+                {% if r.passed != null %}
+                    {% set course = r.course %}
+                    <tr>
+                        <td style="width: 500px"><a href="{{ path('course_info', {'id' : course.id}) }}">{{ course.title }}</a></td>
+                        <td class="text-center">{{ course.modules | length }}</td>
+                        <td class="text-center">{{ r.percent  }}%</td>
+                        <td class="text-center">{{ r.passed | date ('d.m.Y') }}</td>
+                        <td class="text-center"><a href="{{ path('generate_certificate',{'recordBookId' : r.id }) }}">Скачать</a></td>
+                    </tr>
+                {% endif %}
             {% endfor %}
         </table>
     </div>

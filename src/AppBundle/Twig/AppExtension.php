@@ -8,6 +8,7 @@ class AppExtension extends \Twig_Extension
         return array(
             new \Twig_SimpleFilter('anons', array($this, 'anonsFilter')),
             new \Twig_SimpleFilter('minidesc', array($this, 'minidescFilter')),
+            new \Twig_SimpleFilter('succesAttempt', array($this, 'succesAttemptFilter')),
         );
     }
 
@@ -26,6 +27,18 @@ class AppExtension extends \Twig_Extension
         $text = strip_tags($text);
         $text = mb_substr($text,0,200);
         return $text.'...';
+    }
+
+    public function succesAttemptFilter($date){
+        $date = time($date)+(60*20);
+        $nowDate = time();
+        $date = $nowDate-$date;
+        if ($date > 0){
+            $date = 0;
+        }else{
+            $date = $date/60;
+        }
+        return $date;
     }
 
     public function getName()

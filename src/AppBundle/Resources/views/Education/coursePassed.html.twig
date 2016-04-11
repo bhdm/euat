@@ -4,7 +4,15 @@
     {% set course = recordBook.course %}
     <h2>{{ course }}</h2>
     <div class="text-center">
-        <h3>Поздравляем Вас - Вы прошли данный курс на {{ recordBook.percent }} процентов</h3>
+        {% if recordBook.passed != null %}
+            <h3>Поздравляем Вас - Вы прошли данный курс на {{ recordBook.percent }} процентов</h3>
+        {% else %}
+            <h3>
+                К сожалению, Вы не прошли курс. Вы набрали {{ recordBook.percent }} процентов.
+                <br />
+                Вы можете попробовать пройти курс еще раз через 20 минут
+            </h3>
+        {% endif %}
         <br />
         <br />
         <a href="{{ path('record_book') }}">

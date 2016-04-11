@@ -81,7 +81,7 @@ class EducationController extends Controller
             $recordBook = new RecordBook();
             $recordBook->setCourse($course);
             $recordBook->setUser($this->getUser());
-            $firstModule = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->findOneBy(['course' => $course],['sort' => 'ASC','id' => 'ASC']);
+            $firstModule = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->findOneBy(['course' => $course],['sort' => 'DESC','id' => 'ASC']);
             $recordBook->setActiveModule($firstModule);
             $em->persist($recordBook);
             $em->flush($recordBook);
@@ -126,7 +126,7 @@ class EducationController extends Controller
         if ($recordBook === null){
             throw $this->createNotFoundException('
                         Произошла ошибка - Данная запись в вашей записной книжке не найдена.
-                        Если эта ошибка произошла при прохождении курса - обратить, пожалуйста, к администратору1');
+                        Если эта ошибка произошла при прохождении курса - обратить, пожалуйста, к администратору');
         }
 
         if ($request->getMethod() === 'POST'){
@@ -135,28 +135,38 @@ class EducationController extends Controller
                 $questions = $this->getDoctrine()->getRepository('AppBundle:CourseModuleQuestion')->findBy(['module' => $module]);
                 $answers = $request->request->get('answer');
                 $true = 0;
+                $as = [];
                 foreach ( $questions as $q ){
+                    $as = [];
                     foreach ($q->getAnswers() as $a){
                         if ($a->getCorrect()){
-                            if (isset($answers[$a->getId()]) && $a->getId()) {
-                                $true ++;
-                            }
+                            $as[$a->getId()] = $a->getId();
+                        }
+                    }
+                    if (isset($answers[$q->getId()])){
+                        if (count(array_diff($as,$answers[$q->getId()])) == 0 && count(array_diff($answers[$q->getId()], $as)) == 0) {
+                            $true ++;
                         }
                     }
                 }
+
+
+
 //                dump($true);
 //                dump($questions);
 //                exit;
 
+                #todo Переделать на array_diff двухсторонний
                 # Получаем кол-во правильный ответов всего
-                $countTrue = 0;
-                foreach ($questions as $q){
-                    foreach ($q->getAnswers() as $a){
-                        if ($a->getCorrect()){
-                            $countTrue ++;
-                        }
-                    }
-                }
+                $countTrue = count($questions);
+//                foreach ($questions as $q){
+////                    foreach ($q->getAnswers() as $a){
+////                        if ($a->getCorrect()){
+//                            $countTrue ++;
+//                        }
+//                    }
+//                }
+
 
                 $result = ceil(($true * 100) / $countTrue);
 
@@ -166,8 +176,8 @@ class EducationController extends Controller
 
 //                $result = 50;
 //                if ($result > 80){
-                $recordBook->setPercent($result);
-                $em->flush($recordBook);
+                    $recordBook->setPercent($result);
+                    $em->flush($recordBook);
 //                }
 
 
@@ -175,13 +185,15 @@ class EducationController extends Controller
 
             # Находим следующий модуль курса
             $nextModule = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->nextModule($recordBook->getCourse(), $recordBook->getActiveModule());
-            #todo Доделать прохождение теста
             # Если null - то курс пройден
             if ($nextModule === null){
-                $recordBook->setPassed((new \DateTime()));
-                if ($recordBook->getPercent() == 0){
-                    $recordBook->setPercent(100);
+                if ($recordBook->getPercent() >= 80){
+                    $recordBook->setPassed((new \DateTime()));
                 }
+                $recordBook->setAttempt((new \DateTime()));
+//                if ($recordBook->getPercent() == 0){
+//                    $recordBook->setPercent(100);
+//                }
                 $em->flush($recordBook);
                 $em->refresh($recordBook);
                 return $this->render('AppBundle:Education:coursePassed.html.twig', ['recordBook' => $recordBook]);

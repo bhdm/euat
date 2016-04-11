@@ -2,9 +2,11 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-xs-4">{% if course.image.path is defined %}
+        <div class="col-xs-4">
+            {% if course.image.path is defined %}
                 <br />
                 <img src="{{ course.image.path }}" class="thumbnail" style="width: 100%">
+            {% endif %}
                 <div class="course-info">
                     {% if course.specialties | length > 0 %}
                         <div class="course-params">
@@ -39,7 +41,6 @@
                 </div>
                 <br />
                 {% if app.user.certificate is empty %}
-
                     <div class="alert alert-danger text-center">Для получения доступа к курсу необходимо указать копию сертификата</div>
                 {% elseif app.user.certificateDate == null %}
                     <div class="alert alert-danger text-center">Ваш сертификат пока не проверен модератором сайта</div>
@@ -47,14 +48,20 @@
                     {% if statusCourse == 'NEW' %}
                         <button class="btn btn-primary enrolment" style="width: 100%">Записаться</button>
                     {% elseif statusCourse == 'PROGRESS' %}
-                        <a href="{{ path('course_passing',{'recordBookId' : recordBook.id}) }}"><button class="btn btn-primary" style="width: 100%">Перейти в обучение</button></a>
+
+                        {% if recordBook.attempt != null and recordBook.attempt | succesAttempt != 0 %}
+                            <div class="alert alert-warning">Курс будет доступен через {{ recordBook.attempt | succesAttempt * -1 }} минут</div>
+                        {% else %}
+                            <a href="{{ path('course_passing',{'recordBookId' : recordBook.id}) }}">
+                                <button class="btn btn-primary" style="width: 100%">Перейти в обучение</button>
+                            </a>
+                        {% endif %}
                     {% elseif statusCourse == 'PASSED' %}
 
 
                     {% endif %}
 
                 {% endif %}
-            {% endif %}
         </div>
         <div class="col-xs-8">
             <h1 class="blue-text">{{ course.title }}</h1>
