@@ -103,7 +103,7 @@ class CourseModuleController extends Controller{
                 $em->persist($item);
                 $em->flush();
                 $em->refresh($item);
-//                return $this->redirect($this->generateUrl('admin_course_module_list'));
+                return $this->redirect($this->generateUrl('admin_course_edit',['id' => $courseId]));
             }
         }
         return array('form' => $form->createView(), 'course' => $course);
