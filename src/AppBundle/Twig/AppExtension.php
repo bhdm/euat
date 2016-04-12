@@ -32,7 +32,7 @@ class AppExtension extends \Twig_Extension
     public function succesAttemptFilter($dateAt){
         dump($dateAt);
         $date = $dateAt;
-        $date = time($date->format('Y-m-d H:i'))+(60*20);
+        $date = strtotime($date->format('Y-m-d H:i'))+(60*20);
         $nowDate = time();
         dump($date);
         dump($nowDate);
