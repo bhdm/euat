@@ -44,6 +44,14 @@ class CourseModuleTestController extends Controller{
 
             $module = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->findOneBy(['id' => $moduleId]);
 
+            foreach ($module->getQuestions() as $q){
+                foreach ($q->getAnswers() as $a){
+                    $em->remove($a);
+                }
+                $em->remove($q);
+            }
+            $em->flush();
+
             $answerTrue = $request->request->get('answerTrue');
 
             foreach ($request->request->get('quest') as $key => $value) {
