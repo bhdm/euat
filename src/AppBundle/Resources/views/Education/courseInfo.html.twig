@@ -49,7 +49,7 @@
                         <button class="btn btn-primary enrolment" style="width: 100%">Записаться</button>
                     {% elseif statusCourse == 'PROGRESS' %}
 
-                        {% if recordBook.attempt != null  %}
+                        {% if recordBook.attempt != null and recordBook.attempt | succesAttempt != null %}
                             <div class="alert alert-warning">Курс будет доступен в {{ recordBook.attempt | succesAttempt | date('H:i') }}</div>
                         {% else %}
                             <a href="{{ path('course_passing',{'recordBookId' : recordBook.id}) }}">
