@@ -33,8 +33,9 @@ class AppExtension extends \Twig_Extension
         $date = $dateAt;
         $date = time($date->format('Y-m-d H:i'))+(60*20);
         $nowDate = time();
-        $date = $date - $nowDate;
         dump($date);
+        dump($nowDate);
+        $date = $date - $nowDate;
         exit;
         if ($date > 0){
             $date = $dateAt;
