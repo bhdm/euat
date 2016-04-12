@@ -159,6 +159,19 @@ class CourseModuleController extends Controller{
     public function removeAction(Request $request, $courseId, $id){
         $em = $this->getDoctrine()->getManager();
         $item = $em->getRepository('AppBundle:'.self::ENTITY_NAME)->findOneById($id);
+        $rs = $this->getDoctrine()->getRepository('AppBundle:RecordBook')->findBy(['activeModule' => $item]);
+        foreach ($rs as $r ){
+            $em->remove($r);
+        }
+        $em->flush();
+        foreach ($item->getQuestions() as $q){
+            foreach ($q->getAnswers() as $a){
+                $em->remove($a);
+            }
+            $em->flush();
+            $em->remove($q);
+            $em->flush();
+        }
         if ($item){
             $em->remove($item);
             $em->flush();
