@@ -78,14 +78,16 @@ class CourseController extends Controller{
         $item = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findOneById($id);
         $form = $this->createForm(CourseType::class, $item);
         $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
+        $olfFile = $item->getImage();
         $formData = $form->handleRequest($request);
 
-        $olfFile = $item->getImage();
+
 
 
         if ($request->getMethod() == 'POST'){
             if ($formData->isValid()){
                 $item = $formData->getData();
+
                 $file = $item->getImage();
                 if ($file == null){
                     $item->setImage($olfFile);
