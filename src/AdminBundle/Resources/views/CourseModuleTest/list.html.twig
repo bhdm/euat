@@ -10,7 +10,7 @@
                                 <input type="text" class="form-control" value="{{ quest.body }}"  name="quest[{{ quest.id }}]">
                             </div>
                             <div class="col-xs-1">
-                                <button class="btn btn-danger" title="Удалить вопрос" onclick="deleteQuest({{ quest.id }})">-</button>
+                                <button class="btn btn-danger" type="button" title="Удалить вопрос" onclick="deleteQuest({{ quest.id }})">-</button>
                             </div>
                         </div>
                         <div class="admin-div-row">
@@ -26,7 +26,7 @@
                                                     <input  name='answer[{{ quest.id }}][{{ answ.id }}]' type='text'  value='{{ answ.title }}' class="form-control"/>
                                                 </div>
                                                 <div class="col-xs-1">
-                                                    <button class="btn btn-danger minus" title="Удалить вариант ответа" onclick="deleteAnswer({{ answ.id }})">-</button>
+                                                    <button class="btn btn-danger minus"  type='button' title="Удалить вариант ответа" onclick="deleteAnswer({{ answ.id }})">-</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -110,7 +110,7 @@
                         "<input name='answer[" + questId + "][" + countAnsw + "]' type='text' value='' class=\"form-control\" />" +
                         '</div>'+
                         "<div class='col-xs-1'>"+
-                        "<button class='btn btn-danger minus' title=\"Удалить вариант ответа\" onclick='deleteAnswer(" + countAnsw + ")'>-</button>"+
+                        "<button class='btn btn-danger minus' type='button' title=\"Удалить вариант ответа\" onclick='deleteAnswer(" + countAnsw + ")'>-</button>"+
                         '</div>'+
                         '</div>'+
                         '</div>';
@@ -136,7 +136,7 @@
                         "<input type=\"text\" class=\"form-control admin-quest\" value=\"\" name=\"quest[" + countQuest + "]\" class=\"admin-quest\" >" +
                         "</div>" +
                         "<div class=\"col-xs-1\">" +
-                        '<button class="btn btn-danger" title="Удалить вопрос" onclick="deleteQuest(' + countQuest + ')">-</button>'+
+                        '<button class="btn btn-danger" type="button" title="Удалить вопрос" onclick="deleteQuest(' + countQuest + ')">-</button>'+
                         "</div>" +
                         "</div>" +
                         "</div>" +
