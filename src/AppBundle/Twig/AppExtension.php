@@ -40,9 +40,9 @@ class AppExtension extends \Twig_Extension
         exit;
         if ($date > 0){
             $date = $dateAt;
-            $date->modify('+10 min');
+            $date->modify('+20 minutes');
         }else{
-            $date = null;
+            $date = '0';
         }
         dump($date);
         exit;
