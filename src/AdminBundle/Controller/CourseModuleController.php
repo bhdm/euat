@@ -124,9 +124,10 @@ class CourseModuleController extends Controller{
         $item = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findOneById($id);
         $form = $this->createForm(CourseModuleType::class, $item);
         $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
+        $olfFile = $item->getFile();
         $formData = $form->handleRequest($request);
 
-        $olfFile = $item->getFile();
+        
 
 
         if ($request->getMethod() == 'POST'){
