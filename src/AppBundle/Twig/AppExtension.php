@@ -34,6 +34,7 @@ class AppExtension extends \Twig_Extension
         $date = time($date)+(60*20);
         $nowDate = time();
         $date = $date - $nowDate;
+        dump($date);
         if ($date > 0){
             $date = $dateAt;
             $date->modify('+10 min');
