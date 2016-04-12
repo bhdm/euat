@@ -1,3 +1,12 @@
+<script>
+    function deleteAnswer(id) {
+        $('#Qanswer_' + id).remove();
+    }
+
+    function deleteQuest(id) {
+        $('#Qquest_' + id).remove();
+    }
+</script>
     <div class="well">
         <h2>Вопросы и ответы</h2>
         <form method="POST" action="{{ path('admin_course_module_test_save',{ 'courseId' : module.course.id , 'moduleId' : module.id}) }}" id="form_test">
@@ -159,14 +168,6 @@
                 $('.addAnswer').bind("click", clickBtnAsw);
 
             })
-
-            function deleteAnswer(id) {
-                $('#Qanswer_' + id).remove();
-            }
-
-            function deleteQuest(id) {
-                $('#Qquest_' + id).remove();
-            }
 
             $('.admin-input').tooltip();
         });
