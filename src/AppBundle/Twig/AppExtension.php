@@ -39,7 +39,7 @@ class AppExtension extends \Twig_Extension
             $date = $dateAt;
             $date->modify('+10 min');
         }else{
-            $date = 0;
+            $date = null;
         }
         return $date;
     }
