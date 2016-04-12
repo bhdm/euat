@@ -44,7 +44,10 @@ class AppExtension extends \Twig_Extension
         }else{
             $date = null;
         }
+        dump($date);
+        exit;
         return $date;
+
     }
 
     public function getName()
