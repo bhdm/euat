@@ -29,12 +29,13 @@ class AppExtension extends \Twig_Extension
         return $text.'...';
     }
 
-    public function succesAttemptFilter($date){
+    public function succesAttemptFilter($dateAt){
+        $date = $dateAt;
         $date = time($date)+(60*20);
         $nowDate = time();
         $date = $date - $nowDate;
         if ($date > 0){
-            $date = $date / 60;
+            $date = $dateAt->modify('+20 minutes');
         }else{
             $date = 0;
         }
