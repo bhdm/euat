@@ -84,7 +84,9 @@ class UserController extends Controller{
                 $date = $item->getCertificateDate();
                 $now = new \DateTime();
                 if ($date != null && $date > $now ){
-                    $item->setRoles(['ROLE_STUDENT']);
+                    if ($item->getRoles()[0] != 'ROLE_ADMIN'){
+                        $item->setRoles(['ROLE_STUDENT']);
+                    }
                 }
                 $em->flush($item);
                 $em->refresh($item);
