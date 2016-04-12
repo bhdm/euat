@@ -32,11 +32,11 @@ class AppExtension extends \Twig_Extension
     public function succesAttemptFilter($date){
         $date = time($date)+(60*20);
         $nowDate = time();
-        $date = $nowDate-$date;
+        $date = $date - $nowDate;
         if ($date > 0){
-            $date = 0;
+            $date = $date / 60;
         }else{
-            $date = $date/60;
+            $date = 0;
         }
         return $date;
     }
