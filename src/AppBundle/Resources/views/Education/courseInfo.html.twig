@@ -50,7 +50,7 @@
                     {% elseif statusCourse == 'PROGRESS' %}
 
                         {% if recordBook.attempt != null and recordBook.attempt | succesAttempt != 0 %}
-                            <div class="alert alert-warning">Курс будет доступен в <br /> {{ recordBook.attempt | succesAttempt | date('d.m.Y H:i') }}</div>
+                            <div class="alert alert-warning">Курс будет доступен в <br /> {{ recordBook.attempt | succesAttempt | date('H:i') }}</div>
                         {% else %}
                             <a href="{{ path('course_passing',{'recordBookId' : recordBook.id}) }}">
                                 <button class="btn btn-primary" style="width: 100%">Перейти в обучение</button>
