@@ -160,7 +160,7 @@ class EducationController extends Controller
 
                 #Если Тест пройден плохо, то нужно откатить человека на предыдущий модуль и не давать пройти
                 # на следующий (На снова пройти тест ) 20 минут
-                if ($result > 80){
+                if ($result < 80){
                     $backModule = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->backModule($recordBook->getCourse(), $recordBook->getActiveModule());
                     $recordBook->setActiveModule($backModule);
                     $recordBook->setAttempt((new \DateTime()));
