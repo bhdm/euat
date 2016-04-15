@@ -170,7 +170,7 @@ class EducationController extends Controller
                         'error',
                         'К сожалению, Вы не прошли тест, Вы сможете попробовать пройти тест заново через 20 минут.'
                     );
-                    return $this->render('AppBundle:Education:showModule.html.twig', ['recordBook' => $recordBook, 'module'=> $backModule, 'error' => true]);
+                    return $this->render('AppBundle:Education:showModule.html.twig', ['recordBook' => $recordBook, 'module'=> $recordBook->getActiveModule(), 'error' => true]);
                 }
 
                 $em->flush($recordBook);
