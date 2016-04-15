@@ -9,7 +9,7 @@
                 <th class="text-center">Кол-во модулей</th>
                 <th class="text-center">Результат</th>
                 <th class="text-center">Дата завершения</th>
-                <th class="text-center">Сертификат</th>
+                {#<th class="text-center">Сертификат</th>#}
             </tr>
             {% for r in recordbook %}
                 {% if r.passed != null %}
@@ -19,7 +19,7 @@
                         <td class="text-center">{{ course.modules | length }}</td>
                         <td class="text-center">{{ r.percent  }}%</td>
                         <td class="text-center">{{ r.passed | date ('d.m.Y') }}</td>
-                        <td class="text-center"><a href="{{ path('generate_certificate',{'recordBookId' : r.id }) }}">Скачать</a></td>
+                        {#<td class="text-center"><a href="{{ path('generate_certificate',{'recordBookId' : r.id }) }}">Скачать</a></td>#}
                     </tr>
                 {% endif %}
             {% endfor %}
