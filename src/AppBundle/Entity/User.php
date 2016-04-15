@@ -547,5 +547,12 @@ class User extends BaseUser
 //        $this->get('mailer')->send($message);
     }
 
+    /**
+     * @ORM\PreUpdate()
+     * @ORM\PreFlush()
+     */
+    public function preUpdate(){
+        $this->setPasswordRequestedAt(null);
+    }
 
 }
