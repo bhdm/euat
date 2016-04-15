@@ -167,9 +167,10 @@ class EducationController extends Controller
                     $em->flush($recordBook);
                     $session  = $request->getSession();
                     $session->getFlashBag()->add(
-                        'error',
+                        'danger',
                         'К сожалению, Вы не прошли тест, Вы сможете попробовать пройти тест заново через 20 минут.'
                     );
+                    $session->save();
                     return $this->render('AppBundle:Education:showModule.html.twig', ['recordBook' => $recordBook, 'module'=> $recordBook->getActiveModule(), 'error' => true]);
                 }
 

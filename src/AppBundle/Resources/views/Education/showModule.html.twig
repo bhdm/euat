@@ -20,12 +20,12 @@
             </ol>
             {# конец крошек#}
 
-            {% for type, messages in app.session.flashbag.all() %}
-                {% if type == 'error' %}
-                    <div class="alert alert-danger">
-                        {{ flashMessage }}
+            {% for label, flashes in app.session.flashbag.all %}
+                {% for flash in flashes %}
+                    <div class="alert alert-{{ label }}">
+                        {{ flash }}
                     </div>
-                {% endif %}
+                {% endfor %}
             {% endfor %}
 
             <h2 class="blue-text">{{ module.title  }}</h2>
