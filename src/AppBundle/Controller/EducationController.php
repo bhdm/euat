@@ -152,35 +152,31 @@ class EducationController extends Controller
 
 
 
-//                dump($true);
-//                dump($questions);
-//                exit;
-
-                #todo Переделать на array_diff двухсторонний
-                # Получаем кол-во правильный ответов всего
                 $countTrue = count($questions);
-//                foreach ($questions as $q){
-////                    foreach ($q->getAnswers() as $a){
-////                        if ($a->getCorrect()){
-//                            $countTrue ++;
-//                        }
-//                    }
-//                }
-
 
                 $result = ceil(($true * 100) / $countTrue);
 
+                $recordBook->setPercent($result);
 
-//                dump($result);
-//                exit;
-
-//                $result = 50;
-//                if ($result > 80){
-                    $recordBook->setPercent($result);
+                #Если Тест пройден плохо, то нужно откатить человека на предыдущий модуль и не давать пройти
+                # на следующий (На снова пройти тест ) 20 минут
+                if ($result > 80){
+                    $backModule = $this->getDoctrine()->getRepository('AppBundle:CourseModule')->backModule($recordBook->getCourse(), $recordBook->getActiveModule());
+                    $recordBook->setActiveModule($backModule);
+                    $recordBook->setAttempt((new \DateTime()));
                     $em->flush($recordBook);
-//                }
+                    $session  = $request->getSession();
+                    $session->getFlashBag()->add(
+                        'error',
+                        'К сожалению, Вы не прошли тест, Вы сможете попробовать пройти тест заново через 20 минут.'
+                    );
+                    return $this->render('AppBundle:Education:showModule.html.twig', ['recordBook' => $recordBook, 'error' => true]);
+                }
+
+                $em->flush($recordBook);
 
 
+                
             }
 
             # Находим следующий модуль курса
