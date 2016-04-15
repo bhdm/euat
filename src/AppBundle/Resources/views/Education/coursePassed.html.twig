@@ -6,17 +6,23 @@
     <div class="text-center">
         {% if recordBook.passed != null %}
             <h3>Поздравляем Вас - Вы прошли данный курс на {{ recordBook.percent }} процентов</h3>
+            <br />
+            <br />
+            <a href="{{ path('record_book') }}">
+                <button class="btn btn-primary">Перейти в зачетную книжку</button>
+            </a>
         {% else %}
             <h3>
                 К сожалению, Вы не прошли курс. Вы набрали {{ recordBook.percent }} процентов.
                 <br />
                 Вы можете попробовать пройти курс еще раз через 20 минут
+                <br />
+                <br />
+                <a href="{{ path('course_info',{'id' : course.id}) }}">
+                    <button class="btn btn-primary">На страницу курса</button>
+                </a>
             </h3>
         {% endif %}
-        <br />
-        <br />
-        <a href="{{ path('record_book') }}">
-            <button class="btn btn-primary">Перейти в зачетную книжку</button>
-        </a>
+
     </div>
 {% endblock %}

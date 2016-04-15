@@ -29,16 +29,24 @@ class AppExtension extends \Twig_Extension
         return $text.'...';
     }
 
-    public function succesAttemptFilter($date){
-        $date = time($date)+(60*20);
+    public function succesAttemptFilter($dateAt){
+//        dump($dateAt);
+        $date = $dateAt;
+        $date = strtotime($date->format('Y-m-d H:i'))+(60*20);
         $nowDate = time();
-        $date = $nowDate-$date;
+//        dump($date);
+//        dump($nowDate);
+        $date = $date - $nowDate;
         if ($date > 0){
-            $date = 0;
+            $date = $dateAt;
+            $date->modify('+20 minutes');
         }else{
-            $date = $date/60;
+            $date = null;
         }
+//        dump($date);
+//        exit;
         return $date;
+
     }
 
     public function getName()
