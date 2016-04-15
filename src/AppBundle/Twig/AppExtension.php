@@ -39,7 +39,7 @@ class AppExtension extends \Twig_Extension
         $date = $date - $nowDate;
         if ($date > 0){
             $date = $dateAt;
-            $date->modify('+20 minutes');
+            $date->modify('+10 minutes');
         }else{
             $date = null;
         }
