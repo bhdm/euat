@@ -4,6 +4,8 @@
     <ul class="breadcrumb well">
         <li><a href="{{ path('admin_main') }}">Домой</a> <span class="divider"></span></li>
         <li><a href="{{ path('admin_course_list') }}">Курсы</a> <span class="divider"></span></li>
+        <li><a href="{{ path('admin_course_edit',{'id' : course.id }) }}">{{ course }}</a></li>
+        <li><a href="{{ path('admin_course_module_edit',{'id' : item.id , 'courseId' : course.id }) }}">{{ item.title }}</a> <span class="divider"></span></li>
         <li class="active">Изменение<span class="divider"></span></li>
     </ul>
 {% endblock %}
@@ -16,12 +18,14 @@
             </div>
             <script src="{{ asset('bundles/app/js/uppod-0.5.40.js') }}"></script>
             <script>
+                {% if item.file.path is defined %}
                 $(document).ready(function () {
                     var link = '{{ base_url~item.file.path }}';
                     console.log(link);
                     {#var poster = '{{ base_url~'/upload/video/'~module.image.path }}';#}
                     this.player = new Uppod({m:"video",uid:"videoplayer1",file:link});
                 });
+                {% endif %}
             </script>
         {% endif %}
         {{ form_start(form) }}

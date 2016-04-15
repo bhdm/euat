@@ -9,7 +9,7 @@
     {% endif %}
     <div>
         {% for course in courses %}
-            <div class="row">
+            <div class="row course-item">
                 <div class="col-md-offset-1 col-xs-3">
                     {% if course.image.path is defined %}
                         <a href="{{ path('course_info',{'id' : course.id}) }}"><img src="{{ course.image.path }}" class="thumbnail" style="max-width: 100%"></a>
@@ -44,8 +44,8 @@
                         <div class="col-xs-6">
                             {% if course.amountHour != 0 %}
                                 <div class="course-params text-right" >
-                                    <b>Часов прохождения: </b>
-                                    {{ course.amountHour }} ч.
+                                    {#<b>Часов прохождения: </b>#}
+                                    {#{{ course.amountHour }} ч.#}
                                 </div>
                             {% endif %}
                             {% if course.price != 0 %}
