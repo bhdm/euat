@@ -12,7 +12,7 @@
                     </div>
                     <div class="commentText">
                         <div class="commentOwner">
-                            {{ comment.owner.firstName }} {{ comment.owner.surName }}
+                            {{ comment.owner.name }}
                             {% if is_granted('ROLE_ADMIN') %}
                                 <a href="{{ path('comment_remove',{'id' : comment.id }) }}" style="color: #888; float: right" title="Удалить комментарий">
                                     <span class="glyphicon glyphicon-remove"></span>

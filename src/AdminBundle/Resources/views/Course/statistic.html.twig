@@ -14,7 +14,7 @@
             {% for rc in recordBooks %}
             <tr>
                 <th>{{ rc.id }}</th>
-                <th><a href="{{ path('admin_user_edit',{'id' : rc.user.id}) }}">{{ rc.user }}</a></th>
+                <th><a href="{{ path('admin_user_edit',{'id' : rc.user.id}) }}">{{ rc.user.name }}</a></th>
                 <th>{{ rc.created | date('d.m.Y') }}</th>
                 <th>{{ rc.passed != null ? rc.passed | date('d.m.Y') : ' - ' }}</th>
                 <th>{{ rc.percent != null ? rc.percent~'%' : ' - '  }}</th>

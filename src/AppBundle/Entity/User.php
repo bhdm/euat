@@ -172,6 +172,14 @@ class User extends BaseUser
         parent::__construct();
     }
 
+    public function getName(){
+        return $this->lastName . ' ' . mb_substr($this->firstName, 0, 1, 'utf-8') . '.' . ($this->surName ? ' ' . mb_substr($this->surName, 0, 1, 'utf-8') . '.' : '');
+    }
+
+    public function getFullName(){
+        return $this->firstName . (empty($this->surName) ? '' : ' ' . $this->surName);
+    }
+
     /**
      * @return mixed
      */
