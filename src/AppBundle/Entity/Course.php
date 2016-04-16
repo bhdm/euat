@@ -479,10 +479,10 @@ class Course
     }
 
     public function userPassed(){
-        $count = 0;
+        $count = array();
         foreach ($this->users as $u){
             if ($u->getPassed() != null){
-                $count ++;
+                $count[]  = $u;
             }
         }
         return $count;
