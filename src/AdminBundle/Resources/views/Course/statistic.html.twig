@@ -13,18 +13,18 @@
             </tr>
             {% for rc in recordBooks %}
             <tr>
-                <th>{{ rc.id }}</th>
-                <th><a href="{{ path('admin_user_edit',{'id' : rc.user.id}) }}">{{ rc.user.name }}</a></th>
-                <th>{{ rc.created | date('d.m.Y') }}</th>
-                <th>{{ rc.passed != null ? rc.passed | date('d.m.Y') : ' - ' }}</th>
-                <th>{{ rc.percent != null ? rc.percent : ' - '  }}</th>
-                <th class="setting">
+                <td>{{ rc.id }}</td>
+                <td><a href="{{ path('admin_user_edit',{'id' : rc.user.id}) }}">{{ rc.user.name }}</a></td>
+                <td>{{ rc.created | date('d.m.Y') }}</td>
+                <td>{{ rc.passed != null ? rc.passed | date('d.m.Y') : ' - ' }}</td>
+                <td>{{ rc.percent != null ? rc.percent : ' - '  }}</td>
+                <td class="setting">
                     <a href="#" data-href="{{ path('admin_recordbook_remove',{'id' : rc.id}) }}" class="remove" data-toggle="modal" data-target="#confirm-delete">
                         <button type="button" class="btn btn-default btn-sm">
                             <span class="glyphicon glyphicon-remove"></span>
                         </button>
                     </a>
-                </th>
+                </td>
             </tr>
             {% endfor %}
         </table>
