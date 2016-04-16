@@ -11,7 +11,7 @@
                 <th>%</th>
                 <th class="setting"></th>
             </tr>
-            {% for rc in recordCourses %}
+            {% for rc in recordBooks %}
             <tr>
                 <th>{{ rc.id }}</th>
                 <th><a href="{{ path('admin_user_edit',{'id' : rc.user.id}) }}">{{ rc.user }}</a></th>
