@@ -4,3 +4,6 @@
 textarea{
     min-height: 100px;
 }
+.setting{
+    max-width: 200px;
+}
