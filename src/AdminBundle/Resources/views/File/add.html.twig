@@ -1,10 +1,16 @@
-{% extends "AdminBundle::mini_layout.html.twig" %}
+{% extends "AdminBundle::layout.html.twig" %}
+
+{% block breadcrumb %}
+    <ul class="breadcrumb well">
+        <li><a href="{{ path('admin_main') }}">Домой</a> <span class="divider"></span></li>
+        <li>Добавление файла</li>
+    </ul>
+{% endblock %}
 
 {% block content %}
-    <div class="">
-        Добавить файл:
-        <form method="POST" enctype="multipart/form-data">
+    <div class="well">
+            {{ form_start(form) }}
             {{ form_widget(form) }}
-        </form>
+            {{ form_end(form) }}
     </div>
 {% endblock %}

@@ -1,72 +1,67 @@
 <?php
-
 namespace AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\File;
+use AppBundle\Form\FileType;
 
 /**
- * Class FilesController
+ * Class FileController
  * @package AdminBundle\Controller
  * @Route("/admin/file")
  */
-class FileController extends Controller
-{
+class FileController extends Controller{
+        const ENTITY_NAME = 'File';
     /**
      * @Security("has_role('ROLE_ADMIN')")
      * @Route("/", name="admin_file_list")
      * @Template()
      */
-    //defaults={"folderId"="null"}
-    public function listAction($folderId = null){
-//        if ( $folderId ){
-//            $parent = $this->getDoctrine()->getRepository('AppBundle:File')->findOneById($folderId);
-//        }else{
-//            $parent = null;
-//        }
-//        $files = $this->getDoctrine()->getRepository('AppBundle:File')->findByParent($parent);
-        $files = $this->getDoctrine()->getRepository('AppBundle:File')->findAll();
+    public function listAction(Request $request){
+        $items = $this->getDoctrine()->getRepository('AppBundle:'.self::ENTITY_NAME)->findAll();
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-            $files,
-            $this->get('request')->query->get('page', 1),
-            40
+            $items,
+            $request->query->get('page', 1),
+            20
         );
-        return array(
-            'domain' => $_SERVER['SERVER_NAME'],
-//            'folder'    => $parent,
-            'pagination'     => $pagination
-        );
+
+        return array('pagination' => $pagination);
     }
 
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/add/{folderId}", name="admin_file_add", defaults={"folderId"="null"})
+     * @Route("/add", name="admin_file_add")
      * @Template()
      */
-    public function addAction(Request $request, $folderId = null){
-
-        $file = new File();
+    public function addAction(Request $request){
         $em = $this->getDoctrine()->getManager();
-        $form = $this->createFormBuilder($file);
-//        $form->add('title',null, array('label' => 'Название файла'));
-        $form->add('file','iphp_file', array('label' => 'файл'));
-        $form->add('submit', 'submit', array('label' => 'Сохранить'));
-        $form = $form->getForm();
-
+        $item = new File();
+        $form = $this->createForm(FileType::class, $item);
+        $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
         $formData = $form->handleRequest($request);
 
         if ($request->getMethod() == 'POST'){
             if ($formData->isValid()){
                 $item = $formData->getData();
+
+                $file = $item->getFile();
+                $filename = time(). '.'.$file->guessExtension();
+                $file->move(
+                    __DIR__.'/../../../web/upload/files/',
+                    $filename
+                );
+                $item->setFile(['path' => '/upload/files/'.$filename ]);
+
                 $em->persist($item);
-                $em->flush($item);
-                return $this->redirect($this->generateUrl('admin_file_list',array('folderId' => $folderId)));
+                $em->flush();
+                $em->refresh($item);
+                return $this->redirect($this->generateUrl('admin_file_list'));
             }
         }
         return array('form' => $form->createView());
@@ -74,13 +69,13 @@ class FileController extends Controller
 
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/remove/{fileId}", name="admin_file_remove")
+     * @Route("/remove/{id}", name="admin_file_remove")
      */
-    public function removeFileAction(Request $request, $fileId){
+    public function removeAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
-        $file = $em->getRepository('AppBundle:File')->findOneById($fileId);
-        if ($file){
-            $em->remove($file);
+        $item = $em->getRepository('AppBundle:'.self::ENTITY_NAME)->findOneById($id);
+        if ($item){
+            $em->remove($item);
             $em->flush();
         }
         return $this->redirect($request->headers->get('referer'));

@@ -1,17 +1,21 @@
-{% extends "AdminBundle::mini_layout.html.twig" %}
+{% extends "AdminBundle::layout.html.twig" %}
 
+{% block breadcrumb %}
+<ul class="breadcrumb well">
+    <li><a href="{{ path('admin_main') }}">Домой</a> <span class="divider"></span></li>
+    <li><a href="{{ path('admin_file_list') }}">Файлы</a> <span class="divider"></span></li>
+    <div style="float: right">
+        <a href="{{ path('admin_file_add') }}">Добавить файл</a>
+    </div>
+</ul>
+{% endblock %}
 
 {% block content %}
-    <div class="">
-        <ul class="breadcrumb">
-            <div style="float: right">
-                <a href="{{ path('admin_file_add') }}">Добавить файл</a> <span class="divider"></span>
-            </div>
-        </ul>
+    <div class="well">
         <table class="table">
             <tr>
                 <th>Файл</th>
-                <th>путь</th>
+                <th>Путь</th>
                 <th></th>
                 <th class="setting"></th>
             </tr>
@@ -19,11 +23,11 @@
                 {% if item.file.path is defined %}
                 <tr>
                     <td><img  class="img-list" src="{{ item.file.path }}" /></td>
-                    <td>http://{{ domain }}{{ item.file.path }}</td>
+                    <td>http://euat.ru/{{ item.file.path is defined ? item.file.path }}</td>
                     <td></td>
                     <td class="setting">
                         {% spaceless %}
-                            <a href="{{ path('admin_file_remove',{'fileId' : item.id}) }}">
+                            <a href="{{ path('admin_file_remove',{'id' : item.id}) }}">
                                 <button type="button" class="btn btn-default btn-sm">
                                     <span class="glyphicon glyphicon-remove"></span>
                                 </button>
