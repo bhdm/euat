@@ -27,7 +27,7 @@
                     {#<td><a href="{{ path('admin_course_module_list',{'courseId' : item.id}) }}" title="Войти в модули курса">{{ item.title }}</a></td>#}
                     <td></td>
                     <td>{{ item.enabled == 1 ? 'Активен' : '' }}</td>
-                    <td class="setting">
+                    <td class="setting" style="width: 200px">
                         {% spaceless %}
                             <a href="{{ path('admin_course_statistic',{'courseId' : item.id}) }}">
                                 <button type="button" class="btn btn-default btn-sm">
