@@ -29,18 +29,25 @@
                     <td>{{ item.enabled == 1 ? 'Активен' : '' }}</td>
                     <td class="setting">
                         {% spaceless %}
-                        <a href="{{ path('admin_course_edit',{'id' : item.id}) }}">
-                            <button type="button" class="btn btn-default btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </button>
-                        </a>
+                            <a href="{{ path('admin_course_statistic',{'courseId' : item.id}) }}">
+                                <button type="button" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-stats"></span>
+                                </button>
+                            </a>
                             &nbsp;
                             &nbsp;
-                        <a href="#" data-href="{{ path('admin_course_remove',{'id' : item.id}) }}" class="remove" data-toggle="modal" data-target="#confirm-delete">
-                            <button type="button" class="btn btn-default btn-sm">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </button>
-                        </a>
+                            <a href="{{ path('admin_course_edit',{'id' : item.id}) }}">
+                                <button type="button" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                            </a>
+                            &nbsp;
+                            &nbsp;
+                            <a href="#" data-href="{{ path('admin_course_remove',{'id' : item.id}) }}" class="remove" data-toggle="modal" data-target="#confirm-delete">
+                                <button type="button" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </a>
                         {% endspaceless %}
                     </td>
                 </tr>

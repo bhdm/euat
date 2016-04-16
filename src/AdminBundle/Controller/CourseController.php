@@ -121,4 +121,30 @@ class CourseController extends Controller{
         }
         return $this->redirect($request->headers->get('referer'));
     }
+
+    /**
+     * @Route("/{courseId}/statistic", name="admin_course_statistic")
+     * @Template()
+     */
+    public function statisticAction(Request $request, $courseId){
+        $em = $this->getDoctrine()->getManager();
+        $course = $em->getRepository('AppBundle:Course')->findOneBy(['id' => $courseId]);
+        $recordBooks = $this->getDoctrine()->getRepository('AppBundle:RecordBook')->findBy(['course' => $course]);
+
+        return ['course' => $course, 'recordBooks' => $recordBooks];
+    }
+
+    /**
+     * @Route("/recordbook/remove/{id}", name="admin_recordbook_remove")
+     */
+    public function recordbookRemoveAction(Request $request, $id){
+        $em = $this->getDoctrine()->getManager();
+        $item = $em->getRepository('AppBundle:RecordBook')->findOneById($id);
+        if ($item){
+            $em->remove($item);
+            $em->flush();
+        }
+        return $this->redirect($request->headers->get('referer'));
+    }
+
 }

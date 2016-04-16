@@ -474,3 +474,9 @@ th.picker-switch {
   border-color: #337AB7;
   font-size: 17px;
 }
+.course-item {
+  border-bottom: 1px solid #CCC;
+  margin-bottom: 10px;
+  padding-top: 10px ;
+  padding-bottom: 10px ;
+}
