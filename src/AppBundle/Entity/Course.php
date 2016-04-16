@@ -478,7 +478,15 @@ class Course
         $this->cerificate = $cerificate;
     }
 
-
+    public function userPassed(){
+        $count = 0;
+        foreach ($this->users as $u){
+            if ($u->getPassed() != null){
+                $count ++;
+            }
+        }
+        return $count;
+    }
 
 
 }
