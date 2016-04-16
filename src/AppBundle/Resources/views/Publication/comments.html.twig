@@ -15,7 +15,6 @@
                             {{ comment.owner.name }} <span style="font-size: 12px"></span>
                             <br />
                             <span style="font-size: 12px; color: #777">{{ comment.owner.specialty }}</span>
-                            {{ comment.owner.specialty }}
                             {% if is_granted('ROLE_ADMIN') %}
                                 <a href="{{ path('comment_remove',{'id' : comment.id }) }}" style="color: #888; float: right" title="Удалить комментарий">
                                     <span class="glyphicon glyphicon-remove"></span>
