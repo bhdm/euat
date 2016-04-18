@@ -121,7 +121,7 @@ class Course
     /**
      * @var array
      *
-     * @ORM\Column(name="cerificate", type="array", nullable=true)
+     * @ORM\Column(name="cerificate", type="boolean", nullable=true)
      */
     private $cerificate;
 
@@ -137,7 +137,7 @@ class Course
         $this->comments = new ArrayCollection();
         $this->image = array();
         $this->specialties = new ArrayCollection();
-        $this->cerificate = array();
+        $this->cerificate = false;
     }
 
     /**

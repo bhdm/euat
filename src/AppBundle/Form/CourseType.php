@@ -26,7 +26,14 @@ class CourseType extends AbstractType
             ->add('image', FileType::class, ['label' => 'Изображение', 'data_class' => null, 'required' => false])
             ->add('price', null, ['label' => 'Цена'])
             ->add('amountHour', null, ['label' => 'Кол-во часов'])
-            ->add('cerificate', FileType::class, [ 'label' => 'Шаблон сертификата', 'data_class' => null, 'required' => false])
+            ->add('cerificate', ChoiceType::class, array(
+                'choices' => array(
+                    'Использовать' => true,
+                    'Не использовать' => false
+                ),
+                'required'    => false,
+                'label' => 'Сертификат'
+            ))
             ->add('enabled', ChoiceType::class, array(
                 'choices' => array(
                     'Активная' => true,
