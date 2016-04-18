@@ -1,9 +1,24 @@
-<div class="row text-center">
-    {% for o in organizations %}
-        <div class="col-xs-4 col-md-2 col-lg-2">
-            <a href="#" class="thumbnail">
-                <img src="{{ o.logo.path }}" alt="{{ o.title }}" title="{{ o.title }}" style="width: 100%">
-            </a>
+<div id="organizationModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{{ organization.title | raw }}</h4>
+            </div>
+            <div class="modal-body">
+                {%  if organization.logo.path is defined %}
+                    <img src="{{ organization.logo.path }}" class="img-thumbnail" style="max-width: 200px; float: left">
+                {% endif %}
+                {{ organization.descripton | raw }}
+                <br />
+                <a href="{{ organization.link }}" target="_blank">Ссылка</a>
+            </div>
         </div>
-    {% endfor %}
+    </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('#organizationModal').modal();
+    })
+</script>

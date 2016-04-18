@@ -90,13 +90,26 @@ class DefaultController extends Controller
      * @param Request $request
      * @return array
      *
-     * @Route("organizations-info", name="organization_info", options={"expose"=true})
+     * @Route("organizations-info", name="organizations_info", options={"expose"=true})
      * @Template()
      */
-    public function organizationInfoAction(Request $request){
+    public function organizationsInfoAction(Request $request){
         $country = $request->request->get('id');
         $organizations = $this->getDoctrine()->getRepository('AppBundle:Organization')->findBy(['country' => $country]);
         return ['organizations' => $organizations];
+    }
+
+    /**
+     * @param Request $request
+     * @return array
+     *
+     * @Route("organizations-info/{id}", name="organization_info", options={"expose"=true})
+     * @Template()
+     */
+    public function organizationInfoAction(Request $request, $id){
+        $country = $request->request->get('id');
+        $organization = $this->getDoctrine()->getRepository('AppBundle:Organization')->findOneBy(['id' => $id]);
+        return ['organization' => $organization];
     }
 
     /**
