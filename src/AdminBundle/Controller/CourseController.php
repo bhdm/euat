@@ -152,6 +152,7 @@ class CourseController extends Controller{
 
     /**
      * @Route("/{courseId}/code/list", name="admin_code_list")
+     * @Template("AdminBundle:CertificateCode:list.html.twig")
      */
     public function codeListAction(Request $request, $courseId){
         $codes = $this->getDoctrine()->getRepository('AppBundle:CertificateCode')->findBy(['course' => $courseId]);
@@ -161,7 +162,7 @@ class CourseController extends Controller{
     /**
      * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{courseId}/code/add", name="admin_code_add")
-     * @Template()
+     * @Template("AdminBundle:CertificateCode:add.html.twig")
      */
     public function addCodeAction(Request $request, $courseId){
         $em = $this->getDoctrine()->getManager();
