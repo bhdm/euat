@@ -35,7 +35,8 @@
                         </a>
                             &nbsp;
                             &nbsp;
-                        <a href="{{ path('admin_journal_remove',{'id' : item.id}) }}">
+
+                            <a data-href="{{ path('admin_journal_remove',{'id' : item.id}) }}"  class="remove" data-toggle="modal" data-target="#confirm-delete">
                             <button type="button" class="btn btn-default btn-sm">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </button>
