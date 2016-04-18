@@ -156,7 +156,8 @@ class CourseController extends Controller{
      */
     public function codeListAction(Request $request, $courseId){
         $codes = $this->getDoctrine()->getRepository('AppBundle:CertificateCode')->findBy(['course' => $courseId]);
-        return ['codes' => $codes];
+        $course = $this->getDoctrine()->getRepository('AppBundle:Course')->find($courseId);
+        return ['codes' => $codes, 'course' => $course];
     }
 
     /**
@@ -166,12 +167,12 @@ class CourseController extends Controller{
      */
     public function addCodeAction(Request $request, $courseId){
         $em = $this->getDoctrine()->getManager();
+        $course = $this->getDoctrine()->getRepository('AppBundle:Course')->find($courseId);
         $item = new CertificateCode();
         $form = $this->createForm(CertificateCodeType::class, $item);
         $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
         $formData = $form->handleRequest($request);
         if ($formData->isValid()){
-            $course = $this->getDoctrine()->getRepository('AppBundle:Course')->find($courseId);
             $item = $formData->getData();
             $item->setCourse = $course;
             $em->persist($item);
@@ -179,7 +180,7 @@ class CourseController extends Controller{
             return $this->redirect($this->generateUrl('admin_code_list',['courseId' => $courseId]));
         }
 
-        return array('form' => $form->createView());
+        return array('form' => $form->createView(), 'course' => $course);
     }
 
     /**
