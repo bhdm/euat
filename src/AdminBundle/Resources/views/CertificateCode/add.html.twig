@@ -1,0 +1,35 @@
+{% extends "AdminBundle::layout.html.twig" %}
+
+{% block breadcrumb %}
+    {% block breadcrumb %}
+        <ul class="breadcrumb well">
+            <li><a href="{{ path('admin_main') }}">Домой</a> <span class="divider"></span></li>
+            <li><a href="{{ path('admin_course_list') }}">Курсы</a> <span class="divider"></span></li>
+            <li><a href="{{ path('admin_course_edit',{'id' : course.id }) }}">{{ course }}</a></li>
+            <li><a href="{{ path('admin_code_list',{'courseId' : course.id }) }}">Коды</a></li>
+            <li class="active">Добавление кода<span class="divider"></span></li>
+        </ul>
+    {% endblock %}
+{% endblock %}
+
+{% block content %}
+    <div class="well">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+        </form>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function(){
+            $("#publication_title").syncTranslit({
+                destination: "publication_slug",
+                caseStyle: "lower",
+                urlSeparator: "_"
+            });
+        });
+    </script>
+{% endblock %}

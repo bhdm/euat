@@ -36,6 +36,13 @@
                             </a>
                             &nbsp;
                             &nbsp;
+                            <a href="{{ path('admin_code_list',{'courseId' : item.id}) }}">
+                                <button type="button" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-list-alt"></span>
+                                </button>
+                            </a>
+                            &nbsp;
+                            &nbsp;
                             <a href="{{ path('admin_course_edit',{'id' : item.id}) }}">
                                 <button type="button" class="btn btn-default btn-sm">
                                     <span class="glyphicon glyphicon-pencil"></span>

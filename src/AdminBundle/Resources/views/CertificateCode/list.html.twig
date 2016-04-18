@@ -1,0 +1,46 @@
+{% extends "AdminBundle::layout.html.twig" %}
+
+{% block breadcrumb %}
+    <ul class="breadcrumb well">
+        <li><a href="{{ path('admin_main') }}">Домой</a> <span class="divider"></span></li>
+        <li><a href="{{ path('admin_course_list') }}">Курсы</a> <span class="divider"></span></li>
+        <li><a href="{{ path('admin_course_edit',{'id' : course.id }) }}">{{ course }}</a></li>
+        <li>Коды</li>
+        <li class="active">Добавление кода<span class="divider"></span></li>
+        <div style="float: right">
+            <a href="{{ path('admin_code_add', {'courseId' : course.id}) }}">Добавить</a> <span class="divider"></span>
+        </div>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <div class="well">
+        <table class="table">
+            <tr>
+                <th>Код</th>
+                <th>Пользователь</th>
+                <th></th>
+                <th class="setting">Инструменты</th>
+            </tr>
+            {% for item in pagination %}
+                <tr>
+                    <td>{{ item.code }}</td>
+                    <td>{{ item.user ? item.user.name }}</td>
+                    <td></td>
+                    <td class="setting">
+                        {% spaceless %}
+                        <a href="#" data-href="{{ path('admin_code_remove',{'id' : item.id}) }}" class="remove" data-toggle="modal" data-target="#confirm-delete">
+                            <button type="button" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </a>
+                        {% endspaceless %}
+                    </td>
+                </tr>
+            {% endfor%}
+        </table>
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </div>
+{% endblock %}
