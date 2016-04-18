@@ -12,10 +12,10 @@ if($_FILES['upload'])
     {
         $message = "Размер файла не соответствует нормам";
     }
-    else if (($_FILES['upload']["type"] != "image/jpeg") && ($_FILES['upload']["type"] != "image/png"))
-    {
-        $message = "Допускается загрузка только картинок JPG и PNG.";
-    }
+//    else if (($_FILES['upload']["type"] != "image/jpeg") && ($_FILES['upload']["type"] != "image/png"))
+//    {
+//        $message = "Допускается загрузка только картинок JPG и PNG.";
+//    }
     else if (!is_uploaded_file($_FILES['upload']["tmp_name"]))
     {
         $message = "Что-то пошло не так. Попытайтесь загрузить файл ещё раз.";
