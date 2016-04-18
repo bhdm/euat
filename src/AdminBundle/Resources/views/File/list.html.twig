@@ -23,7 +23,7 @@
                 {% if item.file.path is defined %}
                 <tr>
                     <td><img  class="img-list" src="{{ item.file.path }}" /></td>
-                    <td>http://euat.ru/{{ item.file.path is defined ? item.file.path }}</td>
+                    <td><a href="http://euat.ru/{{ item.file.path is defined ? item.file.path }}" target="_blank">{{ item.title }}</a></td>
                     <td></td>
                     <td class="setting">
                         {% spaceless %}
