@@ -174,7 +174,7 @@ class CourseController extends Controller{
         $formData = $form->handleRequest($request);
         if ($formData->isValid()){
             $item = $formData->getData();
-            $item->setCourse = $course;
+            $item->setCourse($course);
             $em->persist($item);
             $em->flush();
             return $this->redirect($this->generateUrl('admin_code_list',['courseId' => $courseId]));
