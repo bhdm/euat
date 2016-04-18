@@ -76,6 +76,13 @@ class RecordBook
      */
     private $course;
 
+    /**
+     * @var RecordBook
+     *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\CertificateCode", mappedBy="recordBook")
+     */
+    private $code;
+
     public function __construct()
     {
         $this->created = new \DateTime();
@@ -261,6 +268,23 @@ class RecordBook
         $this->attempt = $attempt;
     }
 
+    /**
+     * @return RecordBook
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    /**
+     * @param RecordBook $code
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+    }
+
+    
     
 
 }

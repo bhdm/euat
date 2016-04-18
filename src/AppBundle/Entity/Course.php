@@ -126,6 +126,12 @@ class Course
     private $cerificate;
 
     /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CertificateCode", mappedBy="course")
+     */
+    private $codes;
+
+    /**
      * Course constructor.
      */
     public function __construct()
@@ -135,6 +141,7 @@ class Course
         $this->created  = new \DateTime();
         $this->modules = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->codes = new ArrayCollection();
         $this->image = array();
         $this->specialties = new ArrayCollection();
         $this->cerificate = false;
@@ -488,6 +495,22 @@ class Course
         return $count;
     }
 
+    /**
+     * @return ArrayCollection
+     */
+    public function getCodes()
+    {
+        return $this->codes;
+    }
 
+    /**
+     * @param ArrayCollection $codes
+     */
+    public function setCodes($codes)
+    {
+        $this->codes = $codes;
+    }
+
+    
 }
 

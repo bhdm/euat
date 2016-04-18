@@ -108,6 +108,6 @@ class CertificateCode
         $this->recordBook = $recordBook;
     }
 
-    
+        
 }
 
