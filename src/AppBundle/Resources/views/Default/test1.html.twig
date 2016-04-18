@@ -1,7 +1,7 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block content %}
-    <h1 class="blue-text">Тестирование</h1>
+    <h1 class="blue-text">Калькулятор оценочной скорости клубочковой фильтрации (eGFR) с использованием CKD-EPI формулы</h1>
     <div>
         <div class="row">
             <div class="row">
@@ -31,8 +31,8 @@
             </div>
             <div class="col-xs-4">
                 <select class="question_1 form-control" onchange="compute();">
-                    <option value="1">Афроамериканец</option>
-                    <option value="1.156">Другой</option>
+                    <option value="1.156">Афроамериканец</option>
+                    <option value="1">Другой</option>
                 </select>
             </div>
         </div>
@@ -167,7 +167,7 @@
                 return Math.round(results * 10.0)/10.0;
 
             })();
-            append_to_debug('$result' + 0 + " is " + $result0);
+//            append_to_debug('$result' + 0 + " is " + $result0);
 
             append_to_results("<div class='result_0_group'><h3 class='result_0_title_area'></h3><div class='result_0_mini_title_area mini_title'></div><div class='result_0_sub_title_area answers_sub_title'></div><div class='result_0_answer_area answers'></div><div class='result_0_note_area note answers_note'></div></div>");
             populate_elements('result_0_title_area', result_0_title_by_formula, "Примерный GFR использующий CKD-EPI");
@@ -175,7 +175,7 @@
 
             populate_elements('result_0_answer_area', String($result0 + " mL/min/1.73mВІ"), "");
 
-            clean_up_result_group("0");
+//            clean_up_result_group("0");
 
             $result1 = (function() {
 
@@ -205,7 +205,7 @@
                 return Math.round(mdrdResults * 10.0)/10.0;
 
             })();
-            append_to_debug('$result' + 1 + " is " + $result1);
+//            append_to_debug('$result' + 1 + " is " + $result1);
 
             append_to_results("<div class='result_1_group'><h3 class='result_1_title_area'></h3><div class='result_1_mini_title_area mini_title'></div><div class='result_1_sub_title_area answers_sub_title'></div><div class='result_1_answer_area answers'></div><div class='result_1_note_area note answers_note'></div></div>");
             populate_elements('result_1_title_area', result_1_title_by_formula, "Примерный GFR использующий MDRD");
@@ -214,7 +214,7 @@
             populate_elements('result_1_answer_area', String($result1 + " mL/min/1.73mВІ"), "");
 
 
-            clean_up_result_group("1");
+//            clean_up_result_group("1");
 
 
 //            scroll_to_results_section();
@@ -234,6 +234,14 @@
             }
             .result_0_title_area{
                 font-size: 20px;
+                text-align: left;
+            }
+            .result_1_title_area{
+                font-size: 20px;
+                text-align: left;
+            }
+            .answers{
+                text-align: left;
             }
         </style>
 {% endblock %}
