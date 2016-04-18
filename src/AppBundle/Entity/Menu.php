@@ -187,6 +187,14 @@ class Menu
     }
 
     /**
+     * @return ArrayCollection
+     */
+    public function getChildrenAll()
+    {
+        return $this->children;
+    }
+
+    /**
      * @param ArrayCollection $children
      */
     public function setChildren($children)
