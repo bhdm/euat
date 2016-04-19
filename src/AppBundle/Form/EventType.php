@@ -56,8 +56,8 @@ class EventType extends AbstractType
             ->add('end',  DateType::class, [ 'label' => 'Дата окончания', 'required' => false])
             ->add('timeEnd', TimeType::class, [ 'label' => 'Время окончания', 'required' => false])
 
-            ->add('partners', null, [ 'label' => 'Партнеры'])
-            ->add('sponsor', null, [ 'label' => 'Спонсоры'])
+            ->add('partners', null, [ 'label' => 'Партнеры', 'attr' => ['class' => 'multiselect']])
+            ->add('sponsor', null, [ 'label' => 'Спонсоры', 'attr' => ['class' => 'multiselect']])
             ->add('contacts', TextareaType::class, [ 'label' => 'Контакная информация'])
             ->add('slug', null, [ 'label' => 'URI'])
             ->add('body', null, [ 'label' => 'Контент', 'attr' => ['class' => 'ckeditor']])

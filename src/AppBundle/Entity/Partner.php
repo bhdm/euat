@@ -78,10 +78,18 @@ class Partner
      */
     private $events;
 
+    /**
+     * @var string
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Partner", mappedBy="sponsors")
+     */
+    private $sponsorEvents;
+
     public function __construct()
     {
         $this->image = array();
         $this->events = new ArrayCollection();
+        $this->sponsorEvents = new ArrayCollection();
     }
 
     public function __toString()
@@ -274,6 +282,23 @@ class Partner
     {
         $this->events = $events;
     }
+
+    /**
+     * @return string
+     */
+    public function getSponsorEvents()
+    {
+        return $this->sponsorEvents;
+    }
+
+    /**
+     * @param string $sponsorEvents
+     */
+    public function setSponsorEvents($sponsorEvents)
+    {
+        $this->sponsorEvents = $sponsorEvents;
+    }
+
 
 
 

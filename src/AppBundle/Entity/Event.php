@@ -149,9 +149,10 @@ class Event
     /**
      * @var string
      *
-     * @ORM\Column(name="sponsor", type="string", nullable=true)
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Partner", inversedBy="sponsorEvents")
+     * @ORM\JoinTable(name="sponsorEvent_partner")
      */
-    private $sponsor;
+    private $sponsors;
 
     /**
      * @var string
@@ -192,6 +193,7 @@ class Event
     {
         $this->specialties = new ArrayCollection();
         $this->partners = new ArrayCollection();
+        $this->sponsors = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->items = new ArrayCollection();
         $this->enabled = true;
@@ -572,21 +574,7 @@ class Event
         $this->timeEnd = $timeEnd;
     }
 
-    /**
-     * @return string
-     */
-    public function getSponsor()
-    {
-        return $this->sponsor;
-    }
 
-    /**
-     * @param string $sponsor
-     */
-    public function setSponsor($sponsor)
-    {
-        $this->sponsor = $sponsor;
-    }
 
     /**
      * @return string
@@ -675,6 +663,24 @@ class Event
     public function addItem($item){
         $this->items->add($item);
     }
+
+    /**
+     * @return string
+     */
+    public function getSponsors()
+    {
+        return $this->sponsors;
+    }
+
+    /**
+     * @param string $sponsors
+     */
+    public function setSponsors($sponsors)
+    {
+        $this->sponsors = $sponsors;
+    }
+
+    
 
 }
 
