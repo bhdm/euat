@@ -140,8 +140,8 @@ class User extends BaseUser
     protected $specialty;
 
     /**
-     * @var RecordBook
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\User", mappedBy="user")
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\RecordBook", mappedBy="user")
      */
     private $courses;
 
@@ -563,4 +563,18 @@ class User extends BaseUser
         $this->setPasswordRequestedAt(null);
     }
 
+    public function getCountCourses(){
+        return count($this->courses);
+    }
+
+    public function getCountPassedCourses(){
+        $count = 0;
+        foreach ( $this->courses as $c ){
+            if ($c->getPassed() != null){
+                $count ++ ;
+            }
+        }
+        return $count;
+
+    }
 }

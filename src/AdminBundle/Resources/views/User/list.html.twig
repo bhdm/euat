@@ -12,17 +12,21 @@
         <table class="table">
             <tr>
                 <th>№</th>
+                <th>Ф.И.О</th>
                 <th>E-mail</th>
-                <th></th>
+                <th>Роль</th>
                 <th>Статус</th>
+                <th title="Всего/Пройдено курсов">Всего/Пройдено</th>
                 <th class="setting">Инструменты</th>
             </tr>
             {% for item in pagination %}
-                <tr>
+                <tr style="font-size: 13px">
                     <td>{{ item.id }}</td>
-                    <td>{{ item }}</td>
-                    <td></td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.username }}</td>
+                    <td>{{ item.roles | join(',') }}</td>
                     <td>{{ item.enabled == 1 ? 'Активен' : '' }}</td>
+                    <td>{{ item.countCourses  }} / {{ item.countPassedCourses }}</td>
                     <td class="setting">
                         {% spaceless %}
                         <a href="{{ path('admin_user_edit',{'id' : item.id}) }}">
