@@ -82,7 +82,7 @@ class EventType extends AbstractType
                     'Включить' => true,
                     'Отключить' => false
                 ),
-                'required'    => true,
+                'required'    => false,
                 'label' => 'В рассылку'
             ))
             ->add('enabled', ChoiceType::class, array(
