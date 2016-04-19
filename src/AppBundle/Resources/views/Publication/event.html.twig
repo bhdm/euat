@@ -105,8 +105,21 @@
         <div class="body">
             {{ event.body | raw }}
 
+            {% if event.sponsors | length > 0 %}
+                <h3 class="title">Спонсоры:</h3>
+                <div style="display: table-row">
+                    {% for p in event.sponsors %}
+                        <div class="thumbnail vcenter" style="display: inline-block; height: 70px;">
+                            <img src="{{ p.image.path }}" style="max-height: 70px; max-width: 120px;" title="{{ p.title }}">
+                        </div>
+                        <div class="vcenter">&nbsp;</div>
+                    {% endfor %}
+                </div>
+                <br />
+                <br />
+            {% endif %}
             {% if event.partners | length > 0 %}
-                <h3 class="title">партнеры события:</h3>
+                <h3 class="title">Партнеры события:</h3>
                 <div style="display: table-row">
                     {% for p in event.partners %}
                         <div class="thumbnail vcenter" style="display: inline-block; height: 70px;">
