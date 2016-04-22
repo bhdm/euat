@@ -6,10 +6,10 @@
     <script src="{{ asset('assets/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
 {% endblock %}
 {% block content %}
-    <div class="col-xs-4 hidden-sm hidden-xs" style="padding-left: 0">
+    <div class="col-md-4 hidden-sm hidden-xs" style="padding-left: 0">
         {{ render(controller("AppBundle:Widget:calendar" )) }}
     </div>
-    <div class="col-xs-8" style="padding-right: 0">
+    <div class="col-md-8 col-cs-12" style="padding-right: 0">
         <br />
         {% if videos | length > 0 %}
             <div class="title">ВИДЕО</div>

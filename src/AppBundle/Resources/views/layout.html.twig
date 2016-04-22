@@ -107,10 +107,10 @@
             {% endfor %}
             {% block fullContent %}
                 <div class="row">
-                    <div class="col-xs-9">
+                    <div class="col-md-9 col-xs-12">
                         {% block content %}{% endblock %}
                     </div>
-                    <div class="col-xs-3 text-right">
+                    <div class="col-md-3 text-right hidden-xs">
                         {{ render(controller("AppBundle:Widget:banner" )) }}
                     </div>
                 </div>
