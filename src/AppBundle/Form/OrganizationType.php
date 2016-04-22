@@ -31,6 +31,7 @@ class OrganizationType extends AbstractType
                     'Монголия' => 'mn',
                     'Армения' => 'am',
                     'Киргизия' => 'kg',
+                    'Туркменистан' => 'tm',
                 ),
                 'required'    => true,
                 'label' => 'Страна'
