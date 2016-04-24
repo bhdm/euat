@@ -215,9 +215,9 @@ class DefaultController extends Controller
             $cok = new Cookie('modal-'.$modal->getId(), $nextDate->format('d-m-Y'), $nextDate);
             $response->headers->setCookie($cok);
             $response->setContent($this->renderView('AppBundle:Modal:modal.html.twig',['modal' => $modal]));
-            $response->send();
+            return $response;
         }else{
-            return new Response('');
+            return new Response(' ');
         }
 
     }
