@@ -112,3 +112,31 @@
         {% endif %}
     </div>
 {% endblock %}
+
+{% block modal %}
+    {{ parent() }}
+
+    {% if publication.category.slug == 'video' and not is_granted("ROLE_USER") %}
+    <div class="modal fade" tabindex="-1" role="dialog" id="doctor-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Вы вошли как не авторизованный пользователь</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Данный материал предназначен только для врачей. Являетесь ли Вы врачем?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Да</button>
+                    <a href="http://euat.ru/"><button type="button" class="btn btn-default">Нет</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#doctor-modal').modal();
+        })
+    </script>
+    {% endif %}
+{% endblock %}
