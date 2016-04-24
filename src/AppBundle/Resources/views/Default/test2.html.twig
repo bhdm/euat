@@ -1,0 +1,154 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block content %}
+    <h1 class="blue-text" style="display: block; text-align: center">Калькулятор MAYO</h1>
+    <br />
+    <div>
+        <div class="row">
+            <div class="row">
+                <div class=" col-xs-offset-4 col-xs-4">
+                    <div class="dump" style="display: none"></div>
+                    <div class="question_0_error" style=""></div>
+                    <div class="question_1_error" style=""></div>
+                    <div class="question_2_error" style=""></div>
+                    <div class="question_3_error" style=""></div>
+                    <div class="question_4_error" style=""></div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <form class="form-horizontal form-bordered" id="med_calc_form">
+            <div class="form-group">
+                <label class="col-md-3 control-label">Возраст</label>
+                <div class="col-md-6">
+                    <div class="input-group">
+				<span class="input-group-addon">
+					<i class="fa fa-user"></i>
+				</span>
+                        <input type="number" id="age" name="inputAge" class="form-control" placeholder="Возраст">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label">Уровень Креатинина Плазмы</label>
+                <div class="col-md-6">
+                    <div class="input-group">
+				<span class="input-group-addon">
+					<i class="fa fa-heart"></i>
+				</span>
+                        <input type="number" name="kreatanin_val" id="kreatanin_val" class="form-control" placeholder="Уровень Креатинина">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="inputGender">Пол</label>
+                <div class="col-md-6">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="sex" id="sex_male" value="male" checked="true">
+                            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                            Мужской
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="sex" id="sex_female" value="female">
+                            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                            Женский
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6 col-md-offset-3">
+                    <button type="button" id="get_result_calc" class="btn btn-primary">Рассчитать</button>
+                    <button type="button" id="btnReset" class="btn btn-warning">Сброс</button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class=" col-xs-offset-4 col-xs-6">
+                <div class="results_content alert alert-info form-control-static">
+                    <p id="result_calc">Пожалуйста, ответьте на все вопросы. Все результаты будут вычислены сразу.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script>
+
+
+        // Майо СКФ=exp[ 1,911 + (5,249/креатинин плазмы) - (2,114/ креатинин плазмы) - 0.00686*возраст( -0.205(для женщин) ) ]
+        // все значения креатинина <0,8 все равно считать только 0,8
+
+        function med_calc2(){
+
+            var kreataninVal = $("#kreatanin_val").val() * 1;
+
+            if ( kreataninVal < 0.8) {
+                kreataninVal = 0.8;
+            }
+
+            var age = $("#age").val() * 1;
+
+            var sexKoef = 1;
+            if ( $( "#sex_female:checked" ).length >= 1 ) {
+                sexKoef = -0.205;
+            }
+
+            // var result = 186 * kreataninVal - 1.154 * age - sexKoef * raceKoef * kreataninMeauserKoef;
+            // kreataninVal = kreataninVal / kreataninMeauserKoef;
+
+            // console.log(kreataninMeauserKoef);
+
+            // var result = 186 * Math.pow(kreataninVal, -1.154) * Math.pow(age, -0.203) * sexKoef * raceKoef;
+            var result = 1.911 + (5.249 / kreataninVal) - (2.114/kreataninVal) - 0.00686 * age * sexKoef;
+            var result = Math.pow(2.7, result)
+            result = result.toFixed(4);
+
+
+            $("#result_calc").html("Результат расчетов: "+result);
+        }
+
+
+
+        $(document).ready(function(){
+            $("#get_result_calc").click(function(){
+                med_calc2()
+            });
+
+            $("#btnReset").click(function(){
+                document.getElementById("med_calc_form").reset();
+            });
+
+        })
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .results_content{
+            font-weight: bold;
+            text-align: center;
+            font-size: 15px;
+            margin-top: 20px;
+        }
+        .result_0_title_area{
+            font-size: 20px;
+            text-align: left;
+        }
+        .result_1_title_area{
+            font-size: 20px;
+            text-align: left;
+        }
+        .answers{
+            text-align: left;
+        }
+    </style>
+{% endblock %}
