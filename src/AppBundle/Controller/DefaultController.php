@@ -238,7 +238,7 @@ class DefaultController extends Controller
         $message = \Swift_Message::newInstance()
             ->setSubject('II Съезд Евразийской Ассоциации Терапевтов (ЕАТ)')
             ->setFrom('info@euat.ru')
-            ->setTo('tulupov.m@gmail.com')
+            ->setTo('korotun@euat.ru')
             ->setBody(
                 $this->renderView(
                     'AppBundle:Delivery:test.html.twig',
