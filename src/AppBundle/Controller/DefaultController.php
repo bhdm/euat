@@ -246,7 +246,7 @@ class DefaultController extends Controller
                 ),
                 'text/html'
             );
-//        $this->get('mailer')->send($message);
+        $this->get('mailer')->send($message);
         return [];
     }
 }
