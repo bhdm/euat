@@ -236,7 +236,7 @@ class DefaultController extends Controller
      */
     public function testDelivaryAction(){
         $message = \Swift_Message::newInstance()
-            ->setSubject('II Съезд Евразийской Ассоциации Терапевтов (ЕАТ)')
+            ->setSubject('Приглашаем посетить II Съезд Евразийской Ассоциации Терапевтов')
             ->setFrom('info@euat.ru')
             ->setTo('korotun@euat.ru')
             ->setBody(
@@ -249,7 +249,7 @@ class DefaultController extends Controller
         $this->get('mailer')->send($message);
 
         $message = \Swift_Message::newInstance()
-            ->setSubject('II Съезд Евразийской Ассоциации Терапевтов (ЕАТ)')
+            ->setSubject('Приглашаем посетить II Съезд Евразийской Ассоциации Терапевтов')
             ->setFrom('info@euat.ru')
             ->setTo('tulupov.m@gmail.com')
             ->setBody(
