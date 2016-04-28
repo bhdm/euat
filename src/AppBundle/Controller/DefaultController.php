@@ -247,6 +247,19 @@ class DefaultController extends Controller
                 'text/html'
             );
         $this->get('mailer')->send($message);
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject('II Съезд Евразийской Ассоциации Терапевтов (ЕАТ)')
+            ->setFrom('info@euat.ru')
+            ->setTo('tulupov.m@gmail.com')
+            ->setBody(
+                $this->renderView(
+                    'AppBundle:Delivery:test.html.twig',
+                    array()
+                ),
+                'text/html'
+            );
+        $this->get('mailer')->send($message);
         return [];
     }
 }
