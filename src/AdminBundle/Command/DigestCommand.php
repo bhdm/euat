@@ -63,6 +63,7 @@ class DigestCommand extends ContainerAwareCommand
 
             $error = $this->send($email, $to, $html, $this->subject);
             $output->writeln($error);
+            $output->writeln($email);
             if ($i && ($i % 100) == 0) {
                 sleep(60);
             }
