@@ -53,6 +53,7 @@ class PublicationController extends Controller
 
         $form = null;
         if ($event->isTheses() == true){
+            $typeForm = 'theses';
             $form = $this->createFormBuilder()
                 ->add('fio', TextType::class, ['label' => 'Ф.И.О'])
                 ->add('place', TextType::class, ['label' => 'Место работы'])
@@ -84,6 +85,7 @@ class PublicationController extends Controller
             $form = $form->createView();
         }
         if ($event->isRegister() == true){
+            $typeForm = 'register';
             $form = $this->createFormBuilder()
                 ->add('fio', TextType::class, ['label' => 'Ф.И.О'])
                 ->add('place', TextType::class, ['label' => 'Место работы'])
@@ -124,7 +126,7 @@ class PublicationController extends Controller
             }
             $form = $form->createView();
         }
-        return ['event' => $event, 'form' => $form, 'eventItem' => $eventItem];
+        return ['event' => $event, 'form' => $form, 'eventItem' => $eventItem, 'typeForm' => $typeForm,];
     }
 
     /**
