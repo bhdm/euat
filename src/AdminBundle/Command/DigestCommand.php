@@ -51,7 +51,7 @@ class DigestCommand extends ContainerAwareCommand
             return;
         }
 
-        include_once __DIR__.'/Armeni2.php';
+        include_once __DIR__.'/Armeni.php';
         $doctors = $emails;
 
         # рассылка по 100 пользователям за цикл
@@ -65,7 +65,7 @@ class DigestCommand extends ContainerAwareCommand
             $output->writeln($error);
             $output->writeln($email);
             if ($i && ($i % 30) == 0) {
-                sleep(60);
+                sleep(random_int(60,180));
             }
         }
 
