@@ -91,7 +91,7 @@ class DigestCommand extends ContainerAwareCommand
         $mail->Body     = $body;
         $mail->addAddress($email, $to);
         $mail->addCustomHeader('Precedence', 'bulk');
-        $mail->addCustomHeader('List-Unsubscribe', "<http://euat.ru/unfollow?email=>$email");
+        $mail->addCustomHeader('List-Unsubscribe', "<http://euat.ru/unfollow?email=$email>");
 
         return $mail->send() ? null : $mail->ErrorInfo;
     }
