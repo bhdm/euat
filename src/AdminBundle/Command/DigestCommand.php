@@ -51,7 +51,7 @@ class DigestCommand extends ContainerAwareCommand
             return;
         }
 
-        include_once __DIR__.'/Armeni.php';
+        include_once __DIR__.'/Armeni2.php';
         $doctors = $emails;
 
         # рассылка по 100 пользователям за цикл
