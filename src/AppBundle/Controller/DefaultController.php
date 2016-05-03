@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Unfollow;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -235,31 +236,21 @@ class DefaultController extends Controller
      * @Template("AppBundle:Delivery:test.html.twig")
      */
     public function testDelivaryAction(){
-        $message = \Swift_Message::newInstance()
-            ->setSubject('Приглашаем посетить II Съезд Евразийской Ассоциации Терапевтов')
-            ->setFrom('info@euat.ru')
-            ->setTo('korotun@euat.ru')
-            ->setBody(
-                $this->renderView(
-                    'AppBundle:Delivery:test.html.twig',
-                    array()
-                ),
-                'text/html'
-            );
-//        $this->get('mailer')->send($message);
+        
+        return ['email' => 'test'];
+    }
 
-        $message = \Swift_Message::newInstance()
-            ->setSubject('Приглашаем посетить II Съезд Евразийской Ассоциации Терапевтов')
-            ->setFrom('info@euat.ru')
-            ->setTo('vega7@rambler.ru')
-            ->setBody(
-                $this->renderView(
-                    'AppBundle:Delivery:test.html.twig',
-                    array()
-                ),
-                'text/html'
-            );
-//        $this->get('mailer')->send($message);
+    /**
+     * @Route("/unfollow", name="unfollow")
+     * @Template()
+     */
+    public function unfollowAction(Request $request){
+        $email = $request->query->get('email');
+        $unfollow = new Unfollow();
+        $unfollow->setEmail($email);
+        $this->getDoctrine()->getManager()->persist($unfollow);
+        $this->getDoctrine()->getManager()->flush($unfollow);
+
         return [];
     }
 }

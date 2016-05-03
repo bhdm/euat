@@ -41,7 +41,7 @@ class DigestCommand extends ContainerAwareCommand
         # тестовый режим
         if (strpos($this->sendTo, '@') !== false) {
 
-            $html =  $templating->render($this->template, []);
+            $html =  $templating->render($this->template, ['email' => $this->sendTo]);
             $email = $this->sendTo;
             $to    = $this->sendTo;
             $error = $this->send($email, $to, $html, $this->subject, true);
@@ -56,7 +56,7 @@ class DigestCommand extends ContainerAwareCommand
 
         # рассылка по 100 пользователям за цикл
         for ($i = 0, $c = count($doctors); $i < $c; $i++) {
-            $html = $templating->render($this->template, array());
+            $html = $templating->render($this->template, array('email' => $doctors[$i]));
 
             $email = $doctors[$i];
             $to    = $doctors[$i];
@@ -64,7 +64,7 @@ class DigestCommand extends ContainerAwareCommand
             $error = $this->send($email, $to, $html, $this->subject);
             $output->writeln($error);
             $output->writeln($email);
-            if ($i && ($i % 100) == 0) {
+            if ($i && ($i % 30) == 0) {
                 sleep(60);
             }
         }
@@ -91,6 +91,7 @@ class DigestCommand extends ContainerAwareCommand
         $mail->Body     = $body;
         $mail->addAddress($email, $to);
         $mail->addCustomHeader('Precedence', 'bulk');
+        $mail->addCustomHeader('List-Unsubscribe', "<http://euat.ru/unfollow?email=>$email");
 
         return $mail->send() ? null : $mail->ErrorInfo;
     }
