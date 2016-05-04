@@ -28,6 +28,8 @@ class RegistrationFormType extends AbstractType
             'required'    => true,
             'label' => 'Пол'
         ));
+        $builder->add('country', null, ['label' => 'Страна', 'attr' => ['class' => 'county']]);
+        $builder->add('city', TextType::class, ['label' => 'Город', 'attr' => ['class' => 'city']]);
         $builder->add('phone', null, ['label' => 'Телефон', 'attr' => ['class' => 'phone']]);
         $builder->add('plainPassword', RepeatedType::class, array(
             'type' => PasswordType::class,

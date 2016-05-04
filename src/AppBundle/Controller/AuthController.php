@@ -213,6 +213,8 @@ class AuthController extends Controller
 
     public function registerAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->get('fos_user.registration.form.factory');
         /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
@@ -235,12 +237,28 @@ class AuthController extends Controller
 
         $form->handleRequest($request);
 
+        //city
+        $cityTitle = $user->getCity();
+        $city = $this->getDoctrine()->getRepository('AppBundle:City')->findOneByTitle($cityTitle);
+        if ($city === null){
+            $city = new City();
+            $city->setTitle($cityTitle);
+            $city->setCountry($user->getCountry());
+            $em->persist($city);
+            $em->flush($city);
+            $em->refresh($city);
+        }
+        $user->setCity($city);
+        // end set city
+        
         if ($form->isValid()) {
 
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
             $userManager->updateUser($user);
+
+
 
             if (null === $response = $event->getResponse()) {
                 $url = $this->generateUrl('fos_user_registration_confirmed');
