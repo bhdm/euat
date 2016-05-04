@@ -97,7 +97,7 @@ class Publication
     /**
      * @var Specialty
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Specialty", inversedBy="publications")
-     * @ORM\OrderBy({"sort" = "ASC", "id" = "DESC"})
+     * @ORM\OrderBy({"sort" = "ASC", "id" = "ASC"})
      */
     private $specialties;
 

@@ -136,7 +136,7 @@ class User extends BaseUser
     /**
      * @var Specialty
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Specialty", inversedBy="users")
-     * @ORM\OrderBy({"sort" = "ASC", "id" = "DESC"})
+     * @ORM\OrderBy({"sort" = "ASC", "id" = "ASC"})
      */
     protected $specialty;
 
