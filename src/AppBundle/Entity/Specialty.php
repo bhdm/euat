@@ -67,6 +67,11 @@ class Specialty
     protected $userHobby;
 
     /**
+     * @ORM\Column(name="sort", type="integer")
+     */
+    protected $sort;
+
+    /**
      * Specialty constructor.
      */
     public function __construct()
@@ -224,6 +229,36 @@ class Specialty
         $this->courses = $courses;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getUserHobby()
+    {
+        return $this->userHobby;
+    }
 
+    /**
+     * @param mixed $userHobby
+     */
+    public function setUserHobby($userHobby)
+    {
+        $this->userHobby = $userHobby;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSort()
+    {
+        return $this->sort;
+    }
+
+    /**
+     * @param mixed $sort
+     */
+    public function setSort($sort)
+    {
+        $this->sort = $sort;
+    }
 }
 
