@@ -238,19 +238,21 @@ class AuthController extends Controller
         $form->handleRequest($request);
 
         //city
-        $cityTitle = $user->getCity();
-        $city = $this->getDoctrine()->getRepository('AppBundle:City')->findOneByTitle($cityTitle);
-        if ($city === null){
-            $city = new City();
-            $city->setTitle($cityTitle);
-            $city->setCountry($user->getCountry());
-            $em->persist($city);
-            $em->flush($city);
-            $em->refresh($city);
+        if ($user->getCity()){
+            $cityTitle = $user->getCity();
+            $city = $this->getDoctrine()->getRepository('AppBundle:City')->findOneByTitle($cityTitle);
+            if ($city === null){
+                $city = new City();
+                $city->setTitle($cityTitle);
+                $city->setCountry($user->getCountry());
+                $em->persist($city);
+                $em->flush($city);
+                $em->refresh($city);
+            }
+            $user->setCity($city);
+
         }
-        $user->setCity($city);
-        // end set city
-        
+// end set city
         if ($form->isValid()) {
 
             $event = new FormEvent($form, $request);
