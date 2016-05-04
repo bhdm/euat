@@ -124,6 +124,7 @@ class Event
     /**
      * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Specialty", inversedBy="events")
+     * @ORM\OrderBy({"sort" = "ASC", "id" = "DESC"})
      */
     private $specialties;
 
