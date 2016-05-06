@@ -1,77 +1,85 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block content %}
-    <h1 class="blue-text" style="display: block; text-align: center">Калькулятор оценочной скорости клубочковой фильтрации (eGFR) с использованием CKD-EPI формулы</h1>
-    <br />
-    <div>
-        <div class="row">
+    <div class="col-xs-4">
+        <ul>
+            <li style="text-align: right; padding: 10px"><a href="{{ path('test_1') }}">КАЛЬКУЛЯТОР EGFR</a></li>
+            <li style="text-align: right; padding: 10px"><a href="{{ path('test_2') }}">КАЛЬКУЛЯТОР MAYO</a></li>
+        </ul>
+    </div>
+    <div class="col-xs-8">
+        <h1 class="blue-text" style="display: block; text-align: center">Калькулятор оценочной скорости клубочковой фильтрации (eGFR) с использованием CKD-EPI формулы</h1>
+        <br />
+        <div>
             <div class="row">
-                <div class=" col-xs-offset-4 col-xs-4">
-                    <div class="dump" style="display: none"></div>
-                    <div class="question_0_error" style=""></div>
-                    <div class="question_1_error" style=""></div>
-                    <div class="question_2_error" style=""></div>
-                    <div class="question_3_error" style=""></div>
-                    <div class="question_4_error" style=""></div>
+                <div class="row">
+                    <div class=" col-xs-offset-4 col-xs-4">
+                        <div class="dump" style="display: none"></div>
+                        <div class="question_0_error" style=""></div>
+                        <div class="question_1_error" style=""></div>
+                        <div class="question_2_error" style=""></div>
+                        <div class="question_3_error" style=""></div>
+                        <div class="question_4_error" style=""></div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <form class="form-horizontal form-bordered" id="med_calc_form">
-            <div class="form-group">
-                <label class="col-md-3 control-label">Пол</label>
-                <div class="col-md-6">
-                    <select class="question_0 form-control" onchange="compute();">
-                        <option value="1">Мужской</option>
-                        <option value="0">Женский</option>
-                    </select>
+            <form class="form-horizontal form-bordered" id="med_calc_form">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Пол</label>
+                    <div class="col-md-6">
+                        <select class="question_0 form-control" onchange="compute();">
+                            <option value="1">Мужской</option>
+                            <option value="0">Женский</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label class="col-md-3 control-label">Рассовая принадлежность</label>
-                <div class="col-md-6">
-                    <select class="question_1 form-control" onchange="compute();">
-                        <option value="1.156">Афроамериканец</option>
-                        <option value="1">Другой</option>
-                    </select>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Рассовая принадлежность</label>
+                    <div class="col-md-6">
+                        <select class="question_1 form-control" onchange="compute();">
+                            <option value="1.156">Афроамериканец</option>
+                            <option value="1">Другой</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label class="col-md-3 control-label">Возраст</label>
-                <div class="col-md-6">
-                    <div class="input-group">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Возраст</label>
+                    <div class="col-md-6">
+                        <div class="input-group">
 				<span class="input-group-addon">
 					<i class="fa fa-user"></i>
 				</span>
-                        <input type="text" onkeyup="compute();" class="question_2 form-control" name="question_2" placeholder="Возраст">
-                        <input type="hidden" class="question_2_units" name="question_2_units" value="1">
+                            <input type="text" onkeyup="compute();" class="question_2 form-control" name="question_2" placeholder="Возраст">
+                            <input type="hidden" class="question_2_units" name="question_2_units" value="1">
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label class="col-md-3 control-label">Креатинин</label>
-                <div class="col-md-3">
-                    <div class="input-group">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Креатинин</label>
+                    <div class="col-md-3">
+                        <div class="input-group">
                     <span class="input-group-addon">
                         <i class="fa fa-heart"></i>
                     </span>
-                        <input type="text" onkeyup="compute();" class="question_3 form-control" name="question_3" placeholder="Креатинин">
+                            <input type="text" onkeyup="compute();" class="question_3 form-control" name="question_3" placeholder="Креатинин">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-control question_3_units" onchange="compute();">
+                            <option value="1.0">мг/дл</option>
+                            <option value="0.011312217">мкмоль/л</option>
+                        </select>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <select class="form-control question_3_units" onchange="compute();">
-                        <option value="1.0">мг/дл</option>
-                        <option value="0.011312217">мкмоль/л</option>
-                    </select>
-                </div>
-            </div>
-        </form>
-        <div class="form-group">
-            <div class="col-md-offset-3 col-md-6 control-label">
-                <div class="results_content alert alert-info">
-                    Пожалуйста, ответьте на все вопросы. Все результаты будут вычислены сразу.
+            </form>
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-6 control-label">
+                    <div class="results_content alert alert-info">
+                        Пожалуйста, ответьте на все вопросы. Все результаты будут вычислены сразу.
+                    </div>
                 </div>
             </div>
         </div>
