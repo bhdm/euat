@@ -1,11 +1,11 @@
 {% if banner %}
     <br />
-    <a href="{{ banner.url }}" target="_blank"><img src="{{ banner.file.path }}" style="width: 240px; border: 1px solid #CCC;" title="{{ banner.title }}" alt="{{ banner.title }}" ></a>
+    <a href="{{ banner.url }}" target="_blank"><img src="{{ banner.file.path }}" style="width: 100%; max-width: 240px; border: 1px solid #CCC;" title="{{ banner.title }}" alt="{{ banner.title }}" ></a>
 {% endif %}
 <br />
 <br />
 {% if interview %}
-    <div class="well" style="width: 240px; float: right;    margin-right: 3px;">
+    <div class="well hidden-sm hidden-xs" style="width: 240px; float: right;    margin-right: 3px;">
         <div class="text-left">
             <div class="caption" style="padding-bottom: 10px"><b>{{ interview.title }}</b></div>
             {% for q in interview.questions %}
