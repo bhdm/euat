@@ -1,0 +1,244 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="col-xs-3">
+        <ul style="    border-right: 1px solid #CCC;">
+            <li style="text-align: right; padding: 10px;"><a href="{{ path('test_1') }}">КАЛЬКУЛЯТОР EGFR</a></li>
+            <li style="text-align: right; padding: 10px;"><a href="{{ path('test_2') }}">КАЛЬКУЛЯТОР MAYO</a></li>
+            <li style="text-align: right; padding: 10px;  background: #EEE;"><a href="{{ path('test_3') }}">КАЛЬКУЛЯТОР QRISK</a></li>
+        </ul>
+    </div>
+    <div class="col-xs-9">
+        <h1 class="blue-text" style="display: block; text-align: center">Калькулятор QRISK</h1>
+        <br />
+        <div>
+            <br />
+            <form class="form-horizontal form-bordered" id="med_calc_form" action="http://www.qrisk.org/index.php" method="post">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Возраст</label>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-user"></i>
+                            </span>
+                            <input type="number" id="age" name="age" class="form-control" placeholder="Возраст">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="inputGender">Пол</label>
+                    <div class="col-md-6">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="sex" id="sex_male" value="1" checked="true">
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                Мужской
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="sex" id="sex_female" value="0">
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                Женский
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Этничность</label>
+                    <div class="col-md-6">
+                        <select class="question_1 form-control" name="ethnicity">
+                            <option value="1">Европеец</option>
+                            <option value="2">Индиец</option>
+                            <option value="3">Пакистанец</option>
+                            <option value="4">Банглодешец</option>
+                            <option value="5">Азиат</option>
+                            <option value="6">Темнокожий Карибского бассейна</option>
+                            <option value="7">Темнокожий африканец</option>
+                            <option value="8">Китаец</option>
+                            <option value="9">Другая этническая группа</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Отношение к курению</label>
+                    <div class="col-md-6">
+                        <select class="question_1 form-control" name="smoke_cat">
+                            <option value="0">Некурящий</option>
+                            <option value="1">Экс-курильщик</option>
+                            <option value="2">Немного курящий ( до 10 )</option>
+                            <option value="3">Средне курящий ( от 10 до 19)</option>
+                            <option value="4">Заядлый курильщик (20 и более )</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Диабет</label>
+                    <div class="col-md-6">
+                        <select class="question_1 form-control" name="diabetes_cat">
+                            <option value="0">Нет</option>
+                            <option value="1">Первая степень</option>
+                            <option value="2">Вторая степень</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-7 control-label" for="inputGender">
+                        Стенокардия или сердечного приступа в 1-й степени родства
+                    </label>
+                    <div class="col-md-2" style="text-align: right">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="fh_cvd" id="fh_cvd">
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-7 control-label" for="inputGender">
+                        Хроническая болезнь почек (4 или 5 стадия)
+                    </label>
+                    <div class="col-md-2" style="text-align: right">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="b_renal" id="b_renal">
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-7 control-label" for="inputGender">
+                        Мерцательная аритмия
+                    </label>
+                    <div class="col-md-2" style="text-align: right">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="b_AF" id="b_AF">
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-7 control-label" for="inputGender">
+                        При обработке кровяного давления
+                    </label>
+                    <div class="col-md-2" style="text-align: right">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="b_treatedhyp" id="b_treatedhyp">
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-7 control-label" for="inputGender">
+                        Ревматоидный артрит
+                    </label>
+                    <div class="col-md-2" style="text-align: right">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="b_ra" id="b_ra">
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+                <br />
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Холестерин соотношение / HDL</label>
+                    <div class="col-md-6">
+                        <input type="text" class="question_2 form-control" name="rati" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Систолическое артериальное давление (мм рт.ст.):</label>
+                    <div class="col-md-6">
+                        <input type="text" class="question_2 form-control" name="sbp" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Высота (см)</label>
+                    <div class="col-md-6">
+                        <input type="text" class="question_3 form-control" name="height" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Вес (кг)</label>
+                    <div class="col-md-6">
+                        <input type="text" class="question_3 form-control" name="weight" placeholder="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-6 col-md-offset-3">
+                        <button type="button" id="get_result_calc" class="btn btn-primary">Рассчитать</button>
+                        {#<button type="button" id="btnReset" class="btn btn-warning">Сброс</button>#}
+                    </div>
+                </div>
+                <input type="hidden" name="yearsRiskCalculatedFor" value="10">
+                <input type="hidden" name="calculate" value="Calculate risk">
+                <input type="hidden" name="postcode" value="">
+            </form>
+            <div class="row">
+                <div class="col-xs-12"  style="text-align: left">
+                    <div class="results_content alert alert-info form-control-static" style="text-align: left">
+                        <p id="result_calc">Пожалуйста, Заполните форму и нажмите кнопку "Расчитать".</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function () {
+            $('#get_result_calc').click(function () {
+                var form = $( "#med_calc_form" ).serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ path('test_3_ajax') }}",
+                    data: form,
+                    success: function(data) {
+                        $('#result_calc').html(data);
+                    },
+                    error:  function(xhr, str){
+                        $('#result_calc').html('Возникла ошибка: ' + xhr.responseCode);
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .results_content{
+            font-weight: bold;
+            text-align: center;
+            font-size: 15px;
+            margin-top: 20px;
+        }
+        .result_0_title_area{
+            font-size: 20px;
+            text-align: left;
+        }
+        .result_1_title_area{
+            font-size: 20px;
+            text-align: left;
+        }
+        .answers{
+            text-align: left;
+        }
+    </style>
+{% endblock %}

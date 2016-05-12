@@ -184,6 +184,42 @@ class DefaultController extends Controller
         return [];
     }
 
+    /**
+     * @Route("/test3", name="test_3")
+     * @Template()
+     */
+    public function test3Action(){
+        return [];
+    }
+
+    /**
+     * @Route("/test3ajax", name="test_3_ajax", options={"expose" = true})
+     * @Template()
+     */
+    public function ajaxTest3Action(){
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, "http://www.qrisk.org/index.php");
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $_POST);
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $server_output = curl_exec ($ch);
+
+        curl_close ($ch);
+
+        $server_output = substr($server_output, strpos($server_output, "<fieldset style=\"width:500px;\">")+1);
+        $server_output = explode('</fieldset>', $server_output );
+        $server_output = str_replace("fieldset style=\"width:500px;\">",'', $server_output[0]);
+        $server_output = str_replace("Your score",'Ваш результат', $server_output);
+        $server_output = str_replace("The score of a healthy person with the same age, sex, and ethnicity<sup>*</sup>",'Счет здорового человека с того же возраста, пола и этнической принадлежности', $server_output);
+        $server_output = str_replace("Relative risk<sup>**</sup>",'Относительный риск', $server_output);
+        $server_output = str_replace("Your 10-year QRISK<sup>&reg;</sup>2 score",'Ваш 10-летний балл QRISK2', $server_output);
+        $server_output = str_replace("Your QRISK<sup>&reg;</sup> Healthy Heart Age<sup>***</sup>",'Ваш QRISK Здоровое сердце Возраст', $server_output);
+        echo  $server_output;
+        exit;
+    }
 
     /**
      * @Route("/webinar", name="webinar")
