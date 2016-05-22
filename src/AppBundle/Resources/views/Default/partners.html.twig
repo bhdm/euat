@@ -40,7 +40,7 @@
                 {% endif %}
                 <div class="col-xs-4 col-md-2 col-lg-2 vcenter">
                     <div class="thumbnail">
-                        <a href="#content-{{ p.id }}" class="fancybox"><img src="{{ p.image.path }}" style="max-height: 150px;" title="{{ p.title }}"></a>
+                        <a href="#content-{{ p.id }}" class="fancybox"><img src="{{ p.image.path }}" style="max-height: 150px;" title="{{ p.title }}"  alt="{{ p.title }}"></a>
                     </div>
                 </div>
 
@@ -50,7 +50,7 @@
             <div style="display: none">
                 <div id="content-{{ p.id }}" style="text-align: left">
                     <h2 style="padding-bottom: 10px">{{ p.title }}</h2>
-                    <img src="{{ p.image.path }}" style="max-height: 150px; max-width: 150px; float: left; margin-right: 20px">
+                    <img src="{{ p.image.path }}" style="max-height: 150px; max-width: 150px; float: left; margin-right: 20px" alt="{{ p.title }}" title="{{ p.title }}">
                     {{ p.body | raw }}
                     <br />
                     <a href="{{ p.link }}" target="_blank">{{ p.link }}</a>

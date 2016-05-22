@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body" style="min-height: 160px">
                 {%  if organization.logo.path is defined %}
-                    <img src="{{ organization.logo.path }}" class="img-thumbnail" style="max-width: 200px; float: left; margin-right: 10px">
+                    <img src="{{ organization.logo.path }}" class="img-thumbnail" style="max-width: 200px; float: left; margin-right: 10px" title="{{ organization.title | raw }}" alt="{{ organization.title | raw }}">
                 {% endif %}
                 {{ organization.descripton | raw }}
                 <br />
