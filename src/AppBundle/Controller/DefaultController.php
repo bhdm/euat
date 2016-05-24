@@ -22,9 +22,9 @@ class DefaultController extends Controller
         $categoryEducation = $this->getDoctrine()->getRepository('AppBundle:Category')->findOneBy(['slug' => 'education']);
         $categoryNews = $this->getDoctrine()->getRepository('AppBundle:Category')->findOneBy(['slug' => 'new']);
 
-        $mainPublication = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['id' => 80]);
+//        $mainPublication = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['id' => 80]);
         $publications = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['category' => $categoryNews],['created' => 'DESC'], 4);
-        $publications = array_merge($mainPublication,$publications);
+//        $publications = array_merge($mainPublication,$publications);
 
         $videos = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['category' => $categoryVideo],['id' => 'DESC'], 50);
         shuffle($videos);
