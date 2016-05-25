@@ -16,7 +16,7 @@ class UserRepository extends EntityRepository
         $qb = $this->createQueryBuilder('u');
         $qb->select('c.title title, COUNT(u.id) cc');
         $qb->leftJoin('u.city', 'c')
-            ->andWhere("s.enabled = 1")
+            ->andWhere("u.enabled = 1")
             ->orderBy('count', 'DESC');
         $result = $qb->getQuery()->getResult();
 
@@ -27,7 +27,7 @@ class UserRepository extends EntityRepository
         $qb = $this->createQueryBuilder('u');
         $qb->select('c.title title, COUNT(u.id) cc');
         $qb->leftJoin('u.specialty', 'c')
-            ->andWhere("s.enabled = 1")
+            ->andWhere("u.enabled = 1")
             ->orderBy('count', 'DESC');
         $result = $qb->getQuery()->getResult();
 
