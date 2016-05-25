@@ -17,6 +17,7 @@ class UserRepository extends EntityRepository
         $qb->select('c.title title, COUNT(u.id) cc');
         $qb->leftJoin('u.city', 'c')
             ->andWhere("u.enabled = 1")
+            ->groupBy('c.title')
             ->orderBy('cc', 'DESC');
         $result = $qb->getQuery()->getResult();
 
@@ -28,6 +29,7 @@ class UserRepository extends EntityRepository
         $qb->select('c.title title, COUNT(u.id) cc');
         $qb->leftJoin('u.specialty', 'c')
             ->andWhere("u.enabled = 1")
+            ->groupBy('c.title')
             ->orderBy('cc', 'DESC');
         $result = $qb->getQuery()->getResult();
 
