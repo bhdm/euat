@@ -77,7 +77,9 @@
             {% if publication.source != null  %}
             <br />
 
-            <i style="color: #777">Источник: </i> <a style="color: #777" href="{{ publication.source }}" target="_blank">publication.source</a>
+                <span style="font-style: italic">
+                    <i style="color: #777;">Источник: </i> <a style="color: #777" href="{{ publication.source }}" target="_blank">{{ publication.source }}</a>
+                </span>
             {% endif %}
             <br />
             <div class="row row-params">
