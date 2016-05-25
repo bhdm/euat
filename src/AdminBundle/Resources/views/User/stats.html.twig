@@ -26,7 +26,7 @@
                     <td>{{ item.title }}</td>
                     <td>{{ item.cc }}</td>
                 </tr>
-                {% set count = count + cc %}
+                {% set count = count + item.cc %}
             {% endfor%}
             <tr style="font-size: 13px">
                 <td><B>ИТОГО: </B></td>
