@@ -14,7 +14,7 @@ class UserRepository extends EntityRepository
 {
     public function statsByCity(){
         $qb = $this->createQueryBuilder('u');
-        $qb->select('c.title title, COUNT(u.id) count');
+        $qb->select('c.title title, COUNT(u.id) c');
         $qb->leftJoin('u.city', 'c')
             ->andWhere("s.enabled = 1")
             ->orderBy('count', 'DESC');
@@ -25,7 +25,7 @@ class UserRepository extends EntityRepository
 
     public function statsBySpecialty(){
         $qb = $this->createQueryBuilder('u');
-        $qb->select('c.title title, COUNT(u.id) count');
+        $qb->select('c.title title, COUNT(u.id) c');
         $qb->leftJoin('u.specialty', 'c')
             ->andWhere("s.enabled = 1")
             ->orderBy('count', 'DESC');
