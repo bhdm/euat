@@ -11,6 +11,7 @@
 {% block content %}
     <div class="well">
         <ul class="nav nav-pills">
+            <li role="presentation" {{ type == 'country' ? 'class="active"' : '' }}><a href="{{ path('admin_user_stats',{'type' : 'country'}) }}">По странам</a></li>
             <li role="presentation" {{ type == 'city' ? 'class="active"' : '' }}><a href="{{ path('admin_user_stats',{'type' : 'city'}) }}">По городам</a></li>
             <li role="presentation" {{ type == 'specialty' ? 'class="active"' : '' }}><a href="{{ path('admin_user_stats',{'type' : 'specialty'}) }}">По специальностям</a></li>
         </ul>

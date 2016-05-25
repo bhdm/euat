@@ -124,6 +124,8 @@ class UserController extends Controller{
             $stats = $this->getDoctrine()->getRepository('AppBundle:User')->statsByCity();
         }elseif ($type == 'specialty'){
             $stats = $this->getDoctrine()->getRepository('AppBundle:User')->statsBySpecialty();
+        }elseif ($type == 'country'){
+            $stats = $this->getDoctrine()->getRepository('AppBundle:User')->statsByCountry();
         }else{
             $stats = [];
         }

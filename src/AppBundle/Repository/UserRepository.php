@@ -24,6 +24,19 @@ class UserRepository extends EntityRepository
         return $result;
     }
 
+    public function statsByCountry(){
+        $qb = $this->createQueryBuilder('u');
+        $qb->select('c.title title, COUNT(u.id) cc');
+        $qb->leftJoin('u.city', 'city');
+        $qb->leftJoin('city.country', 'c')
+            ->andWhere("u.enabled = 1")
+            ->groupBy('c.title')
+            ->orderBy('cc', 'DESC');
+        $result = $qb->getQuery()->getResult();
+
+        return $result;
+    }
+
     public function statsBySpecialty(){
         $qb = $this->createQueryBuilder('u');
         $qb->select('c.title title, COUNT(u.id) cc');
