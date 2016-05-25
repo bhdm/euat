@@ -129,6 +129,6 @@ class UserController extends Controller{
         }
 
 
-        return ['stats' => $stats];
+        return ['stats' => $stats, 'type' => $type];
     }
 }
