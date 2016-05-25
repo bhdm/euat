@@ -19,12 +19,18 @@
                 <th>Название</th>
                 <th>Количество</th>
             </tr>
+            {% set count = 0 %}
             {% for item in stats %}
                 <tr style="font-size: 13px">
                     <td>{{ item.title }}</td>
                     <td>{{ item.cc }}</td>
                 </tr>
+                {% set count = count + cc %}
             {% endfor%}
+            <tr style="font-size: 13px">
+                <td><B>ИТОГО: </B></td>
+                <td>{{ count }}</td>
+            </tr>
         </table>
     </div>
 {% endblock %}
