@@ -124,8 +124,16 @@ class Publication
      */
     private $private;
 
+    /**
+     * @var Gallery
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Gallery", mappedBy="publication")
+     */
+    private $images;
+
     public function __construct()
     {
+        $this->images = new ArrayCollection();
         $this->digest = true;
         $this->allowCommentary = true;
         $this->enabled = true;
@@ -135,7 +143,6 @@ class Publication
         $this->specialties = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->private = false;
-
     }
 
 
@@ -413,6 +420,23 @@ class Publication
         $this->private = $private;
     }
 
+    /**
+     * @return Gallery
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
 
+    /**
+     * @param Gallery $images
+     */
+    public function setImages($images)
+    {
+        $this->images = $images;
+    }
+
+
+    
 }
 

@@ -1,0 +1,37 @@
+{% extends "AdminBundle::layout.html.twig" %}
+
+{% block breadcrumb %}
+    <ul class="breadcrumb well">
+        <li><a href="{{ path('admin_main') }}">Домой</a> <span class="divider"></span></li>
+        <li class="active"><a href="{{ path('admin_user_list') }}">Пользователи</a> <span class="divider"></span></li>
+        <li class="active">Статистика</li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <div class="well">
+        <ul class="nav nav-pills">
+            <li role="presentation" {{ type == 'country' ? 'class="active"' : '' }}><a href="{{ path('admin_user_stats',{'type' : 'country'}) }}">По странам</a></li>
+            <li role="presentation" {{ type == 'city' ? 'class="active"' : '' }}><a href="{{ path('admin_user_stats',{'type' : 'city'}) }}">По городам</a></li>
+            <li role="presentation" {{ type == 'specialty' ? 'class="active"' : '' }}><a href="{{ path('admin_user_stats',{'type' : 'specialty'}) }}">По специальностям</a></li>
+        </ul>
+        <table class="table">
+            <tr>
+                <th>Название</th>
+                <th>Количество</th>
+            </tr>
+            {% set count = 0 %}
+            {% for item in stats %}
+                <tr style="font-size: 13px">
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.cc }}</td>
+                </tr>
+                {% set count = count + item.cc %}
+            {% endfor%}
+            <tr style="font-size: 13px">
+                <td><B>ИТОГО: </B></td>
+                <td>{{ count }}</td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}

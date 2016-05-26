@@ -18,6 +18,8 @@
         {{ form_start(form) }}
         {{ form_widget(form) }}
         {{ form_end(form) }}
+
+        {{ render(controller('AdminBundle:Publication:galeryList',{'id' : item.id })) }}
     </div>
 {% endblock %}
 

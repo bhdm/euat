@@ -113,4 +113,24 @@ class UserController extends Controller{
         }
         return $this->redirect($request->headers->get('referer'));
     }
+
+    /**
+     * @Security("has_role('ROLE_ADMIN')")
+     * @Route("/stats/{type}", name="admin_user_stats")
+     * @Template()
+     */
+    public function statsAction($type = 'city'){
+        if ($type == 'city'){
+            $stats = $this->getDoctrine()->getRepository('AppBundle:User')->statsByCity();
+        }elseif ($type == 'specialty'){
+            $stats = $this->getDoctrine()->getRepository('AppBundle:User')->statsBySpecialty();
+        }elseif ($type == 'country'){
+            $stats = $this->getDoctrine()->getRepository('AppBundle:User')->statsByCountry();
+        }else{
+            $stats = [];
+        }
+
+
+        return ['stats' => $stats, 'type' => $type];
+    }
 }
