@@ -1,6 +1,7 @@
 <?php
 namespace AdminBundle\Controller;
 
+use AppBundle\Entity\Gallery;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -149,4 +150,61 @@ class PublicationController extends Controller{
         }
         return $this->redirect($request->headers->get('referer'));
     }
+
+    /**
+     * @Security("has_role('ROLE_ADMIN')")
+     * @Route("/edit/{id}/galery", name="admin_publication_edit_galery")
+     * @Template("@Admin/Publication/galery.html.twig")
+     */
+    public function galeryListAction($id){
+        $publication = $this->getDoctrine()->getRepository('AppBundle:Publication')->findOneBy(['id' => $id]);
+        $galery = $publication->getImages();
+
+        return ['publication' => $publication, 'galery' => $galery];
+    }
+
+    /**
+     * @Security("has_role('ROLE_ADMIN')")
+     * @Route("/edit/{id}/galery/save", name="admin_publication_edit_galery_save")
+     */
+    public function galerySaveAction(Request $request, $id){
+        $publication = $this->getDoctrine()->getRepository('AppBundle:Publication')->findOneBy(['id' => $id]);
+        $file = $request->files->get('file');
+        $galery = new Gallery();
+        $galery->setPublication($publication);
+        $galery->setTitle($request->request->get('title'));
+        if ($file){
+            $filename = time(). '.'.$file->guessExtension();
+            $file->move(
+                __DIR__.'/../../../web/upload/galery/',
+                $filename
+            );
+            $fullpath = __DIR__.'/../../../web/upload/galery/'.$filename;
+            $fullpathThumbnail = __DIR__.'/../../../web/upload/galery/thumbnail-'.$filename;
+            $image = new \Imagick($fullpath);
+            $image->setImageCompression(\Imagick::COMPRESSION_JPEG);
+            $image->setImageCompressionQuality(40);
+            $image->stripImage();
+            $image->writeImage($fullpath);
+            $image->thumbnailImage(150,null);
+            $image->writeImage($fullpathThumbnail);
+
+            $galery->setImage(['path' => '/upload/galery/'.$filename, 'thumbnail' => '/upload/galery/thumbnail-'.$filename ]);
+        }
+
+        $this->getDoctrine()->getManager()->persist($galery);
+        $this->getDoctrine()->getManager()->flush($galery);
+
+
+        return $this->redirect($request->headers->get('referer'));
+    }
+
+//    /**
+//     * @Security("has_role('ROLE_ADMIN')")
+//     * @Route("/edit/{id}/galery/save", name="admin_publication_edit_galery_remove")
+//     */
+//    public function galeryDeleteAction(Request $request, $id){
+//
+//    }
+
 }
