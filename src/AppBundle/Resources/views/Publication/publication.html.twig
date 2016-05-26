@@ -22,6 +22,7 @@
     {% stylesheets "@AppBundle/Resources/public/less/comments.less" %}
     <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
     {% endstylesheets %}
+    <link href="{{ asset('assets/vendor/fancybox/source/jquery.fancybox.css') }}" type="text/css" rel="stylesheet" media="all" />
     <style>
         .pub-content p img{
             width: 100% !important;
@@ -35,6 +36,12 @@
     <script src="{{ asset('assets/vendor/moment/moment.js') }}"></script>
     <script src="{{ asset('assets/vendor/moment/locale/ru.js') }}"></script>
     <script src="{{ asset('assets/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/fancybox/source/jquery.fancybox.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.fancybox').fancybox();
+        })
+    </script>
 {% endblock %}
 
 {% block content %}
@@ -70,6 +77,22 @@
                                 <source src="{{ publication.video.path }}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
+                        </div>
+                    {% endif %}
+                    {% if publication.images | length > 0 %}
+                        <div class="row">
+                            {% for image in publication.images %}
+                                <div class="col-xs-3">
+                                    <div class="thumbnail" style="text-align: center">
+                                        <a href="{{ image.image.path }}" class="fancybox">
+                                            <img src="{{ image.image.thumbnail }}" alt="{{ image.title }}" title="{{ image.title }}" style="height: 134px">
+                                        </a>
+                                        <div class="caption">
+                                            <h5>{{ image.title }}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
                         </div>
                     {% endif %}
                 {% endif %}
