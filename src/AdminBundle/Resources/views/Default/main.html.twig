@@ -14,8 +14,10 @@
                             {% if comment.owner != null %}
                                 <a href="{{ path('admin_user_edit',{'id' : comment.owner.id }) }}" target="_blank">{{ comment.owner }}</a>
                             {% endif %}
+                            {% if comment.publication.id is defined %}
                                 оставил комментарий:
-                            <i>{{ comment.body }}</i> на <a href="{{ path('publications',{'url' : comment.publication.id }) }}">{{ comment.publication.title }}</a>
+                                <i>{{ comment.body }}</i> на <a href="{{ path('publications',{'url' : comment.publication.id }) }}">{{ comment.publication.title }}</a>
+                            {% endif %}
                         </td>
                         <td>
                             <a href="{{ path('comment_remove',{'id' : comment.id }) }}" class="text-danger"><span class="glyphicon glyphicon-remove"></span></a>

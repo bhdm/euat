@@ -172,7 +172,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/test1", name="test_1")
+     * @Route("/education/calculator-egfr", name="test_1")
      * @Template()
      */
     public function test1Action(){
@@ -180,7 +180,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/test2", name="test_2")
+     * @Route("/education/calculator-mayo", name="test_2")
      * @Template()
      */
     public function test2Action(){
@@ -188,7 +188,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/test3", name="test_3")
+     * @Route("/education/calculator-qrusk", name="test_3")
      * @Template()
      */
     public function test3Action(){

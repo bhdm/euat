@@ -14,13 +14,18 @@
         {{ form_start(form) }}
         {{ form_widget(form) }}
         {{ form_end(form) }}
-        </form>
     </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     <script>
-
+        $(document).ready(function(){
+            $("#journal_post_title").syncTranslit({
+                destination: "journal_post_slug",
+                caseStyle: "lower",
+                urlSeparator: "_"
+            });
+        });
     </script>
 {% endblock %}

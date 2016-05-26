@@ -18,6 +18,7 @@ class JournalPostType extends AbstractType
     {
         $builder
             ->add('title', null, ['label' => 'Название статьи'])
+            ->add('slug', null, ['label' => 'URL'])
             ->add('pages', null, ['label' => 'Страницы'])
             ->add('description', null, ['label' => 'Описание статьи', 'attr' => ['class' => 'ckeditor']])
             ->add('body', null, ['label' => 'Текст статьи', 'attr' => ['class' => 'ckeditor']])
@@ -26,13 +27,6 @@ class JournalPostType extends AbstractType
             ->add('source', null, ['label' => 'Список литературы', 'attr' => ['class' => 'ckeditor']])
             ->add('file', FileType::class, [ 'label' => 'PDF', 'data_class' => null, 'required' => false])
 
-//            ->add('pagesEN', null, ['label' => 'Страницы (Англ)', 'required' => false])
-//            ->add('titleEn', null, ['label' => 'Название статьи (Англ)', 'required' => false])
-//            ->add('descriptionEn', null, ['label' => 'Описание статьи (Англ)', 'attr' => ['class' => 'ckeditor'], 'required' => false])
-//            ->add('bodyEn', null, ['label' => 'Текст статьи (Англ)', 'attr' => ['class' => 'ckeditor'], 'required' => false])
-//            ->add('keywordsEn', null, ['label' => 'Ключевые слова (Англ)', 'required' => false])
-//            ->add('authorEn', null, ['label' => 'Авторы (Англ)', 'required' => false])
-//            ->add('sourceEn', null, ['label' => 'Список литературы (Англ)', 'attr' => ['class' => 'ckeditor'], 'required' => false])
 
             ->add('digest', ChoiceType::class, array(
                 'choices' => array(

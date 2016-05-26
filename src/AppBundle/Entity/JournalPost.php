@@ -113,10 +113,14 @@ class JournalPost extends BaseEntity{
 
     public function __construct(){
         parent::__construct();
-        $this->author = array();
         $this->created = new \DateTime();
         $this->digest = true;
         $this->file = array();
+    }
+
+    public function __toString()
+    {
+        return $this->title;
     }
 
     /**
