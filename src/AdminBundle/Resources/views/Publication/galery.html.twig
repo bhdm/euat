@@ -1,5 +1,5 @@
     <div class="">
-        <h3>Гелерея публикации</h3>
+        <h3>Галерея публикации</h3>
         <div class="row">
             {% for image in galery %}
                 <div class="col-xs-4">
@@ -7,7 +7,7 @@
                         <img src="{{ image.image.thumbnail }}" alt="{{ image.title }}" title="{{ image.title }}">
                         <div class="caption">
                             <h4>{{ image.title }}</h4>
-                            {#<p><a href="{{ path('admin_publication_edit_galery_remove',{'id' : image.id}) }}" class="btn btn-danger" role="button">Удалить</a></p>#}
+                            <p><a href="{{ path('admin_publication_edit_galery_remove',{'id' : publication.id , 'imageId' : image.id }) }}" class="btn btn-danger" role="button">Удалить</a></p>
                         </div>
                     </div>
                 </div>

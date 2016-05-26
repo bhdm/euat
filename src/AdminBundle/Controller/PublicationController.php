@@ -199,12 +199,18 @@ class PublicationController extends Controller{
         return $this->redirect($request->headers->get('referer'));
     }
 
-//    /**
-//     * @Security("has_role('ROLE_ADMIN')")
-//     * @Route("/edit/{id}/galery/save", name="admin_publication_edit_galery_remove")
-//     */
-//    public function galeryDeleteAction(Request $request, $id){
-//
-//    }
+    /**
+     * @Security("has_role('ROLE_ADMIN')")
+     * @Route("/edit/{id}/galery/{imageId}/delete", name="admin_publication_edit_galery_remove")
+     */
+    public function galeryDeleteAction(Request $request, $id, $imageId){
+        $em = $this->getDoctrine()->getManager();
+        $item = $em->getRepository('AppBundle:Gallery')->findOneById($imageId);
+        if ($item){
+            $em->remove($item);
+            $em->flush();
+        }
+        return $this->redirect($request->headers->get('referer'));
+    }
 
 }
