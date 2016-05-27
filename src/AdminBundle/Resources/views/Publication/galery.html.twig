@@ -1,7 +1,11 @@
     <div class="">
         <h3>Галерея публикации</h3>
         <div class="row">
-            {% for image in galery %}
+            {% for k,image in galery %}
+                {% if (k) % 4  == 0 %}
+                    </div>
+                    <div class="row">
+                {% endif %}
                 <div class="col-xs-4">
                     <div class="thumbnail">
                         <img src="{{ image.image.thumbnail }}" alt="{{ image.title }}" title="{{ image.title }}">

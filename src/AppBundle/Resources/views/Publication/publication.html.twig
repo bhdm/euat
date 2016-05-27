@@ -79,15 +79,22 @@
                             </video>
                         </div>
                     {% endif %}
+
                     {% if publication.images | length > 0 %}
                         <div class="row">
-                            {% for image in publication.images %}
+                            {% for k,image in publication.images %}
+                                {% if (k) % 4  == 0 %}
+                                    </div>
+                                    <div class="row">
+                                {% endif %}
                                 <div class="col-xs-3">
-                                    <div class="thumbnail" style="text-align: center">
-                                        <a href="{{ image.image.path }}" class="fancybox">
-                                            <img src="{{ image.image.thumbnail }}" alt="{{ image.title }}" title="{{ image.title }}" style="height: 134px">
+                                    <div class="thumbnail" style="text-align: center; height: 150px">
+                                        <a href="{{ image.image.path }}" class="fancybox" rel="gallery">
+                                            <div  style="width: 134px; height: 88px; overflow: hidden;">
+                                                <img src="{{ image.image.thumbnail }}" alt="{{ image.title }}" title="{{ image.title }}" style="max-width: 100%">
+                                            </div>
                                         </a>
-                                        <div class="caption">
+                                        <div class="caption" style="padding: 0">
                                             <h5>{{ image.title }}</h5>
                                         </div>
                                     </div>
