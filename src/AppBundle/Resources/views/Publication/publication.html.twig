@@ -88,15 +88,15 @@
                                     <div class="row">
                                 {% endif %}
                                 <div class="col-xs-3">
-                                    <div class="thumbnail" style="text-align: center; height: 150px">
+                                    <div class="thumbnail" style="text-align: center;">
                                         <a href="{{ image.image.path }}" class="fancybox" rel="gallery">
                                             <div  style="width: 134px; height: 88px; overflow: hidden;">
                                                 <img src="{{ image.image.thumbnail }}" alt="{{ image.title }}" title="{{ image.title }}" style="max-width: 100%">
                                             </div>
                                         </a>
-                                        <div class="caption" style="padding: 0">
-                                            <h5>{{ image.title }}</h5>
-                                        </div>
+                                        {#<div class="caption" style="padding: 0">#}
+                                            {#<h5>{{ image.title }}</h5>#}
+                                        {#</div>#}
                                     </div>
                                 </div>
                             {% endfor %}
