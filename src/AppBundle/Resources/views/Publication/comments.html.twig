@@ -8,7 +8,11 @@
                 {% for comment in comments  %}
                 <li>
                     <div class="commenterImage">
-                        <img src="{{ asset('bundles/app/images/icons/no_avatar.png') }}" />
+                        {% if comment.owner.avatar.path is defined %}
+                            <img src="{{ comment.owner.avatar.path }}" />
+                        {% else %}
+                            <img src="{{ asset('bundles/app/images/icons/no_avatar.png') }}" />
+                        {% endif %}
                     </div>
                     <div class="commentText">
                         <div class="commentOwner">

@@ -22,7 +22,14 @@ class PublicationController extends Controller
      */
     public function indexAction(Request $request, $url)
     {
-        $publication = $this->getDoctrine()->getRepository('AppBundle:Publication')->findOneBy(['id' => $url,'enabled' => true]);
+        if (is_numeric($url)){
+            $publication = $this->getDoctrine()->getRepository('AppBundle:Publication')->findOneById($url);
+            if ($publication->getSlug()){
+                return $this->redirect($this->generateUrl('publications',['url' => $publication->getSlug()]),301);
+            }
+        }else{
+            $publication = $this->getDoctrine()->getRepository('AppBundle:Publication')->findOneBy(['slug' => $url,'enabled' => true]);
+        }
         return ['publication' => $publication];
     }
 
@@ -44,7 +51,14 @@ class PublicationController extends Controller
      */
     public function eventAction(Request $request, $url, $number)
     {
-        $event = $this->getDoctrine()->getRepository('AppBundle:Event')->findOneById($url);
+        if (is_numeric($url)){
+            $event = $this->getDoctrine()->getRepository('AppBundle:Event')->findOneById($url);
+            if ($event->getSlug()){
+                return $this->redirect($this->generateUrl('event',['url' => $event->getSlug()]),301);
+            }
+        }else{
+            $event = $this->getDoctrine()->getRepository('AppBundle:Event')->findOneBy(['slug' => $url, 'enabled' => true]);
+        }
         if ($number !== null){
             $eventItem = $this->getDoctrine()->getRepository('AppBundle:EventItem')->findOneBy(['id' => $number]);
         }else{

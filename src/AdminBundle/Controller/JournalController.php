@@ -50,13 +50,18 @@ class JournalController extends Controller{
         if ($request->getMethod() == 'POST'){
             if ($formData->isValid()){
                 $item = $formData->getData();
+
                 $file = $item->getPhoto();
-                $filename = time(). '.'.$file->guessExtension();
-                $file->move(
-                    __DIR__.'/../../../web/upload/journal/',
-                    $filename
-                );
-                $item->setPhoto(['path' => '/upload/journal/'.$filename ]);
+                if ($file){
+                    $filename = time(). '.'.$file->guessExtension();
+                    $file->move(
+                        __DIR__.'/../../../web/upload/journal/',
+                        $filename
+                    );
+                    $item->setPhoto(['path' => '/upload/journal/'.$filename ]);
+                }else{
+                    $item->setPhoto([]);
+                }
                 $em->persist($item);
                 $em->flush();
                 $em->refresh($item);

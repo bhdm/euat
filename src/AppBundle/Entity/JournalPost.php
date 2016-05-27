@@ -28,6 +28,13 @@ class JournalPost extends BaseEntity{
     protected $title;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     */
+    private $slug;
+
+    /**
      * @ORM\Column(type="string", nullable=true)
      */
     protected $titleEn;
@@ -106,10 +113,14 @@ class JournalPost extends BaseEntity{
 
     public function __construct(){
         parent::__construct();
-        $this->author = array();
         $this->created = new \DateTime();
         $this->digest = true;
         $this->file = array();
+    }
+
+    public function __toString()
+    {
+        return $this->title;
     }
 
     /**
@@ -386,6 +397,20 @@ class JournalPost extends BaseEntity{
         $this->file = $file;
     }
 
-    
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
 
 }
