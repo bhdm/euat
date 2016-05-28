@@ -32,7 +32,7 @@ class PublicationController extends Controller
         }
         return ['publication' => $publication];
     }
-
+    
     /**
      * @Template("AppBundle:Publication:page.html.twig")
      */

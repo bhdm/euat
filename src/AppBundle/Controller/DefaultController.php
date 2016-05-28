@@ -44,6 +44,16 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/magazine/{url}", name="static_page", requirements={"url" : "about|to_authors|edition"})
+     * @Template("AppBundle:Publication:page.html.twig")
+     */
+    public function staticPageAction(Request $request, $url)
+    {
+        $page = $this->getDoctrine()->getRepository('AppBundle:Page')->findOneBySlug($url);
+        return ['page' => $page];
+    }
+
+    /**
      * @Route("/generate-menu", name="generate_menu")
      * @Template("AppBundle::menu.html.twig")
      */
