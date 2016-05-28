@@ -72,7 +72,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/partners", name="partners")
+     * @Route("/association/partners", name="partners")
      * @Template()
      */
     public function partnersAction(){
