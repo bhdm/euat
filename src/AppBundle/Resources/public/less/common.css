@@ -480,3 +480,9 @@ th.picker-switch {
   padding-top: 10px ;
   padding-bottom: 10px ;
 }
+.vcenter {
+  display: table-cell !important;
+  vertical-align: middle;
+  float: none;
+  margin: 5px;
+}

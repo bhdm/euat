@@ -18,6 +18,7 @@ class PageType extends AbstractType
     {
         $builder
             ->add('title', null, ['label' => 'Название'])
+            ->add('parent', null, ['label' => 'Основная страница'])
             ->add('slug', null, ['label' => 'URI'])
             ->add('metaTitle', null, ['label' => 'МЕТА заголовок'])
             ->add('metaDescription', null, ['label' => 'МЕТА описание'])

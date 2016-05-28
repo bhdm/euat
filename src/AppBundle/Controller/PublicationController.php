@@ -46,6 +46,19 @@ class PublicationController extends Controller
     }
 
     /**
+     * @Template("AppBundle:Publication:page.html.twig")
+     */
+    public function subPageAction(Request $request, $url, $subUrl)
+    {
+        $page = $this->getDoctrine()->getRepository('AppBundle:Page')->findOneBySlug($subUrl);
+        if ($page === null || $page->getParent()->getSlug() != $url){
+            throw $this->createNotFoundException('Данной страницы не существует');
+        }
+        return ['page' => $page];
+    }
+
+
+    /**
      * @Route("event/{url}/{number}", name="event", options={"expose"=true}, defaults={"number" = null})
      * @Template("AppBundle:Publication:event.html.twig")
      */

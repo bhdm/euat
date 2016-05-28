@@ -71,6 +71,11 @@ class Page
     private $enabled = true;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Page")
+     */
+    private $parent = null;
+
+    /**
      * Page constructor.
      */
     public function __construct()
@@ -255,6 +260,22 @@ class Page
     public function getEnabled()
     {
         return $this->enabled;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @param mixed $parent
+     */
+    public function setParent($parent)
+    {
+        $this->parent = $parent;
     }
 }
 

@@ -30,12 +30,29 @@ class JournalController extends Controller
      * @param $journalId
      * @return Request
      *
-     * @Route("/journal/{journalId}", name="journal")
+     * @Route("/journal/{journalId}", name="journal", requirements={ "journalId": "\d+" })
      * @Template()
      */
     public function journalAction($journalId){
 
         $journal = $this->getDoctrine()->getRepository('AppBundle:Journal')->findOneBy(['enabled' => true, 'id' => $journalId]);
+        if ($journal->getSlug()){
+            return $this->redirect($this->generateUrl('journal_new',['url' => $journal->getSlug()]),301);
+        }
+        return ['journal' => $journal];
+
+    }
+
+    /**
+     * @param $journalId
+     * @return Request
+     *
+     * @Route("/magazine/{slug}", name="journal_new")
+     * @Template("@App/Journal/journal.html.twig")
+     */
+    public function journal2Action($slug){
+
+        $journal = $this->getDoctrine()->getRepository('AppBundle:Journal')->findOneBy(['enabled' => true, 'slug' => $slug]);
         return ['journal' => $journal];
 
     }

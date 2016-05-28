@@ -67,6 +67,13 @@ class Journal extends BaseEntity
      */
     protected $pages;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255, nullable=true)
+     */
+    private $slug;
+
 
     public function __construct(){
         $this->posts = new ArrayCollection();
@@ -228,6 +235,22 @@ class Journal extends BaseEntity
         $this->pages = $pages;
     }
 
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
 
+    /**
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    
 
 }

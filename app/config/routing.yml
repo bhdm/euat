@@ -33,3 +33,6 @@ fos_user_profile_show:
 page:
     path:      /{url}
     defaults:  { _controller: AppBundle:Publication:page }
+page2:
+    path:      /{url}/{subUrl}
+    defaults:  { _controller: AppBundle:Publication:subPage }
