@@ -42,6 +42,9 @@ class PublicationController extends Controller
         if ($page === null){
             throw $this->createNotFoundException('Данной страницы не существует');
         }
+        if ($page->getParent() != null){
+            return $this->redirect($this->generateUrl('page2',['url' => $page->getParent()->getSlug(), 'subUrl' => $page->getSlug() ]),301);
+        }
         return ['page' => $page];
     }
 
