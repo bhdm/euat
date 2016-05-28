@@ -17,7 +17,7 @@ class JournalController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\Response
      *
-     * @Route("/journals", name="journals")
+     * @Route("/magazine", name="journals")
      * @Template()
      */
     public function journalsAction()
@@ -30,7 +30,7 @@ class JournalController extends Controller
      * @param $journalId
      * @return Request
      *
-     * @Route("/journal/{journalId}", name="journal", requirements={ "journalId": "\d+" })
+     * @Route("/magazine/{journalId}", name="journal", requirements={ "journalId": "\d+" })
      * @Template()
      */
     public function journalAction($journalId){
@@ -62,7 +62,7 @@ class JournalController extends Controller
      * @param $postId
      * @return Request
      *
-     * @Route("/journal/{journalId}/post/{postId}", name="journal-post")
+     * @Route("/magazine/{journalId}/post/{postId}", name="journal-post")
      * @Template()
      */
     public function journalPostAction($journalId, $postId){

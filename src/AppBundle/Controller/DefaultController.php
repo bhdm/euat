@@ -83,7 +83,7 @@ class DefaultController extends Controller
     /**
      * @return array
      *
-     * @Route("/map", name="map")
+     * @Route("/association/map", name="map")
      * @Template()
      */
     public function mapAction(){
@@ -117,7 +117,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/prezidium", name="prezidium")
+     * @Route("/association/prezidium", name="prezidium")
      * @Template()
      */
     public function prezidiumAction(){
@@ -126,7 +126,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/prezidium/{id}", name="prezidium_info")
+     * @Route("/association/prezidium/{id}", name="prezidium_info")
      * @Template()
      */
     public function prezidiumInfoAction($id){
