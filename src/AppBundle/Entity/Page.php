@@ -70,6 +70,7 @@ class Page
      */
     private $enabled = true;
 
+
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Page")
      */
@@ -83,6 +84,10 @@ class Page
         $this->enabled = true;
     }
 
+    public function __toString()
+    {
+        return $this->title;
+    }
 
     /**
      * Get id
@@ -277,5 +282,23 @@ class Page
     {
         $this->parent = $parent;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * @param mixed $children
+     */
+    public function setChildren($children)
+    {
+        $this->children = $children;
+    }
+
+
 }
 
