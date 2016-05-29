@@ -173,6 +173,8 @@ class PublicationController extends Controller
 
         if ($event->getType() === 'CONGRESS'){
             $type = 'conference-convention';
+        }elseif($event->getType() === 'SCHOOL'){
+            $type = 'school';
         }else{
             $type = $event->getType();
         }
@@ -191,6 +193,9 @@ class PublicationController extends Controller
     {
         if ($type === 'conference-convention'){
             $type = 'CONGRESS';
+        }
+        if ($type === 'school'){
+            $type = 'SCHOOL';
         }
         $start = $request->query->get('start');
         $end = $request->query->get('end');
