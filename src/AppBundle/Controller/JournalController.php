@@ -37,7 +37,7 @@ class JournalController extends Controller
 
         $journal = $this->getDoctrine()->getRepository('AppBundle:Journal')->findOneBy(['enabled' => true, 'id' => $journalId]);
         if ($journal->getSlug()){
-            return $this->redirect($this->generateUrl('journal_new',['url' => $journal->getSlug()]),301);
+            return $this->redirect($this->generateUrl('journal_new',['slug' => $journal->getSlug()]),301);
         }
         return ['journal' => $journal];
 
