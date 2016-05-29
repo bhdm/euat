@@ -87,7 +87,12 @@ class JournalController extends Controller
 
     }
 
-
+    /**
+     * @Route("/magazine/{journalId}/post/{postId}")
+     */
+    public function oldJournalPost($journalId, $postId){
+        return $this->redirect($this->generateUrl('journal-post',['journalId' => $journalId, 'postId' => $postId]));
+    }
 
 
 }
