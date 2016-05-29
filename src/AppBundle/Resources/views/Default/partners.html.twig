@@ -31,16 +31,20 @@
     <div>
         <div class="row">
             {% set category = '' %}
-            {% for p in partners %}
+            {% for k,p in partners %}
                 {% if category != p.type %}
                     <div class="row">
                         <div class="col-xs-4 title" style="padding-left: 30px;">{{ p.type }}<br /><br /></div>
                     </div>
                     {% set category = p.type %}
                 {% endif %}
+                {% if k % 6 == 0 %}
+                    </div>
+                    <div class="row">
+                {% endif %}
                 <div class="col-xs-4 col-md-2 col-lg-2 vcenter">
                     <div class="thumbnail">
-                        <a href="#content-{{ p.id }}" class="fancybox"><img src="{{ p.image.path }}" style="max-height: 150px;" title="{{ p.title }}"  alt="{{ p.title }}"></a>
+                        <a href="#content-{{ p.id }}" class="fancybox"><img src="{{ p.image.path }}" style="max-height: 150px; max-width: 150px; " title="{{ p.title }}"  alt="{{ p.title }}"></a>
                     </div>
                 </div>
 
