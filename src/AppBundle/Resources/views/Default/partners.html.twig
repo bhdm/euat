@@ -33,9 +33,6 @@
             {% set category = '' %}
             {% for k,p in partners %}
                 {% if category != p.type %}
-                    {% if k != 1 and k % 6 != 0 %}
-                        </div>
-                    {% endif %}
                     <div class="row">
                         <div class="col-xs-4 title" style="padding-left: 30px;">{{ p.type }}<br /><br /></div>
                     </div>
