@@ -33,11 +33,17 @@
 
         <div class="row">
             {% for cats, ps in partners %}
+                <br />
+                <br />
                 <div class="row">
                     <div class="col-xs-4 title" style="padding-left: 30px;">{{ cats }}<br /><br /></div>
                 </div>
                 <div class="row">
-                {% for p in ps %}
+                {% for k,p in ps %}
+                    {% if k % 6 == 0 %}
+                        </div>
+                        <div class="row">
+                    {% endif %}
                     <div class="col-xs-4 col-md-2 col-lg-2">
                         <div class="thumbnail vcenter">
                             <a href="#content-{{ p.id }}" class="fancybox"><img src="{{ p.image.path }}" style="max-height: 150px; width: 100%; " title="{{ p.title }}"  alt="{{ p.title }}"></a>
