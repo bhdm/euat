@@ -72,7 +72,7 @@ class PublicationController extends Controller
             $event = $this->getDoctrine()->getRepository('AppBundle:Event')->findOneBy(['slug' => $url, 'enabled' => true]);
         }
 
-        if ($event->getType() === 'congress'){
+        if ($event->getType() === 'CONGRESS'){
             $type = 'conference-convention';
         }else{
             $type = $event->getType();
