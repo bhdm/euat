@@ -90,16 +90,16 @@ class JournalPostController extends Controller{
         if ($request->getMethod() == 'POST'){
             if ($formData->isValid()){
                 $item = $formData->getData();
-                $file = $item->getPreview();
+                $file = $item->getFile();
                 if ($file == null){
-                    $item->setPreview($oldFile);
+                    $item->setFile($oldFile);
                 }else{
                     $filename = time(). '.'.$file->guessExtension();
                     $file->move(
                         __DIR__.'/../../../web/upload/journalPDF/',
                         $filename
                     );
-                    $item->setPreview(['path' => '/upload/journalPDF/'.$filename ]);
+                    $item->setFile(['path' => '/upload/journalPDF/'.$filename ]);
                 }
                 $em->flush($item);
                 $em->refresh($item);
