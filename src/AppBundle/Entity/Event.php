@@ -456,6 +456,14 @@ class Event
     }
 
     /**
+     * @return boolean
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
      * @param boolean $type
      */
     public function setType($type)
