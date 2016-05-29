@@ -62,29 +62,6 @@ class PublicationController extends Controller
 
 
     /**
-     * @Route("event/{url}/{number}", name="event", options={"expose"=true}, defaults={"number" = null})
-     * @Template("AppBundle:Publication:event.html.twig")
-     */
-    public function oldEventAction($url, $number){
-        if (is_numeric($url)){
-            $event = $this->getDoctrine()->getRepository('AppBundle:Event')->findOneById($url);
-        }else{
-            $event = $this->getDoctrine()->getRepository('AppBundle:Event')->findOneBy(['slug' => $url, 'enabled' => true]);
-        }
-
-        if ($event->getType() === 'CONGRESS'){
-            $type = 'conference-convention';
-        }else{
-            $type = $event->getType();
-        }
-        return $this->redirect($this->generateUrl('new_event',[
-            'url' => ($event->getSlug() ? $event->getSlug() : $event->getId()),
-            'type' => $type,
-            'number' => $number
-        ]),301);
-    }
-
-    /**
      * @Route("event/{type}/{url}/{number}", name="new_event", options={"expose"=true}, defaults={"number" = null})
      * @Template("AppBundle:Publication:event.html.twig")
      */
@@ -182,6 +159,30 @@ class PublicationController extends Controller
         return ['event' => $event, 'form' => $form, 'eventItem' => $eventItem, 'typeForm' => $typeForm,];
     }
 
+
+    /**
+     * @Route("event/{url}/{number}", name="event", options={"expose"=true}, defaults={"number" = null})
+     * @Template("AppBundle:Publication:event.html.twig")
+     */
+    public function oldEventAction($url, $number){
+        if (is_numeric($url)){
+            $event = $this->getDoctrine()->getRepository('AppBundle:Event')->findOneById($url);
+        }else{
+            $event = $this->getDoctrine()->getRepository('AppBundle:Event')->findOneBy(['slug' => $url, 'enabled' => true]);
+        }
+
+        if ($event->getType() === 'CONGRESS'){
+            $type = 'conference-convention';
+        }else{
+            $type = $event->getType();
+        }
+        return $this->redirect($this->generateUrl('new_event',[
+            'url' => ($event->getSlug() ? $event->getSlug() : $event->getId()),
+            'type' => $type,
+            'number' => $number
+        ]),301);
+    }
+    
     /**
      * @Route("events/{type}", name="events", defaults={"type" = null})
      * @Template("AppBundle:Publication:eventList.html.twig")
