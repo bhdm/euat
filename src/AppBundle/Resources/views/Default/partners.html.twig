@@ -33,7 +33,7 @@
             {% set category = '' %}
             {% for k,p in partners %}
                 {% if category != p.type %}
-                    {% if k % 6 != 0 %}
+                    {% if k != 1 and k % 6 != 0 %}
                         </div>
                     {% endif %}
                     <div class="row">
