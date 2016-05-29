@@ -165,6 +165,9 @@ class PublicationController extends Controller
      */
     public function eventListAction(Request $request, $type)
     {
+        if ($type === 'conference-convention'){
+            $type = 'congress';
+        }
         $start = $request->query->get('start');
         $end = $request->query->get('end');
         $text = $request->query->get('searchtext');
