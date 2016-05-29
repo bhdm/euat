@@ -24,6 +24,13 @@ class Prezidium
     /**
      * @var string
      *
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     */
+    private $slug;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="lastName", type="string", length=255)
      */
     private $lastName;
@@ -220,5 +227,22 @@ class Prezidium
         return $this->lastName . ' ' . mb_substr($this->firstName, 0, 1, 'utf-8') . '.' . ($this->surName ? ' ' . mb_substr($this->surName, 0, 1, 'utf-8') . '.' : '');
     }
 
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    
 }
 

@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,6 +21,7 @@ class PrezidiumType extends AbstractType
             ->add('lastName', null, ['label' => 'Фамилия'])
             ->add('firstName', null, ['label' => 'Имя'])
             ->add('surName', null, ['label' => 'Отчество'])
+            ->add('slug', null, [ 'label' => 'URI'])
             ->add('post', null, ['label' => 'Должность'])
             ->add('photo', FileType::class,['label' => 'Фотография', 'data_class' => null, 'required' => false])
             ->add('description', TextareaType::class, ['label' => 'Описание'])
