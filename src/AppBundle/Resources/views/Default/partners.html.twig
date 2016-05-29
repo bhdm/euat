@@ -38,12 +38,12 @@
                     </div>
                     {% set category = p.type %}
                 {% endif %}
-                {% if k % 6 == 0 %}
-                    </div>
-                    <div class="row">
-                {% endif %}
-                <div class="col-xs-4 col-md-2 col-lg-2 vcenter">
-                    <div class="thumbnail">
+                {#{% if k % 6 == 0 %}#}
+                    {#</div>#}
+                    {#<div class="row">#}
+                {#{% endif %}#}
+                <div class="col-xs-4 col-md-2 col-lg-2">
+                    <div class="thumbnail vcenter">
                         <a href="#content-{{ p.id }}" class="fancybox"><img src="{{ p.image.path }}" style="max-height: 150px; width: 100%; " title="{{ p.title }}"  alt="{{ p.title }}"></a>
                     </div>
                 </div>
