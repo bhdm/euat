@@ -140,7 +140,15 @@ class DefaultController extends Controller
      * @Template()
      */
     public function prezidiumInfoAction($id){
-        $prezidium = $this->getDoctrine()->getRepository('AppBundle:Prezidium')->findOneBy(['id' => $id]);
+        if (is_numeric($id)){
+            $prezidium = $this->getDoctrine()->getRepository('AppBundle:Prezidium')->findOneBy(['id' => $id]);
+            if ($prezidium->getSlug()){
+                return $this->redirect($this->generateUrl('prezidium_info',['id' => $prezidium->getSlug()]),301);
+            }
+        }else{
+            $prezidium = $this->getDoctrine()->getRepository('AppBundle:Prezidium')->findOneBy(['slug' => $id]);
+        }
+
         return ['prezidium' => $prezidium];
     }
 
