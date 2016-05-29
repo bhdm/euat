@@ -62,7 +62,7 @@ class PublicationController extends Controller
 
 
     /**
-     * @Route("event/{type}/{url}/{number}", name="new_event", options={"expose"=true}, defaults={"number" = null})
+     * @Route("events/{type}/{url}/{number}", name="new_event", options={"expose"=true}, defaults={"number" = null})
      * @Template("AppBundle:Publication:event.html.twig")
      */
     public function eventAction(Request $request, $url, $number)
@@ -182,7 +182,7 @@ class PublicationController extends Controller
             'number' => $number
         ]),301);
     }
-    
+
     /**
      * @Route("events/{type}", name="events", defaults={"type" = null})
      * @Template("AppBundle:Publication:eventList.html.twig")
