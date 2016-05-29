@@ -32,7 +32,6 @@
 
 
         <div class="row">
-            {% set category = '' %}
             {% for cats, ps in partners %}
                 <div class="row">
                     <div class="col-xs-4 title" style="padding-left: 30px;">{{ cats }}<br /><br /></div>
@@ -53,7 +52,7 @@
                             <a href="{{ p.link }}" target="_blank">{{ p.link }}</a>
                         </div>
                     </div>
-                {% endofor %}
+                {% endfor %}
                 </div>
             {% endfor %}
         </div>
