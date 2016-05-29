@@ -210,7 +210,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/education/calculator-qrusk", name="test_3")
+     * @Route("/education/calculator-qrisk", name="test_3")
      * @Template()
      */
     public function test3Action(){
