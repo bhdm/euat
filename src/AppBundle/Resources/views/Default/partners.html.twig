@@ -29,38 +29,34 @@
     <h1 class="blue-text">Наши партнеры</h1>
     <br />
     <div>
+
+
         <div class="row">
             {% set category = '' %}
-            {% for k,p in partners %}
-                {% if category != p.type %}
-                    <div class="row">
-                        <div class="col-xs-4 title" style="padding-left: 30px;">{{ p.type }}<br /><br /></div>
-                    </div>
-                    {% set category = p.type %}
-                {% endif %}
-                {% if k % 6 == 0 %}
-                    </div>
-                    <div class="row">
-                {% endif %}
-                <div class="col-xs-4 col-md-2 col-lg-2">
-                    <div class="thumbnail vcenter">
-                        <a href="#content-{{ p.id }}" class="fancybox"><img src="{{ p.image.path }}" style="max-height: 150px; width: 100%; " title="{{ p.title }}"  alt="{{ p.title }}"></a>
-                    </div>
+            {% for cats, ps in partners %}
+                <div class="row">
+                    <div class="col-xs-4 title" style="padding-left: 30px;">{{ cats }}<br /><br /></div>
                 </div>
-
+                <div class="row">
+                {% for p in ps %}
+                    <div class="col-xs-4 col-md-2 col-lg-2">
+                        <div class="thumbnail vcenter">
+                            <a href="#content-{{ p.id }}" class="fancybox"><img src="{{ p.image.path }}" style="max-height: 150px; width: 100%; " title="{{ p.title }}"  alt="{{ p.title }}"></a>
+                        </div>
+                    </div>
+                    <div style="display: none">
+                        <div id="content-{{ p.id }}" style="text-align: left">
+                            <h2 style="padding-bottom: 10px">{{ p.title }}</h2>
+                            <img src="{{ p.image.path }}" style="max-height: 150px; max-width: 150px; float: left; margin-right: 20px" alt="{{ p.title }}" title="{{ p.title }}">
+                            {{ p.body | raw }}
+                            <br />
+                            <a href="{{ p.link }}" target="_blank">{{ p.link }}</a>
+                        </div>
+                    </div>
+                {% endofor %}
+                </div>
             {% endfor %}
         </div>
-        {% for p in partners %}
-            <div style="display: none">
-                <div id="content-{{ p.id }}" style="text-align: left">
-                    <h2 style="padding-bottom: 10px">{{ p.title }}</h2>
-                    <img src="{{ p.image.path }}" style="max-height: 150px; max-width: 150px; float: left; margin-right: 20px" alt="{{ p.title }}" title="{{ p.title }}">
-                    {{ p.body | raw }}
-                    <br />
-                    <a href="{{ p.link }}" target="_blank">{{ p.link }}</a>
-                </div>
-            </div>
-        {% endfor %}
     </div>
 
 {% endblock %}

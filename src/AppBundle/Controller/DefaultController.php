@@ -87,7 +87,11 @@ class DefaultController extends Controller
      */
     public function partnersAction(){
         $partners = $this->getDoctrine()->getRepository('AppBundle:Partner')->findBy([],['type' => 'ASC']);
-        return ['partners' => $partners];
+        $newPartners = [];
+        foreach ($partners as $p){
+            $newPartners[$p->getType()][] = $p;
+        }
+        return ['partners' => $newPartners];
     }
 
     /**
