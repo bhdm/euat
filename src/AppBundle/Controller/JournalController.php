@@ -67,8 +67,22 @@ class JournalController extends Controller
      */
     public function journalPostAction($journalId, $postId){
 
-        $journal = $this->getDoctrine()->getRepository('AppBundle:Journal')->findOneBy(['enabled' => true, 'id' => $journalId]);
-        $post =    $this->getDoctrine()->getRepository('AppBundle:JournalPost')->findOneBy(['enabled' => true, 'id' => $postId]);
+        if (is_numeric($postId)){
+            $post =    $this->getDoctrine()->getRepository('AppBundle:JournalPost')->findOneBy(['enabled' => true, 'id' => $postId]);
+            if ($post->getSlug()){
+                return $this->redirect($this->generateUrl('journal-post',['postId' => $post->getSlug(),'journalId' =>$post->getJournal()->getSlug()]),301);
+            }
+        }else{
+            $post = $this->getDoctrine()->getRepository('AppBundle:JournalPost')->findOneBy(['enabled' => true, 'slug' => $postId]);
+        }
+
+        if (is_numeric($journalId)){
+            $journal = $this->getDoctrine()->getRepository('AppBundle:Journal')->findOneBy(['enabled' => true, 'id' => $journalId]);
+            return $this->redirect($this->generateUrl('journal-post',['postId' => $postId,'journalId' => $journal->getSlug()]),301);
+        }else{
+            $journal = $this->getDoctrine()->getRepository('AppBundle:Journal')->findOneBy(['enabled' => true, 'slug' => $journalId]);
+        }
+
         return ['journal' => $journal, 'post' => $post];
 
     }
