@@ -44,7 +44,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/magazine/{url}", name="static_page", requirements={"url" : "about|to_authors|edition"})
+     * @Route("/magazine/{url}", name="static_page", requirements={"url" : "about|to-authors|edition"})
      * @Template("AppBundle:Publication:page.html.twig")
      */
     public function staticPageAction(Request $request, $url)
