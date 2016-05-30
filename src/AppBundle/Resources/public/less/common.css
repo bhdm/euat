@@ -486,3 +486,6 @@ th.picker-switch {
   float: none;
   margin: 5px;
 }
+p em {
+  font-style: italic;
+}

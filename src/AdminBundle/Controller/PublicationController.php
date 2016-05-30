@@ -169,6 +169,7 @@ class PublicationController extends Controller{
      */
     public function galerySaveAction(Request $request, $id){
         $publication = $this->getDoctrine()->getRepository('AppBundle:Publication')->findOneBy(['id' => $id]);
+        
         $file = $request->files->get('file');
         $galery = new Gallery();
         $galery->setPublication($publication);
