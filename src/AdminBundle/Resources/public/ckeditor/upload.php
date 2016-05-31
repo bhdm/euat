@@ -8,7 +8,7 @@ if($_FILES['upload'])
     {
         $message = "Вы не выбрали файл";
     }
-    else if ($_FILES['upload']["size"] == 0 OR $_FILES['upload']["size"] > 2050000)
+    else if ($_FILES['upload']["size"] == 0 OR $_FILES['upload']["size"] > 20500000)
     {
         $message = "Размер файла не соответствует нормам";
     }
