@@ -187,6 +187,8 @@ class PublicationController extends Controller{
             $image = new \Imagick($fullpath);
             $image->setImageCompression(\Imagick::COMPRESSION_JPEG);
             $image->setImageCompressionQuality(40);
+            $color = new \ImagickPixel('#00000000');
+            $image->rotateImage( $color, ($request->request->get('turn')*90));
             $image->stripImage();
             $image->writeImage($fullpath);
 //            $image->thumbnailImage(150,null);

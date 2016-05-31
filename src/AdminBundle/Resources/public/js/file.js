@@ -183,7 +183,10 @@ $(document).ready(function(){
         $.ajax({
             url: Routing.generate('image_rotate', {'type': type, 'rotate': 'left'}),
             type: 'POST',
-            success: function(msg){ getImage(msg, container); },
+            success: function(msg){
+                getImage(msg, container);
+                $('#turn').val(parseInt($('#turn').val())-1);
+            },
             error:function (error) {
                 console.log(error);
             }
@@ -196,7 +199,10 @@ $(document).ready(function(){
         $.ajax({
             url: Routing.generate('image_rotate', {'type': type, 'rotate': 'right'}),
             type: 'POST',
-            success: function(msg){ getImage(msg, container); },
+            success: function(msg){
+                getImage(msg, container);
+                $('#turn').val(parseInt($('#turn').val())+1);
+            },
             error:function (error) {
                 console.log(error);
             }
