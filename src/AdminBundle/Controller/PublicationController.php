@@ -168,9 +168,11 @@ class PublicationController extends Controller{
      * @Route("/edit/{id}/galery/save", name="admin_publication_edit_galery_save")
      */
     public function galerySaveAction(Request $request, $id){
+
+
         $publication = $this->getDoctrine()->getRepository('AppBundle:Publication')->findOneBy(['id' => $id]);
         
-        $file = $request->files->get('file');
+        $file = $request->files->get('ImageFile');
         $galery = new Gallery();
         $galery->setPublication($publication);
         $galery->setTitle($request->request->get('title'));
@@ -187,10 +189,22 @@ class PublicationController extends Controller{
             $image->setImageCompressionQuality(40);
             $image->stripImage();
             $image->writeImage($fullpath);
-            $image->thumbnailImage(150,null);
-            $image->writeImage($fullpathThumbnail);
+//            $image->thumbnailImage(150,null);
+//            $image->writeImage($fullpathThumbnail);
 
-            $galery->setImage(['path' => '/upload/galery/'.$filename, 'thumbnail' => '/upload/galery/thumbnail-'.$filename ]);
+            $src = ['path' => '/upload/galery/'.$filename, 'thumbnail' => '/upload/galery/'.$filename ];
+
+            $image->destroy();
+            if ($request->request->get('thumbail')){
+                $image = new \Imagick();
+                $i = $request->request->get('thumbail');
+                $i = str_replace('data:image/jpg;base64,','',$i);
+                $image->readimageblob(base64_decode($i));
+                $image->writeImage($fullpathThumbnail);
+                $src['thumbnail'] = '/upload/galery/thumbnail-'.$filename;
+            }
+
+            $galery->setImage($src);
         }
 
         $this->getDoctrine()->getManager()->persist($galery);

@@ -36,6 +36,7 @@ function getImage(data,container, first){
             //jcrop_api.setImage(data.data.img);
         }
         fileDoc.children('img').attr('src',data.data.img);
+        $('#thumbail').val(data.data.img);
         fileDoc.children('.jcrop-holder').children('img').attr('src',data.data.img);
         var type = container.children('.jq-file').children('input[type=file]').attr('id');
 
@@ -158,11 +159,9 @@ $(document).ready(function(){
                 getImage(msg, container, 1);
                 $('.navigateFile').css('display','mome');
                 navigateFile.css('display','block');
-                $('body').loader('hide');
             },
             error:function (error) {
                 console.log(error);
-                $('body').loader('hide');
                 var $popup = $('<div class="flash-message">' + error.responseJSON.data.error  + '</div>');
                 $popup.insertAfter('body');
                 setTimeout(function() {
@@ -205,7 +204,7 @@ $(document).ready(function(){
     });
 
     $('.cropImage').click(function(){
-        var container = $(this).parent().parent().parent();
+        var container = $('.file-container');
         var x1 = container.children('input[name="x1"]').val();
         var x2 = container.children('input[name="x2"]').val();
         var y1 = container.children('input[name="y1"]').val();
