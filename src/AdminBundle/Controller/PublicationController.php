@@ -200,6 +200,7 @@ class PublicationController extends Controller{
                 $i = $request->request->get('thumbail');
                 $i = str_replace('data:image/jpg;base64,','',$i);
                 $image->readimageblob(base64_decode($i));
+                $image->thumbnailImage(150,null);
                 $image->writeImage($fullpathThumbnail);
                 $src['thumbnail'] = '/upload/galery/thumbnail-'.$filename;
             }
