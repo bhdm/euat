@@ -30,9 +30,32 @@ class PublicationController extends Controller
         }else{
             $publication = $this->getDoctrine()->getRepository('AppBundle:Publication')->findOneBy(['slug' => $url,'enabled' => true]);
         }
+        if ($publication->getVideo()){
+            return $this->redirect($this->generateUrl('video',['url' => $publication->getSlug()]));
+        }
         return ['publication' => $publication];
     }
-    
+
+    /**
+     * @Route("video/{url}", name="video")
+     * @Template("AppBundle:Publication:publication.html.twig")
+     */
+    public function index2Action(Request $request, $url)
+    {
+        if (is_numeric($url)){
+            $publication = $this->getDoctrine()->getRepository('AppBundle:Publication')->findOneById($url);
+            if ($publication->getSlug()){
+                return $this->redirect($this->generateUrl('publications',['url' => $publication->getSlug()]),301);
+            }
+        }else{
+            $publication = $this->getDoctrine()->getRepository('AppBundle:Publication')->findOneBy(['slug' => $url,'enabled' => true]);
+        }
+        if (!$publication->getVideo()){
+            return $this->redirect($this->generateUrl('publications',['url' => $publication->getSlug()]));
+        }
+        return ['publication' => $publication];
+    }
+
     /**
      * @Template("AppBundle:Publication:page.html.twig")
      */
