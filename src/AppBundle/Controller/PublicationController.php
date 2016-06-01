@@ -30,9 +30,9 @@ class PublicationController extends Controller
         }else{
             $publication = $this->getDoctrine()->getRepository('AppBundle:Publication')->findOneBy(['slug' => $url,'enabled' => true]);
         }
-        if ($publication->getVideo()){
-            return $this->redirect($this->generateUrl('video',['url' => $publication->getSlug()]));
-        }
+//        if ($publication->getVideo()){
+//            return $this->redirect($this->generateUrl('video',['url' => $publication->getSlug()]));
+//        }
         return ['publication' => $publication];
     }
 
@@ -50,9 +50,9 @@ class PublicationController extends Controller
         }else{
             $publication = $this->getDoctrine()->getRepository('AppBundle:Publication')->findOneBy(['slug' => $url,'enabled' => true]);
         }
-        if (!$publication->getVideo()){
-            return $this->redirect($this->generateUrl('publications',['url' => $publication->getSlug()]));
-        }
+//        if (!$publication->getVideo()){
+//            return $this->redirect($this->generateUrl('publications',['url' => $publication->getSlug()]));
+//        }
         return ['publication' => $publication];
     }
 
