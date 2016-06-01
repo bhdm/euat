@@ -21,8 +21,14 @@ RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
     Options -MultiViews
 </IfModule>
 
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
+    
+    
+	RewriteCond %{SERVER_PORT} ^443$ [OR]
+	RewriteCond %{HTTPS} =on
+	RewriteRule ^(.*)$ http://euat.ru.ru/$1 [R=301,L]
 
     # Determine the RewriteBase automatically and set it as environment variable.
     # If you are using Apache aliases to do mass virtual hosting or installed the
