@@ -39,7 +39,13 @@
     <script src="{{ asset('assets/vendor/fancybox/source/jquery.fancybox.js') }}"></script>
     <script>
         $(document).ready(function () {
-            $('.fancybox').fancybox();
+            $('.fancybox').fancybox({
+                helpers: {
+                    title : {
+                        type : 'float'
+                    }
+                }
+            });
         })
     </script>
 {% endblock %}
@@ -89,7 +95,7 @@
                                 {% endif %}
                                 <div class="col-xs-3">
                                     <div class="thumbnail" style="text-align: center; overflow: hidden;">
-                                        <a href="{{ image.image.path }}" class="fancybox" rel="gallery">
+                                        <a href="{{ image.image.path }}" class="fancybox" rel="gallery" title="{{ image.title }}">
                                             <div  style="width: 134px; height: 88px; overflow: hidden;">
                                                 <img src="{{ image.image.thumbnail }}" alt="{{ image.title }}" title="{{ image.title }}" style="max-width: 100%">
                                             </div>
