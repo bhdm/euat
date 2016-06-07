@@ -13,7 +13,7 @@ ExpiresByType image/png "access 1 month"
 ExpiresByType text/css "access 1 month"
 ExpiresByType text/js "access 1 week"
 ExpiresByType application/javascript "access 1 week"
-
+ExpiresByType application/x-font-woff "access 1 week"
 
 RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
 RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
