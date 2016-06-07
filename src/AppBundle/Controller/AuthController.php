@@ -54,15 +54,16 @@ class AuthController extends Controller
             }
             $user = $this->getUser();
             $user = $this->getDoctrine()->getRepository('AppBundle:User')->find($user->getId());
-            $encoder = $this->container->get('security.encoder_factory')->getEncoder($user);
+            $encoder = $this->container->get('security.password_encoder');
+            $encoded = $encoder->encodePassword($user, $new_pwd);
 
-                $new_pwd_encoded = $encoder->encodePassword($new_pwd, $user->getSalt());
-                $user->setPassword($new_pwd_encoded);
-                $manager = $this->getDoctrine()->getManager();
-                $manager->flush($user);
+            $user->setPassword($encoded);
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($user);
+            $manager->flush();
 
-                $session->getFlashBag()->add('info', 'Пароль изменен');
-                return $this->redirectToRoute('fos_user_profile_edit');
+            $session->getFlashBag()->add('info', 'Пароль изменен');
+            return $this->redirectToRoute('fos_user_profile_edit');
         }
 
         return $this->redirectToRoute('fos_user_profile_edit');
