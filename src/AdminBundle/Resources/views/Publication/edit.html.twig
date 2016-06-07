@@ -15,6 +15,14 @@
             <img src="{{ item.preview.path }}" style="max-width: 200px; display: inline-block" class="thumbnail">
             </div>
         {% endif %}
+        {% if item.video.path is defined %}
+            <div style="text-align: center">
+                <video controls style="width: 100%;">
+                    <source src="{{ publication.video.path }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        {% endif %}
         {{ form_start(form) }}
         {{ form_widget(form) }}
         {{ form_end(form) }}
