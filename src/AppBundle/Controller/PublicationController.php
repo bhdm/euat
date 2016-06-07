@@ -233,13 +233,28 @@ class PublicationController extends Controller
         ];
     }
 
+    /**
+     * @Route("publications", name="publications_list")
+     * @Template("AppBundle:Publication:category.html.twig")
+     */
+    public function publicationsAction(){
+        $category = $this->getDoctrine()->getRepository('AppBundle:Category')->findOneBySlug('new');
+        $publications = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['enabled' => true, 'category' => $category ],['created' => 'DESC']);
+
+        return ['category' => $category,'publications' => $publications];
+    }
 
     /**
      * @Route("category/{categoryUrl}", name="category")
      * @Route("education/{categoryUrl}", requirements={"categoryUrl" : "video"})
+     * @Route("education/{categoryUrl}", requirements={"categoryUrl" : "video"})
      * @Template("AppBundle:Publication:category.html.twig")
      */
     public function categotyAction($categoryUrl){
+        if ($categoryUrl === 'new'){
+            return $this->redirectToRoute('publications_list', [], 301);
+        }
+
         $category = $this->getDoctrine()->getRepository('AppBundle:Category')->findOneBySlug($categoryUrl);
         $publications = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['enabled' => true, 'category' => $category ],['created' => 'DESC']);
 
