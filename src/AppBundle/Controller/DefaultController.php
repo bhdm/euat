@@ -2,10 +2,13 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Publication;
 use AppBundle\Entity\Unfollow;
+use AppBundle\Form\PublicationType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -313,6 +316,46 @@ class DefaultController extends Controller
         $this->getDoctrine()->getManager()->flush($unfollow);
 
         return [];
+    }
+
+    /**
+     * @Route("/preview-publication", methods={"POST"}, name="preview_publication")
+     * @Template("AppBundle:Publication:publication.html.twig")
+     */
+    public function previewPublication(Request $request){
+        $em = $this->getDoctrine()->getManager();
+        $item = new Publication();
+        $form = $this->createForm(PublicationType::class, $item);
+        $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
+        $formData = $form->handleRequest($request);
+
+        if ($request->getMethod() == 'POST'){
+            if ($formData->isValid()){
+                $item = $formData->getData();
+                $file = $item->getPreview();
+
+                if ($file){
+                    $filename = time(). '.'.$file->guessExtension();
+                    $file->move(
+                        __DIR__.'/../../../web/upload/publication/',
+                        $filename
+                    );
+                    $item->setPreview(['path' => '/upload/publication/'.$filename ]);
+                }
+
+                $file = $item->getVideo();
+                if ($file) {
+                    $filename = time() . '.' . $file->guessExtension();
+                    $file->move(
+                        __DIR__ . '/../../../web/upload/video/',
+                        $filename
+                    );
+                    $item->setVideo(['path' => '/upload/video/' . $filename]);
+                }
+                $item->setId(0);
+                return ['publication' => $item];
+            }
+        }
     }
 }
 

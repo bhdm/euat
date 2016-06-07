@@ -13,7 +13,7 @@
         {{ form_start(form) }}
         {{ form_widget(form) }}
         {{ form_end(form) }}
-        </form>
+        <button class="btn btn-warning preview-content" type="button" formtarget="_blank" >Предпросмотр</button>
     </div>
 {% endblock %}
 
@@ -25,6 +25,15 @@
                 destination: "publication_slug",
                 caseStyle: "lower",
                 urlSeparator: "_"
+            });
+
+            $('.preview-content').click(function () {
+                var submitMe = $('form');
+                submitMe.attr('action',"{{ path('preview_publication') }}"); // Remember to change me
+                submitMe.attr('method',"post");
+                submitMe.attr('enctype', "multipart/form-data");
+                submitMe.attr('target', '_blank');
+                submitMe.submit();
             });
         });
     </script>
