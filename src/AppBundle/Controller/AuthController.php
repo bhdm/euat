@@ -40,6 +40,35 @@ class AuthController extends Controller
     }
 
     /**
+     * @Route("/refresh-password", name="refresh_password")
+     */
+    public function refreshPasswordAction(Request $request){
+        $session = $request->getSession();
+
+        if($request->getMethod() == 'POST') {
+            $new_pwd = $request->get('password');
+            $new_pwd_2 = $request->get('password2');
+            if ($new_pwd != $new_pwd_2){
+                $session->getFlashBag()->add('info', 'Пароли не совпадают');
+                return $this->redirectToRoute('fos_user_profile_edit');
+            }
+            $user = $this->getUser();
+            $user = $this->getDoctrine()->getRepository('AppBundle:User')->find($user->getId());
+            $encoder = $this->container->get('security.encoder_factory')->getEncoder($user);
+
+                $new_pwd_encoded = $encoder->encodePassword($new_pwd, $user->getSalt());
+                $user->setPassword($new_pwd_encoded);
+                $manager = $this->getDoctrine()->getManager();
+                $manager->flush($user);
+
+                $session->getFlashBag()->add('info', 'Пароль изменен');
+                return $this->redirectToRoute('fos_user_profile_edit');
+        }
+
+        return $this->redirectToRoute('fos_user_profile_edit');
+    }
+
+    /**
      * @Route("/get-university", name="get_university", options={"expose" = true})
      */
     public function getUniversityAction(Request $request){
