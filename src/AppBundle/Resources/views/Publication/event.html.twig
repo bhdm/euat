@@ -11,6 +11,11 @@
     </style>
 {% endblock %}
 
+{% block seo %}
+    <title>Евразийская ассоциация терапевтов | {{ event.title }} </title>
+    <meta name="description" content="{{ event.anons }}"/>
+{% endblock %}
+
 {% block javascript %}
     {{ parent() }}
     <script src="{{ asset('assets/vendor/moment/moment.js') }}"></script>

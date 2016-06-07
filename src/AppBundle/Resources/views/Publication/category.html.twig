@@ -1,5 +1,8 @@
 {% extends 'AppBundle::layout.html.twig' %}
-
+{% block seo %}
+    <title>Евразийская ассоциация терапевтов | {{ category.title }} </title>
+    <meta name="description" content=""/>
+{% endblock %}
 {% block content %}
     <h1 class="blue-text">{{ category.title }}</h1>
     <div class="">
@@ -8,7 +11,7 @@
                 {% if p.preview.path is defined %}
                     <div class="col-xs-3">
                         <a href="{{ path('publications', {'url' : p.id }) }}">
-                            <img src="{{ p.preview.path }}" style="width: 100%" class="img-thumbnail">
+                            <img title="{{ p.title }}" alt="{{ p.title }}" src="{{ p.preview.path }}" style="width: 100%" class="img-thumbnail">
                         </a>
                     </div>
                     <div class="col-xs-9">

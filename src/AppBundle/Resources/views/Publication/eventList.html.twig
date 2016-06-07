@@ -6,7 +6,19 @@
     <script src="{{ asset('assets/vendor/moment/locale/ru.js') }}"></script>
     <script src="{{ asset('assets/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
 {% endblock %}
-
+{% block seo %}
+    <title>Евразийская ассоциация терапевтов |
+        {% if type == null %}
+            События
+        {% elseif type == 'congress' %}
+            Конгрессы и Съезды
+        {% elseif type == 'school' %}
+            Школы
+        {% elseif type == 'partner' %}
+            Партнерские события
+        {% endif %}
+    </title>
+{% endblock %}
 {% block content %}
     <div class="col-xs-4" style="padding-left: 0">
         {{ render(controller("AppBundle:Widget:calendar" )) }}
