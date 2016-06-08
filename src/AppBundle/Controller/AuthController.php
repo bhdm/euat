@@ -6,6 +6,7 @@ use AppBundle\Entity\City;
 use AppBundle\Entity\University;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,16 +42,17 @@ class AuthController extends Controller
 
     /**
      * @Route("/refresh-password", name="refresh_password")
+     * @Template("@App/Auth/refreshPassword.html.twig")
      */
     public function refreshPasswordAction(Request $request){
         $session = $request->getSession();
 
         if($request->getMethod() == 'POST') {
-            $new_pwd = $request->get('password');
-            $new_pwd_2 = $request->get('password2');
+            $new_pwd = $request->request->get('password_new');
+            $new_pwd_2 = $request->request->get('password_new2');
             if ($new_pwd != $new_pwd_2){
                 $session->getFlashBag()->add('info', 'Пароли не совпадают');
-                return $this->redirectToRoute('fos_user_profile_edit');
+                return ['p1' => $new_pwd, 'p2' => $new_pwd_2];
             }
             $user = $this->getUser();
             $user = $this->getDoctrine()->getRepository('AppBundle:User')->find($user->getId());
@@ -65,8 +67,7 @@ class AuthController extends Controller
             $session->getFlashBag()->add('info', 'Пароль изменен');
             return $this->redirectToRoute('fos_user_profile_edit');
         }
-
-        return $this->redirectToRoute('fos_user_profile_edit');
+        return [];
     }
 
     /**
