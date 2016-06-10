@@ -110,6 +110,26 @@ class JournalPost extends BaseEntity{
      */
     private $file;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="metaTitle", type="string", length=255, nullable=true)
+     */
+    private $metaTitle;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="metaDescription", type="string", length=255, nullable=true)
+     */
+    private $metaDescription;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="metaKeyword", type="string", length=255, nullable=true)
+     */
+    private $metaKeyword;
 
     public function __construct(){
         parent::__construct();
@@ -412,5 +432,55 @@ class JournalPost extends BaseEntity{
     {
         $this->slug = $slug;
     }
+
+    /**
+     * @return string
+     */
+    public function getMetaTitle()
+    {
+        return $this->metaTitle;
+    }
+
+    /**
+     * @param string $metaTitle
+     */
+    public function setMetaTitle($metaTitle)
+    {
+        $this->metaTitle = $metaTitle;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMetaDescription()
+    {
+        return $this->metaDescription;
+    }
+
+    /**
+     * @param string $metaDescription
+     */
+    public function setMetaDescription($metaDescription)
+    {
+        $this->metaDescription = $metaDescription;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMetaKeyword()
+    {
+        return $this->metaKeyword;
+    }
+
+    /**
+     * @param string $metaKeyword
+     */
+    public function setMetaKeyword($metaKeyword)
+    {
+        $this->metaKeyword = $metaKeyword;
+    }
+
+    
 
 }

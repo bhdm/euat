@@ -19,6 +19,9 @@ class JournalPostType extends AbstractType
         $builder
             ->add('title', null, ['label' => 'Название статьи'])
             ->add('slug', null, ['label' => 'URL', 'required' => false])
+            ->add('metaTitle', null, ['label' => 'МЕТА заголовок'])
+            ->add('metaDescription', null, ['label' => 'МЕТА описание'])
+            ->add('metaKeyword', null, ['label' => 'МЕТА слова'])
             ->add('pages', null, ['label' => 'Страницы'])
             ->add('description', null, ['label' => 'Описание статьи', 'attr' => ['class' => 'ckeditor']])
             ->add('body', null, ['label' => 'Текст статьи', 'attr' => ['class' => 'ckeditor']])

@@ -60,6 +60,9 @@ class EventType extends AbstractType
             ->add('sponsors', null, [ 'label' => 'Спонсоры', 'attr' => ['class' => 'multiselect']])
             ->add('contacts', TextareaType::class, [ 'label' => 'Контакная информация'])
             ->add('slug', null, [ 'label' => 'URI'])
+            ->add('metaTitle', null, ['label' => 'МЕТА заголовок'])
+            ->add('metaDescription', null, ['label' => 'МЕТА описание'])
+            ->add('metaKeyword', null, ['label' => 'МЕТА слова'])
             ->add('body', null, [ 'label' => 'Контент', 'attr' => ['class' => 'ckeditor']])
             ->add('theses', ChoiceType::class, array(
                 'choices' => array(

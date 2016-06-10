@@ -22,6 +22,9 @@ class PublicationType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [ 'label' => 'Название'])
+            ->add('metaTitle', null, ['label' => 'МЕТА заголовок'])
+            ->add('metaDescription', null, ['label' => 'МЕТА описание'])
+            ->add('metaKeyword', null, ['label' => 'МЕТА слова'])
             ->add('preview', FileType::class, [ 'label' => 'Картинка', 'data_class' => null, 'required' => false])
             ->add('video', FileType::class, [ 'label' => 'Видео', 'data_class' => null, 'required' => false])
             ->add('category', null, [ 'label' => 'Категория'])

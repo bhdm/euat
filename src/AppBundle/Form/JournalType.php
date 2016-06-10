@@ -19,6 +19,9 @@ class JournalType extends AbstractType
         $builder
             ->add('title', null, ['label' => 'Название'])
             ->add('slug', null, [ 'label' => 'URI'])
+            ->add('metaTitle', null, ['label' => 'МЕТА заголовок'])
+            ->add('metaDescription', null, ['label' => 'МЕТА описание'])
+            ->add('metaKeyword', null, ['label' => 'МЕТА слова'])
             ->add('photo', FileType::class, ['label' => 'Фото обложки', 'data_class' => null, 'required' => false])
             ->add('year', null, ['label' => 'Год выпуска'])
             ->add('month', null, ['label' => 'номер выпуска'])
