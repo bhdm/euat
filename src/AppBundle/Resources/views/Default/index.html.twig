@@ -17,7 +17,7 @@
                 <div class="row new-item" style="padding-bottom: 25px">
                     {% if v.preview.path is defined %}
                     <div class="col-xs-3">
-                        <img src="{{ v.preview.path }}" class="img-thumbnail">
+                        <img src="{{ v.preview.path }}" class="img-thumbnail" style="width: 100%">
                     </div>
                     <div class="col-xs-9">
                         <a href="{{ path('publications', {'url' : v.id }) }}"><span class="new-item-title">{{ v.title }}</span></a>
