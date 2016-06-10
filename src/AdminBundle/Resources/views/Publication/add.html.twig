@@ -34,6 +34,10 @@
                 submitMe.attr('enctype', "multipart/form-data");
                 submitMe.attr('target', '_blank');
                 submitMe.submit();
+                submitMe.attr('action',""); // Remember to change me
+                submitMe.attr('method',"post");
+                submitMe.attr('enctype', "multipart/form-data");
+                submitMe.attr('target', '');
             });
         });
     </script>
