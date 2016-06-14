@@ -23,6 +23,13 @@
         }
     </style>
 {% endblock %}
+
+{% block seo %}
+    <title>{{ prezidium.metaTitle }} </title>
+    <meta name="description" content="{{ prezidium.metaDescription }}"/>
+    <meta name="keywords" content="{{ prezidium.metaKeyword }}"/>
+{% endblock %}
+
 {% block content %}
     <br />
     <div>
