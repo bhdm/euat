@@ -16,12 +16,13 @@
             </div>
         {% endif %}
         {% if item.video.path is defined %}
-            <div style="text-align: center">
+            <div style="text-align: right">
                 <video controls style="width: 300px;">
                     <source src="{{ publication.video.path }}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
+            <br />
         {% endif %}
         {{ form_start(form) }}
         {{ form_widget(form) }}
