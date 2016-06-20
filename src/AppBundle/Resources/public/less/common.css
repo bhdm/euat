@@ -129,10 +129,11 @@ nav .navbar-nav li .submunu ul li {
   border: 0;
   border-top: 1px solid #FFF;
   text-align: left;
-  padding: 10px 5px 10px 20px;
 }
 nav .navbar-nav li .submunu ul li a {
   text-decoration: none;
+  display: block;
+  padding: 10px 5px 10px 20px;
 }
 nav .navbar-nav li .submunu ul li a:hover {
   background: none;
