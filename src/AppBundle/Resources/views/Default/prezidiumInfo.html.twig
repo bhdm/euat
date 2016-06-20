@@ -31,6 +31,11 @@
 {% endblock %}
 
 {% block content %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}">Главная</a></li>
+        <li><a href="{{ path('prezidium') }}">Президиум</a></li>
+        <li class="active">{{ prezidium.fullname }}</li>
+    </ol>
     <br />
     <div>
         <div class="row">

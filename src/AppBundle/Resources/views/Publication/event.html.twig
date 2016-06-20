@@ -39,6 +39,21 @@
         {{ render(controller("AppBundle:Widget:calendar" )) }}
     </div>
     <div class="col-xs-12 col-md-8" style="padding-right: 0">
+        <ol class="breadcrumb">
+            <li><a href="{{ path('homepage') }}">Главная</a></li>
+            <li>
+                {% if event.type == null %}
+                    <a href="{{ path('events',{'type' : null }) }}">События</a>
+                {% elseif event.type == 'CONGRESS' %}
+                    <a href="{{ path('events',{'type' : 'conference-convention' }) }}">Конгрессы и Съезды</a>
+                {% elseif event.type == 'SCHOOL' %}
+                    <a href="{{ path('events',{'type' : 'school' }) }}">Школы</a>
+                {% elseif event.type == 'PARTNER' %}
+                    <a href="{{ path('events',{'type' : 'partner' }) }}">Партнерские события</a>
+                {% endif %}
+            </li>
+            <li class="active">{{ event.title }}</li>
+        </ol>
         <h1 class="blue-text">{{ event.title }}{% if is_granted('ROLE_ADMIN') %} <a href="{{ path('admin_event_edit',{'id' : event.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>{% endif %}</h1>
         <div class="row">
             <div class="col-xs-6">
