@@ -10,11 +10,11 @@
     <title>
         {% if type == null %}
             События
-        {% elseif type == 'congress' %}
+        {% elseif type == 'CONGRESS' %}
             Конгрессы и Съезды
-        {% elseif type == 'school' %}
+        {% elseif type == 'SCHOOL' %}
             Школы
-        {% elseif type == 'partner' %}
+        {% elseif type == 'PARTNER' %}
             Партнерские события
         {% endif %}
     </title>
@@ -24,7 +24,6 @@
         {{ render(controller("AppBundle:Widget:calendar" )) }}
     </div>
     <div class="col-xs-8" style="padding-right: 0">
-
         <ol class="breadcrumb">
             <li><a href="{{ path('homepage') }}">Главная</a></li>
             <li class="active">
