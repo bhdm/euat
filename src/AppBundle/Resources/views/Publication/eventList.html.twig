@@ -26,6 +26,7 @@
     <div class="col-xs-8" style="padding-right: 0">
         <ol class="breadcrumb">
             <li><a href="{{ path('homepage') }}">Главная</a></li>
+            <li><a href="{{ path('events') }}">События</a></li>
             <li class="active">
                 {% if type == null %}
                     События
@@ -33,7 +34,7 @@
                     Конгрессы и Съезды
                 {% elseif type == 'SCHOOL' %}
                     Школы
-                {% elseif type == 'PARTNER' %}
+                {% elseif type == 'partner' %}
                     Партнерские события
                 {% endif %}
             </li>
