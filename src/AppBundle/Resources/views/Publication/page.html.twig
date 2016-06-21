@@ -8,7 +8,7 @@
     <ol class="breadcrumb">
         <li><a href="{{ path('homepage') }}">Главная</a></li>
         {% if page.parent != null %}
-            <li><a href="{{ path('page',{'url' : path.parent.slug }) }}">{{ path.parent.title }}</a></li>
+            <li><a href="{{ path('page',{'url' : page.parent.slug }) }}">{{ page.parent.title }}</a></li>
         {% endif %}
         <li class="active">{{ page.title }}</li>
     </ol>
