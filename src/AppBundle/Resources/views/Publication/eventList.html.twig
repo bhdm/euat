@@ -27,17 +27,15 @@
         <ol class="breadcrumb">
             <li><a href="{{ path('homepage') }}">Главная</a></li>
             <li><a href="{{ path('events') }}">События</a></li>
-            <li class="active">
-                {% if type == null %}
-                    События
-                {% elseif type == 'CONGRESS' %}
-                    Конгрессы и Съезды
-                {% elseif type == 'SCHOOL' %}
-                    Школы
-                {% elseif type == 'partner' %}
-                    Партнерские события
-                {% endif %}
-            </li>
+            {% if type == null %}
+                <li class="active">События</li>
+            {% elseif type == 'CONGRESS' %}
+                <li class="active">Конгрессы и Съезды</li>
+            {% elseif type == 'SCHOOL' %}
+                <li class="active">Школы</li>
+            {% elseif type == 'partner' %}
+                <li class="active">Партнерские события</li>
+            {% endif %}
         </ol>
 
         {% if type == null %}
