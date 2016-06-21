@@ -490,3 +490,6 @@ th.picker-switch {
 p em {
   font-style: italic;
 }
+.breadcrumb > li {
+  display: inline;
+}
