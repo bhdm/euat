@@ -492,4 +492,5 @@ p em {
 }
 .breadcrumb > li {
   display: inline;
+  font-size: 12px;
 }
