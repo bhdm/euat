@@ -150,10 +150,12 @@
         {% if form != null %}
             <br />
             <div style="border: 1px solid #CCC; padding: 20px">
-                {% if typeForm == 'register' %}
-                    <div class="caption"><b>Зарегистрироваться:</b></div>
-                {% else %}
-                    <div class="caption"><b>Направить тезис</b></div>
+                {% if typeForm is defined %}
+                    {% if typeForm == 'register' %}
+                        <div class="caption"><b>Зарегистрироваться:</b></div>
+                    {% else %}
+                        <div class="caption"><b>Направить тезис</b></div>
+                    {% endif %}
                 {% endif %}
                 {{ form_start(form) }}
                 {{ form_widget(form) }}

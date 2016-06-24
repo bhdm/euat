@@ -152,6 +152,7 @@ class Event
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Partner", inversedBy="sponsorEvents")
      * @ORM\JoinTable(name="sponsorEvent_partner")
+     * @ORM\OrderBy({"sort" = "ASC"})
      */
     private $sponsors;
 

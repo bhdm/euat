@@ -103,7 +103,7 @@ class PublicationController extends Controller
         }else{
             $eventItem = null;
         }
-
+        $typeForm = null;
         $form = null;
         if ($event->isTheses() == true){
             $typeForm = 'theses';
