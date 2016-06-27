@@ -7,6 +7,7 @@
 {% endblock %}
 {% block content %}
     <div class="col-md-4 hidden-sm hidden-xs" style="padding-left: 0">
+        <img src="{{ asset('bundles/app/images/videobanner.png') }}" class="img-thumbnail" style="cursor: pointer" data-toggle="modal" data-target="#videobanner" />
         {{ render(controller("AppBundle:Widget:calendar" )) }}
     </div>
     <div class="col-md-8 col-cs-12" style="padding-right: 0">
@@ -112,4 +113,22 @@
             {#{% endfor %}#}
         {#{% endif %}#}
     {#</div>#}
+{% endblock %}
+
+{% block modal %}
+    {{ parent() }}
+    <!-- Modal -->
+    <div class="modal fade" id="videobanner" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Видео:  Евразийская Ассоциация Терапевтов</h4>
+                </div>
+                <div class="modal-body">
+                    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/TJaX-m0D9JY" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
