@@ -31,7 +31,7 @@
                     <span class="glyphicon glyphicon-calendar"></span>
                     {{ p.created | date('d.m.Y') }}
                 </span>
-                <a href="{{ path('event', {'url' : p.id }) }}"><span class="new-item-title">{{ p.title }}</span></a>
+                <a href="{{ path('publications', {'url' : p.id }) }}"><span class="new-item-title">{{ p.title }}</span></a>
                 <div class="new-item-anons">
                     {{ p.body | anons | raw }}
                     {% if p.category != null %}
