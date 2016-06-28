@@ -126,9 +126,22 @@
                     <h4 class="modal-title" id="myModalLabel">Видео:  Евразийская Ассоциация Терапевтов</h4>
                 </div>
                 <div class="modal-body">
-                    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/TJaX-m0D9JY" frameborder="0" allowfullscreen></iframe>
+                    <iframe id="videobanneriframe" width="560" height="315" src="https://www.youtube.com/embed/TJaX-m0D9JY?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        function toggleVideo(state) {
+            var iframe = document.getElementById("videobanneriframe").contentWindow;
+            func = state == 'hide' ? 'pauseVideo' : 'playVideo';
+            iframe.postMessage('{"event":"command","func":"' + func + '","args":""}','*');
+        }
+
+        $(document).ready(function () {
+            $('#videobanner').on('hidden.bs.modal', function () {
+                toggleVideo('hide');
+            })
+        })
+    </script>
 {% endblock %}
