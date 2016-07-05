@@ -152,6 +152,13 @@ class Publication
      */
     private $metaKeyword;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="filter", type="string", length=255, nullable=true)
+     */
+    private $filter;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -508,7 +515,21 @@ class Publication
         $this->metaKeyword = $metaKeyword;
     }
 
-    
+    /**
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * @param string $filter
+     */
+    public function setFilter($filter)
+    {
+        $this->filter = $filter;
+    }
     
 }
 

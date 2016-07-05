@@ -28,6 +28,16 @@ class PublicationType extends AbstractType
             ->add('preview', FileType::class, [ 'label' => 'Картинка', 'data_class' => null, 'required' => false])
             ->add('video', FileType::class, [ 'label' => 'Видео', 'data_class' => null, 'required' => false])
             ->add('category', null, [ 'label' => 'Категория'])
+            ->add('filter', ChoiceType::class, array(
+                'choices' => array(
+                    'Интервью с экспертами' => 'interviews_with_experts',
+                    'Дискуссии про VS контра' => 'discussions_about_contraception_vs',
+                    'Лекции и мастер-классы' => 'lectures_and_workshops',
+                    'Доклады в рамках симпозиумов' => 'presentations_at_the_symposium',
+                ),
+                'required'    => false,
+                'label' => 'Фильтр видео'
+            ))
             ->add('specialties', null, [ 'label' => 'Специальности', 'attr' => ['class' => 'multiselect']])
 
             ->add('allowCommentary', ChoiceType::class, array(
