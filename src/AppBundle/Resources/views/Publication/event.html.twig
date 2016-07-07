@@ -41,6 +41,7 @@
     <div class="col-xs-12 col-md-8" style="padding-right: 0">
         <ol class="breadcrumb">
             <li><a href="{{ path('homepage') }}">Главная</a></li>
+            <li><a href="{{ path('events') }}">События</a></li>
             <li>
                 {% if event.type == null %}
                     <a href="{{ path('events',{'type' : null }) }}">События</a>

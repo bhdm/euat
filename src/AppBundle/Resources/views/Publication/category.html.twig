@@ -6,6 +6,9 @@
 {% block content %}
     <ol class="breadcrumb">
         <li><a href="{{ path('homepage') }}">Главная</a></li>
+        {% if category.id == 2 %}
+            <li><a href="{{ path('page',{'url' : 'education'}) }}">Образование</a></li>
+        {% endif %}
         <li class="active">{{ category.title }}</li>
     </ol>
     <h1 class="blue-text">{{ category.title }}</h1>

@@ -1,0 +1,195 @@
+{% extends 'AppBundle::layout.html.twig' %}
+{% block seo %}
+    <title>{{ publication.title }} </title>
+    <meta name="description" content="{{ publication.metaDescription }}"/>
+    <meta name="keywords" content="{{ publication.metaKeyword }}"/>
+{% endblock %}
+{% block social %}
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ publication.title }}">
+    {% if publication.preview.path is defined  %}
+        <meta property="og:image" content="{{ publication.preview.path }}">
+    {% endif %}
+    <meta property="og:description" content="{{ publication.anons }}">
+
+    <meta itemscope itemtype="http://schema.org/Article" />
+    <meta itemprop="headline" content="{{ publication.title }}" />
+    <meta itemprop="description" content="{{ publication.anons }}" />
+    {% if publication.preview.path is defined  %}
+        <meta itemprop="image" content="{{ publication.preview.path }}" />
+    {% endif %}
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets "@AppBundle/Resources/public/less/comments.less" %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
+    {% endstylesheets %}
+    <link href="{{ asset('assets/vendor/fancybox/source/jquery.fancybox.css') }}" type="text/css" rel="stylesheet" media="all" />
+    <style>
+        .pub-content p img{
+            width: 100% !important;
+            height: auto !important;
+        }
+    </style>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script src="{{ asset('assets/vendor/moment/moment.js') }}"></script>
+    <script src="{{ asset('assets/vendor/moment/locale/ru.js') }}"></script>
+    <script src="{{ asset('assets/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/fancybox/source/jquery.fancybox.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.fancybox').fancybox({
+                helpers: {
+                    title : {
+                        type : 'inside'
+                    }
+                }
+            });
+        })
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="col-xs-12 col-md-4 hidden-sm hidden-xs" style="padding-left: 0">
+        {{ render(controller("AppBundle:Widget:calendar" )) }}
+    </div>
+    <div class="col-xs-12 col-md-8" style="padding-right: 0">
+        <ol class="breadcrumb">
+            <li><a href="{{ path('homepage') }}">Главная</a></li>
+            <li><a href="{{ path('page',{'url' : 'education'}) }}">Образование</a></li>
+            <li><a href="{{ path('publications_list') }}">{{ publication.category }}</a></li>
+            <li class="active">{{ publication.title }}</li>
+        </ol>
+        <div>
+            <h1 class="blue-text" itemprop="name">{{ publication.title }}
+                {% if is_granted('ROLE_ADMIN') %} <a href="{{ path('admin_publication_edit',{'id' : publication.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>{% endif %}
+            </h1>
+            {% if publication.preview.path is defined  %}
+                <img src="{{ publication.preview.path }}"
+                     style="max-width: 250px; float: left; margin: 0 20px 10px 10px"
+                     class="img-thumbnail"
+                     itemprop="image"
+                     alt="{{ publication.title }}"
+                     title="{{ publication.title }}"
+                />
+            {% endif %}
+            <div сlass="pub-content" itemprop="description">
+                {{ publication.anons | raw }}
+                {% if publication.private == true and is_granted('ROLE_USER') != true %}
+                    <br />
+                    <br />
+                    <br />
+                    <div class="alert alert-info text-center">Для доступа к материалу, пожалуйста, <a href="#" onclick="$('#loginRegisterModal').modal();return false;" style="cursor: pointer">авторизуйтесь</a></div>
+                {% else %}
+                    {{ publication.body | raw }}
+                    {% if publication.video.path is defined %}
+                        <div style="text-align: center">
+                            <video controls style="width: 100%;">
+                                <source src="{{ publication.video.path }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    {% endif %}
+
+                    {% if publication.images | length > 0 %}
+                        <div class="row">
+                            {% for k,image in publication.images %}
+                                {% if (k) % 4  == 0 %}
+                                    </div>
+                                    <div class="row">
+                                {% endif %}
+                                <div class="col-xs-3">
+                                    <div class="thumbnail" style="text-align: center; overflow: hidden;">
+                                        <a href="{{ image.image.path }}" class="fancybox" rel="gallery" title="{{ image.title }}">
+                                            <div  style="width: 134px; height: 88px; overflow: hidden;">
+                                                <img src="{{ image.image.thumbnail }}" alt="{{ image.title }}" title="{{ image.title }}" style="max-width: 100%">
+                                            </div>
+                                        </a>
+                                        {#<div class="caption" style="padding: 0">#}
+                                            {#<h5>{{ image.title }}</h5>#}
+                                        {#</div>#}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </div>
+            {% if publication.source != null  %}
+            <br />
+
+                <span style="font-style: italic">
+                    <i style="color: #777;"><a style="color: #777" href="{{ publication.source }}" target="_blank">Источник</a></i>
+                </span>
+            {% endif %}
+            <br />
+            <div class="row row-params">
+                <div class="col-xs-5" style="padding-top: 7px;">
+                    <script type="text/javascript" src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js" charset="utf-8"></script>
+                    <script type="text/javascript" src="//yastatic.net/share2/share.js" charset="utf-8"></script>
+                    <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,gplus,twitter" data-counter="" style="text-align: left;"
+                         data-title="{{ publication.title }}"
+                         data-description="{{ publication.anons }}"
+                         data-image="{{ publication.preview.path is defined ? 'http://euat.ru'~publication.preview.path : '' }}"></div>
+                </div>
+                <div class="col-xs-4">
+                    {% if publication.specialties | length > 0 %}
+                        <b>Специальности:</b>
+                        {% set ss = '' %}
+                        {% for s in publication.specialties  %}
+                            {% set ss = ss~s.title %}
+                            {% if s != publication.specialties | last %}
+                                {% set ss = ss~', ' %}
+                            {% endif %}
+                        {% endfor %}
+                        <span title="{{ ss }}">
+                            {{ ss }}
+                        </span>
+                    {% endif %}
+                </div>
+                <div class="col-xs-3 text-right">
+                    <div style="padding-top: 10px; padding-bottom: 6px">
+                        <span class="glyphicon glyphicon-calendar"></span> {{ publication.created | date('d.m.Y') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        {% if publication.isAllowCommentary == true %}
+            {% include '@App/Publication/comments.html.twig'  with {'comments': publication.comments, 'id' : publication.id, 'type': 'publication' } %}
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block modal %}
+    {{ parent() }}
+
+    {% if publication.category.slug == 'video' and not is_granted("ROLE_USER") %}
+    <div class="modal fade" tabindex="-1" role="dialog" id="doctor-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Вы вошли как не авторизованный пользователь</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Данный материал предназначен только для врачей. Являетесь ли Вы врачем?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Да</button>
+                    <a href="http://euat.ru/"><button type="button" class="btn btn-default">Нет</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#doctor-modal').modal();
+        })
+    </script>
+    {% endif %}
+{% endblock %}

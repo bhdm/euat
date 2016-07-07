@@ -38,7 +38,7 @@ class PublicationController extends Controller
 
     /**
      * @Route("/education/video/{url}", name="video")
-     * @Template("AppBundle:Publication:publication.html.twig")
+     * @Template("AppBundle:Publication:video.html.twig")
      */
     public function index2Action(Request $request, $url)
     {
