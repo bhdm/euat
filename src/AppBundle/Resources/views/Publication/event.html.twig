@@ -46,7 +46,7 @@
                 {% if event.type == null %}
                     <a href="{{ path('events',{'type' : null }) }}">События</a>
                 {% elseif event.type == 'CONGRESS' %}
-                    <a href="{{ path('events',{'type' : 'conference-convention' }) }}">Конгрессы и Съезды</a>
+                    <a href="{{ path('events',{'type' : 'conference-convention' }) }}">Конференции и съезды</a>
                 {% elseif event.type == 'SCHOOL' %}
                     <a href="{{ path('events',{'type' : 'school' }) }}">Школы</a>
                 {% elseif event.type == 'PARTNER' %}

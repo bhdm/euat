@@ -25,7 +25,7 @@ class EventType extends AbstractType
             ->add('title', null, [ 'label' => 'Название'])
             ->add('type', ChoiceType::class, array(
                 'choices' => array(
-                    'Конгрессы и Съезды' => 'CONGRESS',
+                    'Конференции и съезды' => 'CONGRESS',
                     'Школы' => 'SCHOOL',
                     'Партнерcкое' => 'PARTNER'
                 ),

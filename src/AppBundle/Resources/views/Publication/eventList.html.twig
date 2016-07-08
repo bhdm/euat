@@ -11,7 +11,7 @@
         {% if type == null %}
             События
         {% elseif type == 'CONGRESS' %}
-            Конгрессы и Съезды
+            Конференции и Съезды
         {% elseif type == 'SCHOOL' %}
             Школы
         {% elseif type == 'PARTNER' %}
@@ -26,14 +26,16 @@
     <div class="col-xs-8" style="padding-right: 0">
         <ol class="breadcrumb">
             <li><a href="{{ path('homepage') }}">Главная</a></li>
-            <li><a href="{{ path('events') }}">События</a></li>
             {% if type == null %}
                 <li class="active">События</li>
             {% elseif type == 'CONGRESS' %}
-                <li class="active">Конгрессы и Съезды</li>
+                <li><a href="{{ path('events') }}">События</a></li>
+                <li class="active">Конференции и съезды</li>
             {% elseif type == 'SCHOOL' %}
+                <li><a href="{{ path('events') }}">События</a></li>
                 <li class="active">Школы</li>
             {% elseif type == 'partner' %}
+                <li><a href="{{ path('events') }}">События</a></li>
                 <li class="active">Партнерские события</li>
             {% endif %}
         </ol>
@@ -41,7 +43,7 @@
         {% if type == null %}
             <h1 class="blue-text">События</h1>
         {% elseif type == 'congress' %}
-            <h1 class="blue-text">Конгрессы и Съезды</h1>
+            <h1 class="blue-text">Конференции и съезды</h1>
         {% elseif type == 'school' %}
             <h1 class="blue-text">Школы</h1>
         {% elseif type == 'partner' %}

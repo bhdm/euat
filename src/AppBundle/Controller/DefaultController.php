@@ -47,6 +47,13 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/events/congress")
+     */
+    public function redirectAction(){
+        return $this->redirect('http://euat.ru/events/conference-convention');
+    }
+
+    /**
      * @Route("/magazine/{url}", name="static_page", requirements={"url" : "about|to-authors|edition"})
      * @Template("AppBundle:Publication:page.html.twig")
      */
