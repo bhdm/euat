@@ -31,11 +31,24 @@
 {% endblock %}
 
 {% block content %}
-    <ol class="breadcrumb">
-        <li><a href="{{ path('homepage') }}">Главная</a></li>
-        <li><a href="{{ path('page',{'url' : 'association'}) }}">Об ассоциации</a></li>
-        <li><a href="{{ path('prezidium') }}">Президиум</a></li>
-        <li class="active">{{ prezidium.fullname }}</li>
+    <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement"
+            itemscope
+            itemtype="http://schema.org/ListItem">
+            <a itemprop="item" href="{{ path('homepage') }}"><span itemprop="name">Главная</span></a><meta itemprop="position" content="1"></li>
+        <li itemprop="itemListElement"
+            itemscope
+            itemtype="http://schema.org/ListItem">
+            <a itemprop="item" href="{{ path('page',{'url' : 'association'}) }}"><span itemprop="name">Об ассоциации</span></a><meta itemprop="position" content="2"></li>
+
+        <li itemprop="itemListElement"
+            itemscope
+            itemtype="http://schema.org/ListItem">
+            <a itemprop="item" href="{{ path('prezidium') }}"><span itemprop="name">Президиум</span></a><meta itemprop="position" content="3"></li>
+        <li itemprop="itemListElement"
+            itemscope
+            itemtype="http://schema.org/ListItem"
+            class="active">{{ prezidium.fullname }}</li>
     </ol>
     <br />
     <div>
