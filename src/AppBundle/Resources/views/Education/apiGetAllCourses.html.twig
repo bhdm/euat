@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<document>
+    <code>{{ code }}</code>
+    <url>{{ url('api_get_all_courses') }}</url>
+    <errno>200</errno>
+    <comment></comment>
+    <varlist>
+        {% for c in courses %}
+            <var name=”label”>{{ c.id }}</var>
+        {% endof %}
+    </varlist>
+</document>

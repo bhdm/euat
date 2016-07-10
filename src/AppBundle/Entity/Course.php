@@ -452,6 +452,10 @@ class Course
     {
         $this->specialties = $specialties;
     }
+    
+    public function getSpecialtiesStr(){
+        return implode(",", $this->specialties);
+    }
 
     /**
      * @return Comment

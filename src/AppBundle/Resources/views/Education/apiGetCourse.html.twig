@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<document id="{{ course.id }}" type="modules">
+    <varlist>
+        <var name="site">
+            <string language="ru">
+                <![CDATA[ {{ url('course_info',{ 'id' : course.id }) }} ]]>
+            </string>
+        </var>
+        <var name="name">
+            <string language="ru">
+                <![CDATA[
+                {{ {{ course.title }} }}
+                ]]>
+            </string>
+        </var>
+        <var name="annotation">
+            <string language="ru">
+                <![CDATA[
+                {{ course.description }}
+                ]]>
+            </string>
+        </var>
+        <var name="opinion_to">
+            <![CDATA[ 0000-00-00 ]]>
+        </var>
+        <var name="copy">
+            <string language="ru">
+                <![CDATA[ Евразийская ассоциация терапевтов ]]>
+            </string>
+        </var>
+        <var name="audience">
+            <string language="ru">
+                <![CDATA[ {{ course.specialtiesStr }} ]]>
+            </string>
+        </var>
+        <var name="video">
+            <string language="ru">
+                <![CDATA[ НЕТ ]]>
+            </string>
+        </var>
+        <var name="sys_code">
+            <![CDATA[ {{ course.codes }} ]]>
+        </var>
+    </varlist>
+</document>

@@ -235,4 +235,33 @@ class EducationController extends Controller
         return $response;
     }
 
+
+    /**
+     * Route("/api/getallcourses", name="api_get_all_courses")
+     */
+    public function apiGetAllCoursesAction(){
+        $courses = $this->getDoctrine()->getRepository('AppBundle:Course')->findBy(['enabled'=> true]);
+        $string = $this->renderView('@App/Education/apiGetAllCourses.html.twig',['courses' => $courses, 'code' => '123456789']);
+        $xml = new \SimpleXMLElement($string);
+        echo $xml->asXML();
+        exit;
+    }
+
+    /**
+     * Route("/api/getcourse/{id}", name="api_get_course")
+     */
+    public function apiGetCourseAction($id){
+        $course = $this->getDoctrine()->getRepository('AppBundle:Course')->findOneBy(['enabled'=> true, 'id' => $id]);
+        $string = $this->renderView('@App/Education/apiGetCourse.html.twig',['course' => $course, 'code' => '123456789']);
+        $xml = new \SimpleXMLElement($string);
+        echo $xml->asXML();
+        exit;
+    }
+
+    /**
+     * Route("/api/gettoken")
+     */
+    public function getTokenAction(){
+        
+    }
 }
