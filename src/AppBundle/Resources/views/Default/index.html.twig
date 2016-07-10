@@ -5,6 +5,12 @@
     <script src="{{ asset('assets/vendor/moment/locale/ru.js') }}"></script>
     <script src="{{ asset('assets/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
 {% endblock %}
+
+{% block seo %}
+    <title>Евразийская Ассоциация Терапевтов и кардиологов - это общество, оргиназующее школы, съезды и конференции в целях обучения и повышения квалификации врачей - EUAT.ru</title>
+    <meta name="description" content="Запишитесь на портале ЕАТ на бесплатное обучение и повышение квалификации! Дистанционное образование и оффлайн съезды, конференции и школы для врачей"/>
+{% endblock %}
+
 {% block content %}
     <div class="col-md-4 hidden-sm hidden-xs" style="padding-left: 0">
         <img src="{{ asset('bundles/app/images/videobanner.png') }}" class="img-thumbnail" style="cursor: pointer" data-toggle="modal" data-target="#videobanner" />

@@ -1,5 +1,10 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
+{% block seo %}
+    <title>Карта сообществ и партнеров Евразийской Ассоциации Терапевтов - EUAT.ru</title>
+    <meta name="description" content="Географию партнеров организации ЕАТ можно посмотреть с помощью нашей интерактивной карты, советуем ознакомиться!"/>
+{% endblock %}
+
 {% block javascript %}
     {{ parent() }}
     <script src="{{ asset('bundles/app/js/jqvmap/data/jquery.vmap.sampledata.js') }}"></script>
