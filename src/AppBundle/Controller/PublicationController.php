@@ -31,7 +31,7 @@ class PublicationController extends Controller
             $publication = $this->getDoctrine()->getRepository('AppBundle:Publication')->findOneBy(['slug' => $url,'enabled' => true]);
         }
         if ($publication != null and $publication->getVideo()){
-            return $this->redirect($this->generateUrl('video',['url' => $publication->getSlug()]));
+            return $this->redirect($this->generateUrl('video',['url' => $publication->getSlug()]),301);
         }
         return ['publication' => $publication];
     }
