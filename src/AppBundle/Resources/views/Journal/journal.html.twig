@@ -7,6 +7,11 @@
     <script src="{{ asset('assets/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
 {% endblock %}
 
+ {% block seo %}
+     <title>{{ journal.title }} </title>
+     <meta name="description" content="{{ journal.metaDescription }}"/>
+     <meta name="keywords" content="{{ journal.metaKeyword }}"/>
+ {% endblock %}
 
 {% block content %}
     <div>

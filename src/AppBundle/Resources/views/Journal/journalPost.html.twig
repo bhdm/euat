@@ -9,6 +9,13 @@
     <meta property="og:description" content="{{ post.description | anons }}">
 {% endblock %}
 
+{% block seo %}
+    <title>{{ post.title }} </title>
+    <meta name="description" content="{{ post.metaDescription }}"/>
+    <meta name="keywords" content="{{ post.metaKeyword }}"/>
+{% endblock %}
+
+
 {% block javascript %}
     {{ parent() }}
     <script src="{{ asset('assets/vendor/moment/moment.js') }}"></script>
