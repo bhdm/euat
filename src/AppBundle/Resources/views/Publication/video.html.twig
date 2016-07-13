@@ -6,7 +6,7 @@
 {% endblock %}
 {% block social %}
     <meta property="og:type" content="article">
-    <meta property="og:title" content="{{ publication.title }}">
+    <meta property="og:title" content="{{ publication.metaTitle }}">
     {% if publication.preview.path is defined  %}
         <meta property="og:image" content="{{ publication.preview.path }}">
     {% endif %}
