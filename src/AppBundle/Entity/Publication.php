@@ -472,7 +472,7 @@ class Publication
      */
     public function getMetaTitle()
     {
-        return $this->metaTitle;
+        return ($this->metaTitle == null ? $this->title : $this->metaTitle);
     }
 
     /**
@@ -530,6 +530,7 @@ class Publication
     {
         $this->filter = $filter;
     }
-    
+
+
 }
 
