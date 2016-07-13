@@ -6,18 +6,30 @@
     <script src="{{ asset('assets/vendor/moment/locale/ru.js') }}"></script>
     <script src="{{ asset('assets/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
 {% endblock %}
+
 {% block seo %}
     <title>
         {% if type == null %}
-            События
+            События и мероприятия для терапевтов и кардиологов: школы, конференции и съезды - EUAT.ru
         {% elseif type == 'CONGRESS' %}
-            Конференции и Съезды
+            Конференции и съезды кардиологов и терапевтов 2016 - EUAT.ru
         {% elseif type == 'SCHOOL' %}
-            Школы
+            Школы терапевтов и кардиологов 2016 - повышение квалификации для врачей - EUAT.ru
         {% elseif type == 'PARTNER' %}
-            Партнерские события
+            События и мероприятия для врачей от парнеров Евразийской Ассоциации Терапевтов - EUAT.ru
         {% endif %}
     </title>
+
+        {% if type == null %}
+            <meta name="description" content="Ознакомьтесь с нашими  мероприятиями! Воспользуйтесь фильтром для поиска школы или съезда в Вашем городе!" />
+        {% elseif type == 'CONGRESS' %}
+            <meta name="description" content="Все съезды имеют международный статус. Во время конференций проходит конкурс на наиболее интересные доклады. По окончанию мероприятия каждому участнику вручается именной сертификат" />
+        {% elseif type == 'SCHOOL' %}
+            <meta name="description" content="Материалы лекций полностью соответствуют последним Национальным и Европейским рекомендациям, содержат подробные алгоритмы принятия диагностического решения, богато иллюстрированы, конкретны" />
+        {% elseif type == 'PARTNER' %}
+            <meta name="description" content="Ознакомьтесь с мероприятиями наших партнеров в сфере медицины и обучения врачей от наиболее авторитетных брендов в РФ и СНГ." />
+        {% endif %}
+
 {% endblock %}
 {% block content %}
     <div class="col-xs-4" style="padding-left: 0; max-width: 250px;">

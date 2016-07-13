@@ -1,7 +1,12 @@
 {% extends 'AppBundle::layout.html.twig' %}
 {% block seo %}
-    <title>{{ category.title }} </title>
-    <meta name="description" content=""/>
+    {% if category.title == 'Видео' %}
+        <title>Дистанционное образование - видео онлайн: лекции, выступления, конференции - EUAT.ru</title>
+        <meta name="description" content="Смотрите онлайн видео выступлений на конференциях и съездах Евразийской Ассоциации Терапевтов. После просмотра, рекомендуем записаться на оффлайн школу с получением сертификата"/>
+    {% else %}
+        <title>Интересные публикации и материалы для врачей - EUAT.ru</title>
+        <meta name="description" content="Материалы, новости, публикации и актуальные результаты исследований Вы найдете на нашем портале. Просим ознакомиться!"/>
+    {% endif %}
 {% endblock %}
 {% block content %}
     <ol class="breadcrumb">

@@ -1,5 +1,10 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
+{% block seo %}
+    <title>Каталог журналов Евразийской Ассоциации Терапевтов - EUAT.ru</title>
+    <meta name="description" content="В каталоге уже опубликованных журналов Вы можете ознакомиться с частью статей интересующих Вас тематик"/>
+{% endblock %}
+
 {% block javascript %}
     {{ parent() }}
     <script src="{{ asset('assets/vendor/moment/moment.js') }}"></script>
