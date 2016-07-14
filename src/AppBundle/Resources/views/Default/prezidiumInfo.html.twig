@@ -35,20 +35,17 @@
         <li itemprop="itemListElement"
             itemscope
             itemtype="http://schema.org/ListItem">
-            <a itemprop="item" href="{{ path('homepage') }}"><span itemprop="name">Главная</span></a><meta itemprop="position" content="1"></li>
+            <a itemprop="item" href="{{ path('homepage') }}"><span itemprop="name">Главная</span></a></li>
         <li itemprop="itemListElement"
             itemscope
             itemtype="http://schema.org/ListItem">
-            <a itemprop="item" href="{{ path('page',{'url' : 'association'}) }}"><span itemprop="name">Об ассоциации</span></a><meta itemprop="position" content="2"></li>
+            <a itemprop="item" href="{{ path('page',{'url' : 'association'}) }}"><span itemprop="name">Об ассоциации</span></a></li>
 
         <li itemprop="itemListElement"
             itemscope
             itemtype="http://schema.org/ListItem">
-            <a itemprop="item" href="{{ path('prezidium') }}"><span itemprop="name">Президиум</span></a><meta itemprop="position" content="3"></li>
-        <li itemprop="itemListElement"
-            itemscope
-            itemtype="http://schema.org/ListItem"
-            class="active">{{ prezidium.fullname }}</li>
+            <a itemprop="item" href="{{ path('prezidium') }}"><span itemprop="name">Президиум</span></a></li>
+        <li class="active">{{ prezidium.fullname }}</li>
     </ol>
     <br />
     <div>

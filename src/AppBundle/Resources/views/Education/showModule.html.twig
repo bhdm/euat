@@ -4,9 +4,14 @@
             {% set course = recordBook.course %}
 
             {# Хлебные крошки активного курса #}
-            <ol class="breadcrumb">
+            <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+                <li itemprop="itemListElement"
+                    itemscope
+                    itemtype="http://schema.org/ListItem">
+                    <a itemprop="item" href="{{ path('homepage') }}"><span itemprop="name">Главная</span></a></li>
+                
                 {% for number,m in course.modules %}
-                    <li class="{{ m == module ? 'active' : '' }}">
+                    <li class="{{ m == module ? 'active' : '' }}" >
                         <a href="{{ path('course_passing_step',{'recordBookId' : recordBook.id, 'moduleId': m.id  }) }}">{{ number+1 }}.
                         {% if m.type == 'TEST' %}
                             Тестирование

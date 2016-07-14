@@ -19,9 +19,16 @@
             {{ render(controller("AppBundle:Widget:calendar" )) }}
         </div>
         <div class="col-xs-8" style="padding-right: 0">
-            <ol class="breadcrumb">
-                <li><a href="{{ path('homepage') }}">Главная</a></li>
-                <li><a href="{{ path('journals') }}">Журналы</a></li>
+            <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+                <li itemprop="itemListElement"
+                    itemscope
+                    itemtype="http://schema.org/ListItem">
+                    <a itemprop="item" href="{{ path('homepage') }}"><span itemprop="name">Главная</span></a></li>
+
+                <li itemprop="itemListElement"
+                    itemscope
+                    itemtype="http://schema.org/ListItem">
+                    <a itemprop="item" href="{{ path('journals') }}"><span itemprop="name">Журналы</span></a></li>
                 <li class="active">{{ journal.title }}</li>
             </ol>
             <div class="col-xs-4">

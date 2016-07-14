@@ -37,17 +37,26 @@
     </div>
     <div class="col-xs-8" style="padding-right: 0">
         <ol class="breadcrumb">
-            <li><a href="{{ path('homepage') }}">Главная</a></li>
+            <li itemprop="itemListElement"
+                itemscope
+                itemtype="http://schema.org/ListItem">
+                <a itemprop="item" href="{{ path('homepage') }}"><span itemprop="name">Главная</span></a></li>
             {% if type == null %}
                 <li class="active">События</li>
             {% elseif type == 'CONGRESS' %}
-                <li><a href="{{ path('events') }}">События</a></li>
+                <li itemprop="itemListElement"
+                    itemscope
+                    itemtype="http://schema.org/ListItem"><a  itemprop="item" href="{{ path('events') }}"><span itemprop="name">События</span></a></li>
                 <li class="active">Конференции и съезды</li>
             {% elseif type == 'SCHOOL' %}
-                <li><a href="{{ path('events') }}">События</a></li>
+                <li itemprop="itemListElement"
+                    itemscope
+                    itemtype="http://schema.org/ListItem"><a itemprop="item"  href="{{ path('events') }}"><span itemprop="name">События</span></a></li>
                 <li class="active">Школы</li>
             {% elseif type == 'partner' %}
-                <li><a href="{{ path('events') }}">События</a></li>
+                <li itemprop="itemListElement"
+                    itemscope
+                    itemtype="http://schema.org/ListItem"><a  itemprop="item" href="{{ path('events') }}"><span itemprop="name">События</span></a></li>
                 <li class="active">Партнерские события</li>
             {% endif %}
         </ol>

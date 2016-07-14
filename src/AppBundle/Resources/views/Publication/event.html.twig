@@ -39,18 +39,25 @@
         {{ render(controller("AppBundle:Widget:calendar" )) }}
     </div>
     <div class="col-xs-12 col-md-8" style="padding-right: 0">
-        <ol class="breadcrumb">
-            <li><a href="{{ path('homepage') }}">Главная</a></li>
-            <li><a href="{{ path('events') }}">События</a></li>
-            <li>
+        <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement"
+                itemscope
+                itemtype="http://schema.org/ListItem">
+                <a itemprop="item" href="{{ path('homepage') }}"><span itemprop="name">Главная</span></a></li>
+            <li itemprop="itemListElement"
+                itemscope
+                itemtype="http://schema.org/ListItem"><a href="{{ path('events') }}"><span itemprop="name">События</span></a></li>
+            <li itemprop="itemListElement"
+                itemscope
+                itemtype="http://schema.org/ListItem">
                 {% if event.type == null %}
-                    <a href="{{ path('events',{'type' : null }) }}">События</a>
+                    <a  itemprop="item" href="{{ path('events',{'type' : null }) }}"><span itemprop="name">События</span></a>
                 {% elseif event.type == 'CONGRESS' %}
-                    <a href="{{ path('events',{'type' : 'conference-convention' }) }}">Конференции и съезды</a>
+                    <a itemprop="item"  href="{{ path('events',{'type' : 'conference-convention' }) }}"><span itemprop="name">Конференции и съезды</span></a>
                 {% elseif event.type == 'SCHOOL' %}
-                    <a href="{{ path('events',{'type' : 'school' }) }}">Школы</a>
+                    <a itemprop="item"  href="{{ path('events',{'type' : 'school' }) }}"><span itemprop="name">Школы</span></a>
                 {% elseif event.type == 'PARTNER' %}
-                    <a href="{{ path('events',{'type' : 'partner' }) }}">Партнерские события</a>
+                    <a itemprop="item"  href="{{ path('events',{'type' : 'partner' }) }}"><span itemprop="name">Партнерские события</span></a>
                 {% endif %}
             </li>
             <li class="active">{{ event.title }}</li>
