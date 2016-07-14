@@ -84,20 +84,20 @@
             {{ render(controller("AppBundle:Widget:calendar" )) }}
         </div>
         <div class="col-xs-12 col-md-8" style="padding-right: 0">
-            <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <ol class="breadcrumb">
                 <li itemprop="itemListElement"
                     itemscope
-                    itemtype="http://schema.org/ListItem">
-                    <a itemprop="item" href="{{ path('homepage') }}"><span itemprop="name">Главная</span></a></li>
+                    itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <a itemprop="url" href="{{ path('homepage') }}"><span itemprop="title">Главная</span></a></li>
 
                 <li itemprop="itemListElement"
                     itemscope
-                    itemtype="http://schema.org/ListItem">
-                    <a itemprop="item"  href="{{ path('journals') }}"><span itemprop="name">Журналы</span></a></li>
+                    itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <a itemprop="url"  href="{{ path('journals') }}"><span itemprop="title">Журналы</span></a></li>
                 <li itemprop="itemListElement"
                     itemscope
-                    itemtype="http://schema.org/ListItem"
-                ><a itemprop="item"  href="{{ path('journal',{'journalId' : post.journal.id }) }}"><span itemprop="name">{{ post.journal.title }}</span></a></li>
+                    itemtype="http://data-vocabulary.org/Breadcrumb"
+                ><a itemprop="url"  href="{{ path('journal',{'journalId' : post.journal.id }) }}"><span itemprop="title">{{ post.journal.title }}</span></a></li>
 
                 <li class="active">{{ post.title }}</li>
             </ol>

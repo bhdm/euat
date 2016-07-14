@@ -59,26 +59,26 @@
         {{ render(controller("AppBundle:Widget:calendar" )) }}
     </div>
     <div class="col-xs-12 col-md-8" style="padding-right: 0">
-        <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+        <ol class="breadcrumb">
             <li itemprop="itemListElement"
                 itemscope
-                itemtype="http://schema.org/ListItem">
-                <a itemprop="item" href="{{ path('homepage') }}"><span itemprop="name">Главная</span></a></li>
+                itemtype="http://data-vocabulary.org/Breadcrumb">
+                <a itemprop="url" href="{{ path('homepage') }}"><span itemprop="title">Главная</span></a></li>
 
             <li  itemprop="itemListElement"
                  itemscope
-                 itemtype="http://schema.org/ListItem">
-                <a itemprop="item" href="{{ path('page',{'url' : 'education'}) }}"><span itemprop="name">Образование</span></a></li>
+                 itemtype="http://data-vocabulary.org/Breadcrumb">
+                <a itemprop="url" href="{{ path('page',{'url' : 'education'}) }}"><span itemprop="title">Образование</span></a></li>
 
             <li  itemprop="itemListElement"
                  itemscope
-                 itemtype="http://schema.org/ListItem">
-                <a itemprop="item"  href="{{ path('publications_list') }}"><span itemprop="name">{{ publication.category }}</span></a></li>
+                 itemtype="http://data-vocabulary.org/Breadcrumb">
+                <a itemprop="url"  href="{{ path('publications_list') }}"><span itemprop="title">{{ publication.category }}</span></a></li>
 
             <li  class="active">{{ publication.title }}</li>
         </ol>
         <div>
-            <h1 class="blue-text" itemprop="name">{{ publication.title }}
+            <h1 class="blue-text" itemprop="title">{{ publication.title }}
                 {% if is_granted('ROLE_ADMIN') %} <a href="{{ path('admin_publication_edit',{'id' : publication.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>{% endif %}
             </h1>
             {% if publication.preview.path is defined  %}

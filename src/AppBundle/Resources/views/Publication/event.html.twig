@@ -39,25 +39,25 @@
         {{ render(controller("AppBundle:Widget:calendar" )) }}
     </div>
     <div class="col-xs-12 col-md-8" style="padding-right: 0">
-        <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+        <ol class="breadcrumb">
             <li itemprop="itemListElement"
                 itemscope
-                itemtype="http://schema.org/ListItem">
-                <a itemprop="item" href="{{ path('homepage') }}"><span itemprop="name">Главная</span></a></li>
+                itemtype="http://data-vocabulary.org/Breadcrumb">
+                <a itemprop="url" href="{{ path('homepage') }}"><span itemprop="title">Главная</span></a></li>
             <li itemprop="itemListElement"
                 itemscope
-                itemtype="http://schema.org/ListItem"><a href="{{ path('events') }}"><span itemprop="name">События</span></a></li>
+                itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ path('events') }}"><span itemprop="title">События</span></a></li>
             <li itemprop="itemListElement"
                 itemscope
-                itemtype="http://schema.org/ListItem">
+                itemtype="http://data-vocabulary.org/Breadcrumb">
                 {% if event.type == null %}
-                    <a  itemprop="item" href="{{ path('events',{'type' : null }) }}"><span itemprop="name">События</span></a>
+                    <a  itemprop="url" href="{{ path('events',{'type' : null }) }}"><span itemprop="title">События</span></a>
                 {% elseif event.type == 'CONGRESS' %}
-                    <a itemprop="item"  href="{{ path('events',{'type' : 'conference-convention' }) }}"><span itemprop="name">Конференции и съезды</span></a>
+                    <a itemprop="url"  href="{{ path('events',{'type' : 'conference-convention' }) }}"><span itemprop="title">Конференции и съезды</span></a>
                 {% elseif event.type == 'SCHOOL' %}
-                    <a itemprop="item"  href="{{ path('events',{'type' : 'school' }) }}"><span itemprop="name">Школы</span></a>
+                    <a itemprop="url"  href="{{ path('events',{'type' : 'school' }) }}"><span itemprop="title">Школы</span></a>
                 {% elseif event.type == 'PARTNER' %}
-                    <a itemprop="item"  href="{{ path('events',{'type' : 'partner' }) }}"><span itemprop="name">Партнерские события</span></a>
+                    <a itemprop="url"  href="{{ path('events',{'type' : 'partner' }) }}"><span itemprop="title">Партнерские события</span></a>
                 {% endif %}
             </li>
             <li class="active">{{ event.title }}</li>

@@ -15,16 +15,16 @@
         </ul>
     </div>
     <div class="col-xs-9">
-        <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+        <ol class="breadcrumb">
             <li itemprop="itemListElement"
                 itemscope
-                itemtype="http://schema.org/ListItem">
-                <a itemprop="item" href="{{ path('homepage') }}"><span itemprop="name">Главная</span></a></li>
+                itemtype="http://data-vocabulary.org/Breadcrumb">
+                <a itemprop="url" href="{{ path('homepage') }}"><span itemprop="title">Главная</span></a></li>
 
             <li itemprop="itemListElement"
                 itemscope
-                itemtype="http://schema.org/ListItem">
-                <a itemprop="item"  href="{{ path('page',{'url' : 'education'}) }}"><span itemprop="name">Образование</span></a></li>
+                itemtype="http://data-vocabulary.org/Breadcrumb">
+                <a itemprop="url"  href="{{ path('page',{'url' : 'education'}) }}"><span itemprop="title">Образование</span></a></li>
             <li class="active">Калькулятор EGFR</li>
         </ol>
         <br />

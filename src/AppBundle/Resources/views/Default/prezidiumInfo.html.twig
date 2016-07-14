@@ -31,20 +31,20 @@
 {% endblock %}
 
 {% block content %}
-    <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+    <ol class="breadcrumb">
         <li itemprop="itemListElement"
             itemscope
-            itemtype="http://schema.org/ListItem">
-            <a itemprop="item" href="{{ path('homepage') }}"><span itemprop="name">Главная</span></a></li>
+            itemtype="http://data-vocabulary.org/Breadcrumb">
+            <a itemprop="url" href="{{ path('homepage') }}"><span itemprop="title">Главная</span></a></li>
         <li itemprop="itemListElement"
             itemscope
-            itemtype="http://schema.org/ListItem">
-            <a itemprop="item" href="{{ path('page',{'url' : 'association'}) }}"><span itemprop="name">Об ассоциации</span></a></li>
+            itemtype="http://data-vocabulary.org/Breadcrumb">
+            <a itemprop="url" href="{{ path('page',{'url' : 'association'}) }}"><span itemprop="title">Об ассоциации</span></a></li>
 
         <li itemprop="itemListElement"
             itemscope
-            itemtype="http://schema.org/ListItem">
-            <a itemprop="item" href="{{ path('prezidium') }}"><span itemprop="name">Президиум</span></a></li>
+            itemtype="http://data-vocabulary.org/Breadcrumb">
+            <a itemprop="url" href="{{ path('prezidium') }}"><span itemprop="title">Президиум</span></a></li>
         <li class="active">{{ prezidium.fullname }}</li>
     </ol>
     <br />

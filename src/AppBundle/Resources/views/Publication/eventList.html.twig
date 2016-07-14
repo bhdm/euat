@@ -39,24 +39,24 @@
         <ol class="breadcrumb">
             <li itemprop="itemListElement"
                 itemscope
-                itemtype="http://schema.org/ListItem">
-                <a itemprop="item" href="{{ path('homepage') }}"><span itemprop="name">Главная</span></a></li>
+                itemtype="http://data-vocabulary.org/Breadcrumb">
+                <a itemprop="url" href="{{ path('homepage') }}"><span itemprop="title">Главная</span></a></li>
             {% if type == null %}
                 <li class="active">События</li>
             {% elseif type == 'CONGRESS' %}
                 <li itemprop="itemListElement"
                     itemscope
-                    itemtype="http://schema.org/ListItem"><a  itemprop="item" href="{{ path('events') }}"><span itemprop="name">События</span></a></li>
+                    itemtype="http://data-vocabulary.org/Breadcrumb"><a  itemprop="url" href="{{ path('events') }}"><span itemprop="title">События</span></a></li>
                 <li class="active">Конференции и съезды</li>
             {% elseif type == 'SCHOOL' %}
                 <li itemprop="itemListElement"
                     itemscope
-                    itemtype="http://schema.org/ListItem"><a itemprop="item"  href="{{ path('events') }}"><span itemprop="name">События</span></a></li>
+                    itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url"  href="{{ path('events') }}"><span itemprop="title">События</span></a></li>
                 <li class="active">Школы</li>
             {% elseif type == 'partner' %}
                 <li itemprop="itemListElement"
                     itemscope
-                    itemtype="http://schema.org/ListItem"><a  itemprop="item" href="{{ path('events') }}"><span itemprop="name">События</span></a></li>
+                    itemtype="http://data-vocabulary.org/Breadcrumb"><a  itemprop="url" href="{{ path('events') }}"><span itemprop="title">События</span></a></li>
                 <li class="active">Партнерские события</li>
             {% endif %}
         </ol>

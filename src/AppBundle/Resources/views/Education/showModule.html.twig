@@ -4,11 +4,11 @@
             {% set course = recordBook.course %}
 
             {# Хлебные крошки активного курса #}
-            <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <ol class="breadcrumb">
                 <li itemprop="itemListElement"
                     itemscope
-                    itemtype="http://schema.org/ListItem">
-                    <a itemprop="item" href="{{ path('homepage') }}"><span itemprop="name">Главная</span></a></li>
+                    itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <a itemprop="url" href="{{ path('homepage') }}"><span itemprop="title">Главная</span></a></li>
                 
                 {% for number,m in course.modules %}
                     <li class="{{ m == module ? 'active' : '' }}" >

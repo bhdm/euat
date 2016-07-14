@@ -8,13 +8,13 @@
     <ol class="breadcrumb">
         <li itemprop="itemListElement"
             itemscope
-            itemtype="http://schema.org/ListItem">
-            <a itemprop="item" href="{{ path('homepage') }}"><span itemprop="name">Главная</span></a></li>
+            itemtype="http://data-vocabulary.org/Breadcrumb">
+            <a itemprop="url" href="{{ path('homepage') }}"><span itemprop="title">Главная</span></a></li>
 
         {% if page.parent != null %}
             <li itemprop="itemListElement"
                 itemscope
-                itemtype="http://schema.org/ListItem"><a itemprop="name" href="{{ path('page',{'url' : page.parent.slug }) }}"><span itemprop="name">{{ page.parent.title }}</span></a></li>
+                itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="title" href="{{ path('page',{'url' : page.parent.slug }) }}"><span itemprop="title">{{ page.parent.title }}</span></a></li>
         {% endif %}
         <li class="active">{{ page.title }}</li>
     </ol>
