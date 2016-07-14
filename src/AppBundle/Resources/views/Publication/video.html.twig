@@ -60,17 +60,17 @@
     </div>
     <div class="col-xs-12 col-md-8" style="padding-right: 0">
         <ol class="breadcrumb">
-            <li itemprop="itemListElement"
+            <li
                 itemscope
                 itemtype="http://data-vocabulary.org/Breadcrumb">
                 <a itemprop="url" href="{{ path('homepage') }}"><span itemprop="title">Главная</span></a></li>
 
-            <li  itemprop="itemListElement"
+            <li
                  itemscope
                  itemtype="http://data-vocabulary.org/Breadcrumb">
             <a itemprop="url" href="{{ path('page',{'url' : 'education'}) }}"><span itemprop="title">Образование</span></a></li>
 
-            <li  itemprop="itemListElement"
+            <li
                  itemscope
                  itemtype="http://data-vocabulary.org/Breadcrumb">
             <a itemprop="url"  href="{{ path('publications_list') }}"><span itemprop="title">{{ publication.category }}</span></a></li>

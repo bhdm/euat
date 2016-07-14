@@ -10,12 +10,12 @@
 {% endblock %}
 {% block content %}
     <ol class="breadcrumb">
-        <li itemprop="itemListElement"
+        <li
             itemscope
             itemtype="http://data-vocabulary.org/Breadcrumb">
             <a itemprop="url" href="{{ path('homepage') }}"><span itemprop="title">Главная</span></a></li>
         {% if category.id == 2 %}
-            <li itemprop="itemListElement"
+            <li
                 itemscope
                 itemtype="http://data-vocabulary.org/Breadcrumb">
                 <a itemprop="url"  href="{{ path('page',{'url' : 'education'}) }}"><span itemprop="title">Образование</span></a></li>

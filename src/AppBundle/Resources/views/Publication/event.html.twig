@@ -40,14 +40,14 @@
     </div>
     <div class="col-xs-12 col-md-8" style="padding-right: 0">
         <ol class="breadcrumb">
-            <li itemprop="itemListElement"
+            <li
                 itemscope
                 itemtype="http://data-vocabulary.org/Breadcrumb">
                 <a itemprop="url" href="{{ path('homepage') }}"><span itemprop="title">Главная</span></a></li>
-            <li itemprop="itemListElement"
+            <li
                 itemscope
                 itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ path('events') }}"><span itemprop="title">События</span></a></li>
-            <li itemprop="itemListElement"
+            <li
                 itemscope
                 itemtype="http://data-vocabulary.org/Breadcrumb">
                 {% if event.type == null %}

@@ -6,13 +6,13 @@
 {% endblock %}
 {% block content %}
     <ol class="breadcrumb">
-        <li itemprop="itemListElement"
+        <li
             itemscope
             itemtype="http://data-vocabulary.org/Breadcrumb">
             <a itemprop="url" href="{{ path('homepage') }}"><span itemprop="title">Главная</span></a></li>
 
         {% if page.parent != null %}
-            <li itemprop="itemListElement"
+            <li
                 itemscope
                 itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="title" href="{{ path('page',{'url' : page.parent.slug }) }}"><span itemprop="title">{{ page.parent.title }}</span></a></li>
         {% endif %}
