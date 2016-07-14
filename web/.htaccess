@@ -34,6 +34,16 @@ RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
     RewriteRule "^(.*)\.js" "$1\.js\.gz" [QSA]
 
 
+    Redirect 301 /events/CONGRESS http://euat.ru/events/conference-convention
+    Redirect 301 /events/SCHOOL http://euat.ru/events/school
+
+    RewriteCond %{REQUEST_URI} !\?
+    RewriteCond %{REQUEST_URI} !\&
+    RewriteCond %{REQUEST_URI} !\=
+    RewriteCond %{REQUEST_URI} !\.
+    RewriteCond %{REQUEST_URI} ![^\/]$
+    RewriteRule ^(.*)\/$ /$1 [R=301,L
+
     # Serve correct content types, and prevent mod_deflate double gzip.
     RewriteRule "\.css\.gz$" "-" [T=text/css,E=no-gzip:1]
     RewriteRule "\.js\.gz$" "-" [T=text/javascript,E=no-gzip:1]
