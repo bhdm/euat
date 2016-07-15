@@ -21,7 +21,7 @@ class EventController extends Controller{
         const ENTITY_NAME = 'Event';
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/", name="admin_event_list")
+     * @Route("", name="admin_event_list")
      * @Template()
      */
     public function listAction(Request $request){

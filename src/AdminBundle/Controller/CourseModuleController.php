@@ -19,7 +19,7 @@ class CourseModuleController extends Controller{
         const ENTITY_NAME = 'CourseModule';
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/", name="admin_course_module_list")
+     * @Route("", name="admin_course_module_list")
      * @Template()
      */
     public function listAction(Request $request, $courseId){

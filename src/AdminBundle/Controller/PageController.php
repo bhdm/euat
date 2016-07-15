@@ -19,7 +19,7 @@ class PageController extends Controller{
     const ENTITY_NAME = 'Page';
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/", name="admin_page_list")
+     * @Route("", name="admin_page_list")
      * @Template()
      */
     public function listAction(Request $request){

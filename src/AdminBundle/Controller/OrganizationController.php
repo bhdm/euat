@@ -19,7 +19,7 @@ class OrganizationController extends Controller{
         const ENTITY_NAME = 'Organization';
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/", name="admin_organization_list")
+     * @Route("", name="admin_organization_list")
      * @Template()
      */
     public function listAction(Request $request){

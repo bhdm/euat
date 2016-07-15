@@ -19,7 +19,7 @@ class PartnerController extends Controller{
         const ENTITY_NAME = 'Partner';
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/", name="admin_partner_list")
+     * @Route("", name="admin_partner_list")
      * @Template()
      */
     public function listAction(Request $request){

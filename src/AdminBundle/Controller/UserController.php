@@ -22,7 +22,7 @@ class UserController extends Controller{
         const ENTITY_NAME = 'User';
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/", name="admin_user_list")
+     * @Route("", name="admin_user_list")
      * @Template()
      */
     public function listAction(Request $request){

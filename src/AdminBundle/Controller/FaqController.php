@@ -19,7 +19,7 @@ class FaqController extends Controller{
         const ENTITY_NAME = 'Faq';
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/", name="admin_faq_list")
+     * @Route("", name="admin_faq_list")
      * @Template()
      */
     public function listAction(){

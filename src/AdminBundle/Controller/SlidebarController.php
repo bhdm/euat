@@ -19,7 +19,7 @@ class SlidebarController extends Controller{
         const ENTITY_NAME = 'Slidebar';
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/", name="admin_slidebar_list")
+     * @Route("", name="admin_slidebar_list")
      * @Template()
      */
     public function listAction(Request $request){

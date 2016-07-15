@@ -21,7 +21,7 @@ class InterviewController extends Controller{
         const ENTITY_NAME = 'Interview';
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/", name="admin_interview_list")
+     * @Route("", name="admin_interview_list")
      * @Template()
      */
     public function listAction(Request $request){

@@ -19,7 +19,7 @@ class BannerController extends Controller{
         const ENTITY_NAME = 'Banner';
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/", name="admin_banner_list")
+     * @Route("", name="admin_banner_list")
      * @Template()
      */
     public function listAction(Request $request){

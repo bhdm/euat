@@ -19,7 +19,7 @@ class TestQuestionController extends Controller{
     const ENTITY_NAME = 'TestQuestion';
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/", name="admin_testquestion_list")
+     * @Route("", name="admin_testquestion_list")
      * @Template()
      */
     public function listAction(){

@@ -19,7 +19,7 @@ class SpecialtyController extends Controller{
         const ENTITY_NAME = 'Specialty';
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/", name="admin_specialty_list")
+     * @Route("", name="admin_specialty_list")
      * @Template()
      */
     public function listAction(Request $request){

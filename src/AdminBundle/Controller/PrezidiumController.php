@@ -19,7 +19,7 @@ class PrezidiumController extends Controller{
         const ENTITY_NAME = 'Prezidium';
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/", name="admin_prezidium_list")
+     * @Route("", name="admin_prezidium_list")
      * @Template()
      */
     public function listAction(Request $request){

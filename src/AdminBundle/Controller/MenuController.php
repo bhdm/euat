@@ -20,7 +20,7 @@ class MenuController extends Controller{
         const ENTITY_NAME = 'Menu';
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/", name="admin_menu_list")
+     * @Route("", name="admin_menu_list")
      * @Template()
      */
     public function listAction(Request $request){

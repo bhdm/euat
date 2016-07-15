@@ -19,7 +19,7 @@ class ModalController extends Controller{
         const ENTITY_NAME = 'Modal';
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/", name="admin_modal_list")
+     * @Route("", name="admin_modal_list")
      * @Template()
      */
     public function listAction(Request $request){

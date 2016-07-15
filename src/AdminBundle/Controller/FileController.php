@@ -19,7 +19,7 @@ class FileController extends Controller{
         const ENTITY_NAME = 'File';
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/", name="admin_file_list")
+     * @Route("", name="admin_file_list")
      * @Template()
      */
     public function listAction(Request $request){

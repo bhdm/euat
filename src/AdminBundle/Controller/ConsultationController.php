@@ -19,7 +19,7 @@ class ConsultationController extends Controller{
         const ENTITY_NAME = 'Consultation';
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/", name="admin_consultation_list")
+     * @Route("", name="admin_consultation_list")
      * @Template()
      */
     public function listAction(){

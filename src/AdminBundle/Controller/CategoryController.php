@@ -19,7 +19,7 @@ class CategoryController extends Controller{
     const ENTITY_NAME = 'Category';
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/", name="admin_category_list")
+     * @Route("", name="admin_category_list")
      * @Template()
      */
     public function listAction(Request $request){

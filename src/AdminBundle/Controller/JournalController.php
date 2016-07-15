@@ -19,7 +19,7 @@ class JournalController extends Controller{
         const ENTITY_NAME = 'Journal';
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/", name="admin_journal_list")
+     * @Route("", name="admin_journal_list")
      * @Template()
      */
     public function listAction(Request $request){
