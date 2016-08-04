@@ -51,6 +51,8 @@ nav .navbar-nav li:nth-child(6) {
     border: 0;
   }
   nav .navbar-nav li a {
+    color: #337AB7;
+    background: #FFFFFF;
     font-weight: bold;
     text-align: left;
   }
