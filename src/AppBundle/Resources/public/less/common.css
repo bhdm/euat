@@ -541,6 +541,7 @@ p em {
     background: #FFFFFF;
   }
   nav .navbar-nav li .submunu {
+    background: #FFF;
     position: relative;
     display: block;
     visibility: visible;
