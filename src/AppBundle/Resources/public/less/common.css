@@ -565,6 +565,8 @@ p em {
     color: #337AB7;
     background: #FFFFFF;
   }
+}
+@media screen and (max-width: 991px) {
   .breadcrumb {
     display: none;
   }
