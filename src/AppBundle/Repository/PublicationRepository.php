@@ -86,7 +86,7 @@ class PublicationRepository extends \Doctrine\ORM\EntityRepository
 
         $qb = $this->createQueryBuilder('p');
         $qb->select('p');
-        $qb->where("p.created > ':created' ")
+        $qb->where("p.created > :created ")
             ->andWhere("p.id != :id");
 
         $qb->orderBy('p.created', 'ASC');
@@ -110,7 +110,7 @@ class PublicationRepository extends \Doctrine\ORM\EntityRepository
 
         $qb = $this->createQueryBuilder('p');
         $qb->select('p');
-        $qb->where("p.created < ':created' ")
+        $qb->where("p.created < :created ")
             ->andWhere("p.id != :id");
 
         $qb->orderBy('p.created', 'DESC');
