@@ -139,6 +139,17 @@
                     <i style="color: #777;"><a style="color: #777" href="{{ publication.source }}" target="_blank">Источник</a></i>
                 </span>
             {% endif %}
+            <br /><br />
+
+            <div class="row">
+            {% if previousPublication is defined and previousPublication != null %}
+                <a href="{{ path('publications', {'url' : previousPublication.slug } ) }}">{{ previousPublication.title }}</a> <br />
+            {% endif %}
+            {% if nextPublication is defined and nextPublication != null %}
+                <a href="{{ path('publications', {'url' : nextPublication.slug } ) }}">{{ nextPublication.title }}</a> <br />
+            {% endif %}
+            </div>
+
             <br />
             <div class="row row-params">
                 <div class="col-xs-5" style="padding-top: 7px;">

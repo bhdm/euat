@@ -82,4 +82,51 @@ class PublicationRepository extends \Doctrine\ORM\EntityRepository
         return $result;
     }
 
+    public function findNext($publication){
+
+        $qb = $this->createQueryBuilder('p');
+        $qb->select('p');
+        $qb->where("p.created > ':created' ")
+            ->andWhere("p.id != :id");
+
+        $qb->orderBy('p.created', 'ASC');
+        $qb->setMaxResults(1);
+        $qb->setParameter('created', $publication->getCreated()->format('Y-m-d H:i:s'));
+        $qb->setParameter('id', $publication->getId());
+        $result = $qb->getQuery()->getOneOrNullResult();
+
+        if ($result == null){
+            $qb = $this->createQueryBuilder('p');
+            $qb->select('p');
+            $qb->orderBy('p.created', 'ASC');
+            $qb->setMaxResults(1);
+            $result = $qb->getQuery()->getOneOrNullResult();
+        }
+
+        return $result;
+    }
+
+    public function findPrevious($publication){
+
+        $qb = $this->createQueryBuilder('p');
+        $qb->select('p');
+        $qb->where("p.created < ':created' ")
+            ->andWhere("p.id != :id");
+
+        $qb->orderBy('p.created', 'DESC');
+        $qb->setMaxResults(1);
+        $qb->setParameter('created', $publication->getCreated()->format('Y-m-d H:i:s'));
+        $qb->setParameter('id', $publication->getId());
+        $result = $qb->getQuery()->getOneOrNullResult();
+
+        if ($result == null){
+            $qb = $this->createQueryBuilder('p');
+            $qb->select('p');
+            $qb->orderBy('p.created', 'DESC');
+            $qb->setMaxResults(1);
+            $result = $qb->getQuery()->getOneOrNullResult();
+        }
+
+        return $result;
+    }
 }

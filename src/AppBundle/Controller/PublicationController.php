@@ -33,7 +33,15 @@ class PublicationController extends Controller
         if ($publication != null and $publication->getVideo()){
             return $this->redirect($this->generateUrl('video',['url' => $publication->getSlug()]),301);
         }
-        return ['publication' => $publication];
+
+        $nextPublication = $publication = $this->getDoctrine()->getRepository('AppBundle:Publication')->findNext($publication);
+        $previousPublication = $publication = $this->getDoctrine()->getRepository('AppBundle:Publication')->findPrevious($publication);
+
+        return [
+            'publication' => $publication,
+            'nextPublication' => $nextPublication,
+            'previousPublication' => $previousPublication
+        ];
     }
 
     /**
@@ -53,7 +61,16 @@ class PublicationController extends Controller
         if ($publication != null and  !$publication->getVideo()){
             return $this->redirect($this->generateUrl('publications',['url' => $publication->getSlug()]));
         }
-        return ['publication' => $publication];
+
+        $nextPublication = $publication = $this->getDoctrine()->getRepository('AppBundle:Publication')->findNext($publication);
+        $previousPublication = $publication = $this->getDoctrine()->getRepository('AppBundle:Publication')->findPrevious($publication);
+
+        return [
+            'publication' => $publication,
+            'nextPublication' => $nextPublication,
+            'previousPublication' => $previousPublication
+        ];
+
     }
 
     /**
@@ -85,7 +102,7 @@ class PublicationController extends Controller
 
 
     /**
-     * @Route("events/{type}/{url}/{number}", name="new_event", options={"expose"=true}, defaults={"number" = null})
+     * @Route("/events/{type}/{url}/{number}", name="new_event", options={"expose"=true}, defaults={"number" = null})
      * @Template("AppBundle:Publication:event.html.twig")
      */
     public function eventAction(Request $request, $url, $number)

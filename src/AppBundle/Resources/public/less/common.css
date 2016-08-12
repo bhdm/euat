@@ -565,4 +565,7 @@ p em {
     color: #337AB7;
     background: #FFFFFF;
   }
+  .breadcrumb {
+    display: none;
+  }
 }
