@@ -241,8 +241,16 @@ class PublicationController extends Controller
         $end = $request->query->get('end');
         $text = $request->query->get('searchtext');
         $events = $this->getDoctrine()->getRepository('AppBundle:Event')->filter($type,$start,$end,$text);
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $events,
+            $request->query->get('page', 1),
+            15
+        );
+
         return [
-            'events' => $events,
+            'events' => $pagination,
             'type' => $type,
             'start' => $start,
             'end' => $end,
