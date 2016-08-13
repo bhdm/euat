@@ -567,6 +567,10 @@ p em {
   }
 }
 @media screen and (max-width: 991px) {
+  .navbar {
+    max-height: 0;
+    margin-bottom: 0;
+  }
   .breadcrumb {
     display: none;
   }
