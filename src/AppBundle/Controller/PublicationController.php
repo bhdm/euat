@@ -259,14 +259,21 @@ class PublicationController extends Controller
     }
 
     /**
-     * @Route("publications", name="publications_list")
+     * @Route("/publications", name="publications_list")
      * @Template("AppBundle:Publication:category.html.twig")
      */
-    public function publicationsAction(){
+    public function publicationsAction(Request $request){
         $category = $this->getDoctrine()->getRepository('AppBundle:Category')->findOneBySlug('new');
         $publications = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['enabled' => true, 'category' => $category ],['created' => 'DESC']);
 
-        return ['category' => $category,'publications' => $publications];
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $publications,
+            $request->query->get('page', 1),
+            15
+        );
+
+        return ['category' => $category,'publications' => $pagination];
     }
 
     /**
