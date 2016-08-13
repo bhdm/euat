@@ -111,6 +111,6 @@ knp_paginator:
     default_options:
         page_name: page                # page query parameter name
     template:
-        pagination: Appbundle::pagination.html.twig
+        pagination: AppBundle::pagination.html.twig
 #        pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig     # sliding pagination controls template
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
