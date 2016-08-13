@@ -282,15 +282,20 @@ class PublicationController extends Controller
      * @Route("education/{categoryUrl}", requirements={"categoryUrl" : "video"})
      * @Template("AppBundle:Publication:category.html.twig")
      */
-    public function categotyAction($categoryUrl){
+    public function categotyAction(Request $request, $categoryUrl){
         if ($categoryUrl === 'new'){
             return $this->redirectToRoute('publications_list', [], 301);
         }
 
         $category = $this->getDoctrine()->getRepository('AppBundle:Category')->findOneBySlug($categoryUrl);
         $publications = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['enabled' => true, 'category' => $category ],['created' => 'DESC']);
-
-        return ['category' => $category,'publications' => $publications];
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $publications,
+            $request->query->get('page', 1),
+            15
+        );
+        return ['category' => $category,'publications' => $pagination];
     }
 
 
