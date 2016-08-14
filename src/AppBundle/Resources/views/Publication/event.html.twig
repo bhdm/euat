@@ -172,7 +172,7 @@
             <br />
         {% endif %}
         <div class="row row-params">
-            <div class="col-xs-5" style="padding-top: 7px;">
+            <div class="col-xs-9 col-md-3" style="padding-top: 7px;">
                 {#<span style="font-size: 12px">Расказать друзьям&nbsp;&nbsp;</span>#}
                 <script type="text/javascript" src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js" charset="utf-8"></script>
                 <script type="text/javascript" src="//yastatic.net/share2/share.js" charset="utf-8"></script>
@@ -181,7 +181,7 @@
                      data-description="{{ event.anons is defined ? event.anons : ''}}"
                      data-image="{{ event.preview.path is defined ? event.preview.path : '' }}"></div>
             </div>
-            <div class="col-xs-4">
+            <div class="col-md-4 hidden-sm">
                 {% if event.specialties | length > 0 %}
                     <b>Специальности:</b>
                     {% for s in event.specialties  %}
@@ -189,9 +189,9 @@
                     {% endfor %}
                 {% endif %}
             </div>
-            <div class="col-xs-3 text-right">
+            <div class="col-xs-3 col-md-3 text-right">
                 <div style="padding-top: 10px; padding-bottom: 6px">
-                    <span class="glyphicon glyphicon-calendar"></span> {{ event.created | date('d.m.Y') }}
+                    <span class="glyphicon glyphicon-calendar hidden-sm"></span> {{ event.created | date('d.m.Y') }}
                 </div>
             </div>
         </div>
