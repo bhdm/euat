@@ -3,6 +3,8 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8" />
+    <link rel="canonical" href="http://euat.ru{{ app.request.pathInfo }}" />
+
     {% block seo %}{% endblock %}
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('bundles/app/images/fav.ico') }}">
     {% block social %}{% endblock %}
@@ -52,6 +54,7 @@
 </head>
 <body itemscope itemtype="http://schema.org/Article">
 <div class="body">
+    {{ dump( app.request ) }}
     <div class="container-fluid">
         <header>
             <div class="row">
