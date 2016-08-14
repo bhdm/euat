@@ -64,15 +64,17 @@ RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
+    RewriteCond %{QUERY_STRING} ^page=1$ [NC]
+    RewriteRule ^(.*)$ /$1? [R=301,L]
+
     Redirect 301 /events/CONGRESS http://euat.ru/events/conference-convention
     Redirect 301 /events/SCHOOL http://euat.ru/events/school
 
-    Redirect 301 /events?page=1 http://euat.ru/events
-    Redirect 301 /events/school?page=1 http://euat.ru/events/school
-    Redirect 301 /education/video?page=1 http://euat.ru/education/video
+    #Redirect 301 /events?page=1 http://euat.ru/events
+    #Redirect 301 /events/school?page=1 http://euat.ru/events/school
+    #Redirect 301 /education/video?page=1 http://euat.ru/education/video
 
-    RewriteCond %{QUERY_STRING} page=1
-    RewriteRule ^(.*)$  [R=301,L]
+
 
     RewriteCond %{REQUEST_URI} !\?
     RewriteCond %{REQUEST_URI} !\&
