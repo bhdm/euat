@@ -577,4 +577,12 @@ p em {
   .breadcrumb {
     display: none;
   }
+  .tablerow {
+    display: block;
+  }
+  .tablecell {
+    display: inline-block !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
 }

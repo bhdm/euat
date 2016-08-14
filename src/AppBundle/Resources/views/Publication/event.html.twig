@@ -130,9 +130,9 @@
 
             {% if event.sponsors | length > 0 %}
                 <h3 class="title">Спонсоры:</h3>
-                <div style="display: table-row">
+                <div style="display: table-row" class="tablerow">
                     {% for p in event.sponsors %}
-                        <div class="thumbnail vcenter" style="display: inline-block; height: 70px;">
+                        <div class="thumbnail vcenter tablecell" style="display: inline-block; height: 70px;">
                             <img src="{{ p.image.path }}" style="max-height: 70px; max-width: 120px;" title="{{ p.title }}">
                         </div>
                         <div class="vcenter">&nbsp;</div>
