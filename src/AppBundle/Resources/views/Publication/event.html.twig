@@ -143,9 +143,9 @@
             {% endif %}
             {% if event.partners | length > 0 %}
                 <h3 class="title">Партнеры события:</h3>
-                <div style="display: table-row">
+                <div class="tablerow">
                     {% for p in event.partners %}
-                        <div class="thumbnail vcenter" style="display: inline-block; height: 70px;">
+                        <div class="thumbnail vcenter tablecell" style="display: inline-block; height: 70px;">
                             <img src="{{ p.image.path }}" style="max-height: 70px; max-width: 120px;" title="{{ p.title }}" alt="{{ p.title }}">
                         </div>
                         <div class="vcenter">&nbsp;</div>
