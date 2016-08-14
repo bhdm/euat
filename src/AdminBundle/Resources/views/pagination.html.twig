@@ -32,7 +32,7 @@
 
             {% if startPage > 1 %}
                 <li>
-                    <a href="{{ path(route, query|merge({(pageParameterName): 1})) }}">1</a>
+                    <a href="{{ path(route, query) }}">1</a>
                 </li>
                 {% if startPage == 3 %}
                     <li>
