@@ -22,7 +22,11 @@
 
             {% if previous is defined %}
                 <li>
-                    <a href="{{ path(route, query|merge({(pageParameterName): previous})) }}">&laquo;&nbsp;{{ 'Назад'|trans }}</a>
+                    {% if current == 2 %}
+                        <a href="{{ path(route, query) }}">&laquo;&nbsp;{{ 'Назад'|trans }}</a>
+                    {% else %}
+                        <a href="{{ path(route, query|merge({(pageParameterName): previous})) }}">&laquo;&nbsp;{{ 'Назад'|trans }}</a>
+                    {% endif %}
                 </li>
             {% else %}
                 <li class="disabled">
