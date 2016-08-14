@@ -3,6 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8" />
+    <meta name="robots" content="index, follow"/>
     <link rel="canonical" href="http://euat.ru{{ app.request.pathInfo }}" />
 
     {% block seo %}{% endblock %}
@@ -62,9 +63,12 @@
                     <div style="width: 250px">
                         <a href="{{ path('homepage') }}">
                             <img src="{{ asset('bundles/app/images/logotip.svg') }}" id="logo" style=" float: left" alt="Евразийская ассоциация терапевтов лого">
+                        </a>
+                        <a href="{{ path('homepage') }}">
                             <div style="display: inline-block; width: 100px; text-decoration: none; float: left; font-size: 12px; padding-top: 5px;"><div style="text-decoration: none;"><br />
                                     Евразийская Ассоциация Терапевтов</div></div>
                         </a>
+
                     </div>
                 </div>
                 <div class="col-xs-offset-1 col-xs-5 text-right hidden-xs">
