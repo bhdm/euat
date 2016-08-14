@@ -181,7 +181,7 @@
                      data-description="{{ event.anons is defined ? event.anons : ''}}"
                      data-image="{{ event.preview.path is defined ? event.preview.path : '' }}"></div>
             </div>
-            <div class="col-md-4 hidden-sm">
+            <div class="col-md-4 hidden-sm hidden-xs">
                 {% if event.specialties | length > 0 %}
                     <b>Специальности:</b>
                     {% for s in event.specialties  %}
@@ -191,7 +191,7 @@
             </div>
             <div class="col-xs-3 col-md-3 text-right">
                 <div style="padding-top: 10px; padding-bottom: 6px">
-                    <span class="glyphicon glyphicon-calendar hidden-sm"></span> {{ event.created | date('d.m.Y') }}
+                    <span class="glyphicon glyphicon-calendar hidden-sm hidden-xs"></span> {{ event.created | date('d.m.Y') }}
                 </div>
             </div>
         </div>
