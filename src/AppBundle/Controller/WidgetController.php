@@ -53,7 +53,7 @@ class WidgetController extends Controller
      */
     public function seopageAction(Request $request){
         $url = 'https://euat.ru'.$request->get('url');
-        $seo = $this->getDoctrine()->getRepository('AppBundle:SeoPage')->findOneByUrl($url);
+        $seo = $this->getDoctrine()->getRepository('AppBundle:SeoPage')->findOneBy(['url' => $url]);
 
         return ['seo' => $seo];
     }
