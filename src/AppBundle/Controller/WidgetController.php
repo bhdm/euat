@@ -46,4 +46,15 @@ class WidgetController extends Controller
         return ['banner' => $banner, 'interview' => $interview];
     }
 
+    /**
+     * @param Request $request
+     * @return Response
+     * @Template()
+     */
+    public function seopageAction(Request $request){
+        $url = 'https://euat.ru'.$request->get('url');
+        $seo = $this->getDoctrine()->getRepository('AppBundle:SeoPage')->findOneByUrl($url);
+
+        return ['seo' => $seo];
+    }
 }
