@@ -88,6 +88,7 @@ class PublicationRepository extends \Doctrine\ORM\EntityRepository
         $qb->select('p');
         $qb->where("p.created > :created ")
             ->andWhere("p.id != :id")
+            ->andWhere("p.enabled = true")
             ->andWhere("p.category = :category");
 
         $qb->orderBy('p.created', 'ASC');
@@ -100,7 +101,8 @@ class PublicationRepository extends \Doctrine\ORM\EntityRepository
         if ($result == null){
             $qb = $this->createQueryBuilder('p');
             $qb->select('p');
-            $qb->where("p.category = :category");
+            $qb->where("p.category = :category")
+                ->andWhere("p.enabled = true");
             $qb->setParameter('category', $publication->getCategory());
             $qb->orderBy('p.created', 'ASC');
             $qb->setMaxResults(1);
@@ -116,6 +118,7 @@ class PublicationRepository extends \Doctrine\ORM\EntityRepository
         $qb->select('p');
         $qb->where("p.created < :created ")
             ->andWhere("p.id != :id")
+            ->andWhere("p.enabled = true")
             ->andWhere("p.category = :category");
 
         $qb->orderBy('p.created', 'DESC');
@@ -128,7 +131,8 @@ class PublicationRepository extends \Doctrine\ORM\EntityRepository
         if ($result == null){
             $qb = $this->createQueryBuilder('p');
             $qb->select('p');
-            $qb->where("p.category = :category");
+            $qb->where("p.category = :category")
+                ->andWhere("p.enabled = true");
             $qb->setParameter('category', $publication->getCategory());
             $qb->orderBy('p.created', 'DESC');
             $qb->setMaxResults(1);
