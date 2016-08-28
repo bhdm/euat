@@ -145,12 +145,12 @@
             <div class="row">
                 <div class="col-xs-6 text-left">
                     {% if previousPublication is defined and previousPublication != null %}
-                        <a href="{{ path('publications', {'url' : previousPublication.slug } ) }}">« Назад</a> <br />
+                        <a href="{{ path('video', {'url' : previousPublication.slug } ) }}">« Назад</a> <br />
                     {% endif %}
                 </div>
                 <div class="col-xs-6 text-right">
                     {% if nextPublication is defined and nextPublication != null %}
-                        <a href="{{ path('publications', {'url' : nextPublication.slug } ) }}">Далее »</a> <br />
+                        <a href="{{ path('video', {'url' : nextPublication.slug } ) }}">Далее »</a> <br />
                     {% endif %}
                 </div>
             </div>
