@@ -87,17 +87,21 @@ class PublicationRepository extends \Doctrine\ORM\EntityRepository
         $qb = $this->createQueryBuilder('p');
         $qb->select('p');
         $qb->where("p.created > :created ")
-            ->andWhere("p.id != :id");
+            ->andWhere("p.id != :id")
+            ->andWhere("p.category = :category");
 
         $qb->orderBy('p.created', 'ASC');
         $qb->setMaxResults(1);
         $qb->setParameter('created', $publication->getCreated()->format('Y-m-d H:i:s'));
         $qb->setParameter('id', $publication->getId());
+        $qb->setParameter('category', $publication->getCategory());
         $result = $qb->getQuery()->getOneOrNullResult();
 
         if ($result == null){
             $qb = $this->createQueryBuilder('p');
             $qb->select('p');
+            $qb->where("p.category = :category");
+            $qb->setParameter('category', $publication->getCategory());
             $qb->orderBy('p.created', 'ASC');
             $qb->setMaxResults(1);
             $result = $qb->getQuery()->getOneOrNullResult();
@@ -111,17 +115,21 @@ class PublicationRepository extends \Doctrine\ORM\EntityRepository
         $qb = $this->createQueryBuilder('p');
         $qb->select('p');
         $qb->where("p.created < :created ")
-            ->andWhere("p.id != :id");
+            ->andWhere("p.id != :id")
+            ->andWhere("p.category = :category");
 
         $qb->orderBy('p.created', 'DESC');
         $qb->setMaxResults(1);
         $qb->setParameter('created', $publication->getCreated()->format('Y-m-d H:i:s'));
         $qb->setParameter('id', $publication->getId());
+        $qb->setParameter('category', $publication->getCategory());
         $result = $qb->getQuery()->getOneOrNullResult();
 
         if ($result == null){
             $qb = $this->createQueryBuilder('p');
             $qb->select('p');
+            $qb->where("p.category = :category");
+            $qb->setParameter('category', $publication->getCategory());
             $qb->orderBy('p.created', 'DESC');
             $qb->setMaxResults(1);
             $result = $qb->getQuery()->getOneOrNullResult();

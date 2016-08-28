@@ -64,6 +64,14 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            {% if previousPrezidium is defined and previousPrezidium != null %}
+                <div class="col-xs-6 text-left"><a href="{{ path('prezidium_info'{'id' : previousPrezidium.id}) }}">« Назад</a></div>
+            {% endif %}
+            {% if nextPrezidium is defined and nextPrezidium != null %}
+                <div class="col-xs-6 text-right"><a href="{{ path('prezidium_info'{'id' : nextPrezidium.id}) }}">Далее »</a></div>
+            {% endif %}
+        </div>
     </div>
 
 {% endblock %}

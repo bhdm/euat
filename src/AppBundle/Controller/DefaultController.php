@@ -163,7 +163,10 @@ class DefaultController extends Controller
             $prezidium = $this->getDoctrine()->getRepository('AppBundle:Prezidium')->findOneBy(['slug' => $id]);
         }
 
-        return ['prezidium' => $prezidium];
+        $nextPrezidium = $this->getDoctrine()->getRepository('AppBundle:Prezidium')->findNext($prezidium->getId());
+        $previousPrezidium = $this->getDoctrine()->getRepository('AppBundle:Prezidium')->findPrevious($prezidium->getId());
+
+        return ['prezidium' => $prezidium, 'nextPrezidium' => $nextPrezidium, 'previousPrezidium' => $previousPrezidium];
     }
 
     /**
