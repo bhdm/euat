@@ -57,6 +57,7 @@
             </div>
             <div class="col-xs-8">
                 <h1 class="blue-text">{{ prezidium }}</h1>
+                {{ render(controller("AppBundle:Widget:seopage", {'url' : app.request.requestUri } )) }}
                 <p style="color: #888">{{ prezidium.post }}</p>
                 <div class="description">
                     {{ prezidium.description }}

@@ -106,7 +106,7 @@
                     <a href="{{ post.file.path }}" class="btn btn-default" target="_blank">PDF</a>
                 {% endif %}
             </h1>
-
+            {{ render(controller("AppBundle:Widget:seopage", {'url' : app.request.requestUri } )) }}
             <div class="params">
                 <b>Авторы:</b> {{ post.author }}<br />
                 <b>Описание:</b>

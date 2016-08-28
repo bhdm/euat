@@ -70,7 +70,7 @@
         {% elseif type == 'partner' %}
             <h1 class="blue-text">Партнерские события</h1>
         {% endif %}
-
+        {{ render(controller("AppBundle:Widget:seopage", {'url' : app.request.requestUri } )) }}
         <div class="row">
             <form class="form-inline" method="GET" style="min-width: 695px">
                 <div class="form-group">
