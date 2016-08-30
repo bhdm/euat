@@ -477,6 +477,21 @@ class User extends BaseUser
         $this->username = $this->email;
     }
 
+    /**
+     * @return RecordBook
+     */
+    public function getCourses()
+    {
+        return $this->courses;
+    }
+
+    /**
+     * @param RecordBook $courses
+     */
+    public function setCourses($courses)
+    {
+        $this->courses = $courses;
+    }
 
     /**
      * @return mixed
