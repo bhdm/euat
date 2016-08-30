@@ -83,7 +83,20 @@ class JournalController extends Controller
             $journal = $this->getDoctrine()->getRepository('AppBundle:Journal')->findOneBy(['enabled' => true, 'slug' => $journalId]);
         }
 
-        return ['journal' => $journal, 'post' => $post];
+        if (count($journal->getPosts()) > 1){
+            $nextJournal = $publication = $this->getDoctrine()->getRepository('AppBundle:JournalPost')->findNext($post);
+            $previousJournal = $publication = $this->getDoctrine()->getRepository('AppBundle:JournalPost')->findPrevious($post);
+        }else{
+            $nextJournal = null;
+            $previousJournal = null;
+        }
+
+        return [
+            'journal' => $journal,
+            'post' => $post,
+            'nextJournal' => $nextJournal,
+            'previousJournal' => $previousJournal
+        ];
 
     }
 

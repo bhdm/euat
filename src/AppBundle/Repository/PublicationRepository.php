@@ -1,7 +1,6 @@
 <?php
 
 namespace AppBundle\Repository;
-use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * PublicationRepository

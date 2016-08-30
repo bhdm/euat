@@ -127,8 +127,22 @@
                 </div>
                 {#<b>Ключевые слова:</b> {{ post.keywords }}#}
             </div>
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-xs-6 text-left">
+                    {% if previousJournal is defined and previousJournal != null %}
+                        <a href="{{ path('journal-post', {'journalId' : previousJournal.journal.id ,'postId' : previousJournal.id } ) }}">« Назад</a> <br />
+                    {% endif %}
+                </div>
+                <div class="col-xs-6 text-right">
+                    {% if nextJournal is defined and nextJournal != null %}
+                        <a href="{{ path('journal-post', {'journalId' : nextJournal.journal.id ,'postId' : nextJournal.id } ) }}">Далее »</a> <br />
+                    {% endif %}
+                </div>
+            </div>
 
-
+            <br />
             <div class="row row-params">
                 <div class="col-xs-12" style="padding-top: 7px;">
                     {#<span style="font-size: 12px">Расказать друзьям&nbsp;&nbsp;</span>#}
