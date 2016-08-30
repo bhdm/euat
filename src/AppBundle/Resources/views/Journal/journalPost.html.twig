@@ -130,16 +130,20 @@
             <br />
             <br />
             <div class="row">
+                <noindex>
                 <div class="col-xs-6 text-left">
                     {% if previousJournal is defined and previousJournal != null %}
                         <a href="{{ path('journal-post', {'journalId' : previousJournal.journal.id ,'postId' : previousJournal.id } ) }}">« Назад</a> <br />
                     {% endif %}
                 </div>
+                </noindex>
+                <noindex>
                 <div class="col-xs-6 text-right">
                     {% if nextJournal is defined and nextJournal != null %}
                         <a href="{{ path('journal-post', {'journalId' : nextJournal.journal.id ,'postId' : nextJournal.id } ) }}">Далее »</a> <br />
                     {% endif %}
                 </div>
+                </noindex>
             </div>
 
             <br />

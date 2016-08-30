@@ -61,18 +61,18 @@
     <div class="col-xs-12 col-md-8" style="padding-right: 0">
         <ol class="breadcrumb">
             <li
-                itemscope
-                itemtype="http://data-vocabulary.org/Breadcrumb">
+                    itemscope
+                    itemtype="http://data-vocabulary.org/Breadcrumb">
                 <a itemprop="url" href="{{ path('homepage') }}"><span itemprop="title">Главная</span></a></li>
 
             <li
-                 itemscope
-                 itemtype="http://data-vocabulary.org/Breadcrumb">
+                    itemscope
+                    itemtype="http://data-vocabulary.org/Breadcrumb">
                 <a itemprop="url" href="{{ path('page',{'url' : 'education'}) }}"><span itemprop="title">Образование</span></a></li>
 
             <li
-                 itemscope
-                 itemtype="http://data-vocabulary.org/Breadcrumb">
+                    itemscope
+                    itemtype="http://data-vocabulary.org/Breadcrumb">
                 <a itemprop="url"  href="{{ path('publications_list') }}"><span itemprop="title">{{ publication.category }}</span></a></li>
 
             <li  class="active">{{ publication.title }}</li>
@@ -111,30 +111,30 @@
 
                     {% if publication.images | length > 0 %}
                         <div class="row">
-                            {% for k,image in publication.images %}
-                                {% if (k) % 4  == 0 %}
-                                    </div>
-                                    <div class="row">
-                                {% endif %}
-                                <div class="col-xs-3">
-                                    <div class="thumbnail" style="text-align: center; overflow: hidden;">
-                                        <a href="{{ image.image.path }}" class="fancybox" rel="gallery" title="{{ image.title }}">
-                                            <div  style="width: 134px; height: 88px; overflow: hidden;">
-                                                <img src="{{ image.image.thumbnail }}" alt="{{ image.title }}" title="{{ image.title }}" style="max-width: 100%">
-                                            </div>
-                                        </a>
-                                        {#<div class="caption" style="padding: 0">#}
-                                            {#<h5>{{ image.title }}</h5>#}
-                                        {#</div>#}
-                                    </div>
+                        {% for k,image in publication.images %}
+                            {% if (k) % 4  == 0 %}
                                 </div>
-                            {% endfor %}
+                                <div class="row">
+                            {% endif %}
+                            <div class="col-xs-3">
+                                <div class="thumbnail" style="text-align: center; overflow: hidden;">
+                                    <a href="{{ image.image.path }}" class="fancybox" rel="gallery" title="{{ image.title }}">
+                                        <div  style="width: 134px; height: 88px; overflow: hidden;">
+                                            <img src="{{ image.image.thumbnail }}" alt="{{ image.title }}" title="{{ image.title }}" style="max-width: 100%">
+                                        </div>
+                                    </a>
+                                    {#<div class="caption" style="padding: 0">#}
+                                    {#<h5>{{ image.title }}</h5>#}
+                                    {#</div>#}
+                                </div>
+                            </div>
+                        {% endfor %}
                         </div>
                     {% endif %}
                 {% endif %}
             </div>
             {% if publication.source != null  %}
-            <br />
+                <br />
 
                 <span style="font-style: italic">
                     <i style="color: #777;"><a style="color: #777" href="{{ publication.source }}" target="_blank">Источник</a></i>
@@ -143,16 +143,20 @@
             <br /><br />
 
             <div class="row">
-                <div class="col-xs-6 text-left">
-                    {% if previousPublication is defined and previousPublication != null %}
-                        <a href="{{ path('publications', {'url' : previousPublication.slug } ) }}">« Назад</a> <br />
-                    {% endif %}
-                </div>
-                <div class="col-xs-6 text-right">
-                    {% if nextPublication is defined and nextPublication != null %}
-                        <a href="{{ path('publications', {'url' : nextPublication.slug } ) }}">Далее »</a> <br />
-                    {% endif %}
-                </div>
+                <noindex>
+                    <div class="col-xs-6 text-left">
+                        {% if previousPublication is defined and previousPublication != null %}
+                            <a href="{{ path('publications', {'url' : previousPublication.slug } ) }}">« Назад</a> <br />
+                        {% endif %}
+                    </div>
+                </noindex>
+                <noindex>
+                    <div class="col-xs-6 text-right">
+                        {% if nextPublication is defined and nextPublication != null %}
+                            <a href="{{ path('publications', {'url' : nextPublication.slug } ) }}">Далее »</a> <br />
+                        {% endif %}
+                    </div>
+                </noindex>
             </div>
 
             <br />
@@ -198,26 +202,26 @@
     {{ parent() }}
 
     {% if publication.category.slug == 'video' and not is_granted("ROLE_USER") %}
-    <div class="modal fade" tabindex="-1" role="dialog" id="doctor-modal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Вы вошли как не авторизованный пользователь</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Данный материал предназначен только для врачей. Являетесь ли Вы врачем?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Да</button>
-                    <a href="http://euat.ru/"><button type="button" class="btn btn-default">Нет</button></a>
+        <div class="modal fade" tabindex="-1" role="dialog" id="doctor-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Вы вошли как не авторизованный пользователь</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Данный материал предназначен только для врачей. Являетесь ли Вы врачем?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Да</button>
+                        <a href="http://euat.ru/"><button type="button" class="btn btn-default">Нет</button></a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <script>
-        $(document).ready(function () {
-            $('#doctor-modal').modal();
-        })
-    </script>
+        <script>
+            $(document).ready(function () {
+                $('#doctor-modal').modal();
+            })
+        </script>
     {% endif %}
 {% endblock %}

@@ -33,17 +33,17 @@
 {% block content %}
     <ol class="breadcrumb">
         <li
-            itemscope
-            itemtype="http://data-vocabulary.org/Breadcrumb">
+                itemscope
+                itemtype="http://data-vocabulary.org/Breadcrumb">
             <a itemprop="url" href="{{ path('homepage') }}"><span itemprop="title">Главная</span></a></li>
         <li
-            itemscope
-            itemtype="http://data-vocabulary.org/Breadcrumb">
+                itemscope
+                itemtype="http://data-vocabulary.org/Breadcrumb">
             <a itemprop="url" href="{{ path('page',{'url' : 'association'}) }}"><span itemprop="title">Об ассоциации</span></a></li>
 
         <li
-            itemscope
-            itemtype="http://data-vocabulary.org/Breadcrumb">
+                itemscope
+                itemtype="http://data-vocabulary.org/Breadcrumb">
             <a itemprop="url" href="{{ path('prezidium') }}"><span itemprop="title">Президиум</span></a></li>
         <li class="active">{{ prezidium.fullname }}</li>
     </ol>
@@ -66,10 +66,15 @@
                 <br />
                 <div class="row">
                     {% if previousPrezidium is defined and previousPrezidium != null %}
-                        <div class="col-xs-6 text-left"><a href="{{ path('prezidium_info', {'id' : previousPrezidium.id}) }}">« Назад</a></div>
+                        <noindex>
+                            <div class="col-xs-6 text-left"><a href="{{ path('prezidium_info', {'id' : previousPrezidium.id}) }}">« Назад</a></div>
+                        </noindex>
                     {% endif %}
+
                     {% if nextPrezidium is defined and nextPrezidium != null %}
-                        <div class="col-xs-6 text-right"><a href="{{ path('prezidium_info', {'id' : nextPrezidium.id }) }}">Далее »</a></div>
+                        <noindex>
+                            <div class="col-xs-6 text-right"><a href="{{ path('prezidium_info', {'id' : nextPrezidium.id }) }}">Далее »</a></div>
+                        </noindex>
                     {% endif %}
                 </div>
             </div>
