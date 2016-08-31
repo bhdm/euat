@@ -119,21 +119,21 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
         $qb->where("e.start >= :start ")
             ->andWhere("e.id != :id")
             ->andWhere("e.enabled = true")
-            ->andWhere("e.category = :category");
+            ->andWhere("e.type = :category");
 
         $qb->orderBy('e.created', 'ASC');
         $qb->setMaxResults(1);
         $qb->setParameter('start', $event->getStart()->format('Y-m-d H:i:s'));
         $qb->setParameter('id', $event->getId());
-        $qb->setParameter('category', $event->getCategory());
+        $qb->setParameter('category', $event->getType());
         $result = $qb->getQuery()->getOneOrNullResult();
 
         if ($result == null){
             $qb = $this->createQueryBuilder('e');
             $qb->select('e');
-            $qb->where("e.category = :category")
+            $qb->where("e.type = :category")
                 ->andWhere("e.enabled = true");
-            $qb->setParameter('category', $event->getCategory());
+            $qb->setParameter('category', $event->getType());
             $qb->orderBy('e.start', 'ASC');
             $qb->setMaxResults(1);
             $result = $qb->getQuery()->getOneOrNullResult();
@@ -149,21 +149,21 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
         $qb->where("e.start < :start ")
             ->andWhere("e.id != :id")
             ->andWhere("e.enabled = true")
-            ->andWhere("e.category = :category");
+            ->andWhere("e.type = :category");
 
         $qb->orderBy('e.start', 'DESC');
         $qb->setMaxResults(1);
         $qb->setParameter('start', $event->getStart()->format('Y-m-d H:i:s'));
         $qb->setParameter('id', $event->getId());
-        $qb->setParameter('category', $event->getCategory());
+        $qb->setParameter('category', $event->getType());
         $result = $qb->getQuery()->getOneOrNullResult();
 
         if ($result == null){
             $qb = $this->createQueryBuilder('e');
             $qb->select('e');
-            $qb->where("e.category = :category")
+            $qb->where("e.type = :category")
                 ->andWhere("e.enabled = true");
-            $qb->setParameter('category', $event->getCategory());
+            $qb->setParameter('category', $event->getType());
             $qb->orderBy('e.start', 'DESC');
             $qb->setMaxResults(1);
             $result = $qb->getQuery()->getOneOrNullResult();
