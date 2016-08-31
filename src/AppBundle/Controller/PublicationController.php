@@ -196,7 +196,18 @@ class PublicationController extends Controller
             }
             $form = $form->createView();
         }
-        return ['event' => $event, 'form' => $form, 'eventItem' => $eventItem, 'typeForm' => $typeForm,];
+
+        $nextEvent = $publication = $this->getDoctrine()->getRepository('AppBundle:Event')->findNext($event);
+        $previousEvent = $publication = $this->getDoctrine()->getRepository('AppBundle:Event')->findPrevious($event);
+
+        return [
+            'event' => $event,
+            'form' => $form,
+            'eventItem' => $eventItem,
+            'typeForm' => $typeForm,
+            'nextEvent' => $nextEvent,
+            'previousEvent' => $previousEvent
+            ];
     }
 
 
