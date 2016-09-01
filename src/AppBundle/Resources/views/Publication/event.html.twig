@@ -162,7 +162,7 @@
             <noindex>
                 <div class="col-xs-6 text-left">
                     {% if previousEvent is defined and previousEvent != null %}
-                        {% if previousEvent.type == 'congress' %}
+                        {% if previousEvent.type | lower == 'congress' %}
                             {% set type = 'conference-convention' %}
                         {% else %}
                             {% set type = previousEvent.type %}
@@ -174,7 +174,7 @@
             <noindex>
                 <div class="col-xs-6 text-right">
                     {% if nextEvent is defined and nextEvent != null %}
-                        {% if nextEvent.type == 'congress' %}
+                        {% if nextEvent.type | lower == 'congress' %}
                             {% set type = 'conference-convention' %}
                         {% else %}
                             {% set type = nextEvent.type %}
