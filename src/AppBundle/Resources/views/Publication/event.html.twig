@@ -156,16 +156,16 @@
                 <br />
             {% endif %}
         </div>
-        <br />
-        <br />
+        {#<br />#}
+        {#<br />#}
         <div class="row">
             <noindex>
                 <div class="col-xs-6 text-left">
                     {% if previousEvent is defined and previousEvent != null %}
-                        {% if nextEvent.type == 'congress' %}
+                        {% if previousEvent.type == 'congress' %}
                             {% set type = 'conference-convention' %}
                         {% else %}
-                            {% set type = nextEvent.type %}
+                            {% set type = previousEvent.type %}
                         {% endif %}
                         <a href="{{ path('new_event', {'type' : type | lower ,'url' : previousEvent.slug } ) }}">« Назад</a> <br />
                     {% endif %}
