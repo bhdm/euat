@@ -210,6 +210,11 @@ class Event
     private $metaKeyword;
 
     /**
+     * @ORM\Column(name="registerIframe", type="text", nullable=true)
+     */
+    private $registerIframe;
+
+    /**
      * Event constructor.
      */
     public function __construct()
@@ -759,7 +764,21 @@ class Event
         $this->metaKeyword = $metaKeyword;
     }
 
-        
+    /**
+     * @return mixed
+     */
+    public function getRegisterIframe()
+    {
+        return $this->registerIframe;
+    }
+
+    /**
+     * @param mixed $registerIframe
+     */
+    public function setRegisterIframe($registerIframe)
+    {
+        $this->registerIframe = $registerIframe;
+    }
 
 }
 

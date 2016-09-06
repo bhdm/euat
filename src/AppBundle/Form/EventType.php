@@ -64,6 +64,7 @@ class EventType extends AbstractType
             ->add('metaDescription', null, ['label' => 'МЕТА описание'])
             ->add('metaKeyword', null, ['label' => 'МЕТА слова'])
             ->add('body', null, [ 'label' => 'Контент', 'attr' => ['class' => 'ckeditor']])
+            ->add('registerIframe', null, [ 'label' => 'Iframe регистрации', 'attr' => ['placeholder' => 'Если Iframe нету, оставьте данное поле пустым']])
             ->add('theses', ChoiceType::class, array(
                 'choices' => array(
                     'Активна' => true,

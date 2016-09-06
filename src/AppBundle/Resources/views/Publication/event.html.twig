@@ -158,6 +158,31 @@
         </div>
         {#<br />#}
         {#<br />#}
+
+        <br />
+        {% if form != null %}
+            <br />
+            <div style="border: 1px solid #CCC; padding: 20px">
+                {% if typeForm is defined %}
+                    {% if typeForm == 'register' %}
+                        <div class="caption"><b>Зарегистрироваться:</b></div>
+                    {% else %}
+                        <div class="caption"><b>Направить тезис</b></div>
+                    {% endif %}
+                {% endif %}
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
+            </div>
+            <br />
+        {% endif %}
+        {% if event.registerIframe != null %}
+            <br />
+            <div class="registerIframe" id="registerIframe">
+                {{ event.registerIframe | raw }}
+            </div>
+            <br />
+        {% endif %}
         <div class="row">
             <noindex>
                 <div class="col-xs-6 text-left">
@@ -185,22 +210,6 @@
             </noindex>
         </div>
         <br />
-        {% if form != null %}
-            <br />
-            <div style="border: 1px solid #CCC; padding: 20px">
-                {% if typeForm is defined %}
-                    {% if typeForm == 'register' %}
-                        <div class="caption"><b>Зарегистрироваться:</b></div>
-                    {% else %}
-                        <div class="caption"><b>Направить тезис</b></div>
-                    {% endif %}
-                {% endif %}
-                {{ form_start(form) }}
-                {{ form_widget(form) }}
-                {{ form_end(form) }}
-            </div>
-            <br />
-        {% endif %}
         <div class="row row-params">
             <div class="col-xs-12 col-md-4" style="padding-top: 7px;">
                 {#<span style="font-size: 12px">Расказать друзьям&nbsp;&nbsp;</span>#}
