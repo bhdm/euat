@@ -53,4 +53,17 @@ $(document).ready(function(){
 
 
     $('.phone').mask('+999 (000) 000-00-00');
+
+
+    $(window).scroll(function() {
+        if($(this).scrollTop() != 0) {
+            $('#toTop').fadeIn();
+        } else {
+            $('#toTop').fadeOut();
+        }
+    });
+    $('#toTop').click(function() {
+        $('body,html').animate({scrollTop:0},800);
+    });
+
 });
