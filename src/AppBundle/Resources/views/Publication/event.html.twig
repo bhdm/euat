@@ -127,6 +127,14 @@
         </div>
         <hr />
         <div class="body">
+            {% if event.registerIframe != null %}
+                <br />
+                <div class="registerIframe" id="registerIframe">
+                    {{ event.registerIframe | raw }}
+                </div>
+                <br />
+            {% endif %}
+
             {{ event.body | raw }}
 
             {% if event.sponsors | length > 0 %}
@@ -173,13 +181,6 @@
                 {{ form_start(form) }}
                 {{ form_widget(form) }}
                 {{ form_end(form) }}
-            </div>
-            <br />
-        {% endif %}
-        {% if event.registerIframe != null %}
-            <br />
-            <div class="registerIframe" id="registerIframe">
-                {{ event.registerIframe | raw }}
             </div>
             <br />
         {% endif %}
