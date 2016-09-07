@@ -106,7 +106,9 @@
                             </div>
                         {% endif %}
                         {% if p.registerIframe %}
-                            <a href="{{ path('event', {'url' : p.id, 'number' : i.id }) }}#registerIframe"><button class="btn-sm btn-primary" type="button">Регистрация на мероприятие</button></a>
+                            <div>
+                                <a href="{{ path('event', {'url' : p.id, 'number' : i.id }) }}#registerIframe"><button class="btn-sm btn-primary" type="button">Регистрация на мероприятие</button></a>
+                            </div>
                         {% endif %}
                     </div>
                 </div>
@@ -127,7 +129,9 @@
                                 </div>
                             {% endif %}
                             {% if p.registerIframe %}
-                                <a href="{{ path('event', {'url' : p.id, 'number' : i.id }) }}#registerIframe"><button class="btn-sm btn-primary" type="button">Регистрация на мероприятие</button></a>
+                                <div>
+                                    <a href="{{ path('event', {'url' : p.id, 'number' : i.id }) }}#registerIframe"><button class="btn-sm btn-primary" type="button">Регистрация на мероприятие</button></a>
+                                </div>
                             {% endif %}
                         </div>
                     </div>
