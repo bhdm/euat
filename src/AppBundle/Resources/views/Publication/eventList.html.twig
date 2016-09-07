@@ -105,6 +105,9 @@
                                 {{ p.category.title }}
                             </div>
                         {% endif %}
+                        {% if p.registerIframe %}
+                            <a href="{{ path('event', {'url' : p.id, 'number' : i.id }) }}#registerIframe"><button class="btn-sm btn-primary" type="button">Регистрация на мероприятие</button></a>
+                        {% endif %}
                     </div>
                 </div>
                 {% for i in p.items %}

@@ -237,7 +237,7 @@ class PublicationController extends Controller
     }
 
     /**
-     * @Route("events/{type}", name="events", defaults={"type" = null})
+     * @Route("/events/{type}", name="events", defaults={"type" = null})
      * @Template("AppBundle:Publication:eventList.html.twig")
      */
     public function eventListAction(Request $request, $type)
