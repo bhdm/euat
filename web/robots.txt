@@ -1,18 +1,26 @@
 User-agent: Yandex
 Disallow: /app_dev.php
 Disallow: /app.php
+Disallow: /bundles/app/js/1.js
+Disallow: /bundles/app/js/2.js
 Host: euat.ru
 
 User-agent: Googlebot
 Disallow: /app_dev.php
 Disallow: /app.php
+Disallow: /bundles/app/js/1.js
+Disallow: /bundles/app/js/2.js
 
 User-agent: Slurp
 Disallow: /app_dev.php
 Disallow: /app.php
+Disallow: /bundles/app/js/1.js
+Disallow: /bundles/app/js/2.js
 Crawl-delay: 0.1
 
 User-agent: *
 Disallow: /app_dev.php
 Disallow: /app.php
+Disallow: /bundles/app/js/1.js
+Disallow: /bundles/app/js/2.js
 Sitemap: http://euat.ru/sitemap.xml

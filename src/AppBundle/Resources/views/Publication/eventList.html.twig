@@ -42,17 +42,17 @@
                 itemtype="http://data-vocabulary.org/Breadcrumb">
                 <a itemprop="url" href="{{ path('homepage') }}"><span itemprop="title">Главная</span></a></li>
             {% if type == null %}
-                <li class="active">События</li>
+                <li class="active">События и мероприятия для терапевтов и кардиологов</li>
             {% elseif type == 'CONGRESS' %}
                 <li
                     itemscope
                     itemtype="http://data-vocabulary.org/Breadcrumb"><a  itemprop="url" href="{{ path('events') }}"><span itemprop="title">События</span></a></li>
-                <li class="active">Конференции и съезды</li>
+                <li class="active">Конференции и съезды кардиологов и терапевтов</li>
             {% elseif type == 'SCHOOL' %}
                 <li
                     itemscope
                     itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url"  href="{{ path('events') }}"><span itemprop="title">События</span></a></li>
-                <li class="active">Школы</li>
+                <li class="active">Школы терапевтов и кардиологов</li>
             {% elseif type == 'partner' %}
                 <li
                     itemscope
