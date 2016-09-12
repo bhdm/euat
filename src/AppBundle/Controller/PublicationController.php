@@ -377,7 +377,8 @@ class PublicationController extends Controller
             $p['url'] = 'http://euat.ru/'.$p['slug'];
 
             $p['galery'] = [];
-            $galery = $this->getDoctrine()->getRepository('AppBundle:Gallery')->findBy(['publication'=> $p['id']]);
+            $pub = $this->getDoctrine()->getRepository('AppBundle:Publication')->findOneById($p['id']);
+            $galery = $this->getDoctrine()->getRepository('AppBundle:Gallery')->findBy(['publication'=> $pub]);
             foreach ($galery as $g){
                 $p['galery'][] = ['title' =>  $g->getTitle(),'image' =>  $g->getImage()];
             }
