@@ -141,13 +141,11 @@ class PublicationRepository extends \Doctrine\ORM\EntityRepository
         return $result;
     }
 
-    public function findForApi($category, $page){
+    public function findForApi($page){
         $qb = $this->createQueryBuilder('p');
         $qb->select("p.title, p.anons, p.body, p.created, p.preview, c.title, p.slug, p.source");
         $qb->leftJoin('p.category', 'c');
-        $qb->andWhere("p.enabled = true")
-            ->andWhere("c.slug = :category");
-        $qb->setParameter(':category', $category);
+        $qb->andWhere("p.enabled = true");
         $qb->orderBy('p.created', 'DESC');
         $qb->setFirstResult(($page-1)*15);
         $qb->setMaxResults(15);
