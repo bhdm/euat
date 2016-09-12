@@ -371,15 +371,15 @@ class PublicationController extends Controller
     public function publicationsJsonAction(Request $request, $category = 'new'){
         $category = $this->getDoctrine()->getRepository('AppBundle:Category')->findOneBySlug($category);
         $publications = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['enabled' => true, 'category' => $category ],['created' => 'DESC']);
+//
+//        $paginator  = $this->get('knp_paginator');
+//        $pagination = $paginator->paginate(
+//            $publications,
+//            $request->query->get('page', 1),
+//            15
+//        );
 
-        $paginator  = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $publications,
-            $request->query->get('page', 1),
-            15
-        );
-
-        return new JsonResponse($pagination);
+        return new JsonResponse($publications);
     }
 
 }
