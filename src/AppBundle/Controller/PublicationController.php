@@ -382,7 +382,9 @@ class PublicationController extends Controller
 //
 //            15
 //        );
-
+        foreach ($publications as $p => $k){
+            $publications[$k]['url'] = 'http://euat.ru/'.$publications[$k]['slug'];
+        }
         return new JsonResponse($publications);
     }
 
