@@ -153,8 +153,8 @@ class PublicationRepository extends \Doctrine\ORM\EntityRepository
         $qb->orderBy('p.created', 'DESC');
         $qb->setFirstResult(($page-1)*15);
         $qb->setMaxResults(15);
-        $result = $qb->getQuery()->getResult();
+        return $qb->getQuery()->getResult();
 
-        return $result;
+
     }
 }
