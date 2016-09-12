@@ -145,8 +145,7 @@ class PublicationRepository extends \Doctrine\ORM\EntityRepository
         $qb = $this->createQueryBuilder('p');
         $qb->select("p.title, p.anons, p.body, p.created, p.preview, c.title, p.slug, p.source");
         $qb->leftJoin('p.category', 'c');
-        $qb->where("p.created < :created ")
-            ->andWhere("p.enabled = true")
+        $qb->andWhere("p.enabled = true")
             ->andWhere("c.slug = ':category'");
         $qb->setParameter('category', $category);
         $qb->orderBy('p.created', 'DESC');
