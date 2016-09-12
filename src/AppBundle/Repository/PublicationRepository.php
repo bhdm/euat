@@ -151,7 +151,11 @@ class PublicationRepository extends \Doctrine\ORM\EntityRepository
         $qb->setFirstResult($page);
         $qb->setMaxResults(15);
         return $qb->getQuery()->getResult();
+    }
 
-
+    public function getCount(){
+        $qb = $this->createQueryBuilder('p');
+        $qb->select("COUNT(p.id) count");
+        return $qb->getQuery()->getOneOrNullResult();
     }
 }

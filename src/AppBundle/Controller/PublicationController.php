@@ -370,6 +370,8 @@ class PublicationController extends Controller
      */
     public function publicationsJsonAction(Request $request){
         $page = $request->query->get('page', 1);
+        $count =  $this->getDoctrine()->getRepository('AppBundle:Publication')->getCount();
+        $count = ceil($count/15);
         $publications = $this->getDoctrine()->getRepository('AppBundle:Publication')->findForApi($page);
 
         $publications2 = [];
@@ -384,7 +386,7 @@ class PublicationController extends Controller
             }
             $publications2[] = $p;
         }
-        return new JsonResponse($publications2);
+        return new JsonResponse(['currentPage' => $page, 'maxPage' => $count, 'publications' => $publications2]);
     }
 
 }
