@@ -373,13 +373,11 @@ class PublicationController extends Controller
         $publications = $this->getDoctrine()->getRepository('AppBundle:Publication')->findForApi($page);
 
         $publications2 = [];
-        foreach ($publications as $p => $k){
-            dump($p);
-//            $p['url'] = 'http://euat.ru/'.$p['slug'];
-//            $publications2[] = $p;
+        foreach ($publications as $k => $p){
+            $p['url'] = 'http://euat.ru/'.$p['slug'];
+            $publications2[] = $p;
 
         }
-        exit;
         return new JsonResponse($publications2);
     }
 
