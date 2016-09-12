@@ -155,7 +155,7 @@ class PublicationRepository extends \Doctrine\ORM\EntityRepository
 
     public function getCount(){
         $qb = $this->createQueryBuilder('p');
-        $qb->select("p.id");
-        return $qb->getQuery()->getResult()->count();
+        $qb->select($qb->expr()->count('p.id'));
+        return $qb->getQuery()->getSingleScalarResult();;
     }
 }
