@@ -372,6 +372,9 @@ class PublicationController extends Controller
         $category = $this->getDoctrine()->getRepository('AppBundle:Category')->findOneBySlug($category);
         $page = $request->query->get('page', 1);
         $publications = $this->getDoctrine()->getRepository('AppBundle:Publication')->findForApi($category, $page);
+
+        dump($publications);
+        exit;
 //
 //        $paginator  = $this->get('knp_paginator');
 //        $pagination = $paginator->paginate(
