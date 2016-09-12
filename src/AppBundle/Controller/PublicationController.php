@@ -374,10 +374,12 @@ class PublicationController extends Controller
 
         $publications2 = [];
         foreach ($publications as $p => $k){
-            $p['url'] = 'http://euat.ru/'.$p['slug'];
-            $publications2[] = $p;
+            dump($p);
+//            $p['url'] = 'http://euat.ru/'.$p['slug'];
+//            $publications2[] = $p;
 
         }
+        exit;
         return new JsonResponse($publications2);
     }
 
