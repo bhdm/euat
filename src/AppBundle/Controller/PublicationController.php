@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -363,5 +364,22 @@ class PublicationController extends Controller
         return $this->redirect($referer);
     }
 
+
+    /**
+     * @Route("/api/publications/{category}/get", name="publications_list_json", defaults={"category" = "new"})
+     */
+    public function publicationsJsonAction(Request $request, $category = 'new'){
+        $category = $this->getDoctrine()->getRepository('AppBundle:Category')->findOneBySlug($category);
+        $publications = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['enabled' => true, 'category' => $category ],['created' => 'DESC']);
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $publications,
+            $request->query->get('page', 1),
+            15
+        );
+
+        return new JsonResponse($pagination);
+    }
 
 }
