@@ -375,8 +375,13 @@ class PublicationController extends Controller
         $publications2 = [];
         foreach ($publications as $k => $p){
             $p['url'] = 'http://euat.ru/'.$p['slug'];
-            $publications2[] = $p;
 
+            $p['galery'] = [];
+            $galery = $this->getDoctrine()->getRepository('AppBundle:Gallery')->findBy(['publication'=> $p['id']]);
+            foreach ($galery as $g){
+                $p['galery'][] = ['title' =>  $g->getTitle(),'image' =>  $g->getImage()];
+            }
+            $publications2[] = $p;
         }
         return new JsonResponse($publications2);
     }
