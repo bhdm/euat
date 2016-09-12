@@ -42,17 +42,17 @@
                 itemtype="http://data-vocabulary.org/Breadcrumb">
                 <a itemprop="url" href="{{ path('homepage') }}"><span itemprop="title">Главная</span></a></li>
             {% if type == null %}
-                <li class="active">События и мероприятия для терапевтов и кардиологов</li>
+                <li class="active">События</li>
             {% elseif type == 'CONGRESS' %}
                 <li
                     itemscope
                     itemtype="http://data-vocabulary.org/Breadcrumb"><a  itemprop="url" href="{{ path('events') }}"><span itemprop="title">События</span></a></li>
-                <li class="active">Конференции и съезды кардиологов и терапевтов</li>
+                <li class="active">Конференции и съезды</li>
             {% elseif type == 'SCHOOL' %}
                 <li
                     itemscope
                     itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url"  href="{{ path('events') }}"><span itemprop="title">События</span></a></li>
-                <li class="active">Школы терапевтов и кардиологов</li>
+                <li class="active">Школы</li>
             {% elseif type == 'partner' %}
                 <li
                     itemscope
@@ -62,11 +62,11 @@
         </ol>
 
         {% if type == null %}
-            <h1 class="blue-text">События</h1>
+            <h1 class="blue-text">События и мероприятия для терапевтов и кардиологов</h1>
         {% elseif type == 'congress' %}
-            <h1 class="blue-text">Конференции и съезды</h1>
+            <h1 class="blue-text">Конференции и съезды кардиологов и терапевтов</h1>
         {% elseif type == 'school' %}
-            <h1 class="blue-text">Школы</h1>
+            <h1 class="blue-text">Школы терапевтов и кардиологов</h1>
         {% elseif type == 'partner' %}
             <h1 class="blue-text">Партнерские события</h1>
         {% endif %}
