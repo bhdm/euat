@@ -366,26 +366,19 @@ class PublicationController extends Controller
 
 
     /**
-     * @Route("/api/publications/{category}/get", name="publications_list_json", defaults={"category" = "new"})
+     * @Route("/api/publications/news/get", name="publications_list_json")
      */
-    public function publicationsJsonAction(Request $request, $category = 'new'){
-        $category = $this->getDoctrine()->getRepository('AppBundle:Category')->findOneBySlug($category);
+    public function publicationsJsonAction(Request $request){
         $page = $request->query->get('page', 1);
         $publications = $this->getDoctrine()->getRepository('AppBundle:Publication')->findForApi($page);
 
-//        dump($publications);
-//        exit;
-//
-//        $paginator  = $this->get('knp_paginator');
-//        $pagination = $paginator->paginate(
-//            $publications,
-//
-//            15
-//        );
+        $publications2 = [];
         foreach ($publications as $p => $k){
-            $publications[$k]['url'] = 'http://euat.ru/'.$publications[$k]['slug'];
+            $p['url'] = 'http://euat.ru/'.$p['slug'];
+            $publications2[] = $p;
+
         }
-        return new JsonResponse($publications);
+        return new JsonResponse($publications2);
     }
 
 }
