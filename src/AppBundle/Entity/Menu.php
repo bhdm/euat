@@ -62,7 +62,7 @@ class Menu
     /**
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Menu", mappedBy="parent")
-     * @OrderBy({"sort" = "ASC"})
+     * @ORM\OrderBy({"sort" = "ASC"})
      */
     private $children;
 
