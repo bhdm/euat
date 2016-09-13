@@ -56,6 +56,7 @@ class Menu
     /**
      * @var Menu
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Menu", inversedBy="children")
+     * @ORM\OrderBy({"sort" = "ASC"})
      */
     private $parent;
 
