@@ -185,7 +185,7 @@ class Menu
     {
         $criteria = Criteria::create();
         $criteria->where(Criteria::expr()->eq('enabled', true));
-        $criteria->orderBy(Criteria::create()->orderBy('sort', 'ASC'));
+        $criteria->orderBy(array('sort' => Criteria::ASC));
         return $this->children->matching($criteria);
     }
 
