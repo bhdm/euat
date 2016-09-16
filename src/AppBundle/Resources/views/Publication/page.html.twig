@@ -14,7 +14,7 @@
         {% if page.parent != null %}
             <li
                 itemscope
-                itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="title" href="{{ path('page',{'url' : page.parent.slug }) }}"><span itemprop="title">{{ page.parent.title }}</span></a></li>
+                itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" href="{{ path('page',{'url' : page.parent.slug }) }}"><span itemprop="title">{{ page.parent.title }}</span></a></li>
         {% endif %}
         <li class="active">{{ page.title }}</li>
     </ol>
