@@ -140,7 +140,7 @@ class PublicationController extends Controller
             if ($request->request->get('type') === 'formTheses'){
                 $formTheses->handleRequest($request);
                 if ($formTheses->isSubmitted() && $formTheses->isValid()) {
-                    $data = $form->getData();
+                    $data = $formTheses->getData();
                     $message = \Swift_Message::newInstance()
                         ->setSubject('Пользователь оставил тезис')
                         ->setFrom('info@euat.ru')
