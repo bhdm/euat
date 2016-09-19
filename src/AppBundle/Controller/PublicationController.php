@@ -137,9 +137,8 @@ class PublicationController extends Controller
                 ->add('submit', SubmitType::class, ['label' => 'Отправить'])
                 ->getForm();
 
-            $formTheses->handleRequest($request);
-
             if ($request->request->get('type') === 'formTheses'){
+                $formTheses->handleRequest($request);
                 if ($formTheses->isSubmitted() && $formTheses->isValid()) {
                     $data = $form->getData();
                     $message = \Swift_Message::newInstance()
@@ -171,8 +170,9 @@ class PublicationController extends Controller
                 ->add('submit', SubmitType::class, ['label' => 'Отправить'])
                 ->getForm();
 
-            $formRegister->handleRequest($request);
+
             if ($request->request->get('type') === 'formRegister'){
+                $formRegister->handleRequest($request);
                 if ($formRegister->isSubmitted() && $formRegister->isValid()) {
                     $data = $formRegister->getData();
 
