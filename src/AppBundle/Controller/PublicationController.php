@@ -123,9 +123,12 @@ class PublicationController extends Controller
         }
         $typeForm = null;
         $form = null;
+
+        $formTheses = null;
+        $formRegister = null;
         if ($event->isTheses() == true){
-            $typeForm = 'theses';
-            $form = $this->createFormBuilder()
+
+            $formTheses = $this->createFormBuilder()
                 ->add('fio', TextType::class, ['label' => 'Ф.И.О'])
                 ->add('place', TextType::class, ['label' => 'Место работы'])
                 ->add('email', TextType::class, ['label' => 'E-mail'])
@@ -134,9 +137,9 @@ class PublicationController extends Controller
                 ->add('submit', SubmitType::class, ['label' => 'Отправить'])
                 ->getForm();
 
-            $form->handleRequest($request);
+            $formTheses->handleRequest($request);
 
-            if ($form->isSubmitted() && $form->isValid()) {
+            if ($formTheses->isSubmitted() && $formTheses->isValid()) {
                 $data = $form->getData();
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Пользователь оставил тезис')
@@ -153,11 +156,11 @@ class PublicationController extends Controller
                 $session = $request->getSession();
                 $session->getFlashBag()->add('info', 'Ваша заявка отправлена');
             }
-            $form = $form->createView();
+            $formTheses = $formTheses->createView();
         }
         if ($event->isRegister() == true){
             $typeForm = 'register';
-            $form = $this->createFormBuilder()
+            $formRegister = $this->createFormBuilder()
                 ->add('fio', TextType::class, ['label' => 'Ф.И.О'])
                 ->add('place', TextType::class, ['label' => 'Место работы'])
                 ->add('post', TextType::class, ['label' => 'Должность'])
@@ -166,10 +169,10 @@ class PublicationController extends Controller
                 ->add('submit', SubmitType::class, ['label' => 'Отправить'])
                 ->getForm();
 
-            $form->handleRequest($request);
+            $formRegister->handleRequest($request);
 
-            if ($form->isSubmitted() && $form->isValid()) {
-                $data = $form->getData();
+            if ($formRegister->isSubmitted() && $form->isValid()) {
+                $data = $formRegister->getData();
 
                 $log = new EventRegisterLog();
                 $log->setEmail($data['email']);
@@ -195,7 +198,7 @@ class PublicationController extends Controller
                 $session = $request->getSession();
                 $session->getFlashBag()->add('info', 'Ваша заявка отправлена');
             }
-            $form = $form->createView();
+            $formRegister = $formRegister->createView();
         }
 
         $nextEvent = $publication = $this->getDoctrine()->getRepository('AppBundle:Event')->findNext($event);
@@ -203,7 +206,8 @@ class PublicationController extends Controller
 
         return [
             'event' => $event,
-            'form' => $form,
+            'formTheses' => $formTheses,
+            'formRegister' => $formRegister,
             'eventItem' => $eventItem,
             'typeForm' => $typeForm,
             'nextEvent' => $nextEvent,
