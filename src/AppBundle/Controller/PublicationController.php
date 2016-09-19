@@ -139,22 +139,24 @@ class PublicationController extends Controller
 
             $formTheses->handleRequest($request);
 
-            if ($formTheses->isSubmitted() && $formTheses->isValid()) {
-                $data = $form->getData();
-                $message = \Swift_Message::newInstance()
-                    ->setSubject('Пользователь оставил тезис')
-                    ->setFrom('info@euat.ru')
-                    ->setTo('office@euat.ru')
-                    ->setBody(
-                        $this->renderView(
-                            '@App/Mail/setTheses.html.twig',
-                            array('data' => $data, 'event' => $event)
-                        ),
-                        'text/html'
-                    );
-                $this->get('mailer')->send($message);
-                $session = $request->getSession();
-                $session->getFlashBag()->add('info', 'Ваша заявка отправлена');
+            if ($request->request->get('type') === 'formTheses'){
+                if ($formTheses->isSubmitted() && $formTheses->isValid()) {
+                    $data = $form->getData();
+                    $message = \Swift_Message::newInstance()
+                        ->setSubject('Пользователь оставил тезис')
+                        ->setFrom('info@euat.ru')
+                        ->setTo('office@euat.ru')
+                        ->setBody(
+                            $this->renderView(
+                                '@App/Mail/setTheses.html.twig',
+                                array('data' => $data, 'event' => $event)
+                            ),
+                            'text/html'
+                        );
+                    $this->get('mailer')->send($message);
+                    $session = $request->getSession();
+                    $session->getFlashBag()->add('info', 'Ваша заявка отправлена');
+                }
             }
             $formTheses = $formTheses->createView();
         }
@@ -170,33 +172,34 @@ class PublicationController extends Controller
                 ->getForm();
 
             $formRegister->handleRequest($request);
+            if ($request->request->get('type') === 'formRegister'){
+                if ($formRegister->isSubmitted() && $formRegister->isValid()) {
+                    $data = $formRegister->getData();
 
-            if ($formRegister->isSubmitted() && $form->isValid()) {
-                $data = $formRegister->getData();
+                    $log = new EventRegisterLog();
+                    $log->setEmail($data['email']);
+                    $log->setName($data['fio']);
+                    $log->setPost($data['post']);
+                    $log->setWorkplace($data['place']);
+                    $log->setPhone($data['phone']);
+                    $this->getDoctrine()->getManager()->persist($log);
+                    $this->getDoctrine()->getManager()->flush($log);
 
-                $log = new EventRegisterLog();
-                $log->setEmail($data['email']);
-                $log->setName($data['fio']);
-                $log->setPost($data['post']);
-                $log->setWorkplace($data['place']);
-                $log->setPhone($data['phone']);
-                $this->getDoctrine()->getManager()->persist($log);
-                $this->getDoctrine()->getManager()->flush($log);
-
-                $message = \Swift_Message::newInstance()
-                    ->setSubject('Пользователь оставил заявку на регистрацию')
-                    ->setFrom('info@euat.ru')
-                    ->setTo('school@euat.ru')
-                    ->setBody(
-                        $this->renderView(
-                            '@App/Mail/setRegister.html.twig',
-                            array('data' => $data, 'event' => $event)
-                        ),
-                        'text/html'
-                    );
-                $this->get('mailer')->send($message);
-                $session = $request->getSession();
-                $session->getFlashBag()->add('info', 'Ваша заявка отправлена');
+                    $message = \Swift_Message::newInstance()
+                        ->setSubject('Пользователь оставил заявку на регистрацию')
+                        ->setFrom('info@euat.ru')
+                        ->setTo('school@euat.ru')
+                        ->setBody(
+                            $this->renderView(
+                                '@App/Mail/setRegister.html.twig',
+                                array('data' => $data, 'event' => $event)
+                            ),
+                            'text/html'
+                        );
+                    $this->get('mailer')->send($message);
+                    $session = $request->getSession();
+                    $session->getFlashBag()->add('info', 'Ваша заявка отправлена');
+                }
             }
             $formRegister = $formRegister->createView();
         }
@@ -213,6 +216,19 @@ class PublicationController extends Controller
             'nextEvent' => $nextEvent,
             'previousEvent' => $previousEvent
             ];
+    }
+
+
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route("/event/register", name="event_register")
+     */
+    public function formregisterAction(Request $request){
+
+
+        $referer = $request->headers->get('referer');
+        return $this->redirect($referer);
     }
 
 
