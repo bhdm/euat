@@ -143,7 +143,7 @@ class PublicationController extends Controller
                     $data = $formTheses->getData();
                     $message = \Swift_Message::newInstance()
                         ->setSubject('Пользователь оставил тезис')
-                        ->setFrom('info@euat.ru')
+                        ->setFrom('mailer@euat.ru')
                         ->setTo('office@euat.ru')
                         ->setBody(
                             $this->renderView(
@@ -187,7 +187,7 @@ class PublicationController extends Controller
 
                     $message = \Swift_Message::newInstance()
                         ->setSubject('Пользователь оставил заявку на регистрацию')
-                        ->setFrom('info@euat.ru')
+                        ->setFrom('mailer@euat.ru')
                         ->setTo('school@euat.ru')
                         ->setBody(
                             $this->renderView(
