@@ -152,7 +152,7 @@ class AuthController extends Controller
             }else{
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Пользователь загрузил аватарку')
-                    ->setFrom('info@euat.ru')
+                    ->setFrom('mailer@euat.ru',  'mailer@euat.ru')
                     ->setTo('notify@euat.ru')
                     ->setBody(
                         $this->renderView(
@@ -177,7 +177,7 @@ class AuthController extends Controller
             }else{
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Пользователь загрузил сертификат')
-                    ->setFrom('info@euat.ru')
+                    ->setFrom('mailer@euat.ru',  'mailer@euat.ru')
                     ->setTo('notify@euat.ru')
                     ->setBody(
                         $this->renderView(
@@ -206,7 +206,7 @@ class AuthController extends Controller
 
             $message = \Swift_Message::newInstance()
                 ->setSubject('Пользователь изменил профиль')
-                ->setFrom('info@euat.ru')
+                ->setFrom('mailer@euat.ru',  'mailer@euat.ru')
                 ->setTo('notify@euat.ru')
                 ->setBody(
                     $this->renderView(
@@ -302,7 +302,7 @@ class AuthController extends Controller
 
             $message = \Swift_Message::newInstance()
                 ->setSubject('Пользователь Зарегистрировался')
-                ->setFrom('info@euat.ru')
+                ->setFrom('mailer@euat.ru',  'mailer@euat.ru')
                 ->setTo('notify@euat.ru')
                 ->setBody(
                     $this->container->get('templating')->render('@App/Mail/setNewRegister.html.twig', array('user' => $user)),

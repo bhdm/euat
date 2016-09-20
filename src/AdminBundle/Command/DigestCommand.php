@@ -82,9 +82,9 @@ class DigestCommand extends ContainerAwareCommand
         $mail->CharSet  = 'UTF-8';
         $mail->From     = 'mailer@euat.ru';
         $mail->FromName = 'Евразийская Ассоциация Терапевтов';
-        $mail->Host     = 'smtp.yandex.ru';
+        $mail->Host     = 'smtp.mail.ru';
         $mail->Username = 'mailer@euat.ru';
-        $mail->Password = 'K9nYoTW4GW';
+        $mail->Password = 'NIK&Et2uv654';
         $mail->SMTPAuth = true;
         $mail->Port     = 465;
         $mail->Subject  = $subject;
