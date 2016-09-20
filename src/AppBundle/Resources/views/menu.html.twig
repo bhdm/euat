@@ -17,12 +17,20 @@
             {#<li class="active"><a href="">Главная</a></li>#}
             <li>
                 {#<span class="fa fa-angle-down"></span>#}
-                <a href="{{ m.url }}">{{ m.title }} {{ m.children | length > 0 ? ' ' }}</a>
+                {% if m.noindex == true %}
+                    <noindex><a href="{{ m.url }}">{{ m.title }} {{ m.children | length > 0 ? ' ' }}</a></noindex>
+                {% else %}
+                    <a href="{{ m.url }}">{{ m.title }} {{ m.children | length > 0 ? ' ' }}</a>
+                {% endif %}
                 {% if m.children | length > 0 %}
                     <div class="submunu">
                         <ul>
                             {% for sm in m.children %}
-                                <li><a href="{{ sm.url }}">{{ sm.title }}</a></li>
+                                {% if sm.noindex == true %}
+                                    <li><noindex><a href="{{ sm.url }}">{{ sm.title }}</a></noindex></li>
+                                {% else %}
+                                    <li><a href="{{ sm.url }}">{{ sm.title }}</a></li>
+                                {% endif %}
                             {% endfor %}
                         </ul>
                     </div>

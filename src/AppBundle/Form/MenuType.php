@@ -19,6 +19,7 @@ class MenuType extends AbstractType
             ->add('url', null, ['label' => 'Ссылка'])
             ->add('parent', null, ['label' => 'Главное меню'])
             ->add('enabled', null, ['label' => 'Статус'])
+            ->add('noindex', null, ['label' => 'Отключить индексацию'])
         ;
     }
     

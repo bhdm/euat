@@ -68,11 +68,17 @@ class Menu
     private $children;
 
     /**
+     * @ORM\Column(name="noindex", type="boolean", nullable=true)
+     */
+    private $noindex;
+
+    /**
      * Menu constructor.
      */
     public function __construct()
     {
         $this->children = new ArrayCollection();
+        $this->noindex = false;
     }
 
     public function __toString()
@@ -221,6 +227,21 @@ class Menu
         $this->sort = $sort;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getNoindex()
+    {
+        return $this->noindex;
+    }
+
+    /**
+     * @param mixed $noindex
+     */
+    public function setNoindex($noindex)
+    {
+        $this->noindex = $noindex;
+    }
 
 
 }
