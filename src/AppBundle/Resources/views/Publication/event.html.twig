@@ -152,18 +152,18 @@
             {% endif %}
             {% if event.partners | length > 0 %}
                 <h3 class="title">Партнеры события:</h3>
-                <div class="tablerow">
-                    {% for ps in event.partners |batch(4) %}
+                {% for ps in event.partners |batch(4) %}
+                    <div class="tablerow">
                         {% for p in ps %}
                             <div class="thumbnail vcenter tablecell" style="display: inline-block; height: 70px;">
                                 <a href="{{ p.link }}" target="_blank">
                                     <img src="{{ p.image.path }}" style="max-height: 70px; max-width: 120px;" title="{{ p.title }}" alt="{{ p.title }}">
                                 </a>
                             </div>
+                            <div class="vcenter">&nbsp;</div>
                         {% endfor %}
-                        <div class="vcenter">&nbsp;</div>
-                    {% endfor %}
-                </div>
+                    </div>
+                {% endfor %}
                 <br />
                 <br />
             {% endif %}
