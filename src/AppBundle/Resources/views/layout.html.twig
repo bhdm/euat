@@ -74,12 +74,14 @@
                     </div>
                 </div>
                 <div class="col-xs-offset-1 col-xs-5 text-right hidden-xs">
-                    <form class="navbar-form navbar-right" role="search" action="{{ path('search') }}">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="search" placeholder="Введите запрос поиска" name="search">
-                        </div>
-                        <noindex><button type="submit" class="btn btn-primary">Найти</button></noindex>
-                    </form>
+                    <noindex>
+                        <form class="navbar-form navbar-right" role="search" action="{{ path('search') }}">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="search" placeholder="Введите запрос поиска" name="search">
+                            </div>
+                            <noindex><button type="submit" class="btn btn-primary">Найти</button></noindex>
+                        </form>
+                    </noindex>
                 </div>
                 <div class="col-xs-3 hidden-xs">
                     {% if app.user != null %}
@@ -156,13 +158,13 @@
                     </div>
                     <div class="col-md-9 col-xs-12">
                         <noindex>
-                        <div><strong>Наши контакты</strong></div>
-                        <div>
-                            Адрес: <span class="blue-text">129085, Россия, Москва, Звездный бульвар, д. 21, стр. 1</span><br />
-                            Телефон: <span class="blue-text">+7 (977) 612-26-95</span><br />
-                            Телефон: <span class="blue-text">+7 (929) 986-69-80</span><br />
-                            Эл.почта: <span class="blue-text"><a href="mailto:office@euat.ru">office@euat.ru</a></span><br />
-                        </div>
+                            <div><strong>Наши контакты</strong></div>
+                            <div>
+                                Адрес: <span class="blue-text">129085, Россия, Москва, Звездный бульвар, д. 21, стр. 1</span><br />
+                                Телефон: <span class="blue-text">+7 (977) 612-26-95</span><br />
+                                Телефон: <span class="blue-text">+7 (929) 986-69-80</span><br />
+                                Эл.почта: <span class="blue-text"><a href="mailto:office@euat.ru">office@euat.ru</a></span><br />
+                            </div>
                         </noindex>
                     </div>
                 </div>
@@ -179,7 +181,7 @@
                             <noindex><a href="{{ path('page',{'url' : 'eula'}) }}"><img src="{{ asset('bundles/app/images/icons/ur.png') }}" class="other-icon hidden-xs" alt="Юридическая информация"> Юридическая информация</a></noindex>
                         </li>
                         {#<li>#}
-                            {#<a href="{{ path('page',{'url' : 'smi'}) }}"><img src="{{ asset('bundles/app/images/icons/ur.png') }}" class="other-icon"> Информация для сми</a>#}
+                        {#<a href="{{ path('page',{'url' : 'smi'}) }}"><img src="{{ asset('bundles/app/images/icons/ur.png') }}" class="other-icon"> Информация для сми</a>#}
                         {#</li>#}
                         <li>
                             <noindex><a href="{{ path('partners') }}"><img src="{{ asset('bundles/app/images/icons/ar.png') }}" class="other-icon hidden-xs" alt="Партнеры"> Партнеры</a></noindex>
@@ -228,6 +230,6 @@
         })
     </script>
 {% endif %}
-    <div class="hidden-sm hidden-xs" id="toTop"></div>
+<div class="hidden-sm hidden-xs" id="toTop"></div>
 </body>
 </html>
