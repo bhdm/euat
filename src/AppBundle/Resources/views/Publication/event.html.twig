@@ -41,15 +41,15 @@
     <div class="col-xs-12 col-md-8" style="padding-right: 0">
         <ol class="breadcrumb">
             <li
-                itemscope
-                itemtype="http://data-vocabulary.org/Breadcrumb">
+                    itemscope
+                    itemtype="http://data-vocabulary.org/Breadcrumb">
                 <a itemprop="url" href="{{ path('homepage') }}"><span itemprop="title">Главная</span></a></li>
             <li
-                itemscope
-                itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ path('events') }}"><span itemprop="title">События</span></a></li>
+                    itemscope
+                    itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ path('events') }}"><span itemprop="title">События</span></a></li>
             <li
-                itemscope
-                itemtype="http://data-vocabulary.org/Breadcrumb">
+                    itemscope
+                    itemtype="http://data-vocabulary.org/Breadcrumb">
                 {% if event.type == null %}
                     <a  itemprop="url" href="{{ path('events',{'type' : null }) }}"><span itemprop="title">События</span></a>
                 {% elseif event.type == 'CONGRESS' %}
@@ -153,10 +153,14 @@
             {% if event.partners | length > 0 %}
                 <h3 class="title">Партнеры события:</h3>
                 <div class="tablerow">
-                    {% for p in event.partners %}
-                        <div class="thumbnail vcenter tablecell" style="display: inline-block; height: 70px;">
-                            <img src="{{ p.image.path }}" style="max-height: 70px; max-width: 120px;" title="{{ p.title }}" alt="{{ p.title }}">
-                        </div>
+                    {% for ps in event.partners |batch(4) %}
+                        {% for p in ps %}
+                            <div class="thumbnail vcenter tablecell" style="display: inline-block; height: 70px;">
+                                <a href="{{ p.link }}" target="_blank">
+                                    <img src="{{ p.image.path }}" style="max-height: 70px; max-width: 120px;" title="{{ p.title }}" alt="{{ p.title }}">
+                                </a>
+                            </div>
+                        {% endfor %}
                         <div class="vcenter">&nbsp;</div>
                     {% endfor %}
                 </div>
@@ -171,7 +175,7 @@
         {% if formTheses != null %}
             <br />
             <div style="border: 1px solid #CCC; padding: 20px">
-                    <div class="caption"><b>Направить тезис</b></div>
+                <div class="caption"><b>Направить тезис</b></div>
                 {{ form_start(formTheses) }}
                 {{ form_widget(formTheses) }}
                 <input type="hidden" name="type" value="formTheses" />
@@ -183,7 +187,7 @@
         {% if formRegister != null %}
             <br />
             <div style="border: 1px solid #CCC; padding: 20px">
-                    <div class="caption"><b>Зарегистрироваться:</b></div>
+                <div class="caption"><b>Зарегистрироваться:</b></div>
                 {{ form_start(formRegister) }}
                 {{ form_widget(formRegister) }}
                 <input type="hidden" name="type" value="formRegister" />
