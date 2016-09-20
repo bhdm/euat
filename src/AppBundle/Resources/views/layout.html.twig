@@ -78,7 +78,7 @@
                         <div class="form-group">
                             <input type="text" class="form-control" id="search" placeholder="Введите запрос поиска" name="search">
                         </div>
-                        <button type="submit" class="btn btn-primary">Найти</button>
+                        <noindex><button type="submit" class="btn btn-primary">Найти</button></noindex>
                     </form>
                 </div>
                 <div class="col-xs-3 hidden-xs">
@@ -104,10 +104,10 @@
                         </div>
                     {% else %}
                         <div class="navbar-form navbar-right">
-                            <button class="btn btn-primary" id="login">Вход</button>
+                            <noindex><button class="btn btn-primary" id="login">Вход</button></noindex>
                         </div>
                         <div class="register-btn">
-                            <a href="{{ path('fos_user_registration_register') }}">Регистрация</a>
+                            <noindex><a href="{{ path('fos_user_registration_register') }}">Регистрация</a></noindex>
                         </div>
                     {% endif %}
                 </div>
