@@ -142,7 +142,7 @@
                 <div style="" class="tablerow">
                     {% for p in event.sponsors %}
                         <div class="thumbnail vcenter tablecell" style="display: inline-block; height: 70px;">
-                            <img src="{{ p.image.path }}" style="max-height: 70px; max-width: 120px;" title="{{ p.title }}">
+                            <a href="{{ p.link }}" target="_blank"><img src="{{ p.image.path }}" style="max-height: 70px; max-width: 120px;" title="{{ p.title }}"></a>
                         </div>
                         <div class="vcenter">&nbsp;</div>
                     {% endfor %}
@@ -153,11 +153,11 @@
             {% if event.partners | length > 0 %}
                 <h3 class="title">Партнеры события:</h3>
                 {% for ps in event.partners |batch(4) %}
-                    <div class="tablerow">
+                    <div class="tablerow" style="margin-top: 10px">
                         {% for p in ps %}
-                            <div class="thumbnail vcenter tablecell" style="display: inline-block; height: 70px;">
+                            <div class="thumbnail vcenter tablecell" style="display: inline-block; width: 25%;">
                                 <a href="{{ p.link }}" target="_blank">
-                                    <img src="{{ p.image.path }}" style="max-height: 70px; max-width: 120px;" title="{{ p.title }}" alt="{{ p.title }}">
+                                    <img src="{{ p.image.path }}" style="max-height: 70px;" title="{{ p.title }}" alt="{{ p.title }}" class="img-responsive">
                                 </a>
                             </div>
                             <div class="vcenter">&nbsp;</div>
