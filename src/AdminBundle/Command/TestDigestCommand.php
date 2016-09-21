@@ -80,10 +80,10 @@ class TestDigestCommand extends ContainerAwareCommand
         $mail->SMTPDebug = 0;
         $mail->SMTPSecure = 'ssl';
         $mail->CharSet  = 'UTF-8';
-        $mail->From     = 'mailer@euat.ru';
+        $mail->From     = 'euatru@gmail.com';
         $mail->FromName = 'Евразийская Ассоциация Терапевтов';
         $mail->Host     = 'smtp.yandex.ru';
-        $mail->Username = 'mailer@euat.ru';
+        $mail->Username = 'euatru@gmail.com';
         $mail->Password = 'K9nYoTW4GW';
         $mail->SMTPAuth = true;
         $mail->Port     = 465;
