@@ -58,20 +58,14 @@ $(document).ready(function(){
     $(window).scroll(function() {
         if($(this).scrollTop() != 0) {
             $('#toTop').fadeIn();
+            $('#toTop2').css('display','block');
         } else {
             $('#toTop').fadeOut();
+            $('#toTop2').css('display','none');
         }
     });
     $('#toTop').click(function() {
         $('body,html').animate({scrollTop:0},800);
-    });
-
-    $(window).scroll(function() {
-        if($(this).scrollTop() != 0) {
-            $('#toTop2').fadeIn();
-        } else {
-            $('#toTop2').fadeOut();
-        }
     });
     $('#toTop2').click(function() {
         $('body,html').animate({scrollTop:0},800);
