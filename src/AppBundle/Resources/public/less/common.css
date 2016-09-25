@@ -632,3 +632,15 @@ p em {
   z-index: 999;
   background: url("/bundles/app/images/up2.png");
 }
+.mobile-top {
+  cursor: pointer;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  background: #1f395e;
+  color: #FFF;
+  display: none;
+  z-index: 999;
+}

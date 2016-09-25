@@ -66,4 +66,15 @@ $(document).ready(function(){
         $('body,html').animate({scrollTop:0},800);
     });
 
+    $(window).scroll(function() {
+        if($(this).scrollTop() != 0) {
+            $('#toTop2').fadeIn();
+        } else {
+            $('#toTop2').fadeOut();
+        }
+    });
+    $('#toTop2').click(function() {
+        $('body,html').animate({scrollTop:0},800);
+    });
+
 });
