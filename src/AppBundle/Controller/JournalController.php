@@ -39,7 +39,15 @@ class JournalController extends Controller
         if ($journal->getSlug()){
             return $this->redirect($this->generateUrl('journal_new',['slug' => $journal->getSlug()]),301);
         }
-        return ['journal' => $journal];
+
+        $nextJournal = $publication = $this->getDoctrine()->getRepository('AppBundle:Journal')->findNext($journalId);
+        $previousJournal = $publication = $this->getDoctrine()->getRepository('AppBundle:Journal')->findPrevious($journalId);
+
+        return [
+            'journal' => $journal,
+            'nextJournal' => $nextJournal,
+            'previousJournal' => $previousJournal,
+        ];
 
     }
 

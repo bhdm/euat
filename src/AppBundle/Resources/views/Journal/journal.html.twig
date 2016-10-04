@@ -54,16 +54,42 @@
                     <label class="col-xs-5">Том:</label>
                     <div class="col-xs-7">{{ journal.tom }}</div>
                 </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <a href="#posts" class="link"><button type="button" class="btn btn-primary">К статьям журнала</button></a>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-xs-12"><p>{{ journal.description | raw }}</p></div>
             </div>
+
+            <br />
+            <br />
+            <div class="row">
+                <noindex>
+                    <div class="col-xs-6 text-left">
+                        {% if previousJournal is defined and previousJournal != null %}
+                            <a href="{{ path('journal', {'journalId' : previousJournal.journal.id } ) }}">« Назад</a> <br />
+                        {% endif %}
+                    </div>
+                </noindex>
+                <noindex>
+                    <div class="col-xs-6 text-right">
+                        {% if nextJournal is defined and nextJournal != null %}
+                            <a href="{{ path('journal', {'journalId' : nextJournal.journal.id } ) }}">Далее »</a> <br />
+                        {% endif %}
+                    </div>
+                </noindex>
+            </div>
+
+            <br />
             <div class="row">
                 <div class="col-xs-12">
-                    <h3 class="blue-text">Статьи журнала</h3>
+                    <h3 class="blue-text" id="posts">Статьи журнала</h3>
                     {% for post in journal.posts %}
                         <div class="row">
-                            <div class="caption" style="font-size: 16px"><a href="{{ path('journal-post', {'journalId' : journal.id, 'postId' : post.id}) }}">{{ post.title }}</a></div>
+                            <div class="caption" style="font-size: 16px"><a href="{{ path('journal-post', {'journalId' : journal.id, 'postId' : post.id}) }}" target="_blank">{{ post.title }}</a></div>
                             <div class="params">
                                 <b>Авторы:</b> {{ post.author }}<br />
                                 <b>Описание:</b> {{ post.description | anons | raw }}<br />
