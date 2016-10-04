@@ -71,7 +71,7 @@ $(document).ready(function(){
         $('body,html').animate({scrollTop:0},800);
     });
 
-    $(".link").on("click","a", function (event) {
+    $(".link").click(function () {
         event.preventDefault();
         var id  = $(this).attr('href');
         $('body,html').animate({scrollTop: $(id).offset().top}, 1500);
