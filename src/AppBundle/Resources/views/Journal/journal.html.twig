@@ -86,7 +86,7 @@
             <br />
             <div class="row">
                 <div class="col-xs-12">
-                    <h3 class="blue-text" id="posts">Статьи журнала</h3>
+                    <h2 class="blue-text" id="posts" style="font-size: 24px">Статьи журнала</h2>
                     {% for post in journal.posts %}
                         <div class="row">
                             <div class="caption" style="font-size: 16px"><a href="{{ path('journal-post', {'journalId' : journal.id, 'postId' : post.id}) }}" target="_blank">{{ post.title }}</a></div>
