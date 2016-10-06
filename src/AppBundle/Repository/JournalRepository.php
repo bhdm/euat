@@ -38,7 +38,7 @@ class JournalRepository extends EntityRepository
         $qb = $this->createQueryBuilder('p');
         $qb->select('p');
         $qb->where("p.id < :id ");
-        $qb->orderBy('p.created', 'ASC');
+        $qb->orderBy('p.created', 'DESC');
         $qb->setMaxResults(1);
         $qb->setParameter('id', $id);
         $result = $qb->getQuery()->getOneOrNullResult();
