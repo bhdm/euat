@@ -61,8 +61,8 @@ class JournalController extends Controller
     public function journal2Action($slug){
 
         $journal = $this->getDoctrine()->getRepository('AppBundle:Journal')->findOneBy(['enabled' => true, 'slug' => $slug]);
-        $nextJournal = $publication = $this->getDoctrine()->getRepository('AppBundle:Journal')->findNext($journalId);
-        $previousJournal = $publication = $this->getDoctrine()->getRepository('AppBundle:Journal')->findPrevious($journalId);
+        $nextJournal = $publication = $this->getDoctrine()->getRepository('AppBundle:Journal')->findNext($journal->getId());
+        $previousJournal = $publication = $this->getDoctrine()->getRepository('AppBundle:Journal')->findPrevious($journal->getId());
         return [
             'journal' => $journal,
             'nextJournal' => $nextJournal,
