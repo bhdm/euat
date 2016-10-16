@@ -12,11 +12,14 @@
     <script src="{{ asset('assets/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
 {% endblock %}
 
-{% block content %}
-    <div class="col-xs-12 col-md-4 hidden-sm hidden-xs" style="padding-left: 0; max-width: 250px">
+{% block leftSidebar %}
+    <div class="table-cell col-fixed-300 hidden-xs hidden-sm">
         {{ render(controller("AppBundle:Widget:calendar" )) }}
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-8" style="padding-right: 0">
+{% endblock %}
+
+{% block content %}
+    <div class="col-xs-12">
         <ol class="breadcrumb">
             <li
                 itemscope

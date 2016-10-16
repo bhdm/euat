@@ -78,12 +78,15 @@
     </style>
 {% endblock %}
 
+{% block leftSidebar %}
+    <div class="table-cell col-fixed-300 hidden-xs hidden-sm">
+        {{ render(controller("AppBundle:Widget:calendar" )) }}
+    </div>
+{% endblock %}
+
 {% block content %}
     <div>
-        <div class="col-xs-12 col-md-4 hidden-sm hidden-xs" style="padding-left: 0; max-width: 250px">
-            {{ render(controller("AppBundle:Widget:calendar" )) }}
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-8">
+        <div class="col-xs-12">
             <ol class="breadcrumb">
                 <li
                     itemscope

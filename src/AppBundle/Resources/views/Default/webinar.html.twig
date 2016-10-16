@@ -23,12 +23,14 @@
     <meta property="og:description" content="{{ event.anons is defined ? event.anons : ''}}">
 {% endblock %}
 
-
-{% block content %}
-    <div class="col-xs-4" style="padding-left: 0">
+{% block leftSidebar %}
+    <div class="table-cell col-fixed-300 hidden-xs hidden-sm">
         {{ render(controller("AppBundle:Widget:calendar" )) }}
     </div>
-    <div class="col-xs-8" style="padding-right: 0">
+{% endblock %}
+
+{% block content %}
+    <div class="col-xs-12">
         <h1 class="blue-text">Вебинар тестовый</h1>
         <br />
         <br />
