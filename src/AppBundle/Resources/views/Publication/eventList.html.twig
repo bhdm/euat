@@ -20,15 +20,15 @@
         {% endif %}
     </title>
 
-        {% if type == null %}
-            <meta name="description" content="Ознакомьтесь с нашими  мероприятиями! Воспользуйтесь фильтром для поиска школы или съезда в Вашем городе!" />
-        {% elseif type == 'CONGRESS' %}
-            <meta name="description" content="Все съезды имеют международный статус. Во время конференций проходит конкурс на наиболее интересные доклады. По окончанию мероприятия каждому участнику вручается именной сертификат" />
-        {% elseif type == 'SCHOOL' %}
-            <meta name="description" content="Материалы лекций полностью соответствуют последним Национальным и Европейским рекомендациям, содержат подробные алгоритмы принятия диагностического решения, богато иллюстрированы, конкретны" />
-        {% elseif type == 'partner' %}
-            <meta name="description" content="Ознакомьтесь с мероприятиями наших партнеров в сфере медицины и обучения врачей от наиболее авторитетных брендов в РФ и СНГ." />
-        {% endif %}
+    {% if type == null %}
+        <meta name="description" content="Ознакомьтесь с нашими  мероприятиями! Воспользуйтесь фильтром для поиска школы или съезда в Вашем городе!" />
+    {% elseif type == 'CONGRESS' %}
+        <meta name="description" content="Все съезды имеют международный статус. Во время конференций проходит конкурс на наиболее интересные доклады. По окончанию мероприятия каждому участнику вручается именной сертификат" />
+    {% elseif type == 'SCHOOL' %}
+        <meta name="description" content="Материалы лекций полностью соответствуют последним Национальным и Европейским рекомендациям, содержат подробные алгоритмы принятия диагностического решения, богато иллюстрированы, конкретны" />
+    {% elseif type == 'partner' %}
+        <meta name="description" content="Ознакомьтесь с мероприятиями наших партнеров в сфере медицины и обучения врачей от наиболее авторитетных брендов в РФ и СНГ." />
+    {% endif %}
 
 {% endblock %}
 {% block content %}
@@ -38,25 +38,25 @@
     <div class="col-xs-12 col-sm-12 col-md-8">
         <ol class="breadcrumb">
             <li
-                itemscope
-                itemtype="http://data-vocabulary.org/Breadcrumb">
+                    itemscope
+                    itemtype="http://data-vocabulary.org/Breadcrumb">
                 <a itemprop="url" href="{{ path('homepage') }}"><span itemprop="title">Главная</span></a></li>
             {% if type == null %}
                 <li class="active">События</li>
             {% elseif type == 'CONGRESS' %}
                 <li
-                    itemscope
-                    itemtype="http://data-vocabulary.org/Breadcrumb"><a  itemprop="url" href="{{ path('events') }}"><span itemprop="title">События</span></a></li>
+                        itemscope
+                        itemtype="http://data-vocabulary.org/Breadcrumb"><a  itemprop="url" href="{{ path('events') }}"><span itemprop="title">События</span></a></li>
                 <li class="active">Конференции и съезды</li>
             {% elseif type == 'SCHOOL' %}
                 <li
-                    itemscope
-                    itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url"  href="{{ path('events') }}"><span itemprop="title">События</span></a></li>
+                        itemscope
+                        itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url"  href="{{ path('events') }}"><span itemprop="title">События</span></a></li>
                 <li class="active">Школы</li>
             {% elseif type == 'partner' %}
                 <li
-                    itemscope
-                    itemtype="http://data-vocabulary.org/Breadcrumb"><a  itemprop="url" href="{{ path('events') }}"><span itemprop="title">События</span></a></li>
+                        itemscope
+                        itemtype="http://data-vocabulary.org/Breadcrumb"><a  itemprop="url" href="{{ path('events') }}"><span itemprop="title">События</span></a></li>
                 <li class="active">Партнерские события</li>
             {% endif %}
         </ol>
@@ -72,21 +72,23 @@
         {% endif %}
         {{ render(controller("AppBundle:Widget:seopage", {'url' : app.request.requestUri } )) }}
         <div class="row">
-            <form class="form-inline" method="GET" style="min-width: 695px">
-                <div class="form-group">
-                    <label style="font-weight: normal">С </label>
-                    <input type="date" class="form-control" placeholder="Дата начала" style="width: 130px; font-size: 12px" name="start" value="{{ start }}">
-                </div>
-                <div class="form-group">
-                    <label style="font-weight: normal"> по </label>
-                    <input type="date" class="form-control" placeholder="Дата окончания" style="width: 130px; font-size: 12px" name="end" value="{{ end }}">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Фраза поиска" name="searchtext" value="{{ text }}" style="width: 210px; font-size: 12px">
-                </div>
-                <button class="btn btn-primary">Фильтр</button>
-                <a href="{{ path('events',{'type' : type}) }}"><button type="button" class="btn btn-danger" style="padding: 6px 12px">&times;</button></a>
-            </form>
+            <div class="col-xs-12">
+                <form class="form-inline" method="GET" style="min-width: 695px">
+                    <div class="form-group">
+                        <label style="font-weight: normal">С </label>
+                        <input type="date" class="form-control" placeholder="Дата начала" style="width: 130px; font-size: 12px" name="start" value="{{ start }}">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-weight: normal"> по </label>
+                        <input type="date" class="form-control" placeholder="Дата окончания" style="width: 130px; font-size: 12px" name="end" value="{{ end }}">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Фраза поиска" name="searchtext" value="{{ text }}" style="width: 210px; font-size: 12px">
+                    </div>
+                    <button class="btn btn-primary" style="padding: 6px 25px">Фильтр</button>
+                    <a href="{{ path('events',{'type' : type}) }}"><button type="button" class="btn btn-danger" style="padding: 6px 12px">&times;</button></a>
+                </form>
+            </div>
         </div>
 
         <div>

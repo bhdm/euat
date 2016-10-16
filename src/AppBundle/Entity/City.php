@@ -33,6 +33,12 @@ class City
 	 */
 	protected $title;
 
+    /**
+     * @var string
+     * @ORM\Column(type = "string", nullable=true)
+     */
+    protected $titleEn;
+
 	/**
 	 * @var ArrayCollection
 	 *
@@ -128,7 +134,20 @@ class City
 		$this->users = $users;
 	}
 
+    /**
+     * @return string
+     */
+    public function getTitleEn()
+    {
+        return $this->titleEn;
+    }
 
-
+    /**
+     * @param string $titleEn
+     */
+    public function setTitleEn($titleEn)
+    {
+        $this->titleEn = $titleEn;
+    }
 
 }
