@@ -1,0 +1,52 @@
+<div>
+    {% for p in events %}
+        <div class="new-item">
+                    <span style="padding-right: 20px; color: #888">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                        {{ p.start | date('d.m.Y') }}{{ p.end != null ? ' - '~p.end | date('d.m.Y') : '' }}
+                    </span>
+            <br />
+            <a href="{{ path('event', {'url' : p.id }) }}"><span class="new-item-title">{{ p.title }}</span></a>
+            <div class="new-item-anons">
+                {{ p.body | anons | raw }}
+                {% if p.category != null %}
+                    <div style="color: #555">
+                        {{ p.category.title }}
+                    </div>
+                {% endif %}
+                {% if p.registerIframe %}
+                    <div style="margin-top: 5px">
+                        <a href="{{ path('event', {'url' : p.id, 'number' : null }) }}#registerIframe"><button class="btn-sm btn-primary" type="button">Регистрация на мероприятие</button></a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        {% for i in p.items %}
+            <div class="new-item">
+                    <span style="padding-right: 20px; color: #888">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                        {{ i.start | date('d.m.Y') }}{{ i.end != null ? ' - '~i.end | date('d.m.Y') : '' }}
+                    </span>
+                <br />
+                <a href="{{ path('event', {'url' : p.id, 'number' : i.id }) }}"><span class="new-item-title">{{ p.title }}</span></a>
+                {% if is_granted('ROLE_ADMIN') %} <a href="{{ path('admin_event_edit',{'id' : p.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>{% endif %}
+                <div class="new-item-anons">
+                    {{ p.body | anons | raw }}
+                    {% if p.category != null %}
+                        <div style="color: #555">
+                            {{ p.category.title }}
+                        </div>
+                    {% endif %}
+                    {% if p.registerIframe %}
+                        <div style="margin-top: 5px">
+                            <a href="{{ path('event', {'url' : p.id, 'number' : i.id }) }}#registerIframe"><button class="btn-sm btn-primary" type="button">Регистрация на мероприятие</button></a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    <div class="navigation">
+        {{ knp_pagination_render(events) }}
+    </div>
+</div>

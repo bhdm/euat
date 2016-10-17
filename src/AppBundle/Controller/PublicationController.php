@@ -259,7 +259,6 @@ class PublicationController extends Controller
 
     /**
      * @Route("/events/{type}", name="events", defaults={"type" = null})
-     * @Template("AppBundle:Publication:eventList.html.twig")
      */
     public function eventListAction(Request $request, $type)
     {
@@ -278,17 +277,30 @@ class PublicationController extends Controller
         $pagination = $paginator->paginate(
             $events,
             $request->query->get('page', 1),
-            15
+            3
         );
+        $pagination->setTemplate('AppBundle::pagination_ajax.html.twig');
 
-        return [
-            'events' => $pagination,
-            'type' => $type,
-            'start' => $start,
-            'end' => $end,
-            'text' => $text
-        ];
+        if ($request->getMethod() === 'POST'){
+            return $this->render("AppBundle:Publication:eventList_ajax.html.twig", [
+                'events' => $pagination,
+                'type' => $type,
+                'start' => $start,
+                'end' => $end,
+                'text' => $text
+            ]);
+        }else{
+            return $this->render("AppBundle:Publication:eventList.html.twig", [
+                'events' => $pagination,
+                'type' => $type,
+                'start' => $start,
+                'end' => $end,
+                'text' => $text
+            ]);
+        }
     }
+
+
 
     /**
      * @Route("/publications", name="publications_list")

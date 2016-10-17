@@ -5,6 +5,21 @@
     <script src="{{ asset('assets/vendor/moment/moment.js') }}"></script>
     <script src="{{ asset('assets/vendor/moment/locale/ru.js') }}"></script>
     <script src="{{ asset('assets/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('body').on("click", ".ajax-event", function () {
+                var link = $(this).data('href');
+                $.ajax({
+                    url: link,
+                    method: 'POST',
+                    success: function (msg) {
+                        $('#ajax-container').html(msg);
+                    }
+                })
+            })
+        })
+    </script>
 {% endblock %}
 
 {% block seo %}
@@ -95,7 +110,7 @@
             </div>
         </div>
 
-        <div>
+        <div id="ajax-container">
             {% for p in events %}
                 <div class="new-item">
                     <span style="padding-right: 20px; color: #888">
