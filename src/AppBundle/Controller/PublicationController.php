@@ -277,7 +277,7 @@ class PublicationController extends Controller
         $pagination = $paginator->paginate(
             $events,
             $request->query->get('page', 1),
-            3
+            15
         );
         $pagination->setTemplate('AppBundle::pagination_ajax.html.twig');
 
