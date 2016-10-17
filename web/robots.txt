@@ -3,6 +3,8 @@ Disallow: /app_dev.php
 Disallow: /app.php
 Disallow: /bundles/app/js/1.js
 Disallow: /bundles/app/js/2.js
+Disallow: /course
+Disallow: /courses
 Host: euat.ru
 
 User-agent: Googlebot
@@ -10,12 +12,16 @@ Disallow: /app_dev.php
 Disallow: /app.php
 Disallow: /bundles/app/js/1.js
 Disallow: /bundles/app/js/2.js
+Disallow: /course
+Disallow: /courses
 
 User-agent: Slurp
 Disallow: /app_dev.php
 Disallow: /app.php
 Disallow: /bundles/app/js/1.js
 Disallow: /bundles/app/js/2.js
+Disallow: /course
+Disallow: /courses
 Crawl-delay: 0.1
 
 User-agent: *
@@ -23,4 +29,6 @@ Disallow: /app_dev.php
 Disallow: /app.php
 Disallow: /bundles/app/js/1.js
 Disallow: /bundles/app/js/2.js
+Disallow: /course
+Disallow: /courses
 Sitemap: http://euat.ru/sitemap.xml
