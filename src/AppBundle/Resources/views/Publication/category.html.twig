@@ -59,6 +59,7 @@
 {% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
     <script>
         $(document).ready(function () {
             $('body').on("click", ".ajax-event", function () {
