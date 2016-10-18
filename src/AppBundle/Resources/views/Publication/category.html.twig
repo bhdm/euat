@@ -1,4 +1,5 @@
 {% extends 'AppBundle::layout.html.twig' %}
+
 {% block seo %}
     {% if category.title == 'Видео' %}
         <title>Дистанционное образование - видео онлайн: лекции, выступления, конференции - EUAT.ru</title>
@@ -58,7 +59,7 @@
     </div>
 {% endblock %}
 
-{% block javascripts %}
+{% block javascript %}
     {{ parent() }}
     <script>
         $(document).ready(function () {
