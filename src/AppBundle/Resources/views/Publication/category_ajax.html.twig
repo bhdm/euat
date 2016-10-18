@@ -1,0 +1,31 @@
+
+        {% for p in publications %}
+            <div class="new-item row">
+                {% if p.preview.path is defined %}
+                    <div class="col-xs-3">
+                        <a href="{{ path('publications', {'url' : p.id }) }}">
+                            <img title="{{ p.title }}" alt="{{ p.title }}" src="{{ p.preview.path }}" style="width: 100%" class="img-thumbnail">
+                        </a>
+                    </div>
+                    <div class="col-xs-9">
+                        <a href="{{ path('publications', {'url' : p.id }) }}"><span class="new-item-title">{{ p.title }}</span></a>
+                        <div class="new-item-anons">
+                            {{ p.anons  | raw }}
+                        </div>
+                        <div style="color: #666; font-size: 11px;">{{ p.created | date('d.m.Y') }}</div>
+                    </div>
+                {% else %}
+                    <div class="col-xs-12">
+                        <a href="{{ path('publications', {'url' : p.id }) }}"><span class="new-item-title">{{ p.title }}</span></a>
+                        <div class="new-item-anons">
+                            {{ p.anons  | raw }}
+                        </div>
+                        <div style="color: #666; font-size: 11px;">{{ p.created | date('d.m.Y') }}</div>
+                    </div>
+                {% endif %}
+            </div>
+
+        {% endfor %}
+        <div class="navigation">
+            {{ knp_pagination_render(publications) }}
+        </div>

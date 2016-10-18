@@ -304,7 +304,6 @@ class PublicationController extends Controller
 
     /**
      * @Route("/publications", name="publications_list")
-     * @Template("AppBundle:Publication:category.html.twig")
      */
     public function publicationsAction(Request $request){
         $category = $this->getDoctrine()->getRepository('AppBundle:Category')->findOneBySlug('new');
@@ -317,14 +316,23 @@ class PublicationController extends Controller
             15
         );
 
-        return ['category' => $category,'publications' => $pagination];
+        $pagination->setTemplate('AppBundle::pagination_ajax.html.twig');
+
+        if ($request->getMethod() === 'POST'){
+            return $this->render("AppBundle:Publication:category_ajax.html.twig", [
+                'category' => $category,'publications' => $pagination
+            ]);
+        }else{
+            return $this->render("AppBundle:Publication:category.html.twig", [
+                'category' => $category,'publications' => $pagination
+            ]);
+        }
     }
 
     /**
      * @Route("category/{categoryUrl}", name="category")
      * @Route("education/{categoryUrl}", requirements={"categoryUrl" : "video"})
-     * @Route("education/{categoryUrl}", requirements={"categoryUrl" : "video"})
-     * @Template("AppBundle:Publication:category.html.twig")
+
      */
     public function categotyAction(Request $request, $categoryUrl){
         if ($categoryUrl === 'new'){
@@ -339,7 +347,17 @@ class PublicationController extends Controller
             $request->query->get('page', 1),
             15
         );
-        return ['category' => $category,'publications' => $pagination];
+        $pagination->setTemplate('AppBundle::pagination_ajax.html.twig');
+
+        if ($request->getMethod() === 'POST'){
+            return $this->render("AppBundle:Publication:category_ajax.html.twig", [
+                'category' => $category,'publications' => $pagination
+            ]);
+        }else{
+            return $this->render("AppBundle:Publication:category.html.twig", [
+                'category' => $category,'publications' => $pagination
+            ]);
+        }
     }
 
 

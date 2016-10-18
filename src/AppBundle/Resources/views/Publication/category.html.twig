@@ -24,7 +24,7 @@
     </ol>
     <h1 class="blue-text">{{ category.title == 'Видео' ? 'Видео - онлайн образование' : category.title }}</h1>
     {{ render(controller("AppBundle:Widget:seopage", {'url' : app.request.requestUri } )) }}
-    <div class="">
+    <div class="" id="ajax-container">
         {% for p in publications %}
             <div class="new-item row">
                 {% if p.preview.path is defined %}
@@ -56,4 +56,22 @@
             {{ knp_pagination_render(publications) }}
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $('body').on("click", ".ajax-event", function () {
+                var link = $(this).data('href');
+                $.ajax({
+                    url: link,
+                    method: 'POST',
+                    success: function (msg) {
+                        $('#ajax-container').html(msg);
+                    }
+                });
+                $('body').animate({scrollTop: $('#ajax-container').offset().top}, 1000);
+            })
+        })
+    </script>
 {% endblock %}

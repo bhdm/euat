@@ -15,9 +15,9 @@
                     method: 'POST',
                     success: function (msg) {
                         $('#ajax-container').html(msg);
-                        $('body').animate({scrollTop: $('#ajax-container').offset().top}, 1000);
                     }
-                })
+                });
+                $('body').animate({scrollTop: $('#ajax-container').offset().top}, 1000);
             })
         })
     </script>
