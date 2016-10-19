@@ -162,6 +162,11 @@ class User extends BaseUser
      */
     private $digest;
 
+    /**
+     * @ORM\Column(name="sovetnmo_id", type="string", nullable=true)
+     */
+    private $sovetnmo;
+
     public function __construct()
     {
         $this->digest = true;
@@ -578,4 +583,37 @@ class User extends BaseUser
         return $count;
 
     }
+
+    /**
+     * @return mixed
+     */
+    public function getDigest()
+    {
+        return $this->digest;
+    }
+
+    /**
+     * @param mixed $digest
+     */
+    public function setDigest($digest)
+    {
+        $this->digest = $digest;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSovetnmo()
+    {
+        return $this->sovetnmo;
+    }
+
+    /**
+     * @param mixed $sovetnmo
+     */
+    public function setSovetnmo($sovetnmo)
+    {
+        $this->sovetnmo = $sovetnmo;
+    }
+
 }
