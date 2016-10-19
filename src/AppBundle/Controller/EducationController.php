@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -259,9 +260,15 @@ class EducationController extends Controller
     }
 
     /**
+     * Получение токена
      * Route("/api/gettoken")
      */
-    public function getTokenAction(){
-        
+    public function getTokenAction(Request $request){
+        $session = new $request->getSession();
+        $link = 'http://www.sovetnmo.ru/cgi-bin/unishell?provider=euat&usr_data=get_auth_token&ssign=9bded6d6b41cf4c10067c5842c7b2977';
+        $result = file_get_contents($link);
+        $result = substr($result, -6, 6);
+        new JsonResponse($result);
+
     }
 }
