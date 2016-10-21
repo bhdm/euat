@@ -290,7 +290,7 @@ class EducationController extends Controller
 //        $res = simplexml_load_string('<document><code>32e55e5700003e0e</code></document>');
             $str = file_get_contents($link);
             $res = simplexml_load_string($str);
-            dump($str);
+            echo $str;
             if (isset($res->erno) && $res->erno == '9'){
                 return ['code' => false, 'link' => $res->url];
             }else{
