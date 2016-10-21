@@ -291,7 +291,7 @@ class EducationController extends Controller
             $str = file_get_contents($link);
             $res = simplexml_load_string($str);
             echo $str;
-            if (isset($res->erno) && $res->erno == '9'){
+            if (isset($res->erno)){
                 return ['code' => false, 'link' => $res->url];
             }else{
                 $user = $this->getUser();

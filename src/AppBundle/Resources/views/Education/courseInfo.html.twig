@@ -54,9 +54,9 @@
                         {#{% else %}#}
                             {% if (app.user.sovetnmo == null) %}
                                 {{ dump(nmo) }}
-                                {#<a href="{{ nmo.link }}" target="_blank">#}
+                                <a href="{{ nmo.link }}" target="_blank">
                                     <button class="btn btn-primary" style="width: 100%">Авторизоваться на сайте sovetnmo.ru</button>
-                                {#</a>#}
+                                </a>
                             {% else %}
                                 <a href="{{ path('course_passing',{'recordBookId' : recordBook.id}) }}">
                                     <button class="btn btn-primary" style="width: 100%">Перейти в обучение</button>
