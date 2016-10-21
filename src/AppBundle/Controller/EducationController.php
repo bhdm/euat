@@ -52,13 +52,9 @@ class EducationController extends Controller
             }
         }
 
-        $token = $this->getToken();
-        $backLink = 'http://euat.ru/course/'.$id.'/info';
-        $secretkey = 'dhi11nubax';
-        $md5 = md5('back_url='.$backLink.'login='.$this->getUser()->getId().'usr_data=get_login'.md5($token.$secretkey));
-        $link = 'http://www.sovetnmo.ru/cgi-bin/unishell?access_token='.$token.'&usr_data=get_login&back_url='.$backLink.'&login='.$this->getUser()->getId().'&ssign='.$md5;
+        $nmo = $this->getAuth($id);
 
-        return ['course' => $course, 'statusCourse' => $statusCourse, 'recordBook' => $recordBook, 'link' => $link];
+        return ['course' => $course, 'statusCourse' => $statusCourse, 'recordBook' => $recordBook, 'nmo' => $nmo];
     }
 
     /**
@@ -267,6 +263,7 @@ class EducationController extends Controller
         exit;
     }
 
+
     public function getToken(){
         $session = new Session();
         if ($session->get('nmotoken') == null){
@@ -277,5 +274,32 @@ class EducationController extends Controller
             $session->save();
         }
         return $session->get('nmotoken');
+    }
+
+    /**
+     * Если у пользователя нету nmoId в базу
+     */
+    public function getAuth($id){
+        if ($this->getUser()->getSovetnmo() == null){
+            $token = $this->getToken();
+            $backLink = 'http://euat.ru/course/'.$id.'/info';
+            $secretkey = 'dhi11nubax';
+            $md5 = md5('back_url='.$backLink.'login='.$this->getUser()->getId().'usr_data=get_login'.md5($token.$secretkey));
+            $link = 'http://www.sovetnmo.ru/cgi-bin/unishell?access_token='.$token.'&usr_data=get_login&back_url='.$backLink.'&login='.$this->getUser()->getId().'&ssign='.$md5;
+
+//        $res = simplexml_load_string('<document><code>32e55e5700003e0e</code></document>');
+            $res = simplexml_load_string(file_get_contents($link));
+            if (isset($res->erno) && $res->erno == '9'){
+                return ['code' => false, 'link' => $res->url];
+            }else{
+                $user = $this->getUser();
+                $user->setSovetnmo($res->code);
+                $this->getDoctrine()->getManager()->flush($user);
+                $this->getDoctrine()->getManager()->refresh($user);
+                return ['code' => true];
+            }
+        }else{
+            return ['code' => true];
+        }
     }
 }
