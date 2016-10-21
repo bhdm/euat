@@ -53,7 +53,6 @@
                             {#<div class="alert alert-warning">Курс будет доступен в {{ recordBook.attempt | succesAttempt | date('H:i') }}</div>#}
                         {#{% else %}#}
                             {% if (app.user.sovetnmo == null) %}
-                                {{ dump(nmo) }}
                                 <a href="{{ nmo.link }}" target="_blank">
                                     <button class="btn btn-primary" style="width: 100%">Авторизоваться на сайте sovetnmo.ru</button>
                                 </a>
