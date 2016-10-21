@@ -288,7 +288,9 @@ class EducationController extends Controller
             $link = 'http://www.sovetnmo.ru/cgi-bin/unishell?access_token='.$token.'&usr_data=get_login&back_url='.$backLink.'&login='.$this->getUser()->getId().'&ssign='.$md5;
 
 //        $res = simplexml_load_string('<document><code>32e55e5700003e0e</code></document>');
-            $res = simplexml_load_string(file_get_contents($link));
+            $str = file_get_contents($link);
+            $res = simplexml_load_string($str);
+            dump($str);
             if (isset($res->erno) && $res->erno == '9'){
                 return ['code' => false, 'link' => $res->url];
             }else{
