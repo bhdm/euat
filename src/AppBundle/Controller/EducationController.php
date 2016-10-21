@@ -54,7 +54,8 @@ class EducationController extends Controller
 
         $token = $this->getToken();
         $backLink = 'http://euat.ru/course/'.$id.'/info';
-        $md5 = md5('access_token='.$token.'back_url='.$backLink.'login='.$this->getUser()->getId().'usr_data=get_login'.$token);
+        $secretkey = 'dhi11nubax';
+        $md5 = md5('access_token='.$token.'back_url='.$backLink.'login='.$this->getUser()->getId().'usr_data=get_login'.$token.$secretkey);
         $link = 'http://www.sovetnmo.ru/cgi-bin/unishell?access_token='.$token.'&usr_data=get_login&back_url='.$backLink.'&login=test_user&ssign='.$md5;
 
         return ['course' => $course, 'statusCourse' => $statusCourse, 'recordBook' => $recordBook, 'link' => $link];
