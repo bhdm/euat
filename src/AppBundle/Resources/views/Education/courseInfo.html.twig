@@ -52,9 +52,15 @@
                         {#{% if recordBook.attempt != null and recordBook.attempt | succesAttempt != null %}#}
                             {#<div class="alert alert-warning">Курс будет доступен в {{ recordBook.attempt | succesAttempt | date('H:i') }}</div>#}
                         {#{% else %}#}
-                            <a href="{{ path('course_passing',{'recordBookId' : recordBook.id}) }}">
-                                <button class="btn btn-primary" style="width: 100%">Перейти в обучение</button>
-                            </a>
+                            {% if (app.user.sovetnmo == null) %}
+                                <a href="{{ path('course_passing',{'recordBookId' : recordBook.id}) }}">
+                                    <button class="btn btn-primary" style="width: 100%">Перейти в обучение</button>
+                                </a>
+                            {% else %}
+                                <a href="{{ link }}" target="_blank">
+                                    <button class="btn btn-primary" style="width: 100%">Авторизоваться на сайте sovetnmo.ru</button>
+                                </a>
+                            {% endif %}
                         {#{% endif %}#}
                     {% elseif statusCourse == 'PASSED' %}
                         <div class="alert alert-info">Курс пройден</div>

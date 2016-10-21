@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
@@ -50,7 +51,13 @@ class EducationController extends Controller
                 $statusCourse = 'PASSED';
             }
         }
-        return ['course' => $course, 'statusCourse' => $statusCourse, 'recordBook' => $recordBook];
+
+        $token = $this->getToken();
+        $backLink = 'http://euat.ru/course/'.$id.'/info';
+        $md5 = md5('access_token='.$token.'back_url='.$backLink.'login='.$this->getUser()->getId().'usr_data=get_login'.$token);
+        $link = 'http://www.sovetnmo.ru/cgi-bin/unishell?access_token='.$token.'&usr_data=get_login&back_url='.$backLink.'&login=test_user&ssign='.$md5;
+
+        return ['course' => $course, 'statusCourse' => $statusCourse, 'recordBook' => $recordBook, 'link' => $link];
     }
 
     /**
@@ -249,7 +256,7 @@ class EducationController extends Controller
     }
 
     /**
-     * Route("/api/getcourse/{id}", name="api_get_course")
+     * @Route("/api/getcourse/{id}", name="api_get_course")
      */
     public function apiGetCourseAction($id){
         $course = $this->getDoctrine()->getRepository('AppBundle:Course')->findOneBy(['enabled'=> true, 'id' => $id]);
@@ -259,16 +266,15 @@ class EducationController extends Controller
         exit;
     }
 
-    /**
-     * Получение токена
-     * Route("/api/gettoken")
-     */
-    public function getTokenAction(Request $request){
-        $session = new $request->getSession();
-        $link = 'http://www.sovetnmo.ru/cgi-bin/unishell?provider=euat&usr_data=get_auth_token&ssign=9bded6d6b41cf4c10067c5842c7b2977';
-        $result = file_get_contents($link);
-        $result = substr($result, -6, 6);
-        new JsonResponse($result);
-
+    public function getToken(){
+        $session = new Session();
+        if ($session->get('nmotoken') == null){
+            $link = 'http://www.sovetnmo.ru/cgi-bin/unishell?provider=euat&usr_data=get_auth_token&ssign=9bded6d6b41cf4c10067c5842c7b2977';
+            $result = file_get_contents($link);
+            $result = substr($result, 16, -18);
+            $session->set('nmotoken', $result);
+            $session->save();
+        }
+        return $session->get('nmotoken');
     }
 }
