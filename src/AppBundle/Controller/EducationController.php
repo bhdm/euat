@@ -290,7 +290,7 @@ class EducationController extends Controller
 //        $res = simplexml_load_string('<document><code>32e55e5700003e0e</code></document>');
             $str = file_get_contents($link);
             $res = simplexml_load_string($str);
-            if (isset($res->       errno)){
+            if (isset($res->errno)){
                 return ['code' => false, 'link' => $res->url];
             }else{
                 $user = $this->getUser();

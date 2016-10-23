@@ -367,5 +367,27 @@ class DefaultController extends Controller
             }
         }
     }
+
+    /**
+     * @Route("/sitemap", defaults={"_format"="xml"})
+     * @Template("AppBundle::sitemap.html.twig")
+     */
+    public function getXmlAction(){
+        ini_set('memory_limit', '-1');
+
+        $publications = $this->getDoctrine()->getRepository('AppBundle:Publication')->findBy(['enabled'=>true],['created' => 'ASC']);
+        $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findBy(['enabled'=>true],['created' => 'ASC']);
+        $menu = $this->getDoctrine()->getRepository('AppBundle:Menu')->findBy(['enabled' => true],['id' => 'ASC']);
+        $journals = $this->getDoctrine()->getRepository('AppBundle:Journal')->findBy(['enabled' => true],['id' => 'ASC']);
+        $journalPosts = $this->getDoctrine()->getRepository('AppBundle:JournalPost')->findBy(['enabled' => true],['id' => 'ASC']);
+
+        return [
+            'publications' => $publications,
+            'events'       => $events,
+            'menu'         => $menu,
+            'journals'     => $journals,
+            'journalPosts' => $journalPosts
+        ];
+    }
 }
 
