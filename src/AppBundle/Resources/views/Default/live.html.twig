@@ -61,14 +61,14 @@
             <br />
             <br />
             <h3 class="blue-text">Программа конференции</h3>
-            <a class="fancybox" rel="fancybox-thumb" title="Программа конференции" href="{{ asset('bundles/app/images/Timing-EAT-IV.png') }}"><img src="{{ asset('bundles/app/images/Timing-EAT-IV.png') }}" class="img-thumbnail" style="width: 300px"></a>
+            <a class="fancybox" title="Программа конференции" href="{{ asset('bundles/app/images/Timing-EAT-IV.png') }}"><img src="{{ asset('bundles/app/images/Timing-EAT-IV.png') }}" class="img-thumbnail" style="width: 300px"></a>
         </div>
     </div>
 {% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
-    <style rel="stylesheet" href="{{ asset('assets/vendor/fancybox/source/jquery.fancybox.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/fancybox/source/jquery.fancybox.css') }}"/>
     <style>
         .nav-pills li a{
             border-radius: 0;
@@ -84,10 +84,18 @@
 {% block javascript %}
     {{ parent() }}
     <script src="{{ asset('assets/vendor/fancybox/source/jquery.fancybox.js') }}"></script>
+    <script src="{{ asset('assets/vendor/fancybox/source/jquery.fancybox.pack.js') }}"></script>
     <script>
         $(document).ready(function() {
             $(".fancybox").fancybox({
-                maxWidth: 1000
+                padding: 0,
+                maxHeight: 2000,
+                autoScale: false,
+                openEffect : 'elastic',
+                openSpeed  : 150,
+                closeEffect : 'elastic',
+                scrolling: 'yes',
+                closeBtn  : true,
             });
         });
     </script>
