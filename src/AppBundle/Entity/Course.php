@@ -132,6 +132,13 @@ class Course
     private $codes;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="code_Accreditation", type="string", length=255, nullable=true)
+     */
+    private $codeAccreditation;
+
+    /**
      * Course constructor.
      */
     public function __construct()
@@ -515,6 +522,21 @@ class Course
         $this->codes = $codes;
     }
 
+    /**
+     * @return string
+     */
+    public function getCodeAccreditation()
+    {
+        return $this->codeAccreditation;
+    }
+
+    /**
+     * @param string $codeAccreditation
+     */
+    public function setCodeAccreditation($codeAccreditation)
+    {
+        $this->codeAccreditation = $codeAccreditation;
+    }
     
 }
 

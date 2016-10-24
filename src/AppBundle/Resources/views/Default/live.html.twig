@@ -1,0 +1,94 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block seo %}
+        <title>Прямая трансляция IV Конференции ЕАТ</title>
+        <meta name="description" content="В рамках этой конференции будут рассмотрены проблемы обследования и лечения коморбидного пациента в повседневной практике. В ходе пленарных докладов, мастер классов, основное время будет уделено не только теоретическим подходам, но и сугубо практическим алгоритмам, рекомендациям, схемам лечения"/>
+{% endblock %}
+
+{% block content %}
+    <ol class="breadcrumb">
+        <li
+                itemscope
+                itemtype="http://data-vocabulary.org/Breadcrumb">
+            <a itemprop="url" href="{{ path('homepage') }}"><span itemprop="title">Главная</span></a></li>
+        <li class="active">Прямая трансляция IV Конференции ЕАТ</li>
+    </ol>
+    <h1 class="blue-text" id="page-title">Прямая трансляция IV Конференции ЕАТ</h1>
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+            <p>
+                IV Международная Конференция Евразийской Ассоциации Терапевтов посвященная проблемам коморбидных состояний проходит в знаменательный период, когда роль врачей терапевтов в развитии первичной медико-санитарной помощи в профилактике и сохранении здоровья пациентов приобрела особое значение. В прошедший год, объявленный в Российской Федерации годом борьбы с сердечно-сосудистыми заболеваниями, Евразийская Ассоциация Терапевтов уделила особое внимание объединению усилий врачей различных специальностей для снижения смертности, повышения продолжительности жизни и ее качества пациента со смешанной патологией.
+            </p>
+            <p>
+                рамках этой конференции будут рассмотрены проблемы обследования и лечения коморбидного пациента в повседневной практике. В ходе пленарных докладов, мастер классов, основное время будет уделено не только теоретическим подходам, но и сугубо практическим алгоритмам, рекомендациям, схемам лечения.
+            </p>
+            <p>Так, будут рассмотрены темы:</p>
+            <ul style="list-style: disc; margin-left: 20px">
+                <li>Место политаблетки в схемах лечения.</li>
+                <li>Отдельное внимание будет уделено актуальной сейчас теме механизмов старения и воздействия на его скорость.</li>
+                <li>Роль кишечной микрофлоры в кардиологическом континууме</li>
+                <li>Схемам лечения гипертонической болезни</li>
+                <li>Применению новых оральных антикоагулянтов</li>
+                <li>Одобрению и обсуждению последних рекомендаций</li>
+            </ul>
+            <br />
+            <br />
+            <ul class="nav nav-pills nav-justified" role="tablist">
+                <li role="presentation" class="active"><a href="#video1" aria-controls="video1" role="tab" data-toggle="tab" >Зал 1 «Ялта»</a></li>
+                <li role="presentation"><a href="#video2" aria-controls="video2" role="tab" data-toggle="tab">Зал 2 «Ростов»</a></li>
+                <li role="presentation"><a href="#video3" aria-controls="video3" role="tab" data-toggle="tab">Зал 3 «Нижний Новгород»</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="video1">
+                    <h5 style="padding: 10px 0">Трансляция из Зала №1 «Ялта» с IV Международной Конференции Евразийской Ассоциации Терапевтов</h5>
+                    <div style="text-align: center">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/cIrepgJ6_rk" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="video2">
+                    <h5 style="padding: 10px 0">Трансляция из Зала №2 «Ростов» с IV Международной Конференции Евразийской Ассоциации Терапевтов</h5>
+                    <div style="text-align: center">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/L9eI_iX_NqM" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="video3">
+                    <h5 style="padding: 10px 0">Трансляция из Зала №3 «нижний новгород» с IV Международной Конференции Евразийской Ассоциации Терапевтов</h5>
+                    <div style="text-align: center">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/LinOfyR6Dpw" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+            <h3 class="blue-text">Программа конференции</h3>
+            <a class="fancybox" rel="fancybox-thumb" title="Программа конференции" href="{{ asset('bundles/app/images/Timing-EAT-IV.png') }}"><img src="{{ asset('bundles/app/images/Timing-EAT-IV.png') }}" class="img-thumbnail" style="width: 300px"></a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style rel="stylesheet" href="{{ asset('assets/vendor/fancybox/source/jquery.fancybox.css') }}">
+    <style>
+        .nav-pills li a{
+            border-radius: 0;
+            background: #CCC;
+        }
+        .nav-pills li a:hover{
+            color: #fff;
+            background-color: #337ab7;
+        }
+    </style>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script src="{{ asset('assets/vendor/fancybox/source/jquery.fancybox.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $(".fancybox").fancybox({
+                maxWidth: 1000
+            });
+        });
+    </script>
+{% endblock %}

@@ -193,9 +193,11 @@ class EducationController extends Controller
                     $recordBook->setPassed((new \DateTime()));
                 }
                 $recordBook->setAttempt((new \DateTime()));
-//                if ($recordBook->getPercent() == 0){
-//                    $recordBook->setPercent(100);
-//                }
+
+                $code = $this->getCode;
+
+
+
                 $em->flush($recordBook);
                 $em->refresh($recordBook);
                 return $this->render('AppBundle:Education:coursePassed.html.twig', ['recordBook' => $recordBook]);
@@ -276,6 +278,8 @@ class EducationController extends Controller
         return $session->get('nmotoken');
     }
 
+    private $secretKey = 'dhi11nubax';
+
     /**
      * Если у пользователя нету nmoId в базу
      */
@@ -283,8 +287,7 @@ class EducationController extends Controller
         if ($this->getUser()->getSovetnmo() == null){
             $token = $this->getToken();
             $backLink = 'http://euat.ru/course/'.$id.'/info';
-            $secretkey = 'dhi11nubax';
-            $md5 = md5('back_url='.$backLink.'login='.$this->getUser()->getId().'usr_data=get_login'.md5($token.$secretkey));
+            $md5 = md5('back_url='.$backLink.'login='.$this->getUser()->getId().'usr_data=get_login'.md5($token.$this->secretKey));
             $link = 'http://www.sovetnmo.ru/cgi-bin/unishell?access_token='.$token.'&usr_data=get_login&back_url='.$backLink.'&login='.$this->getUser()->getId().'&ssign='.$md5;
 
 //        $res = simplexml_load_string('<document><code>32e55e5700003e0e</code></document>');
@@ -301,6 +304,19 @@ class EducationController extends Controller
             }
         }else{
             return ['code' => true];
+        }
+    }
+
+    public function getCode($userId, $codeAccreditaion, $countQ, $countA){
+        $token = $this->getToken();
+        $link = 'access_token='.$token.'&accr_code='.$codeAccreditaion.'&asked_questions='.$countQ.'&correct_answers='.$countA.'&user_id='.$userId.'&usr_data=confirm_activity_progress';
+        $md5 = $md5 = md5($link.md5($token.$this->secretKey));
+        $str = file_get_contents($link.'&ssign='.$md5);
+        $res = simplexml_load_string($str);
+        if (isset($res->code)){
+            return ['code' => $res->code];
+        }else{
+            return ['code' => false];
         }
     }
 }

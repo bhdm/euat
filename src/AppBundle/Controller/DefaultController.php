@@ -389,5 +389,15 @@ class DefaultController extends Controller
             'journalPosts' => $journalPosts
         ];
     }
+
+    /**
+     * @Route("/live", name="live")
+     * @Template()
+     */
+    public function liveAction(){
+        return [];
+    }
+
+
 }
 
