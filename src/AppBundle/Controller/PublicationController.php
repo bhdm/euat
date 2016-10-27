@@ -331,7 +331,7 @@ class PublicationController extends Controller
 
     /**
      * @Route("category/{categoryUrl}", name="category")
-     * @Route("education/{categoryUrl}", requirements={"categoryUrl" : "video"})
+     * @Route("education/{categoryUrl}", requirements={"categoryUrl" : "video"}, name="category_video")
 
      */
     public function categotyAction(Request $request, $categoryUrl){

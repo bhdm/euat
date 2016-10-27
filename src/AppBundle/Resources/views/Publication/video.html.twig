@@ -76,7 +76,7 @@
             <li
                     itemscope
                     itemtype="http://data-vocabulary.org/Breadcrumb">
-                <a itemprop="url"  href="{{ path('video') }}"><span itemprop="title">{{ publication.category }}</span></a></li>
+                <a itemprop="url"  href="{{ path('category_video', {'categoryUrl' : publication.category.slug }) }}"><span itemprop="title">{{ publication.category }}</span></a></li>
 
             <li  class="active">{{ publication.title }}</li>
         </ol>
