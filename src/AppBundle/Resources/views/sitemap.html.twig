@@ -4,12 +4,14 @@
         <loc>http://euat.ru</loc>
         <lastmod>2016-10-20T00:00:00+01:00</lastmod>
         <priority>1.0</priority>
+        <changefreq>daily</changefreq>
     </url>
     {% for p in pages  %}
         <url>
             <loc>http://euat.ru{{ p.url }}</loc>
             <lastmod>2016-10-20T00:00:00+01:00</lastmod>
             <priority>1.0</priority>
+            <changefreq>daily</changefreq>
         </url>
     {% endfor %}
     {% for publication in publications  %}
@@ -24,6 +26,7 @@
             <loc>http://euat.ru/{{ type }}/{{ publication.slug ? publication.slug : publication.id }}</loc>
             <lastmod>{{ publication.created | date('Y-m-d') }}T12:24:14+01:00</lastmod>
             <priority>0.85</priority>
+            <changefreq>daily</changefreq>
         </url>
     {% endfor %}
     {% for event in events  %}
@@ -38,6 +41,7 @@
             <loc>http://euat.ru/{{ type }}/{{ event.slug ? event.slug : event.id }}</loc>
             <lastmod>{{ event.created | date('Y-m-d') }}T12:24:14+01:00</lastmod>
             <priority>0.85</priority>
+            <changefreq>daily</changefreq>
         </url>
     {% endfor %}
 
@@ -46,6 +50,7 @@
             <loc>http://euat.ru/magazine/{{ j.slug }}</loc>
             <lastmod>{{ j.created | date("Y-m-d") }}T00:00:00+01:00</lastmod>
             <priority>0.85</priority>
+            <changefreq>daily</changefreq>
         </url>
     {% endfor %}
 
@@ -54,6 +59,7 @@
             <loc>http://euat.ru/magazine/{{ j.journal.slug }}/{{ j.slug }}</loc>
             <lastmod>{{ j.created | date("Y-m-d") }}T00:00:00+01:00</lastmod>
             <priority>0.85</priority>
+            <changefreq>daily</changefreq>
         </url>
     {% endfor %}
 </urlset>
