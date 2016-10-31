@@ -616,4 +616,7 @@ class User extends BaseUser
         $this->sovetnmo = $sovetnmo;
     }
 
+    public function isPasswordRequestNonExpired($ttl){
+        return true;
+    }
 }
