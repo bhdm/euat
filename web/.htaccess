@@ -77,12 +77,12 @@ RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 
 
 
-    RewriteCond %{REQUEST_URI} !\?
-    RewriteCond %{REQUEST_URI} !\&
-    RewriteCond %{REQUEST_URI} !\=
-    RewriteCond %{REQUEST_URI} !\.
-    RewriteCond %{REQUEST_URI} ![^\/]$
-    RewriteRule ^(.*)\/$ /$1 [R=301,L]
+#    RewriteCond %{REQUEST_URI} !\?
+#    RewriteCond %{REQUEST_URI} !\&
+#    RewriteCond %{REQUEST_URI} !\=
+#    RewriteCond %{REQUEST_URI} !\.
+#    RewriteCond %{REQUEST_URI} ![^\/]$
+#    RewriteRule ^(.*)\/$ /$1 [R=301,L]
     
 	RewriteCond %{SERVER_PORT} ^443$ [OR]
 	RewriteCond %{HTTPS} =on
