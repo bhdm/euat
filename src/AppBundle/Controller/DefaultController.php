@@ -398,6 +398,13 @@ class DefaultController extends Controller
         return [];
     }
 
+    /**
+     * @Route("/national-recommendations", name="national_recommendations")
+     * @Template()
+     */
+    public function naziRecomendationAction(){
+        return [];
+    }
 
 }
 

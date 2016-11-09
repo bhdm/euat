@@ -1,0 +1,33 @@
+{% extends 'AppBundle::layout.html.twig' %}
+{% block seo %}
+    <title>Национальные рекомендации</title>
+{% endblock %}
+
+{% block leftSidebar %}
+    <div class="table-cell col-fixed-300 hidden-xs hidden-sm">
+        {{ render(controller("AppBundle:Widget:calendar" )) }}
+    </div>
+{% endblock %}
+
+{% block content %}
+<div class="col-xs-12">
+    <ol class="breadcrumb">
+        <li
+                itemscope
+                itemtype="http://data-vocabulary.org/Breadcrumb">
+            <a itemprop="url" href="{{ path('homepage') }}"><span itemprop="title">Главная</span></a></li>
+
+        <li  class="active">Национальные рекомендации</li>
+    </ol>
+    <div>
+        <h1 class="blue-text" itemprop="title">Национальные рекомендации</h1>
+        <hr />
+        <div class="row">
+            <div class="col-sm-11">
+                <a href="#"><strong class="blue-text">Сердечно-сосудистый риск и хроническая болезнь почек: стратегии кардио-нефропротекции</strong></a>
+                <p></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
