@@ -20,7 +20,7 @@ use AppBundle\Form\CourseType;
 class CourseController extends Controller{
     const ENTITY_NAME = 'Course';
     /**
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_USER')")
      * @Route("", name="admin_course_list")
      * @Template()
      */
@@ -38,7 +38,7 @@ class CourseController extends Controller{
     }
 
     /**
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_USER')")
      * @Route("/add", name="admin_course_add")
      * @Template()
      */
@@ -71,7 +71,7 @@ class CourseController extends Controller{
     }
 
     /**
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_USER')")
      * @Route("/edit/{id}", name="admin_course_edit")
      * @Template()
      */
@@ -111,7 +111,7 @@ class CourseController extends Controller{
     }
 
     /**
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_USER')")
      * @Route("/remove/{id}", name="admin_course_remove")
      */
     public function removeAction(Request $request, $id){
@@ -161,7 +161,7 @@ class CourseController extends Controller{
     }
 
     /**
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_USER')")
      * @Route("/{courseId}/code/add", name="admin_code_add")
      * @Template("AdminBundle:CertificateCode:add.html.twig")
      */
