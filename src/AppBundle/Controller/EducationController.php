@@ -75,7 +75,7 @@ class EducationController extends Controller
      * @param Request $request
      * @param $courseId
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     * @Security("has_role('ROLE_STUDENT')")
+     * @Security("has_role('ROLE_USER')")
      * @Route("/enrolment/{courseId}", name="enrolment")
      */
     public function enrolmentAction(Request $request, $courseId){
@@ -121,7 +121,7 @@ class EducationController extends Controller
 
     /**
      * Переключает на следующий модуль курса
-     * @Security("has_role('ROLE_STUDENT')")
+     * @Security("has_role('ROLE_USER')")
      * @Route("/passing/next/{recordBookId}", name="course_passing")
      */
     public function passingAction(Request $request, $recordBookId){
