@@ -27,6 +27,9 @@ class EducationController extends Controller
      * @Template("")
      */
     public function coursesAction(){
+        if (!$this->isGranted('ROLE_USER')){
+            return $this->render('@App/Education/login.html.twig');
+        }
         $page = $this->getDoctrine()->getRepository('AppBundle:Page')->findBy(['slug' => 'courses']);
         $courses = $this->getDoctrine()->getRepository('AppBundle:Course')->findBy(['enabled' => true]);
         return ['page' => $page, 'courses' => $courses];
