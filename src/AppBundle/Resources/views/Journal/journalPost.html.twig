@@ -124,6 +124,10 @@
                     {{ post.publicBody | raw }}
                 </div>
                 <br />
+                <br />
+                <div style="font-size: 17px; text-align: center">Для получения доступа к полной статьи необходимо <a href="#" class="login2">войти</a> или <a href="{{ path('fos_user_registration_register') }}">зарегистрироваться</a><br /> Данный материал предназначен для специалистов и врачей.</div>
+                <br />
+                <br />
                 <div class="params">
                     <b>Список литературы:</b>
                     <div class="ck ck-owner">
@@ -131,9 +135,6 @@
                     </div>
                     {#<b>Ключевые слова:</b> {{ post.keywords }}#}
                 </div>
-                <br />
-                <br />
-                <b>Для получения доступа к полной статьи необходимо <a href="#" class="login2">войти</a> или <a href="{{ path('fos_user_registration_register') }}">зарегистрироваться</a></b>
             {% else %}
                 <div class="pub-content ck ck-body" >{#contenteditable="true"#}
                     {{ post.body | raw }}
