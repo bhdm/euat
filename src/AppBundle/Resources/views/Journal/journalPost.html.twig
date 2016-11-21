@@ -119,7 +119,7 @@
                 {#<b>Ключевые слова:</b> {{ post.keywords }}#}
             </div>
             <br />
-            {% if not is_graned("ROLE_USER") %}
+            {% if not is_granted("ROLE_USER") %}
                 <div class="pub-content ck ck-body" >{#contenteditable="true"#}
                     {{ post.publicBody | raw }}
                     <br />
