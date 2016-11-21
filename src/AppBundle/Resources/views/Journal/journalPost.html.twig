@@ -119,9 +119,18 @@
                 {#<b>Ключевые слова:</b> {{ post.keywords }}#}
             </div>
             <br />
-            <div class="pub-content ck ck-body" >{#contenteditable="true"#}
-                {{ post.body | raw }}
-            </div>
+            {% if not is_graned("ROLE_USER") %}
+                <div class="pub-content ck ck-body" >{#contenteditable="true"#}
+                    {{ post.publicBody | raw }}
+                    <br />
+                    <br />
+                    <b>Для получения доступа к полной статьи необходимо <a href="#" class="login2">войти</a> или <a href="{{ path('fos_user_registration_register') }}">зарегистрироваться</a></b>
+                </div>
+            {% else %}
+                <div class="pub-content ck ck-body" >{#contenteditable="true"#}
+                    {{ post.body | raw }}
+                </div>
+            {% endif %}
             <br />
             <div class="params">
                 <b>Список литературы:</b>

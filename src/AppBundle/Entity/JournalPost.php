@@ -67,6 +67,11 @@ class JournalPost extends BaseEntity{
     /**
      * @ORM\Column(type="text")
      */
+    protected $publicBody;
+
+    /**
+     * @ORM\Column(type="text")
+     */
     protected $body;
 
     /**
@@ -480,6 +485,23 @@ class JournalPost extends BaseEntity{
     {
         $this->metaKeyword = $metaKeyword;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getPublicBody()
+    {
+        return $this->publicBody;
+    }
+
+    /**
+     * @param mixed $publicBody
+     */
+    public function setPublicBody($publicBody)
+    {
+        $this->publicBody = $publicBody;
+    }
+
 
     
 
