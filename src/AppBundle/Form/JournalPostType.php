@@ -24,6 +24,7 @@ class JournalPostType extends AbstractType
             ->add('metaKeyword', null, ['label' => 'МЕТА слова'])
             ->add('pages', null, ['label' => 'Страницы'])
             ->add('description', null, ['label' => 'Описание статьи', 'attr' => ['class' => 'ckeditor']])
+            ->add('publicBody', null, ['label' => 'Текст статьи (публичный)', 'attr' => ['class' => 'ckeditor']])
             ->add('body', null, ['label' => 'Текст статьи', 'attr' => ['class' => 'ckeditor']])
             ->add('keywords', null, ['label' => 'Ключевые слова'])
             ->add('author', null, ['label' => 'Авторы'])
