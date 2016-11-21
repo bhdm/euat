@@ -237,7 +237,7 @@ class DefaultController extends Controller
     public function ajaxTest3Action(){
         $ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_URL, "http://www.qrisk.org/2016/index.php");
+        curl_setopt($ch, CURLOPT_URL, "https://qrisk.org/2016/index.php");
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $_POST);
 
