@@ -617,6 +617,6 @@ class User extends BaseUser
     }
 
     public function isPasswordRequestNonExpired($ttl){
-        return true;
+        return false;
     }
 }
