@@ -24,7 +24,8 @@ class WidgetController extends Controller
         }
 
         $dateStart = new \DateTime();
-        $dateEnd = new \DateTime($year.'-'.($month+1).'-01 00:00:00');
+        $dateEnd = new \DateTime($year.'-'.$month.'-01 00:00:00');
+        $dateEnd->modify('+1 month');
 
         $owner = $request->query->get('owner');
         $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findEvent($owner,$dateStart,$dateEnd);
