@@ -29,13 +29,13 @@
                     <p style="padding-left: 20px">
                         <strong>Авторы:</strong>
                         <br />
-                        {{ recommendation.authors }}
+                        {{ recommendation.authors | raw }}
                         <br />
                         <strong>Описание:</strong>
                         <br />
-                        {{ r.description }}
+                        {{ recommendation.description | raw }}
                         <br />
-                        {{ r.body }}
+                        {{ recommendation.body | raw }}
                     </p>
                 </div>
             </div>
