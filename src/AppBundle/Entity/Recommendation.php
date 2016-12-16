@@ -31,14 +31,14 @@ class Recommendation
     /**
      * @var string
      *
-     * @ORM\Column(name="body", type="text")
+     * @ORM\Column(name="body", type="text", nullable=true)
      */
     private $body;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="publicBody", type="text", length=255)
+     * @ORM\Column(name="publicBody", type="text", nullable=true)
      */
     private $publicBody;
 
