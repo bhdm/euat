@@ -52,6 +52,18 @@ class RecommendationController extends Controller{
         if ($request->getMethod() == 'POST'){
             if ($formData->isValid()){
                 $item = $formData->getData();
+                $file = $item->getFile();
+
+                if ($file){
+                    $filename = time(). '.'.$file->guessExtension();
+                    $file->move(
+                        __DIR__.'/../../../web/upload/recommendation/',
+                        $filename
+                    );
+                    $item->setFile(['path' => '/upload/recommendation/'.$filename ]);
+                }
+
+
                 $em->persist($item);
                 $em->flush();
                 $em->refresh($item);

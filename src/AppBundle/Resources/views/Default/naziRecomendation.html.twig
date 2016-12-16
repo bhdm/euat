@@ -20,26 +20,49 @@
         <li  class="active">Национальные рекомендации</li>
     </ol>
     <div>
-        <h1 class="blue-text" itemprop="title">Национальные рекомендации</h1>
-        <hr />
-        <div class="row">
-            <div class="col-sm-11">
-                <a href="http://euat.ru/upload/images/1479161459.pdf" target="_blank"><strong class="blue-text" style="font-size: 17px">Сердечно-сосудистый риск и хроническая болезнь почек: стратегии кардио-нефропротекции</strong></a>
-                <p style="padding-left: 20px">Рекомендации посвящены диагностике и лечению ХБР. Рекомендации предназначены для практических врачей.<br />
-                    <strong>Авторы:</strong>
-                    <br />
-                    Сопредседатели: Моисеев B.C., Мухин Н.А, Смирнов А.В., Члены рабочей группы: Кобалава Ж.Д., Бобкова И.Н., Виллевальде С.В., Ефремовцева М.А., Козловская Л.В., Швецов М.Ю., Шестакова М.В., Комитет экспертов: Арутюнов Г.П., Бойцов С.А., Галявич А.С., Гринштейн Ю.И., Добронравов В.А., Драпкина О.М., Ермоленко В.М., Карпов Ю.А. (президент НОА), Каюков И.Г., Котовская Ю.В., Кухарчук В.В., Мартынов А.И. (президент РНМОТ), Моисеев С.В., Морозова Т.Е., Оганов Р.Г. (почетный президент РКО), Подзолков В.И., Рожинская Л.Я., Терещенко С.Н., Фомин В.В., Хирманов В.Н., Чазова И.Е. (президент РМОАГ), Шамхалова М.Ш., Шилов Е.М., Шляхто Е.В. (президент РКО), Шутов А.М.
-                    <br />
-                    <strong>Описание:</strong>
-                    <br />
-                    Разработаны Комитетом экспертов Российского кардиологического общества (РКО), Научного общества нефрологов России (НОНР), Российской ассоциацией эндокринологов (РАЭ), Российского медицинского общества по артериальной гипертонии (РМОАГ), Национального общества по изучению атеросклероза (НОА), Российского научного медицинского общества терапевтов (РНМОТ).
-                    Составлены на основании соответствующих разделов международных и национальных рекомендаций по хронической болезни почек, профилактике и лечению атеросклероза, артериальной гипертонии, сахарного диабета и сердечной недостаточности
-                </p>
-                <div style="margin-top: 5px">
-                    <a href="http://euat.ru/upload/images/1479161459.pdf"><button class="btn-sm btn-primary" type="button">Скачать PDF</button></a>
+        {% if recommendation is defined %}
+            <h1 class="blue-text" itemprop="title">Национальные рекомендации</h1>
+            <hr />
+            <div class="row">
+                <div class="col-sm-11">
+                    <a href="http://euat.ru/upload/images/1479161459.pdf" target="_blank"><strong class="blue-text" style="font-size: 17px">{{ recommendation.title }}</strong></a>
+                    <p style="padding-left: 20px">
+                        <strong>Авторы:</strong>
+                        <br />
+                        {{ recommendation.authors }}
+                        <br />
+                        <strong>Описание:</strong>
+                        <br />
+                        {{ r.description }}
+                        <br />
+                        {{ r.body }}
+                    </p>
                 </div>
             </div>
-        </div>
+        {% else %}
+            <h1 class="blue-text" itemprop="title">Национальные рекомендации</h1>
+            <hr />
+            {% for r in recommendations %}
+                <div class="row">
+                    <div class="col-sm-11">
+                        <a href="{{ path('national_recommendations',{ 'url' : r.slug } ) }}" target="_blank"><strong class="blue-text" style="font-size: 17px">{{ r.title }}</strong></a>
+                        <p style="padding-left: 20px">
+                            <strong>Авторы:</strong>
+                            <br />
+                            {{ r.authors }}
+                            <br />
+                            <strong>Описание:</strong>
+                            <br />
+                            {{ r.description }}
+                        </p>
+                        <div style="margin-top: 5px">
+                            <a href="http://euat.ru/{{ r.file.path }}"><button class="btn-sm btn-primary" type="button">Скачать PDF</button></a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        {% endif %}
     </div>
 </div>
 {% endblock %}

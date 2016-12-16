@@ -399,11 +399,18 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/national-recommendations", name="national_recommendations")
+     * @Route("/national-recommendations/{url}", name="national_recommendations", defaults={"url" = null})
      * @Template()
      */
-    public function naziRecomendationAction(){
-        return [];
+    public function naziRecomendationAction($url = null){
+        if ($url == null){
+            $recommendations = $this->getDoctrine()->getRepository('AppBundle:Recommendation')->findBy([],['id' => 'DESC']);
+            return ['recommendations' => $recommendations];
+        }else{
+            $recommendation = $this->getDoctrine()->getRepository('AppBundle:Recommendation')->findOneBy(['slug' => $url]);
+            return ['recommendation' => $recommendation];
+        }
+
     }
 
 }
